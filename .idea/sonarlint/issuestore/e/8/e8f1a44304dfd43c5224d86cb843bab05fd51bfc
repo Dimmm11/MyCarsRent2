@@ -1,0 +1,7 @@
+
+Z	java:S106'"9Replace this use of System.out or System.err by a logger.(Í£ãøÿÿÿÿ8³»ØÍš/
+T	java:S106&"9Replace this use of System.out or System.err by a logger.(§•Õ8Ä›×Íš/
+U	java:S1065"9Replace this use of System.out or System.err by a logger.(¬ü“í8ªÏÃ¡š/
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(àÊŞ‡øÿÿÿÿ8ğì±™/
+d
+java:S1192 "GDefine a constant instead of duplicating this literal "client" 3 times.(Ğ¥è8±ŒüØ™/

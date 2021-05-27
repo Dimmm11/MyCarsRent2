@@ -1,0 +1,48 @@
+
+q
+java:S2095x"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´˜ëêıÿÿÿÿ8åºş™/
+l
+java:S2095\"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Û£ñÓ8åºş™/
+c
+java:S2259M"AA "NullPointerException" could be thrown; "con" is nullable here.(éÆ“šûÿÿÿÿ8áøşÇ™/
+^
+java:S2259c"AA "NullPointerException" could be thrown; "con" is nullable here.(¬Å°ˆ8ÇòÈ™/
+_
+java:S2259¹"AA "NullPointerException" could be thrown; "con" is nullable here.(¬Å°ˆ8ô‚Ê™/
+^
+java:S2259"AA "NullPointerException" could be thrown; "con" is nullable here.(¬Å°ˆ8 çøí™/
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Üˆ¢Ğ8òˆß°™/
+d
+java:S2259†"AA "NullPointerException" could be thrown; "con" is nullable here.(éÆ“šûÿÿÿÿ8 çøí™/
+d
+java:S2259Ü"AA "NullPointerException" could be thrown; "con" is nullable here.(éÆ“šûÿÿÿÿ8åÛûªš/
+^
+java:S2259F"AA "NullPointerException" could be thrown; "con" is nullable here.(¬Å°ˆ8áøşÇ™/
+r
+java:S2095²"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÍÂõ½ıÿÿÿÿ8åºş™/
+r
+java:S2095”"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(™üóÊşÿÿÿÿ8åºş™/
+c
+java:S2259j"AA "NullPointerException" could be thrown; "con" is nullable here.(éÆ“šûÿÿÿÿ8ÇòÈ™/
+Z	java:S106D"9Replace this use of System.out or System.err by a logger.(ô±…åùÿÿÿÿ8áøşÇ™/
+Z	java:S106a"9Replace this use of System.out or System.err by a logger.(™Ä†‡ÿÿÿÿÿ8ÇòÈ™/
+_
+java:S2259"AA "NullPointerException" could be thrown; "con" is nullable here.(¬Å°ˆ8’ñÅÉ™/
+l
+java:S2095?"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(º¡Ó8åºş™/
+e
+java:S5361"HReplace this call to "replaceAll()" by a call to the "replace()" method.(²ŠË8î˜Üªš/
+d
+java:S2259¤"AA "NullPointerException" could be thrown; "con" is nullable here.(éÆ“šûÿÿÿÿ8’ñÅÉ™/
+U	java:S106}"9Replace this use of System.out or System.err by a logger.(ÇÊÀµ8 ßòí™/
+c	java:S112¡"FDefine and throw a dedicated exception instead of using a generic one.(Æ¨¯Ğ8Ê¸¹Éš/
+V	java:S106Ó"9Replace this use of System.out or System.err by a logger.(—£ê‰8åÛûªš/
+_
+java:S2259Õ"AA "NullPointerException" could be thrown; "con" is nullable here.(¬Å°ˆ8åÛûªš/
+d
+java:S2259À"AA "NullPointerException" could be thrown; "con" is nullable here.(éÆ“šûÿÿÿÿ8ô‚Ê™/
+V	java:S106·"9Replace this use of System.out or System.err by a logger.(—£ê‰8ô‚Ê™/
+W
+java:S1118":Add a private constructor to hide the implicit public one.(şÄãÜ8¸¼ûªš/
+m
+java:S2095Î"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ğ¸8Á„üªš/

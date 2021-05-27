@@ -1,0 +1,73 @@
+<web-app version="3.0">
+  <display-name>Archetype Created Web Application</display-name>
+  <!-- ==============================================
+Encoding filter
+ ============================================== -->
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>controller.filters.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+<!-- ==============================================
+Filter for access admin content
+ ============================================== -->
+  <filter>
+    <filter-name>AdminFilter</filter-name>
+    <filter-class>controller.filters.AdminFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AdminFilter</filter-name>
+<!--    <url-pattern>/adminclients</url-pattern>-->
+    <url-pattern>/admincars</url-pattern>
+    <url-pattern>/welcomeAdmin</url-pattern>
+    <url-pattern>/adminstaff</url-pattern>
+<!--    <url-pattern>/adminorders</url-pattern>-->
+  </filter-mapping>
+  <!-- ==============================================
+  Filter for access manager content
+   ============================================== -->
+  <filter>
+    <filter-name>ManagerFilter</filter-name>
+    <filter-class>controller.filters.ManagerFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ManagerFilter</filter-name>
+    <url-pattern>/managerClients</url-pattern>
+    <url-pattern>/welcomeManager</url-pattern>
+    <url-pattern>/managerCars</url-pattern>
+    <url-pattern>/managerOrders</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>controller.filters.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+<!--    <url-pattern>/login.jsp</url-pattern>-->
+    <url-pattern>/login</url-pattern>
+  </filter-mapping>
+
+<!--  <filter>-->
+<!--    <filter-name>AccessFilter</filter-name>-->
+<!--    <filter-class>controller.filters.AccessFilter</filter-class>-->
+<!--  </filter>-->
+<!--  <filter-mapping>-->
+<!--    <filter-name>AccessFilter</filter-name>-->
+<!--    <url-pattern>/*</url-pattern>-->
+<!--  </filter-mapping>-->
+  
+  <servlet>
+    <servlet-name>Servlet</servlet-name>
+    <servlet-class>controller.Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+
+</web-app>

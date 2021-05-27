@@ -1,0 +1,38 @@
+
+c
+java:S2259u"AA "NullPointerException" could be thrown; "con" is nullable here.(éÆ“šûÿÿÿÿ8Ìù–Ëš/
+[	java:S106Š"9Replace this use of System.out or System.err by a logger.(áºüÿÿÿÿ8Ìù–Ëš/
+_
+java:S2259ª"AA "NullPointerException" could be thrown; "con" is nullable here.(¬Å°ˆ8Ìù–Ëš/
+^
+java:S2259n"AA "NullPointerException" could be thrown; "con" is nullable here.(¬Å°ˆ8Ìù–Ëš/
+_
+java:S2259Œ"AA "NullPointerException" could be thrown; "con" is nullable here.(¬Å°ˆ8Ìù–Ëš/
+_
+java:S2259É"AA "NullPointerException" could be thrown; "con" is nullable here.(¬Å°ˆ8Ìù–Ëš/
+r
+java:S2095ƒ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ê˜éüÿÿÿÿ8Ìù–Ëš/
+]	java:S125"<This block of commented-out lines of code should be removed.(œËÛûÿÿÿÿ8 ÈœËš/
+r
+java:S2095¡"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´„ˆÎıÿÿÿÿ8Ìù–Ëš/
+U	java:S106Ç"9Replace this use of System.out or System.err by a logger.(Ÿ´©Y8Ìù–Ëš/
+r
+java:S2095Á"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¯ª¥‚şÿÿÿÿ8Ìù–Ëš/
+d
+java:S2259“"AA "NullPointerException" could be thrown; "con" is nullable here.(éÆ“šûÿÿÿÿ8Ìù–Ëš/
+d
+java:S2259±"AA "NullPointerException" could be thrown; "con" is nullable here.(éÆ“šûÿÿÿÿ8Ìù–Ëš/
+\
+java:S1118":Add a private constructor to hide the implicit public one.(†ØáÈùÿÿÿÿ8Ìù–Ëš/
+q
+java:S2095c"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(†ô™§ıÿÿÿÿ8Ìù–Ëš/
+g	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ê“Åıÿÿÿÿ8¨¦Ëš/
+j
+java:S5361#"HReplace this call to "replaceAll()" by a call to the "replace()" method.(±Ò˜ûÿÿÿÿ8Ìù–Ëš/
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Üˆ¢Ğ8Ìù–Ëš/
+d
+java:S2259Ğ"AA "NullPointerException" could be thrown; "con" is nullable here.(éÆ“šûÿÿÿÿ8Ìù–Ëš/
+[	java:S106¨"9Replace this use of System.out or System.err by a logger.(áºüÿÿÿÿ8Ìù–Ëš/
+U	java:S106l"9Replace this use of System.out or System.err by a logger.(Êİ¹È8Ìù–Ëš/
+j
+java:S53613"HReplace this call to "replaceAll()" by a call to the "replace()" method.(»Š”ûıÿÿÿÿ8Ìù–Ëš/
