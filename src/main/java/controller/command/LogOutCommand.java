@@ -16,6 +16,7 @@ public class LogOutCommand implements Command {
         session.setAttribute("client", null);
         session.setAttribute("role", 0);
         context.setAttribute("client", null);
+
         return "redirect:/index.jsp";
     }
 

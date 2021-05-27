@@ -15,64 +15,49 @@
           crossorigin="anonymous">
 
 
-
-<%--    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--%>
-<%--    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>--%>
-<%--    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>--%>
-
-    <link rel="stylesheet" type="text/css" href="CSS/loginPage.css"/>
+    <%--    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--%>
+    <%--    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>--%>
+    <%--    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>--%>
+    <style>
+        <%@include file="/CSS/loginPage.css" %>
+    </style>
+    <%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/loginPage.css"/>--%>
     <title>Login page</title>
 
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Cars rent</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-<%--            <div class="collapse navbar-collapse" id="navbarSupportedContent">--%>
-<%--                <ul class="navbar-nav me-auto mb-2 mb-lg-0">--%>
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="nav-link" href="#">Link</a>--%>
-<%--                    </li>--%>
-<%--                    --%>
-<%--                    <li class="nav-item dropdown">--%>
-<%--                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"--%>
-<%--                           role="button" data-bs-toggle="dropdown" aria-expanded="false">--%>
-<%--                            Dropdown--%>
-<%--                        </a>--%>
-<%--                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">--%>
-<%--                            <li><a class="dropdown-item" href="#">Action</a></li>--%>
-<%--                            <li><a class="dropdown-item" href="#">Another action</a></li>--%>
-<%--                            <li><hr class="dropdown-divider"></li>--%>
-<%--                            <li><a class="dropdown-item" href="#">Something else here</a></li>--%>
-<%--                        </ul>--%>
-<%--                    </li>--%>
-<%--                </ul>--%>
+
+
+<div class="sidenav">
+    <div class="login-main-text">
+        <h2>Login page</h2>
+        <%--        <h2><fmt:message key="Welcome"/></h2>--%>
+        <%--        <p><fmt:message key="login_register"/></p>--%>
+    </div>
+</div>
+
+<div class="main">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a style="font-size: xx-large" class="navbar-brand" href="#">Cars rent</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
-        </div>
-    </nav>
-</header>
-
-<div class="sidenav">
-    <div class="login-main-text">
-        <h2>Login page</h2>
-<%--        <h2><fmt:message key="Welcome"/></h2>--%>
-<%--        <p><fmt:message key="login_register"/></p>--%>
-    </div>
-</div>
-<div class="main">
+        </nav>
+    </header>
     <div class="col-md-6 col-sm-12">
-        <div class="login-form">
 
+
+        <div class="login-form">
+<c:out value="${requestScope.error.toString()}"/>
             <form action="${pageContext.request.contextPath}/login" method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Username" name="Login">
@@ -80,14 +65,16 @@
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Password" name="Password">
                 </div>
-<%--                <input type="hidden" name="lang" value="<%=request.getParameter("lang")%>">--%>
+                <%--                <input type="hidden" name="lang" value="<%=request.getParameter("lang")%>">--%>
 
                 <button type="submit" class="btn btn-black">Login</button>
             </form>
 
             <form>
-<%--                <input type="hidden" name="lang" value="<%=request.getParameter("lang")%>">--%>
-                <button type="submit" class="btn btn-secondary" formaction="${pageContext.request.contextPath}/register.jsp" formmethod="post">Registration</button>
+                <%--                <input type="hidden" name="lang" value="<%=request.getParameter("lang")%>">--%>
+                <button type="submit" class="btn btn-secondary"
+                        formaction="${pageContext.request.contextPath}/register.jsp" formmethod="post">Registration
+                </button>
             </form>
 
         </div>

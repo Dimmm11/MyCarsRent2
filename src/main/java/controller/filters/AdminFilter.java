@@ -20,10 +20,6 @@ public class AdminFilter implements Filter {
         if((int)session.getAttribute("role")==3){
             System.out.println("role from AdminFIlter = "+(int)session.getAttribute("role"));
 
-            /**
-             * stop caching pages in browser
-             */
-            resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
             chain.doFilter(request,response);
 
         }else {

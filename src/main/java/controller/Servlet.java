@@ -87,6 +87,10 @@ public class Servlet extends HttpServlet {
 
         if (page.contains("redirect:")) {
             System.out.println("redirect");
+//            session.setAttribute("role", null);
+//            session.setAttribute("client", null);
+//            session.invalidate();
+
             response.sendRedirect(page.replace("redirect:", "/cars"));
         } else {
             if (session.getAttribute("client") == null) {

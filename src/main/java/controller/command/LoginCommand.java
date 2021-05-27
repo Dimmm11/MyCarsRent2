@@ -15,6 +15,8 @@ public class LoginCommand implements Command {
 
         String name = request.getParameter("Login");
         String pass = request.getParameter("Password");
+        request.setAttribute("error", "");
+
 
         if (name == null || name.equals("") || pass == null || pass.equals("")) {
             return "redirect:/login.jsp";
@@ -24,7 +26,9 @@ public class LoginCommand implements Command {
          */
         if (!CheckClient.isValidClient(name, pass)) {
             System.out.println("no such client");
-            return "redirect:/index.jsp";
+            request.setAttribute("error", "wrong client data");
+//            return "redirect:/index.jsp";
+            return "redirect:/login.jsp";
         }
         /**
          * set User to Session
@@ -35,28 +39,30 @@ public class LoginCommand implements Command {
             session.setAttribute("role", client.getRole_id());
             session.setAttribute("client", client);
 
-            System.out.println("role in LoginCommand: "+client.getRole_id());
-            System.out.println("client in LoginCommand: "+client.getLogin());
+            System.out.println("role in LoginCommand: " + client.getRole_id());
+            System.out.println("client in LoginCommand: " + client.getLogin());
             /**
              * check if User is Banned
              */
             if (client.getStatus().equals("BANNED")) {
                 session.setAttribute("role", 0);
                 session.setAttribute("client", null);
-                return "redirect:/index.jsp";
+                request.setAttribute("error", "user is BANNED");
+//                return "redirect:/index.jsp";
+                return "redirect:/login.jsp";
             }
         }
 
         /**
          * All checks passed, send to Page
          */
-        System.out.println("ROLE IN LoginCommand(): "+(int)session.getAttribute("role"));
-        if((int)session.getAttribute("role")==3){
+        System.out.println("ROLE IN LoginCommand(): " + (int) session.getAttribute("role"));
+        if ((int) session.getAttribute("role") == 3) {
             return "/WEB-INF/admin/welcomeAdmin.jsp";
         }
-        if((int)session.getAttribute("role")==2){
+        if ((int) session.getAttribute("role") == 2) {
             return "/WEB-INF/manager/welcomeManager.jsp";
         }
-            return "/WEB-INF/client/menu.jsp";
+        return "/WEB-INF/client/menu.jsp";
     }
 }

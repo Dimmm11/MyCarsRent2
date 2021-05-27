@@ -35,6 +35,7 @@ public interface SqlQuarry {
     String ADD_CAR = "INSERT INTO cars (marque, car_class, model, price) VALUES (?,?,?,?);";
     String DELETE_CAR = "DELETE FROM cars WHERE id = ?  ;";
     String DELETE_CLIENT = "DELETE FROM clients WHERE name= ? ;";
+    String MOVE_CLIENT_TO_REMOVED = "INSERT INTO deleted_clients(id,name,passport) VALUES (?,?,?) ;";
     String MAKE_MANAGER = "UPDATE clients SET role_id=2 WHERE name= ? ;";
     String REMOVE_MANAGER = "UPDATE clients SET role_id=1 WHERE name= ? ;";
     String PRICE_UPDATE = "UPDATE cars SET price = ?  WHERE id= ? ;";

@@ -54,16 +54,25 @@ public class ClientDAO {
         return staff;
     }
 
-    public static synchronized boolean deleteClient(String client){
+    public static synchronized boolean deleteClient(String login){
+        Client client = getClient(login);
         boolean result = false;
         Connection con = null;
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
+
+            PreparedStatement stt = con.prepareStatement(SqlQuarry.MOVE_CLIENT_TO_REMOVED);
+            stt.setInt(1,client.getId());
+            stt.setString(2,client.getLogin());
+            stt.setString(3,client.getPassport());
+
             PreparedStatement st = con.prepareStatement(SqlQuarry.DELETE_CLIENT);
-            st.setString(1, client);
-            result = st.executeUpdate() > 0;
+            st.setString(1, login);
+            result = ( stt.executeUpdate()>0  && st.executeUpdate() > 0  );
+
             con.commit();
+
         } catch (SQLException e) {
             System.out.println("FAILED to delete client");
             try {

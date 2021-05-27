@@ -17,8 +17,8 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}CSS/loginPage.css"/>
+    <style><%@include file="/CSS/loginPage.css"%></style>
+<%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}CSS/loginPage.css"/>--%>
     <title>Profile</title>
 
 </head>
@@ -38,6 +38,11 @@
                 <button type="submit" class="btn btn-secondary">Logout</button>
             </form>
         </c:if>
+        <form action="${pageContext.request.contextPath}/menu" method="post">
+            <input type="submit" value="back to menu" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
+        </form>
+
+
         <c:set var="counter" value="0" scope="page"/>
 
         <c:forEach var="order" items="${requestScope.orders}">
@@ -57,8 +62,22 @@
                             </c:when>
                             <c:when test="${order.confirmed.equals('CONFIRMED')}">
                                 <li>Total cost: <c:out value="${order.total_cost}"/></li>
+                                <c:if test="${order.penalty>0}">
+                                    <p class="redText">Reason: ${order.comment}</p>
+                                    <li>Rent cost: <c:out value="${order.rent_cost}"/></li>
+                                    <li>Penalty: <c:out value="${order.penalty}"/></li>
+                                    <li>Total cost: <c:out value="${order.total_cost}"/></li>
+                                </c:if>
+
+
                             </c:when>
                         </c:choose>
+
+                        <c:if test="${order.confirmed.equals('CONFIRMED')}">
+                            <form>
+                                <input type="submit" value="pay" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
+                            </form>
+                        </c:if>
 
                         <hr>
                     </ul>

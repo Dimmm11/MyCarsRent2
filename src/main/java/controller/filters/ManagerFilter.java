@@ -18,8 +18,8 @@ public class ManagerFilter implements Filter {
         Client client = (Client) session.getAttribute("client");
         if(session.getAttribute("role")==null){
             System.out.println("session.getAttribute_role in ManagerFilter "+session.getAttribute("role"));
-            resp.sendRedirect("index.jsp");
-        }
+            resp.sendRedirect("http://localhost:8080/cars/");
+        }else {
 
         if((int)session.getAttribute("role")>=2){
             System.out.println("role from FIlter = "+(int)session.getAttribute("role"));
@@ -36,7 +36,7 @@ public class ManagerFilter implements Filter {
 //            req.getRequestDispatcher("/WEB-INF/client/login.jsp").forward(req,resp);
             resp.sendRedirect("login.jsp");
 
-        }
+        }}
     }
 
     @Override

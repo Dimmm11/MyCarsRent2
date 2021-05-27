@@ -19,8 +19,8 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="CSS/loginPage.css"/>
+    <style><%@include file="/CSS/loginPage.css"%></style>
+<%--    <link rel="stylesheet" type="text/css" href="CSS/loginPage.css"/>--%>
     <title>Cars by marque</title>
 
 </head>
@@ -43,6 +43,9 @@
                 <button type="submit" class="btn btn-secondary" formmethod="post">Profile</button>
             </form>
         </c:if>
+        <form action="${pageContext.request.contextPath}/menu" method="post">
+            <input type="submit" value="back to menu" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
+        </form>
         <h2><c:out value="${requestScope.marque.toString()}"/></h2>
         <c:forEach var="car" items="${requestScope.carsByMarque}">
             <tr>
