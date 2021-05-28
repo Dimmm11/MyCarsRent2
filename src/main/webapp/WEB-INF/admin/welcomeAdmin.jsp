@@ -39,7 +39,7 @@
         <div class="login-form">
             <hr>
             <table>
-                <caption>Admin</caption>
+                <caption>Welcome, Admin!</caption>
                 <tr>
                     <th>
                         <form action="${pageContext.request.contextPath}/managerCars" method="post">

@@ -1,69 +1,75 @@
 
-q
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‚œ©¢üÿÿÿÿ8¸°°Ğ™/
-c
-java:S2259¤"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8Õô—Çš/
-U	java:S106i"9Replace this use of System.out or System.err by a logger.(±ËÒ 8…¾èî™/
-\
-java:S1118":Add a private constructor to hide the implicit public one.(Íñºïıÿÿÿÿ8˜Ñ²Ï™/
-j
-java:S2095s"HUse try-with-resources or close this "Connection" in a "finally" clause.(ŠâÃšûÿÿÿÿ8Åı±¦š/
-^	java:S125Ø"<This block of commented-out lines of code should be removed.(¢áåûÿÿÿÿ8Î·øÑš/
-U	java:S106<"9Replace this use of System.out or System.err by a logger.(ß‹»Î8“ÔŒÒ™/
-b
-java:S2259"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8ø°ƒ¥š/
-k
-java:S2095Œ"HUse try-with-resources or close this "Connection" in a "finally" clause.(ŠâÃšûÿÿÿÿ8Õô—Çš/
+[	java:S106»"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Õô—Çš/
+[	java:S106â"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8±è‡Ñš/
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Üˆ¢Ğ
-[	java:S106À"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Õô—Çš/
-Z	java:S106j"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Åı±¦š/
-[	java:S106 "9Replace this use of System.out or System.err by a logger.(¯÷™ğşÿÿÿÿ8Õô—Çš/
-Z	java:S106H"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Åı±¦š/
-Z	java:S106Z"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8ø°ƒ¥š/
-^
-java:S2259"AA "NullPointerException" could be thrown; "con" is nullable here.(¬Å°ˆ8èç³Ï™/
-[	java:S106º"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Õô—Çš/
-e
-java:S5361R"HReplace this call to "replaceAll()" by a call to the "replace()" method.(âºšá8©ÿ¤š/
-c
-java:S2259á"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8±è‡Ñš/
-[	java:S106Ş"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8±è‡Ñš/
-^	java:S125Ô"<This block of commented-out lines of code should be removed.( “Ò¿üÿÿÿÿ8Î·øÑš/
-U	java:S106"9Replace this use of System.out or System.err by a logger.(ş‡8èç³Ï™/
-j
-java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ğ‘‹õÿÿÿÿÿ8Õô—Çš/
-[	java:S106ä"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8±è‡Ñš/
-U	java:S106Y"9Replace this use of System.out or System.err by a logger.(±ËÒ 8çÅ¯Ò™/
-c
-java:S2259$"AA "NullPointerException" could be thrown; "con" is nullable here.(éÆ“šûÿÿÿÿ8èç³Ï™/
-Z	java:S106="9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8üÃ’Ò™/
-Z	java:S106|"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Õô—Çš/
 k
-java:S2095Ì"HUse try-with-resources or close this "Connection" in a "finally" clause.(ŠâÃšûÿÿÿÿ8±è‡Ñš/
+java:S2095"HUse try-with-resources or close this "Connection" in a "finally" clause.(ŠâÃšûÿÿÿÿ8Õô—Çš/
+c
+java:S2259€"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8ø°ƒ¥š/
 m
-java:S2095™"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(»¦à 8Õô—Çš/
+java:S2095š"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(»¦à 8Õô—Çš/
+U	java:S106"9Replace this use of System.out or System.err by a logger.(ş‡8èç³Ï™/
+m
+java:S2095Õ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(—ÁÇş8ñîğÑš/
+V	java:S106ù"9Replace this use of System.out or System.err by a logger.(Ö«³è8Ù³í—›/
+k
+java:S5361"HReplace this call to "replaceAll()" by a call to the "replace()" method.(æ°ºğıÿÿÿÿ8Õô—Çš/
+c
+java:S2259ı"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8Ù³í—›/
+U	java:S106Û"9Replace this use of System.out or System.err by a logger.(¿å·8±è‡Ñš/
+[	java:S106Ü"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8±è‡Ñš/
+[	java:S106©"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Õô—Çš/
+[	java:S106¢"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Õô—Çš/
 l
 java:S2095Ñ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ØËä	8‰ÁèÑš/
+\
+java:S1118":Add a private constructor to hide the implicit public one.(Íñºïıÿÿÿÿ8˜Ñ²Ï™/
+Z	java:S106I"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Åı±¦š/
+[	java:S106€"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Ù³í—›/
+Z	java:S106["9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8ø°ƒ¥š/
+c
+java:S2259¾"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8Åı±¦š/
+m
+java:S2095ó"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(—ÁÇş8şñê—›/
+U	java:S106º"9Replace this use of System.out or System.err by a logger.(ï­ÏL8Åı±¦š/
 b
-java:S2259E"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8ÎüÒ™/
-[	java:S106‚"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Õô—Çš/
+java:S2259F"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8ÎüÒ™/
+c
+java:S2259$"AA "NullPointerException" could be thrown; "con" is nullable here.(éÆ“šûÿÿÿÿ8èç³Ï™/
+e
+java:S5361S"HReplace this call to "replaceAll()" by a call to the "replace()" method.(âºšá8©ÿ¤š/
+Z	java:S106k"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Åı±¦š/
+[	java:S106¡"9Replace this use of System.out or System.err by a logger.(¯÷™ğşÿÿÿÿ8Õô—Çš/
+[	java:S106ú"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8ÁÁß—›/
+U	java:S106="9Replace this use of System.out or System.err by a logger.(ß‹»Î8“ÔŒÒ™/
+Z	java:S106}"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Õô—Çš/
+U	java:S106j"9Replace this use of System.out or System.err by a logger.(±ËÒ 8…¾èî™/
+[	java:S106ƒ"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Õô—Çš/
 j
 java:S20951"HUse try-with-resources or close this "Connection" in a "finally" clause.(ŠâÃšûÿÿÿÿ8ÎüÒ™/
-k
-java:S2095±"HUse try-with-resources or close this "Connection" in a "finally" clause.(ŠâÃšûÿÿÿÿ8ø°ƒ¥š/
-m
-java:S2095Ö"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(—ÁÇş8ñîğÑš/
-[	java:S106¡"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Õô—Çš/
-k
-java:S5361"HReplace this call to "replaceAll()" by a call to the "replace()" method.(æ°ºğıÿÿÿÿ8Õô—Çš/
-Y	java:S125Ï"<This block of commented-out lines of code should be removed.(‰™ìÔ8Î·øÑš/
-[	java:S106¨"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Õô—Çš/
-U	java:S106İ"9Replace this use of System.out or System.err by a logger.(¿å·8±è‡Ñš/
-U	java:S106¹"9Replace this use of System.out or System.err by a logger.(ï­ÏL8Åı±¦š/
-T	java:S106{"9Replace this use of System.out or System.err by a logger.(ï­ÏL8ø°ƒ¥š/
-d
-java:S2259¥"AA "NullPointerException" could be thrown; "st1" is nullable here.(¸ƒ•ªûÿÿÿÿ8Õô—Çš/
-^
-java:S2259?"AA "NullPointerException" could be thrown; "con" is nullable here.(¬Å°ˆ8ŸÔ€Òš/
 c
-java:S2259½"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8Åı±¦š/
+java:S2259ß"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8±è‡Ñš/
+^
+java:S2259"AA "NullPointerException" could be thrown; "con" is nullable here.(¬Å°ˆ8èç³Ï™/
+T	java:S106|"9Replace this use of System.out or System.err by a logger.(ï­ÏL8ø°ƒ¥š/
+k
+java:S2095²"HUse try-with-resources or close this "Connection" in a "finally" clause.(ŠâÃšûÿÿÿÿ8ø°ƒ¥š/
+k
+java:S2095ï"HUse try-with-resources or close this "Connection" in a "finally" clause.(ŠâÃšûÿÿÿÿ8ÁÁß—›/
+d
+java:S2259¦"AA "NullPointerException" could be thrown; "st1" is nullable here.(¸ƒ•ªûÿÿÿÿ8Õô—Çš/
+c
+java:S2259¥"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8Õô—Çš/
+[	java:S106Á"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8Õô—Çš/
+Z	java:S106>"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8üÃ’Ò™/
+k
+java:S2095Í"HUse try-with-resources or close this "Connection" in a "finally" clause.(ŠâÃšûÿÿÿÿ8±è‡Ñš/
+q
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‚œ©¢üÿÿÿÿ8¸°°Ğ™/
+^
+java:S2259@"AA "NullPointerException" could be thrown; "con" is nullable here.(¬Å°ˆ8ŸÔ€Òš/
+j
+java:S2095t"HUse try-with-resources or close this "Connection" in a "finally" clause.(ŠâÃšûÿÿÿÿ8Åı±¦š/
+U	java:S106Z"9Replace this use of System.out or System.err by a logger.(±ËÒ 8çÅ¯Ò™/
+j
+java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ğ‘‹õÿÿÿÿÿ8Õô—Çš/

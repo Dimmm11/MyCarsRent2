@@ -2,6 +2,7 @@ package controller;
 
 import controller.command.*;
 import controller.command.admin.*;
+import controller.command.client.CancelOrder;
 import controller.command.client.CarSelect;
 import controller.command.Registration;
 import controller.command.client.MakeOrder;
@@ -31,6 +32,7 @@ public class Servlet extends HttpServlet {
         commands.put("logout", new LogOutCommand());
         commands.put("carSelect", new CarSelect());
         commands.put("order", new MakeOrder());
+        commands.put("cancelOrder", new CancelOrder());
         commands.put("profile", new Profile());
 
         commands.put("welcomeAdmin", new WelcomeAdmin());
@@ -56,7 +58,6 @@ public class Servlet extends HttpServlet {
         commands.put("setOrderStatus", new SetOrderStatus());
         commands.put("returnCar", new CarReturn());
 
-
         commands.put("register", new Registration());
         commands.put("ban", new Ban());
 
@@ -78,41 +79,19 @@ public class Servlet extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-
         String path = request.getRequestURI();
         path = path.replaceAll(".*/cars/", "");
         Command command = commands.get(path);
         String page = command.execute(request);
-        System.out.println(page);
-
         if (page.contains("redirect:")) {
-            System.out.println("redirect");
-//            session.setAttribute("role", null);
-//            session.setAttribute("client", null);
-//            session.invalidate();
-
             response.sendRedirect(page.replace("redirect:", "/cars"));
         } else {
             if (session.getAttribute("client") == null) {
                 Client client = new Client();
-                client.setRole_id(0);
                 session.setAttribute("client", client);
-                session.setAttribute("role", client.getRole_id());
+                session.setAttribute("role", 0);
             }
-//            System.out.println("ROLE IN Servlet: "+(int)session.getAttribute("role"));
-            /**
-             * check session by Role
-             */
-            if ((int) session.getAttribute("role") >0) {
-                System.out.println(page);
-                System.out.println("Servlet: forward");
-                request.getRequestDispatcher(page).forward(request, response);
-            } else {
-                System.out.println("Servlet: redirect to index jsp");
-//                response.sendRedirect("index.jsp");
-                request.getRequestDispatcher("index.jsp").forward(request,response);
-            }
-
+            request.getRequestDispatcher(page).forward(request, response);
         }
     }
 }

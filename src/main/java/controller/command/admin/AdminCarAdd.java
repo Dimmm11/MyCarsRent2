@@ -17,11 +17,9 @@ public class AdminCarAdd implements Command {
                 request.getParameter("marque"),
                 request.getParameter("car_class"),
                 request.getParameter("model"),
-//                Double.parseDouble(request.getParameter("price"))
                 BigDecimal.valueOf(Double.parseDouble(request.getParameter("price")))
         );
         CarDAO.addCar(car);
-        System.out.println("SUCCESS! CAR ADDED");
-        return "admincars";
+        return "managerCars";
     }
 }

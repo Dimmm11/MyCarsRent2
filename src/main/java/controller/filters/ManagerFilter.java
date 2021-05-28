@@ -27,7 +27,7 @@ public class ManagerFilter implements Filter {
             /**
              * stop caching pages in browser
              */
-            resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+//            resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
             chain.doFilter(request,response);
 
         }else {

@@ -20,11 +20,29 @@ public class CarDAO {
                 Car car = new CarMapper().mapFromResultSet(rs);
                 carsByClass.add(car);
             }
-        } catch (SQLException|NullPointerException e) {
-//            System.out.println("Failed to show cars by class");
-//            System.out.println(e.getMessage());
+        } catch (SQLException | NullPointerException e) {
             throw new RuntimeException(e.getMessage());
         }
+        return carsByClass;
+    }
+
+    public static List<Car> getCarsByClass(String carClass, int index, int offset) {
+        List<Car> carsByClass = new ArrayList<>();
+        PreparedStatement stt = null;
+        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
+            stt = con.prepareStatement(SqlQuarry.DYNAMIC_CAR_CLASS);
+            stt.setString(1, carClass);
+            stt.setInt(2, index);
+            stt.setInt(3, offset);
+            ResultSet rs = stt.executeQuery();
+            while (rs.next()) {
+                Car car = new CarMapper().mapFromResultSet(rs);
+                carsByClass.add(car);
+            }
+        } catch (SQLException | NullPointerException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+        System.out.println("list size in CarDAO.getCarsByClass: " + carsByClass.size());
         return carsByClass;
     }
 
@@ -34,6 +52,25 @@ public class CarDAO {
              Statement st = con.createStatement()) {
             String sql = SqlQuarry.CARS_BY_MARQUE.replaceAll("carmarque", marque);
             ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Car car = new CarMapper().mapFromResultSet(rs);
+                carsByMarque.add(car);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return carsByMarque;
+    }
+
+    public static List<Car> getCarsByMarque(String marque, int index, int offset) {
+        List<Car> carsByMarque = new ArrayList<>();
+        PreparedStatement stt = null;
+        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
+            stt = con.prepareStatement(SqlQuarry.DYNAMIC_CAR_MARQUE);
+            stt.setString(1, marque);
+            stt.setInt(2, index);
+            stt.setInt(3, offset);
+            ResultSet rs = stt.executeQuery();
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
                 carsByMarque.add(car);
@@ -65,6 +102,24 @@ public class CarDAO {
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery(SqlQuarry.ALLCARS);
+            while (rs.next()) {
+                Car car = new CarMapper().mapFromResultSet(rs);
+                allCars.add(car);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allCars;
+    }
+
+    public static List<Car> getAllCars(int index, int offset) {
+        List<Car> allCars = new ArrayList<>();
+        PreparedStatement st = null;
+        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
+            st = con.prepareStatement(SqlQuarry.PAGE_ALLCARS);
+            st.setInt(1, index);
+            st.setInt(2, offset);
+            ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
                 allCars.add(car);
@@ -179,8 +234,6 @@ public class CarDAO {
                 e.printStackTrace();
             }
         }
-
-
         return car;
     }
 

@@ -52,7 +52,8 @@ public class OrderDAO {
             st.setInt(2, car.getId());
             st.setString(3, driver);
             st.setInt(4, term);
-            st.setBigDecimal(5,   car.getPrice().multiply(BigDecimal.valueOf(term)));
+            st.setBigDecimal(5, car.getPrice().multiply(BigDecimal.valueOf(term)));
+            st.setBigDecimal(6, car.getPrice().multiply(BigDecimal.valueOf(term)));
             result = st.executeUpdate() > 0;
 
             con.commit();
@@ -80,7 +81,7 @@ public class OrderDAO {
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery(SqlQuarry.ORDERS_BY_CLIENT.replaceAll("clientid", String.valueOf(client.getId())));
-            while (rs.next()){
+            while (rs.next()) {
                 Order order = new OrderMapper().mapFromResultSet(rs);
                 orders.add(order);
             }
@@ -92,12 +93,12 @@ public class OrderDAO {
         return orders;
     }
 
-    public static List<Order> getAllOrders(){
+    public static List<Order> getAllOrders() {
         List<Order> orders = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery(SqlQuarry.ORDERS_ALL);
-            while (rs.next()){
+            while (rs.next()) {
                 Order order = new OrderMapper().mapFromResultSet(rs);
                 orders.add(order);
             }
@@ -108,15 +109,15 @@ public class OrderDAO {
         return orders;
     }
 
-    public static synchronized void setReason(int orderId, String reason){
+    public static synchronized void setReason(int orderId, String reason) {
         Connection con = null;
         PreparedStatement st = null;
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
             st = con.prepareStatement(SqlQuarry.SET_REASON);
-           st.setString(1,reason);
-            st.setInt(2,orderId);
+            st.setString(1, reason);
+            st.setInt(2, orderId);
             st.executeUpdate();
             con.commit();
         } catch (SQLException e) {
@@ -132,7 +133,7 @@ public class OrderDAO {
         }
     }
 
-    public static synchronized void setPenalty(int orderId, BigDecimal penalty){
+    public static synchronized void setPenalty(int orderId, BigDecimal penalty) {
         Connection con = null;
         PreparedStatement st = null;
         PreparedStatement st1 = null;
@@ -146,13 +147,13 @@ public class OrderDAO {
             con.setAutoCommit(false);
 
             st = con.prepareStatement(SqlQuarry.SET_PENALTY);
-            st.setBigDecimal(1,penalty);
-            st.setInt(2,orderId);
+            st.setBigDecimal(1, penalty);
+            st.setInt(2, orderId);
             st.executeUpdate();
 
             st1 = con.prepareStatement(SqlQuarry.SET_TOTAL_COST);
-            st1.setBigDecimal(1,penalty.add(bd));
-            st1.setInt(2,orderId);
+            st1.setBigDecimal(1, penalty.add(bd));
+            st1.setInt(2, orderId);
             st1.executeUpdate();
 
             con.commit();
@@ -177,8 +178,8 @@ public class OrderDAO {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
             st = con.prepareStatement(SqlQuarry.SET_ORDER_STATUS);
-            st.setString(1,reason);
-            st.setInt(2,orderId);
+            st.setString(1, reason);
+            st.setInt(2, orderId);
             st.executeUpdate();
             con.commit();
         } catch (SQLException e) {
@@ -203,22 +204,48 @@ public class OrderDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             st = con.prepareStatement(SqlQuarry.RETURN_CAR);
-            st.setInt(1,orderId);
-//            st.executeUpdate();
+            st.setInt(1, orderId);
 
             st2 = con.prepareStatement(SqlQuarry.FINISHED_ORDER);
             st2.setInt(1, orderId);
-            st2.setInt(2,clientId);
-//            st2.executeUpdate();
+            st2.setInt(2, clientId);
 
             st3 = con.prepareStatement(SqlQuarry.DELETE_ORDER);
             st3.setInt(1, orderId);
-//            st3.executeUpdate();
 
-            result = (st.executeUpdate()>0 && st2.executeUpdate()>0 && st3.executeUpdate()>0);
+            result = (st.executeUpdate() > 0 && st2.executeUpdate() > 0 && st3.executeUpdate() > 0);
             con.commit();
         } catch (SQLException e) {
             System.out.println("FAILED to DELETE ORDER in OrderDAO.carReturn");
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                st.close();
+                con.close();
+            } catch (NullPointerException | SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return result;
+    }
+
+    public static synchronized boolean cancelOrder(int orderId) {
+        boolean result = false;
+        Connection con = null;
+        PreparedStatement st = null;
+        PreparedStatement st3 = null;
+        try {
+            con = ConnectionPoolHolder.getDataSource().getConnection();
+            st = con.prepareStatement(SqlQuarry.RETURN_CAR);
+            st.setInt(1, orderId);
+
+            st3 = con.prepareStatement(SqlQuarry.DELETE_ORDER);
+            st3.setInt(1, orderId);
+
+            result = (st.executeUpdate() > 0 && st3.executeUpdate() > 0);
+            con.commit();
+        } catch (SQLException e) {
+            System.out.println("FAILED to DELETE ORDER in OrderDAO.cancelOrder");
             System.out.println(e.getMessage());
         } finally {
             try {

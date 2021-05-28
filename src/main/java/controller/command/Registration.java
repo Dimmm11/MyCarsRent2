@@ -5,12 +5,14 @@ import model.DAO.ClientDAO;
 import model.entity.Client;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class Registration implements Command {
     @Override
     public String execute(HttpServletRequest request) {
+        HttpSession session = request.getSession();
         /**
-         * делаем Клиента из параметров авторизации
+         * client from registration
          */
         Client client = new Client(
                 request.getParameter("Login"),
@@ -21,17 +23,16 @@ public class Registration implements Command {
          * If registration successful - send to Page
          */
         try {
-            if(ClientDAO.register(client)) {
-                System.out.println("reg success");
+            if (ClientDAO.register(client)) {
+                client = ClientDAO.getClient(request.getParameter("Login"));
+                session.setAttribute("client", client);
+                session.setAttribute("role", client.getRole_id());
                 return "/WEB-INF/client/menu.jsp";
             }
-        }catch (RuntimeException e){
-            System.out.println("Failed reg");
+        } catch (RuntimeException e) {
             request.setAttribute("error", e.getMessage());
             return "register.jsp";
         }
-
-
         /**
          * return with Fail-message
          */

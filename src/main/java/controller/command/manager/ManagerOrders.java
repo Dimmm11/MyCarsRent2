@@ -17,9 +17,7 @@ public class ManagerOrders implements Command {
 
         List<Car> cars = CarDAO.getOrderedCars();
         request.setAttribute("cars", cars);
-        System.out.println("managerOrders.jsp");
-        System.out.println(orders.size());
-        System.out.println(cars.size());
+
         return "/WEB-INF/manager/managerOrders.jsp";
     }
 

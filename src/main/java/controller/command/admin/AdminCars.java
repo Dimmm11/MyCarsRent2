@@ -13,8 +13,15 @@ import java.util.List;
 public class AdminCars implements Command {
     @Override
     public String execute(HttpServletRequest request) {
+        int page = 1;
+        if(request.getParameter("page")!=null){
+            page = Integer.parseInt(request.getParameter("page"));
+        }
         List<Car> allCars = CarDAO.getAllCars();
-        request.setAttribute("allCars", allCars);
-        return "/WEB-INF/admin/adminCars.jsp";
+        List<Car> cars =CarDAO.getAllCars((page-1)*3, 3);
+        return "/WEB-INF/admin/managerCars.jsp";
+
     }
+
+
 }

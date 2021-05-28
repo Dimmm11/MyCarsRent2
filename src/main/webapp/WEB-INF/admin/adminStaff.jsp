@@ -24,6 +24,15 @@
 
 <div class="sidenav">
     <div class="login-main-text">
+        <c:choose>
+            <c:when test="${sessionScope.role==3}">
+                <h1 style="text-decoration: underline">ADMIN</h1>
+            </c:when>
+            <c:when test="${sessionScope.role==2}">
+                <h1 style="text-decoration: underline">MANAGER</h1>
+            </c:when>
+        </c:choose>
+        <br>
         <h2>Admin staff</h2>
     </div>
 </div>
@@ -34,7 +43,7 @@
                 <button type="submit" class="btn btn-secondary">Logout</button>
             </form>
         </c:if>
-        <div class="login-form">
+
             <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
                 <input type="submit" value="back to menu" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
             </form>
@@ -47,8 +56,6 @@
                             <li>password: <c:out value="${worker.password}"/></li>
                             <li>passport: <c:out value="${worker.passport}"/></li>
 
-
-
                                 <c:choose>
                                     <c:when test="${worker.role_id==3}">
                             <li>role: <p style="font-size: x-large"><c:out value="ADMIN"/></p></li>
@@ -57,11 +64,6 @@
                                         <li>role: <c:out value="${worker.role_id}"/></li>
                                     </c:otherwise>
                                 </c:choose>
-<%--                                role: <c:out value="${worker.role_id}"/>--%>
-
-
-
-
                             <li>status: <c:out value="${worker.status}"/></li>
                             <form action="${pageContext.request.contextPath}/managers" method="post">
                                 <input type="hidden" value="${worker.login}" name="login">
@@ -74,7 +76,7 @@
                 <hr>
             </c:forEach>
 
-
+        <div class="login-form">
         </div>
     </div>
 </div>

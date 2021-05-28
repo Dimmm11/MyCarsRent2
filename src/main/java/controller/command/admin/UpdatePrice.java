@@ -14,6 +14,6 @@ public class UpdatePrice implements Command {
     public String execute(HttpServletRequest request) {
         Car car = CarDAO.getCarById(Integer.parseInt(request.getParameter("id")));
         CarDAO.updatePrice(Double.parseDouble(request.getParameter("price")),car);
-        return "admincars";
+        return "managerCars";
     }
 }

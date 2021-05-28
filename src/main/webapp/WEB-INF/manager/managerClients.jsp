@@ -24,6 +24,15 @@
 
 <div class="sidenav">
     <div class="login-main-text">
+        <c:choose>
+            <c:when test="${sessionScope.role==3}">
+                <h1 style="text-decoration: underline">ADMIN</h1>
+            </c:when>
+            <c:when test="${sessionScope.role==2}">
+                <h1 style="text-decoration: underline">MANAGER</h1>
+            </c:when>
+        </c:choose>
+        <br>
         <h2>Manager clients</h2>
     </div>
 </div>
@@ -34,22 +43,23 @@
                 <button type="submit" class="btn btn-secondary">Logout</button>
             </form>
         </c:if>
-        <div class="login-form">
+        <c:choose>
+            <c:when test="${sessionScope.role==3}">
+                <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
+                    <input type="submit" value="back to menu"
+                           style="background-color: darkseagreen;border-width: medium;font-weight: bold">
+                </form>
+            </c:when>
+            <c:when test="${sessionScope.role==2}">
+                <form action="${pageContext.request.contextPath}/welcomeManager" method="post">
+                    <input type="submit" value="back to menu"
+                           style="background-color: darkseagreen;border-width: medium;font-weight: bold">
+                </form>
+            </c:when>
+        </c:choose>
 
-            <c:choose>
-                <c:when test="${sessionScope.role==3}">
-                    <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
-                        <input type="submit" value="back to menu"
-                               style="background-color: darkseagreen;border-width: medium;font-weight: bold">
-                    </form>
-                </c:when>
-                <c:when test="${sessionScope.role==2}">
-                    <form action="${pageContext.request.contextPath}/welcomeManager" method="post">
-                        <input type="submit" value="back to menu"
-                               style="background-color: darkseagreen;border-width: medium;font-weight: bold">
-                    </form>
-                </c:when>
-            </c:choose>
+
+
             <c:forEach var="client" items="${requestScope.adminClients}">
                 <tr>
                     <td>
@@ -102,6 +112,7 @@
                 </table>
                 <hr>
             </c:forEach>
+        <div class="login-form">
         </div>
     </div>
 </div>

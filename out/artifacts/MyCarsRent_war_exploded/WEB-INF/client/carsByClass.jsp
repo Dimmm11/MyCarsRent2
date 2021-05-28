@@ -20,69 +20,119 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-    <style><%@include file="/CSS/loginPage.css"%></style>
+    <style>
+        <%@include file="/CSS/loginPage.css" %>
+    </style>
     <title>Cars by class</title>
 </head>
 <body>
+
 <div class="sidenav">
     <div class="login-main-text">
         <h2>Cars</h2>
 
     </div>
 </div>
-<div class="main">
-    <div class="col-md-6 col-sm-12">
-        <c:if test="${sessionScope.role>0}">
-            <form action="${pageContext.request.contextPath}/logout" method="post">
-                <button type="submit" class="btn btn-secondary">Logout</button>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+
+        <div class="col-md-4">
+            <c:if test="${sessionScope.client!=null}">
+                <form action="profile">
+                    <button type="submit" class="btn btn-secondary" formmethod="post">Profile</button>
+                </form>
+            </c:if>
+            <form action="${pageContext.request.contextPath}/menu" method="post">
+                <input type="submit" value="back to menu" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
             </form>
-        </c:if>
-        <c:if test="${sessionScope.client!=null}">
-            <form action="profile">
-                <button type="submit" class="btn btn-secondary" formmethod="post">Profile</button>
-            </form>
-        </c:if>
-
-        <c:choose>
-            <c:when test="${requestScope.carsByClass.size()>0}">
-                <c:forEach var="car" items="${requestScope.carsByClass}">
-                    <tr>
-                        <td>
-                            <ul>
-                                <li><h4><c:out value="${car.marque}"/></h4></li>
-                                <li>Model: <c:out value="${car.model}"/></li>
-                                <li>Price(per hour): <c:out value="${car.price}"/></li>
-                            </ul>
-                        </td>
-                        <td>
-                            <form action="${pageContext.request.contextPath}/order">
-                                <input type="hidden" name="id" value="${car.id}">
-                                <input type="hidden" name="marque" value="${car.marque}">
-                                <input type="hidden" name="model" value="${car.model}">
-                                <input type="hidden" name="price" value="${car.price}">
-                        <td>Need driver?</td>
-                        <td>
-                            <input type="radio" name="driver" value="yes">yes</input>
-                            <input type="radio" name="driver" value="no">no</input>
-                        </td>
-                        <br>
-                        <br>
-                        <input type="number" min="1" name="term" placeholder="term">
-                        <input type="submit" value="make order">
-                        </form>
-                        <hr>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </c:when>
-            <c:otherwise>
-                <p class="redText">Sorry, no available cars</p>
-            </c:otherwise>
-        </c:choose>
-
-
+        </div>
+        <div class="col-md-4">
+            <c:if test="${sessionScope.role>0}">
+                <form action="${pageContext.request.contextPath}/logout" method="post">
+                    <button type="submit" class="btn btn-secondary">Logout</button>
+                </form>
+            </c:if>
+        </div>
     </div>
 </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-7">
+            <c:choose>
+                <c:when test="${requestScope.carsByClass.size()>0}">
+                    <h2>Class:<u style="text-decoration: underline">${requestScope.car_class}</u></h2>
+                    <table class="fl-table">
+                        <tr>
+                            <th>Marque</th>
+                            <th>Model</th>
+                            <th>Price</th>
+                            <th>Driver</th>
+                            <th>Term</th>
+                            <th></th>
+
+                        </tr>
+                        <c:forEach var="car" items="${requestScope.carsByClass}">
+                            <tr>
+                                <form action="${pageContext.request.contextPath}/order">
+                                    <td><c:out value="${car.marque}"/></td>
+                                    <td><c:out value="${car.model}"/></td>
+                                    <td><c:out value="${car.price}"/></td>
+
+                                    <input type="hidden" name="id" value="${car.id}">
+                                    <input type="hidden" name="marque" value="${car.marque}">
+                                    <input type="hidden" name="model" value="${car.model}">
+                                    <input type="hidden" name="price" value="${car.price}">
+                                    <td><input type="radio" name="driver" value="yes">yes</input>
+                                        <input type="radio" name="driver" value="no">no</input> </td>
+
+                                    <td><input type="number" min="1" name="term" placeholder="term" style="width: 70px">
+                                    </td>
+                                    <td><input type="submit" value="make order"></td>
+
+                                </form>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </c:when>
+                <c:otherwise>
+                    <p class="redText">Sorry, no available cars</p>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
+    <div class="col-md-2">
+    </div>
+
+
+</div>
+
+
+<div class="main">
+    <div class="container" style="position: static; bottom: 30%">
+        <table>
+            <c:set var="i" value="1" scope="page"/>
+            <c:forEach begin="1" end="${requestScope.numPages}">
+                <th style="font-size: medium">
+                    <form action="${pageContext.request.contextPath}/carSelect" method="post">
+                        <input type="hidden" name="car_class" value="${requestScope.car_class}">
+                        <input type="hidden" name="page" value="${i}">
+                        <input type="submit" value="${i}">
+                    </form>
+                    <c:set var="i" value="${i+1}" scope="page"/>
+                </th>
+            </c:forEach>
+        </table>
+    </div>
+    <div class="col-md-6 col-sm-12">
+    </div>
+
+</div>
+
 </div>
 
 

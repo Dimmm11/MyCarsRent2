@@ -10,7 +10,6 @@ public class AdminDeleteCar implements Command {
     public String execute(HttpServletRequest request) {
         int carId = Integer.parseInt(request.getParameter("carId"));
         CarDAO.deleteCar(carId);
-        System.out.println("SUCCESS! CAR DELETED");
         return "managerCars";
     }
 }

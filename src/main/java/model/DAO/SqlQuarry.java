@@ -14,7 +14,7 @@ public interface SqlQuarry {
     String CARS_BY_CLIENT = "SELECT * FROM cars WHERE id IN (SELECT car_id FROM orders WHERE client_id = clientid);";
     String GET_CAR_BY_ID = "SELECT * FROM cars WHERE id= ? ";
     String CAR_ORDER = "UPDATE cars SET car_status='ORDERED' WHERE id= ? ;";
-    String MAKE_ORDER = "INSERT INTO orders (client_id,car_id,driver,term, rent_cost) VALUES (?,?,?,?,?);";
+    String MAKE_ORDER = "INSERT INTO orders (client_id,car_id,driver,term, rent_cost,total_cost) VALUES (?,?,?,?,?,?);";
     String ORDERS_BY_CLIENT = "SELECT * FROM orders WHERE client_id= clientid;";
     String SET_REASON = "UPDATE orders SET comment = ?  WHERE id = ? ";
     String SET_PENALTY = "UPDATE orders SET penalty = ?  WHERE id = ? ";
@@ -27,6 +27,8 @@ public interface SqlQuarry {
     String SET_ORDER_STATUS = "UPDATE orders SET confirmed = ?  WHERE id = ?  ;";
 //    admin
     String ALLCARS = "SELECT * FROM cars;";
+    String PAGE_ALLCARS = "SELECT * FROM cars LIMIT ? , ? ;";
+
     String ORDERS_ALL = "SELECT * FROM orders;";
     String ORDERED_CARS = "SELECT * FROM cars WHERE car_status='ORDERED';";
     String ADMIN_CLIENTS = "SELECT * FROM clients;";
@@ -44,6 +46,10 @@ public interface SqlQuarry {
 //    ban
     String BAN = "UPDATE clients SET status='BANNED' WHERE name = ? ;";
     String UNBAN = "UPDATE clients SET status='ACTIVE' WHERE name = ? ;";
+
+// ================
+    String DYNAMIC_CAR_CLASS = "SELECT * FROM cars WHERE car_class = ? AND car_status = 'FREE' LIMIT ? , ? ;";
+    String DYNAMIC_CAR_MARQUE = "SELECT * FROM cars WHERE marque = ? AND car_status = 'FREE' LIMIT ? , ? ;";
 
 
 

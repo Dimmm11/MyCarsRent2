@@ -94,6 +94,8 @@
                         <option value="Suzuki">Suzuki</option>
                         <option value="Toyota">Toyota</option>
                         <option value="Volkswagen">Volkswagen</option>
+                        <option value="Bentley">Bentley</option>
+                        <option value="Supercar">Supercar</option>
                         <input type="submit" value="submit">
                     </select>
                 </td>

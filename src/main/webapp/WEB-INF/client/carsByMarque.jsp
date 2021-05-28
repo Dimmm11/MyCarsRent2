@@ -19,8 +19,10 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <style><%@include file="/CSS/loginPage.css"%></style>
-<%--    <link rel="stylesheet" type="text/css" href="CSS/loginPage.css"/>--%>
+    <style>
+        <%@include file="/CSS/loginPage.css" %>
+    </style>
+    <%--    <link rel="stylesheet" type="text/css" href="CSS/loginPage.css"/>--%>
     <title>Cars by marque</title>
 
 </head>
@@ -31,59 +33,133 @@
 
     </div>
 </div>
-<div class="main">
-    <div class="col-md-6 col-sm-12">
-        <c:if test="${sessionScope.role>0}">
-            <form action="${pageContext.request.contextPath}/logout" method="post">
-                <button type="submit" class="btn btn-secondary">Logout</button>
-            </form>
-        </c:if>
-        <c:if test="${sessionScope.client!=null}">
-            <form action="profile">
-                <button type="submit" class="btn btn-secondary" formmethod="post">Profile</button>
-            </form>
-        </c:if>
-        <form action="${pageContext.request.contextPath}/menu" method="post">
-            <input type="submit" value="back to menu" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
-        </form>
-        <h2><c:out value="${requestScope.marque.toString()}"/></h2>
-        <c:forEach var="car" items="${requestScope.carsByMarque}">
-            <tr>
-                <td>
-                    <ul>
-                        <li><c:out value="${car.model}"/></li>
-                        <li><c:out value="${car.price}"/></li>
-                        <hr>
-                    </ul>
-                </td>
-                <td>
-<%--               ===========================================     --%>
-                    <form action="${pageContext.request.contextPath}/order">
-                        <input type="hidden" name="id" value="${car.id}">
-                        <input type="hidden" name="marque" value="${car.marque}">
-                        <input type="hidden" name="model" value="${car.model}">
-                        <input type="hidden" name="price" value="${car.price}">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
 
-                <td>Need driver?</td>
-                <td>
-                    <input type="radio" name="driver" value="yes">yes</input>
-                    <input type="radio" name="driver" value="no">no</input>
-                </td>
-                <br>
-                <br>
-                <input type="number" min="1" name="term" placeholder="term">
-                <input type="submit" value="make order">
+        <div class="col-md-4">
+            <c:if test="${sessionScope.client!=null}">
+                <form action="profile">
+                    <button type="submit" class="btn btn-secondary" formmethod="post">Profile</button>
                 </form>
-<%--                    <form action="order">--%>
+            </c:if>
+            <form action="${pageContext.request.contextPath}/menu" method="post">
+                <input type="submit" value="back to menu"
+                       style="background-color: darkseagreen;border-width: medium;font-weight: bold">
+            </form>
+        </div>
+        <div class="col-md-4">
+            <c:if test="${sessionScope.role>0}">
+                <form action="${pageContext.request.contextPath}/logout" method="post">
+                    <button type="submit" class="btn btn-secondary">Logout</button>
+                </form>
+            </c:if>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-3">
+        </div>
+
+        <div class="col-md-7">
+            <c:choose>
+                <c:when test="${requestScope.carsByMarque.size()>0}">
+                    <h2>Marque:<u style="text-decoration: underline">${requestScope.marque}</u></h2>
+                    <table class="fl-table">
+                        <tr>
+                            <th>Model</th>
+                            <th>Price</th>
+                            <th>Driver</th>
+                            <th>Term</th>
+                            <th></th>
+                        </tr>
+                        <c:forEach var="car" items="${requestScope.carsByMarque}">
+                            <tr>
+                                <form action="${pageContext.request.contextPath}/order">
+                                    <td><c:out value="${car.model}"/></td>
+                                    <td><c:out value="${car.price}"/></td>
+
+                                    <input type="hidden" name="id" value="${car.id}">
+                                    <input type="hidden" name="marque" value="${car.marque}">
+                                    <input type="hidden" name="model" value="${car.model}">
+                                    <input type="hidden" name="price" value="${car.price}">
+                                    <td><input type="radio" name="driver" value="yes">yes</input>
+                                        <input type="radio" name="driver" value="no">no</input> </td>
+
+                                    <td><input type="number" min="1" name="term" placeholder="term" style="width: 70px">
+                                    </td>
+                                    <td><input type="submit" value="make order"></td>
+
+                                </form>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </c:when>
+                <c:otherwise>
+                    <p class="redText">Sorry, no available cars</p>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+    </div>
+
+</div>
+
+
+<div class="main">
+    <div class="container" style="position: static; bottom: 30%">
+        <table>
+            <c:set var="i" value="1" scope="page"/>
+            <c:forEach begin="1" end="${requestScope.numPages}">
+                <th style="font-size: medium">
+                    <form action="${pageContext.request.contextPath}/carSelect" method="post">
+                        <input type="hidden" name="marque" value="${requestScope.marque}">
+                        <input type="hidden" name="page" value="${i}">
+                        <input type="submit" value="${i}">
+                    </form>
+                    <c:set var="i" value="${i+1}" scope="page"/>
+                </th>
+            </c:forEach>
+        </table>
+
+    </div>
+    <div class="col-md-6 col-sm-12">
+<%--        <h2><c:out value="${requestScope.marque.toString()}"/></h2>--%>
+<%--        <c:forEach var="car" items="${requestScope.carsByMarque}">--%>
+<%--            <tr>--%>
+<%--                <td>--%>
+<%--                    <ul>--%>
+<%--                        <li><c:out value="${car.model}"/></li>--%>
+<%--                        <li><c:out value="${car.price}"/></li>--%>
+<%--                        <hr>--%>
+<%--                    </ul>--%>
+<%--                </td>--%>
+<%--                <td>--%>
+<%--                        &lt;%&ndash;               ===========================================     &ndash;%&gt;--%>
+<%--                    <form action="${pageContext.request.contextPath}/order">--%>
 <%--                        <input type="hidden" name="id" value="${car.id}">--%>
 <%--                        <input type="hidden" name="marque" value="${car.marque}">--%>
 <%--                        <input type="hidden" name="model" value="${car.model}">--%>
 <%--                        <input type="hidden" name="price" value="${car.price}">--%>
-<%--                        <input type="submit" value="make order">--%>
-<%--                    </form>--%>
-                </td>
-            </tr>
-        </c:forEach>
+
+<%--                <td>Need driver?</td>--%>
+<%--                <td>--%>
+<%--                    <input type="radio" name="driver" value="yes">yes</input>--%>
+<%--                    <input type="radio" name="driver" value="no">no</input>--%>
+<%--                </td>--%>
+<%--                <br>--%>
+<%--                <br>--%>
+<%--                <input type="number" min="1" name="term" placeholder="term">--%>
+<%--                <input type="submit" value="make order">--%>
+<%--                </form>--%>
+<%--                </td>--%>
+<%--            </tr>--%>
+<%--        </c:forEach>--%>
 
     </div>
 </div>

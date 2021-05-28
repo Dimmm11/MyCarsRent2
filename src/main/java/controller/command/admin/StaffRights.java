@@ -18,7 +18,6 @@ public class StaffRights implements Command {
             return "adminstaff";
         }else {
             ClientDAO.makeManager(request.getParameter("login"));
-//            return "adminclients";
             return "managerClients";
         }
     }

@@ -20,7 +20,6 @@ public class Profile implements Command {
         List<Car> cars = CarDAO.getCarsByClient((Client)request
                 .getSession()
                 .getAttribute("client"));
-//        request.setAttribute("orders", orders);
         request.setAttribute("cars", cars);
         return "/WEB-INF/client/profile.jsp";
     }

@@ -6,7 +6,7 @@
 <h2>Hello World!</h2>
 
 <a href="login.jsp">Please log in</a>
-<a href="test.jsp">TEST</a>
+<%--<a href="test.jsp">TEST</a>--%>
 <c:if test="${requestScope.error!=null}">
     <c:out value="${requestScope.error.toString()}"/>
 </c:if>

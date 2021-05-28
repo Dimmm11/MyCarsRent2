@@ -25,6 +25,15 @@
 
 <div class="sidenav">
     <div class="login-main-text">
+        <c:choose>
+            <c:when test="${sessionScope.role==3}">
+                <h1 style="text-decoration: underline">ADMIN</h1>
+            </c:when>
+            <c:when test="${sessionScope.role==2}">
+                <h1 style="text-decoration: underline">MANAGER</h1>
+            </c:when>
+        </c:choose>
+        <br>
         <h2>Orders</h2>
 
     </div>

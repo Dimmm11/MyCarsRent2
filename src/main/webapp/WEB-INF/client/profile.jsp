@@ -73,11 +73,32 @@
                             </c:when>
                         </c:choose>
 
-                        <c:if test="${order.confirmed.equals('CONFIRMED')}">
-                            <form>
-                                <input type="submit" value="pay" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
-                            </form>
-                        </c:if>
+
+                        <c:choose>
+                            <c:when test="${order.confirmed.equals('CONFIRMED')}">
+                                <form>
+                                    <input type="submit" value="pay" style="background-color: cadetblue;border-width: medium;font-weight: bold">
+                                </form>
+                            </c:when>
+                            <c:otherwise>
+                                <form action="${pageContext.request.contextPath}/cancelOrder">
+                                    <input type="hidden" name="orderId" value="${order.id}">
+                                    <input type="submit"
+                                           value="cancel order"
+                                           style="background-color: darksalmon;border-width: medium;font-weight: bold">
+                                </form>
+                            </c:otherwise>
+                        </c:choose>
+
+
+
+
+<%--                        <c:if test="${order.confirmed.equals('CONFIRMED')}">--%>
+<%--                            --%>
+<%--                        </c:if>--%>
+<%--                        --%>
+
+
 
                         <hr>
                     </ul>

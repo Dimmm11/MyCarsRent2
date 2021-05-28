@@ -12,12 +12,9 @@ public class LoginCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
-
         String name = request.getParameter("Login");
         String pass = request.getParameter("Password");
         request.setAttribute("error", "");
-
-
         if (name == null || name.equals("") || pass == null || pass.equals("")) {
             return "redirect:/login.jsp";
         }
@@ -25,9 +22,7 @@ public class LoginCommand implements Command {
          * check user in DB
          */
         if (!CheckClient.isValidClient(name, pass)) {
-            System.out.println("no such client");
             request.setAttribute("error", "wrong client data");
-//            return "redirect:/index.jsp";
             return "redirect:/login.jsp";
         }
         /**
@@ -39,20 +34,16 @@ public class LoginCommand implements Command {
             session.setAttribute("role", client.getRole_id());
             session.setAttribute("client", client);
 
-            System.out.println("role in LoginCommand: " + client.getRole_id());
-            System.out.println("client in LoginCommand: " + client.getLogin());
-            /**
-             * check if User is Banned
-             */
-            if (client.getStatus().equals("BANNED")) {
-                session.setAttribute("role", 0);
-                session.setAttribute("client", null);
-                request.setAttribute("error", "user is BANNED");
-//                return "redirect:/index.jsp";
-                return "redirect:/login.jsp";
-            }
         }
-
+        /**
+         * check if User is Banned
+         */
+        if (client.getStatus().equals("BANNED")) {
+            session.setAttribute("role", 0);
+            session.setAttribute("client", null);
+            request.setAttribute("error", "user is BANNED");
+            return "redirect:/login.jsp";
+        }
         /**
          * All checks passed, send to Page
          */

@@ -26,9 +26,6 @@ public class MakeOrder implements Command {
 
         OrderDAO.carOrder(car, client, driver, term);
 
-
-
-
         return "/WEB-INF/client/order.jsp";
     }
 }

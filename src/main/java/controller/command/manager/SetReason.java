@@ -11,8 +11,6 @@ public class SetReason implements Command {
     public String execute(HttpServletRequest request) {
         String reason = request.getParameter("reason");
         int orderId = Integer.parseInt(request.getParameter("orderId"));
-        System.out.println("REASON in SetReason = "+reason);
-        System.out.println("ORDER in SetReason = "+orderId);
         OrderDAO.setReason(orderId,reason);
 
         return "/managerOrders";
