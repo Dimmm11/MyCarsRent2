@@ -1,13 +1,8 @@
 
-T	java:S106*"9Replace this use of System.out or System.err by a logger.(§•Õ8Ä›×Íš/
-h
-java:S1192"FDefine a constant instead of duplicating this literal "error" 3 times.(Ü„°®øÿÿÿÿ8ÁÒËñš/
-v
-java:S1192"TDefine a constant instead of duplicating this literal "redirect:/login.jsp" 3 times.(Â²™ÿÿÿÿÿ8“ëÊñš/
 d
-java:S1192$"GDefine a constant instead of duplicating this literal "client" 3 times.(Ğ¥è8±ŒüØ™/
-Z	java:S106+"9Replace this use of System.out or System.err by a logger.(Í£ãøÿÿÿÿ8³»ØÍš/
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(àÊŞ‡øÿÿÿÿ8ğì±™/
-]	java:S1253"<This block of commented-out lines of code should be removed.(Åî±ÿÿÿÿÿ8ÕÊñš/
-U	java:S106;"9Replace this use of System.out or System.err by a logger.(¬ü“í8ªÏÃ¡š/
-]	java:S125"<This block of commented-out lines of code should be removed.(Åî±ÿÿÿÿÿ8Ó„Áñš/
+java:S1192"GDefine a constant instead of duplicating this literal "client" 3 times.(Ğ¥è8±ŒüØ™/
+v
+java:S1192"TDefine a constant instead of duplicating this literal "redirect:/login.jsp" 3 times.(Â²™ÿÿÿÿÿ8“ëÊñš/
+U	java:S1062"9Replace this use of System.out or System.err by a logger.(¬ü“í8ªÏÃ¡š/
+h
+java:S1192"FDefine a constant instead of duplicating this literal "error" 3 times.(Ü„°®øÿÿÿÿ8ÁÒËñš/

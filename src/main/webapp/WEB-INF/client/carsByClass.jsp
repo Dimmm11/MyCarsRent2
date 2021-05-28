@@ -29,7 +29,9 @@
 
 <div class="sidenav">
     <div class="login-main-text">
-        <h2>Cars</h2>
+        <form action="${pageContext.request.contextPath}/menu" method="post">
+            <input type="submit" value="back to menu" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
+        </form>
 
     </div>
 </div>
@@ -42,12 +44,10 @@
         <div class="col-md-4">
             <c:if test="${sessionScope.client!=null}">
                 <form action="profile">
-                    <button type="submit" class="btn btn-secondary" formmethod="post">Profile</button>
+                    <button type="submit" class="btn btn-secondary" formmethod="post">My orders</button>
                 </form>
             </c:if>
-            <form action="${pageContext.request.contextPath}/menu" method="post">
-                <input type="submit" value="back to menu" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
-            </form>
+
         </div>
         <div class="col-md-4">
             <c:if test="${sessionScope.role>0}">
@@ -107,10 +107,7 @@
     </div>
     <div class="col-md-2">
     </div>
-
-
 </div>
-
 
 <div class="main">
     <div class="container" style="position: static; bottom: 30%">
@@ -130,11 +127,8 @@
     </div>
     <div class="col-md-6 col-sm-12">
     </div>
-
 </div>
-
 </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"

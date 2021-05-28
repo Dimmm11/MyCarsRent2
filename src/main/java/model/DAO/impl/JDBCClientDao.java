@@ -1,17 +1,24 @@
-package model.DAO;
+package model.DAO.impl;
 
+import model.DAO.SqlQuarry;
+import model.DAO.mapper.ClientMapper;
+import model.DAO.tryService.ClientDAO;
 import model.connection.ConnectionPoolHolder;
 import model.entity.Client;
-import model.DAO.mapper.ClientMapper;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientDAO {
-    public static List<Client> getClients() {
+public class JDBCClientDao implements ClientDAO {
+    private Connection connection;
+
+    public JDBCClientDao(Connection connection) {
+        this.connection = connection;
+    }
+    public List<Client> getClients() {
         List<Client> list = new ArrayList<>();
-        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
+        try (Connection con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement();
              ResultSet rs = st.executeQuery(SqlQuarry.CLIENTS)) {
             ClientMapper cm = new ClientMapper();
@@ -25,10 +32,10 @@ public class ClientDAO {
         return list;
     }
 
-    public static Client getClient(String login) {
+    public Client getClient(String login) {
         String name = SqlQuarry.CLIENT.replaceAll("login", login);
         Client client = null;
-        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
+        try (Connection con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement();
              ResultSet rs = st.executeQuery(name)) {
             rs.next();
@@ -39,7 +46,7 @@ public class ClientDAO {
         return client;
     }
 
-    public static List<Client> getStaff() {
+    public List<Client> getStaff() {
         List<Client> staff = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement();
@@ -55,12 +62,12 @@ public class ClientDAO {
         return staff;
     }
 
-    public static synchronized boolean deleteClient(String login) {
+    public boolean deleteClient(String login) {
         Client client = getClient(login);
         boolean result = false;
         Connection con = null;
         try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+            con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
 
             PreparedStatement stt = con.prepareStatement(SqlQuarry.MOVE_CLIENT_TO_REMOVED);
@@ -93,11 +100,11 @@ public class ClientDAO {
 
     }
 
-    public static synchronized boolean makeManager(String login) {
+    public boolean makeManager(String login) {
         boolean result = false;
         Connection con = null;
         try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+            con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(SqlQuarry.MAKE_MANAGER);
             st.setString(1, login);
@@ -121,11 +128,11 @@ public class ClientDAO {
         return result;
     }
 
-    public static synchronized boolean removeManager(String login) {
+    public boolean removeManager(String login) {
         boolean result = false;
         Connection con = null;
         try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+            con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(SqlQuarry.REMOVE_MANAGER);
             st.setString(1, login);
@@ -149,11 +156,11 @@ public class ClientDAO {
         return result;
     }
 
-    public static synchronized boolean register(Client client) {
+    public boolean register(Client client) {
         boolean result = false;
         Connection con = null;
         try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+            con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(SqlQuarry.REGISTER);
             st.setString(1, client.getLogin());
@@ -179,11 +186,11 @@ public class ClientDAO {
         return result;
     }
 
-    public static synchronized boolean ban(String login) {
+    public boolean ban(String login) {
         boolean result = false;
         Connection con = null;
         try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+            con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(SqlQuarry.BAN);
             st.setString(1, login);
@@ -207,7 +214,7 @@ public class ClientDAO {
         return result;
     }
 
-    public static synchronized boolean unBan(String login) {
+    public boolean unBan(String login) {
         boolean result = false;
         Connection con = null;
         try {
@@ -233,5 +240,36 @@ public class ClientDAO {
             }
         }
         return result;
+    }
+
+    // =============================================
+    @Override
+    public boolean create(Client entity) {
+        return false;
+    }
+
+    @Override
+    public Client findById(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Client> findAll() {
+        return null;
+    }
+
+    @Override
+    public boolean update(Client entity) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(int id) {
+        return false;
+    }
+
+    @Override
+    public void close() throws Exception {
+
     }
 }

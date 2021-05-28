@@ -26,7 +26,9 @@
 
 <div class="sidenav">
     <div class="login-main-text">
-        <h2>Profile</h2>
+        <form action="${pageContext.request.contextPath}/menu" method="post">
+            <input type="submit" value="back to menu" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
+        </form>
 
     </div>
 </div>
@@ -38,9 +40,7 @@
                 <button type="submit" class="btn btn-secondary">Logout</button>
             </form>
         </c:if>
-        <form action="${pageContext.request.contextPath}/menu" method="post">
-            <input type="submit" value="back to menu" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
-        </form>
+
 
 
         <c:set var="counter" value="0" scope="page"/>

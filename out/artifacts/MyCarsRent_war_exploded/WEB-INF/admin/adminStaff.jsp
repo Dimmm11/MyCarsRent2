@@ -24,29 +24,42 @@
 
 <div class="sidenav">
     <div class="login-main-text">
-        <c:choose>
-            <c:when test="${sessionScope.role==3}">
                 <h1 style="text-decoration: underline">ADMIN</h1>
-            </c:when>
-            <c:when test="${sessionScope.role==2}">
-                <h1 style="text-decoration: underline">MANAGER</h1>
-            </c:when>
-        </c:choose>
         <br>
-        <h2>Admin staff</h2>
+        <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
+            <input type="submit" value="back to menu"
+                   style="background-color: darkseagreen;
+                               border-width: medium;
+                               font-weight: bold">
+        </form>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-4">
+        </div>
+
+        <div class="col-md-4">
+        </div>
+
+        <div class="col-md-4">
+            <c:if test="${sessionScope.role>0}">
+                <form action="${pageContext.request.contextPath}/logout" method="post">
+                    <button type="submit" class="btn btn-secondary">Logout</button>
+                </form>
+            </c:if>
+        </div>
     </div>
 </div>
 <div class="main">
     <div class="col-md-6 col-sm-12">
-        <c:if test="${sessionScope.role>0}">
-            <form action="${pageContext.request.contextPath}/logout" method="post">
-                <button type="submit" class="btn btn-secondary">Logout</button>
-            </form>
-        </c:if>
+<%--        <c:if test="${sessionScope.role>0}">--%>
+<%--            <form action="${pageContext.request.contextPath}/logout" method="post">--%>
+<%--                <button type="submit" class="btn btn-secondary">Logout</button>--%>
+<%--            </form>--%>
+<%--        </c:if>--%>
 
-            <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
-                <input type="submit" value="back to menu" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
-            </form>
             <c:forEach var="worker" items="${requestScope.staff}">
                 <tr>
                     <td>

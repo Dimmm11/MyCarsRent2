@@ -26,11 +26,18 @@
 
 <div class="sidenav">
     <div class="login-main-text">
-        <h2>Profile</h2>
+        <form action="${pageContext.request.contextPath}/menu" method="post">
+            <input type="submit" value="back to menu" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
+        </form>
 
     </div>
 </div>
 
+<!-- ================================================= -->
+
+
+
+<!-- ================================================= -->
 <div class="main">
     <div class="col-md-6 col-sm-12">
         <c:if test="${sessionScope.role>0}">
@@ -38,13 +45,8 @@
                 <button type="submit" class="btn btn-secondary">Logout</button>
             </form>
         </c:if>
-        <form action="${pageContext.request.contextPath}/menu" method="post">
-            <input type="submit" value="back to menu" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
-        </form>
-
 
         <c:set var="counter" value="0" scope="page"/>
-
         <c:forEach var="order" items="${requestScope.orders}">
             <tr>
                 <td>
@@ -68,12 +70,8 @@
                                     <li>Penalty: <c:out value="${order.penalty}"/></li>
                                     <li>Total cost: <c:out value="${order.total_cost}"/></li>
                                 </c:if>
-
-
                             </c:when>
                         </c:choose>
-
-
                         <c:choose>
                             <c:when test="${order.confirmed.equals('CONFIRMED')}">
                                 <form>
@@ -89,17 +87,6 @@
                                 </form>
                             </c:otherwise>
                         </c:choose>
-
-
-
-
-<%--                        <c:if test="${order.confirmed.equals('CONFIRMED')}">--%>
-<%--                            --%>
-<%--                        </c:if>--%>
-<%--                        --%>
-
-
-
                         <hr>
                     </ul>
                 </td>

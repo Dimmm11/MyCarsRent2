@@ -33,32 +33,39 @@
             </c:when>
         </c:choose>
         <br>
-        <h2>Manager clients</h2>
+        <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
+            <input type="submit" value="back to menu"
+                   style="background-color: darkseagreen;
+                               border-width: medium;
+                               font-weight: bold">
+        </form>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-4">
+        </div>
+
+        <div class="col-md-4">
+        </div>
+
+        <div class="col-md-4">
+            <c:if test="${sessionScope.role>0}">
+                <form action="${pageContext.request.contextPath}/logout" method="post">
+                    <button type="submit" class="btn btn-secondary">Logout</button>
+                </form>
+            </c:if>
+        </div>
     </div>
 </div>
 <div class="main">
     <div class="col-md-6 col-sm-12">
-        <c:if test="${sessionScope.role>0}">
-            <form action="${pageContext.request.contextPath}/logout" method="post">
-                <button type="submit" class="btn btn-secondary">Logout</button>
-            </form>
-        </c:if>
-        <c:choose>
-            <c:when test="${sessionScope.role==3}">
-                <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
-                    <input type="submit" value="back to menu"
-                           style="background-color: darkseagreen;border-width: medium;font-weight: bold">
-                </form>
-            </c:when>
-            <c:when test="${sessionScope.role==2}">
-                <form action="${pageContext.request.contextPath}/welcomeManager" method="post">
-                    <input type="submit" value="back to menu"
-                           style="background-color: darkseagreen;border-width: medium;font-weight: bold">
-                </form>
-            </c:when>
-        </c:choose>
-
-
+<%--        <c:if test="${sessionScope.role>0}">--%>
+<%--            <form action="${pageContext.request.contextPath}/logout" method="post">--%>
+<%--                <button type="submit" class="btn btn-secondary">Logout</button>--%>
+<%--            </form>--%>
+<%--        </c:if>--%>
 
             <c:forEach var="client" items="${requestScope.adminClients}">
                 <tr>

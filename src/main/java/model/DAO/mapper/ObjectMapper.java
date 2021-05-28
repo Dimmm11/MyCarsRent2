@@ -1,4 +1,4 @@
-package model.mapper;
+package model.DAO.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

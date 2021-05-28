@@ -1,17 +1,26 @@
-package model.DAO;
+package model.DAO.impl;
 
+import model.DAO.SqlQuarry;
+import model.DAO.mapper.CarMapper;
+import model.DAO.tryService.CarDAO;
 import model.connection.ConnectionPoolHolder;
 import model.entity.Car;
 import model.entity.Client;
-import model.DAO.mapper.CarMapper;
 
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarDAO {
-    public static List<Car> getCarsByClass(String carClass) {
+public class JDBCCarDao implements CarDAO {
+    private Connection connection;
+
+    public JDBCCarDao(Connection connection) {
+        this.connection = connection;
+    }
+
+    // =================================================
+    public List<Car> getCarsByClass(String carClass) {
         List<Car> carsByClass = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
@@ -27,7 +36,7 @@ public class CarDAO {
         return carsByClass;
     }
 
-    public static List<Car> getCarsByClass(String carClass, int index, int offset) {
+    public List<Car> getCarsByClass(String carClass, int index, int offset) {
         List<Car> carsByClass = new ArrayList<>();
         PreparedStatement stt = null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
@@ -47,7 +56,7 @@ public class CarDAO {
         return carsByClass;
     }
 
-    public static List<Car> getCarsByMarque(String marque) {
+    public List<Car> getCarsByMarque(String marque) {
         List<Car> carsByMarque = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
@@ -63,7 +72,7 @@ public class CarDAO {
         return carsByMarque;
     }
 
-    public static List<Car> getCarsByMarque(String marque, int index, int offset) {
+    public List<Car> getCarsByMarque(String marque, int index, int offset) {
         List<Car> carsByMarque = new ArrayList<>();
         PreparedStatement stt = null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
@@ -82,7 +91,7 @@ public class CarDAO {
         return carsByMarque;
     }
 
-    public static synchronized List<Car> getCarsByClient(Client client) {
+    public List<Car> getCarsByClient(Client client) {
         List<Car> carsByClient = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
@@ -98,7 +107,7 @@ public class CarDAO {
         return carsByClient;
     }
 
-    public static List<Car> getAllCars() {
+    public List<Car> getAllCars() {
         List<Car> allCars = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
@@ -113,7 +122,7 @@ public class CarDAO {
         return allCars;
     }
 
-    public static List<Car> getAllCars(int index, int offset) {
+    public List<Car> getAllCars(int index, int offset) {
         List<Car> allCars = new ArrayList<>();
         PreparedStatement st = null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
@@ -131,7 +140,7 @@ public class CarDAO {
         return allCars;
     }
 
-    public static List<Car> getOrderedCars() {
+    public List<Car> getOrderedCars() {
         List<Car> allCars = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
@@ -146,7 +155,7 @@ public class CarDAO {
         return allCars;
     }
 
-    public static synchronized boolean addCar(Car car) {
+    public boolean addCar(Car car) {
         boolean result = false;
         Connection con = null;
         try {
@@ -178,7 +187,7 @@ public class CarDAO {
         return result;
     }
 
-    public static synchronized boolean updatePrice(BigDecimal price, Car car) {
+    public boolean updatePrice(BigDecimal price, Car car) {
         boolean result = false;
         Connection con = null;
         try {
@@ -208,7 +217,7 @@ public class CarDAO {
         return result;
     }
 
-    public static synchronized Car getCarById(int id) {
+    public Car getCarById(int id) {
         Car car = null;
         Connection con = null;
         try {
@@ -238,7 +247,7 @@ public class CarDAO {
         return car;
     }
 
-    public static synchronized boolean deleteCar(int id) {
+    public boolean deleteCar(int id) {
         boolean result = false;
         Connection con = null;
         try {
@@ -265,5 +274,36 @@ public class CarDAO {
             }
         }
         return result;
+    }
+
+    // =================================================
+    @Override
+    public boolean create(Car car) {
+        return false;
+    }
+
+    @Override
+    public Car findById(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Car> findAll() {
+        return null;
+    }
+
+    @Override
+    public boolean update(Car entity) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(int id) {
+        return false;
+    }
+
+    @Override
+    public void close() throws Exception {
+
     }
 }

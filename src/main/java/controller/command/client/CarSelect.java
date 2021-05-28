@@ -1,6 +1,7 @@
 package controller.command.client;
 
 import controller.command.Command;
+import controller.command.service.PageCalculator;
 import model.DAO.CarDAO;
 import model.entity.Car;
 import model.entity.Client;
@@ -32,7 +33,7 @@ public class CarSelect implements Command {
             }
             cars = CarDAO.getCarsByMarque(marque,(page-1)*3, 3);
 
-            int numPages = getNumPages(allCars.size());
+            int numPages = new PageCalculator().getNumPages(allCars.size());
             request.setAttribute("page",page);
             request.setAttribute("numPages",numPages);
             request.setAttribute("carsByMarque", cars);
@@ -55,7 +56,7 @@ public class CarSelect implements Command {
                 System.out.println("Page: "+page);
                 cars = CarDAO.getCarsByClass(car_class, (page-1)*3, 3);
                 System.out.println("cars list size: "+cars.size());
-                int numPages = getNumPages(allCars.size());
+                int numPages = new PageCalculator().getNumPages(allCars.size());
                 request.setAttribute("page",page);
                 request.setAttribute("numPages",numPages);
                 request.setAttribute("carsByClass", cars);
@@ -71,14 +72,14 @@ public class CarSelect implements Command {
         }
 
     }
-    private static int getNumPages(int listSize){
-        int res=0;
-        if(listSize%3==0){
-            res=listSize/3;
-        }else {
-            res = listSize/3+1;
-        }
-        System.out.println("RES in method getNumPages: "+res);
-        return res;
-    }
+//    private static int getNumPages(int listSize){
+//        int res=0;
+//        if(listSize%3==0){
+//            res=listSize/3;
+//        }else {
+//            res = listSize/3+1;
+//        }
+//        System.out.println("RES in method getNumPages: "+res);
+//        return res;
+//    }
 }

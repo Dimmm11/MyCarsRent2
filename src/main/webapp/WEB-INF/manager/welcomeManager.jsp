@@ -24,18 +24,34 @@
 
 <div class="sidenav">
     <div class="login-main-text">
+        <h2>Welcome, manager!</h2>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
 
-        <%--        <h2><fmt:message key="Welcome"/></h2>--%>
-        <%--        <p><fmt:message key="login_register"/></p>--%>
+        <div class="col-md-4">
+        </div>
+
+        <div class="col-md-4">
+        </div>
+
+        <div class="col-md-4">
+            <c:if test="${sessionScope.role>0}">
+                <form action="${pageContext.request.contextPath}/logout" method="post">
+                    <button type="submit" class="btn btn-secondary">Logout</button>
+                </form>
+            </c:if>
+        </div>
     </div>
 </div>
 <div class="main">
     <div class="col-md-6 col-sm-12">
-        <c:if test="${sessionScope.role>0}">
-            <form action="${pageContext.request.contextPath}/logout" method="post">
-                <button type="submit" class="btn btn-secondary">Logout</button>
-            </form>
-        </c:if>
+<%--        <c:if test="${sessionScope.role>0}">--%>
+<%--            <form action="${pageContext.request.contextPath}/logout" method="post">--%>
+<%--                <button type="submit" class="btn btn-secondary">Logout</button>--%>
+<%--            </form>--%>
+<%--        </c:if>--%>
         <div class="login-form">
             <hr>
             <table>

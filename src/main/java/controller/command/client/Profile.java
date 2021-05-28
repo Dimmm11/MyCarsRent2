@@ -21,6 +21,11 @@ public class Profile implements Command {
                 .getSession()
                 .getAttribute("client"));
         request.setAttribute("cars", cars);
+
+
+
+
+
         return "/WEB-INF/client/profile.jsp";
     }
 }

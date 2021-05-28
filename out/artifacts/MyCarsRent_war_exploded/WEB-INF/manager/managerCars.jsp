@@ -35,7 +35,26 @@
             </c:when>
         </c:choose>
         <br>
-        <h2>Cars</h2>
+        <c:choose>
+            <c:when test="${sessionScope.role==3}">
+                <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
+                    <input type="submit" value="back to menu"
+                           style="background-color: darkseagreen;
+                               border-width: medium;
+                               font-weight: bold">
+                </form>
+                <jsp:include page="../admin/carAdd.jsp"/>
+
+            </c:when>
+            <c:when test="${sessionScope.role==2}">
+                <form action="${pageContext.request.contextPath}/welcomeManager" method="post">
+                    <input type="submit" value="back to menu"
+                           style="background-color: darkseagreen;
+                               border-width: medium;
+                               font-weight: bold">
+                </form>
+            </c:when>
+        </c:choose>
         <%--        <h2><fmt:message key="Welcome"/></h2>--%>
         <%--        <p><fmt:message key="login_register"/></p>--%>
     </div>
@@ -46,31 +65,26 @@
         </div>
 
         <div class="col-md-4">
-            <c:choose>
-                <c:when test="${sessionScope.role==3}">
-                    <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
-                        <input type="submit" value="back to menu"
-                               style="background-color: darkseagreen;
-                               border-width: medium;
-                               font-weight: bold">
-                    </form>
-                    <form action="${pageContext.request.contextPath}/adminaddcar" method="post">
-                            <%--                        <input type="hidden" name="page" value="${requestScope.i}">--%>
-                        <input type="submit" value="add car"
-                               style="background-color: coral;
-                               border-width: medium;
-                               font-weight: bold">
-                    </form>
-                </c:when>
-                <c:when test="${sessionScope.role==2}">
-                    <form action="${pageContext.request.contextPath}/welcomeManager" method="post">
-                        <input type="submit" value="back to menu"
-                               style="background-color: darkseagreen;
-                               border-width: medium;
-                               font-weight: bold">
-                    </form>
-                </c:when>
-            </c:choose>
+<%--            <c:choose>--%>
+<%--                <c:when test="${sessionScope.role==3}">--%>
+<%--                    <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">--%>
+<%--                        <input type="submit" value="back to menu"--%>
+<%--                               style="background-color: darkseagreen;--%>
+<%--                               border-width: medium;--%>
+<%--                               font-weight: bold">--%>
+<%--                    </form>--%>
+<%--                    <jsp:include page="../admin/carAdd.jsp"/>--%>
+
+<%--                </c:when>--%>
+<%--                <c:when test="${sessionScope.role==2}">--%>
+<%--                    <form action="${pageContext.request.contextPath}/welcomeManager" method="post">--%>
+<%--                        <input type="submit" value="back to menu"--%>
+<%--                               style="background-color: darkseagreen;--%>
+<%--                               border-width: medium;--%>
+<%--                               font-weight: bold">--%>
+<%--                    </form>--%>
+<%--                </c:when>--%>
+<%--            </c:choose>--%>
         </div>
         <div class="col-md-4">
             <c:if test="${sessionScope.role>0}">

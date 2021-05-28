@@ -33,7 +33,7 @@ public class LoginCommand implements Command {
             client = ClientDAO.getClient(name);
             session.setAttribute("role", client.getRole_id());
             session.setAttribute("client", client);
-
+            session.setAttribute("clientName", name);
         }
         /**
          * check if User is Banned

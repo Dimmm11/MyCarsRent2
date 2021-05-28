@@ -24,18 +24,27 @@
 
 <div class="sidenav">
     <div class="login-main-text">
-        <h2>Car add</h2>
-        <%--        <h2><fmt:message key="Welcome"/></h2>--%>
-        <%--        <p><fmt:message key="login_register"/></p>--%>
+        <c:choose>
+            <c:when test="${sessionScope.role==3}">
+                <h1 style="text-decoration: underline">ADMIN</h1>
+            </c:when>
+            <c:when test="${sessionScope.role==2}">
+                <h1 style="text-decoration: underline">MANAGER</h1>
+            </c:when>
+        </c:choose>
+        <br>
+        <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
+            <input type="submit" value="back to menu"
+                   style="background-color: darkseagreen;
+                               border-width: medium;
+                               font-weight: bold">
+        </form>
+
     </div>
 </div>
+
 <div class="main">
     <div class="col-md-6 col-sm-12">
-        <c:if test="${sessionScope.role>0}">
-            <form action="${pageContext.request.contextPath}/logout" method="post">
-                <button type="submit" class="btn btn-secondary">Logout</button>
-            </form>
-        </c:if>
         <div class="login-form">
             <form method="post" action="${pageContext.request.contextPath}/caradd">
                 <input type="text" placeholder="marque" name="marque">
@@ -47,7 +56,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Вариант 1: Bootstrap в связке с Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"

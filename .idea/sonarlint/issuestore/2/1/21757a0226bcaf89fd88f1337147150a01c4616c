@@ -1,14 +1,14 @@
 
-r	java:S117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹Áòøÿÿÿÿ8ù¢ì’›/
-N
-java:S1481",Remove this unused "session" local variable.(ûİÙ¹şÿÿÿÿ8úø–›/
-U	java:S1062"9Replace this use of System.out or System.err by a logger.(ËÒ½¬8şš·şš/
+]	java:S125,"<This block of commented-out lines of code should be removed.(†é¨úÿÿÿÿ8éİúš/
+X	java:S125"<This block of commented-out lines of code should be removed.(ÇóâÑ8úø–›/
+Z	java:S106B"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8®ø»şš/
+Z	java:S1069"9Replace this use of System.out or System.err by a logger.(¼ùÛÃÿÿÿÿÿ8‚¨¢şš/
+U	java:S1067"9Replace this use of System.out or System.err by a logger.(—8¡­Çşš/
 M
 java:S1128
 "0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8¾÷‡Ï™/
+N
+java:S1481",Remove this unused "session" local variable.(ûİÙ¹şÿÿÿÿ8úø–›/
+r	java:S117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹Áòøÿÿÿÿ8ù¢ì’›/
 U	java:S106Q"9Replace this use of System.out or System.err by a logger.(Ÿ´•ã8óş†“›/
-Z	java:S106B"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8®ø»şš/
-Z	java:S1069"9Replace this use of System.out or System.err by a logger.(¼ùÛÃÿÿÿÿÿ8‚¨¢şš/
-X	java:S125"<This block of commented-out lines of code should be removed.(ÇóâÑ8úø–›/
-U	java:S1067"9Replace this use of System.out or System.err by a logger.(—8¡­Çşš/
-]	java:S125,"<This block of commented-out lines of code should be removed.(†é¨úÿÿÿÿ8éİúš/
+U	java:S1062"9Replace this use of System.out or System.err by a logger.(ËÒ½¬8şš·şš/

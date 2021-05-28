@@ -1,6 +1,7 @@
 package controller.command.manager;
 
 import controller.command.Command;
+import controller.command.service.PageCalculator;
 import model.DAO.CarDAO;
 import model.entity.Car;
 
@@ -16,7 +17,7 @@ public class ManagerCars implements Command {
         }
         List<Car> allCars = CarDAO.getAllCars();
         List<Car> cars =CarDAO.getAllCars((page-1)*3, 3);
-        int numPages = getNumPages(allCars.size());
+        int numPages = new PageCalculator().getNumPages(allCars.size());
 
         request.setAttribute("page",page);
         request.setAttribute("numPages",numPages);
@@ -24,14 +25,14 @@ public class ManagerCars implements Command {
         return "/WEB-INF/manager/managerCars.jsp";
 
     }
-    private static int getNumPages(int listSize){
-        int res=0;
-        if(listSize%3==0){
-            res=listSize/3;
-        }else {
-            res = listSize/3+1;
-        }
-        System.out.println("RES in method getNumPages: "+res);
-        return res;
-    }
+//    private static int getNumPages(int listSize){
+//        int res=0;
+//        if(listSize%3==0){
+//            res=listSize/3;
+//        }else {
+//            res = listSize/3+1;
+//        }
+//        System.out.println("RES in method getNumPages: "+res);
+//        return res;
+//    }
 }

@@ -1,4 +1,4 @@
-package model.mapper;
+package model.DAO.mapper;
 
 import model.entity.Client;
 

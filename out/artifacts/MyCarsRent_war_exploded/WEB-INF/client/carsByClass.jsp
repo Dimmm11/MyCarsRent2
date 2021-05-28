@@ -29,7 +29,9 @@
 
 <div class="sidenav">
     <div class="login-main-text">
-        <h2>Cars</h2>
+        <form action="${pageContext.request.contextPath}/menu" method="post">
+            <input type="submit" value="back to menu" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
+        </form>
 
     </div>
 </div>
@@ -42,12 +44,10 @@
         <div class="col-md-4">
             <c:if test="${sessionScope.client!=null}">
                 <form action="profile">
-                    <button type="submit" class="btn btn-secondary" formmethod="post">Profile</button>
+                    <button type="submit" class="btn btn-secondary" formmethod="post">My orders</button>
                 </form>
             </c:if>
-            <form action="${pageContext.request.contextPath}/menu" method="post">
-                <input type="submit" value="back to menu" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
-            </form>
+
         </div>
         <div class="col-md-4">
             <c:if test="${sessionScope.role>0}">
