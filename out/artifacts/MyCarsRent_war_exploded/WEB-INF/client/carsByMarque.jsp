@@ -129,37 +129,6 @@
 
     </div>
     <div class="col-md-6 col-sm-12">
-        <%--        <h2><c:out value="${requestScope.marque.toString()}"/></h2>--%>
-        <%--        <c:forEach var="car" items="${requestScope.carsByMarque}">--%>
-        <%--            <tr>--%>
-        <%--                <td>--%>
-        <%--                    <ul>--%>
-        <%--                        <li><c:out value="${car.model}"/></li>--%>
-        <%--                        <li><c:out value="${car.price}"/></li>--%>
-        <%--                        <hr>--%>
-        <%--                    </ul>--%>
-        <%--                </td>--%>
-        <%--                <td>--%>
-        <%--                        &lt;%&ndash;               ===========================================     &ndash;%&gt;--%>
-        <%--                    <form action="${pageContext.request.contextPath}/order">--%>
-        <%--                        <input type="hidden" name="id" value="${car.id}">--%>
-        <%--                        <input type="hidden" name="marque" value="${car.marque}">--%>
-        <%--                        <input type="hidden" name="model" value="${car.model}">--%>
-        <%--                        <input type="hidden" name="price" value="${car.price}">--%>
-
-        <%--                <td>Need driver?</td>--%>
-        <%--                <td>--%>
-        <%--                    <input type="radio" name="driver" value="yes">yes</input>--%>
-        <%--                    <input type="radio" name="driver" value="no">no</input>--%>
-        <%--                </td>--%>
-        <%--                <br>--%>
-        <%--                <br>--%>
-        <%--                <input type="number" min="1" name="term" placeholder="term">--%>
-        <%--                <input type="submit" value="make order">--%>
-        <%--                </form>--%>
-        <%--                </td>--%>
-        <%--            </tr>--%>
-        <%--        </c:forEach>--%>
 
     </div>
 </div>

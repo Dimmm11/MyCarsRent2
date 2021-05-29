@@ -5,6 +5,7 @@ package model.DAO;
  */
 public interface SqlQuarry {
     String CLIENTS = "SELECT * FROM clients WHERE role_id=1;";
+    String PAGE_CLIENTS = "SELECT * FROM clients WHERE role_id=1 LIMIT ? , ? ;";
     String CLIENT = "SELECT * FROM clients WHERE name = 'login' ;";
 //    public static final String CARS = "SELECT * FROM cars;";
     String CARS_BY_CLASS =
@@ -12,10 +13,14 @@ public interface SqlQuarry {
     String CARS_BY_MARQUE =
             "SELECT * FROM cars WHERE marque= 'carmarque' AND car_status='FREE';";
     String CARS_BY_CLIENT = "SELECT * FROM cars WHERE id IN (SELECT car_id FROM orders WHERE client_id = clientid);";
+    String PAGE_CARS_BY_CLIENT = "SELECT * FROM cars WHERE id IN (SELECT car_id FROM orders WHERE client_id = ?) LIMIT ? , ?;";
+
     String GET_CAR_BY_ID = "SELECT * FROM cars WHERE id= ? ";
     String CAR_ORDER = "UPDATE cars SET car_status='ORDERED' WHERE id= ? ;";
     String MAKE_ORDER = "INSERT INTO orders (client_id,car_id,driver,term, rent_cost,total_cost) VALUES (?,?,?,?,?,?);";
     String ORDERS_BY_CLIENT = "SELECT * FROM orders WHERE client_id= clientid;";
+    String PAGE_ORDERS_BY_CLIENT = "SELECT * FROM orders WHERE client_id= ? LIMIT ? , ? ;";
+
     String SET_REASON = "UPDATE orders SET comment = ?  WHERE id = ? ";
     String SET_PENALTY = "UPDATE orders SET penalty = ?  WHERE id = ? ";
     String SET_TOTAL_COST = "UPDATE orders SET total_cost = ?  WHERE id = ? ";

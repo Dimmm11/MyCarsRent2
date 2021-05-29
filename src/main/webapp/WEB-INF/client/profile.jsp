@@ -17,8 +17,10 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <style><%@include file="/CSS/loginPage.css"%></style>
-<%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}CSS/loginPage.css"/>--%>
+    <style>
+        <%@include file="/CSS/loginPage.css" %>
+    </style>
+    <%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}CSS/loginPage.css"/>--%>
     <title>Profile</title>
 
 </head>
@@ -27,80 +29,116 @@
 <div class="sidenav">
     <div class="login-main-text">
         <form action="${pageContext.request.contextPath}/menu" method="post">
-            <input type="submit" value="back to menu" style="background-color: darkseagreen;border-width: medium;font-weight: bold">
+            <input type="submit" value="back to menu"
+                   style="background-color: darkseagreen;border-width: medium;font-weight: bold">
         </form>
 
     </div>
 </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
 
-<!-- ================================================= -->
+        <div class="col-md-4">
+        </div>
 
-
-
-<!-- ================================================= -->
-<div class="main">
-    <div class="col-md-6 col-sm-12">
-        <c:if test="${sessionScope.role>0}">
-            <form action="${pageContext.request.contextPath}/logout" method="post">
-                <button type="submit" class="btn btn-secondary">Logout</button>
-            </form>
-        </c:if>
-
-        <c:set var="counter" value="0" scope="page"/>
-        <c:forEach var="order" items="${requestScope.orders}">
-            <tr>
-                <td>
-                    <ul>
-                        <li>Order id: <c:out value="${order.id}"/></li>
-                        <li>Car marque: <c:out value="${requestScope.cars.get(counter).marque}"/></li>
-                        <li>Car model: <c:out value="${requestScope.cars.get(counter).model}"/></li>
-                        <li>Driver: <c:out value="${order.driver}"/></li>
-                        <li>Term(hours): <c:out value="${order.term}"/></li>
-                        <li>Order status: <c:out value="${order.confirmed}"/></li>
-
-                        <c:choose>
-                            <c:when test="${order.confirmed.equals('REJECTED')}">
-                                <p class="redText">Reason: ${order.comment}</p>
-                            </c:when>
-                            <c:when test="${order.confirmed.equals('CONFIRMED')}">
-                                <li>Total cost: <c:out value="${order.total_cost}"/></li>
-                                <c:if test="${order.penalty>0}">
-                                    <p class="redText">Reason: ${order.comment}</p>
-                                    <li>Rent cost: <c:out value="${order.rent_cost}"/></li>
-                                    <li>Penalty: <c:out value="${order.penalty}"/></li>
-                                    <li>Total cost: <c:out value="${order.total_cost}"/></li>
-                                </c:if>
-                            </c:when>
-                        </c:choose>
-                        <c:choose>
-                            <c:when test="${order.confirmed.equals('CONFIRMED')}">
-                                <form>
-                                    <input type="submit" value="pay" style="background-color: cadetblue;border-width: medium;font-weight: bold">
-                                </form>
-                            </c:when>
-                            <c:otherwise>
-                                <form action="${pageContext.request.contextPath}/cancelOrder">
-                                    <input type="hidden" name="orderId" value="${order.id}">
-                                    <input type="submit"
-                                           value="cancel order"
-                                           style="background-color: darksalmon;border-width: medium;font-weight: bold">
-                                </form>
-                            </c:otherwise>
-                        </c:choose>
-                        <hr>
-                    </ul>
-                </td>
-            </tr>
-            <c:set var="counter" value="${counter+1}" scope="page"/>
-        </c:forEach>
-
-
+        <div class="col-md-4">
+            <c:if test="${sessionScope.role>0}">
+                <form action="${pageContext.request.contextPath}/logout" method="post">
+                    <button type="submit" class="btn btn-secondary">Logout</button>
+                </form>
+            </c:if>
+        </div>
     </div>
 </div>
-<!-- Вариант 1: Bootstrap в связке с Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-        crossorigin="anonymous"></script>
+<!-- ================================================= -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-7">
+            <c:choose>
+                <c:when test="${requestScope.orders.size()>0}">
+                    <c:set var="counter" value="0" scope="page"/>
+                    <table class="fl-table">
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Car marque</th>
+                            <th>Car model</th>
+                            <th>Driver</th>
+                            <th>Term</th>
+                            <th>OrderStatus</th>
+                            <th>comment</th>
+                            <th>Rent cost</th>
+                            <th>Penalty</th>
+                            <th>Total cost</th>
+                            <th></th>
+                        </tr>
+                        <c:forEach var="order" items="${requestScope.orders}">
+                            <tr>
+                                <td><c:out value="${order.id}"/></td>
+                                <td><c:out value="${requestScope.cars.get(counter).marque}"/></td>
+                                <td><c:out value="${requestScope.cars.get(counter).model}"/></td>
+                                <td><c:out value="${order.driver}"/></td>
+                                <td><c:out value="${order.term}"/></td>
+                                <td><c:out value="${order.confirmed}"/></td>
+                                <td><c:out value="${order.comment}"/></td>
+                                <td><c:out value="${order.rent_cost}"/></td>
+                                <td><c:out value="${order.penalty}"/></td>
+                                <td><c:out value="${order.total_cost}"/></td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${order.confirmed.equals('CONFIRMED')}">
+                                            <form>
+                                                <button type="submit" class="btn btn-secondary">Pay</button>
+                                            </form>
+                                        </c:when>
+                                        <c:when test="${order.confirmed.equals('ON CHECK')}">
+                                            <form action="${pageContext.request.contextPath}/cancelOrder" method="post">
+                                                <input type="hidden" name="orderId" value="${order.id}">
+                                                <button type="submit" class="btn btn-secondary">cancel</button>
+                                            </form>
+                                        </c:when>
+                                    </c:choose>
+                                </td>
+                            </tr>
+                            <c:set var="counter" value="${counter+1}" scope="page"/>
+                        </c:forEach>
+                    </table>
+                </c:when>
+                <c:otherwise>
+                    <p class="redText">Sorry, no available cars</p>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
+<!-- ================================================= -->
+<div class="main">
+    <div class="container" style="position: static; bottom: 30%">
+        <table>
+            <c:set var="i" value="1" scope="page"/>
+            <c:forEach begin="1" end="${requestScope.numPages}">
+                <th style="font-size: medium">
+                    <form action="${pageContext.request.contextPath}/profile" method="post">
+                        <input type="hidden" name="car_class" value="${requestScope.car_class}">
+                        <input type="hidden" name="page" value="${i}">
+                        <input type="submit" value="${i}">
+                    </form>
+                    <c:set var="i" value="${i+1}" scope="page"/>
+                </th>
+            </c:forEach>
+        </table>
+    </div>
+    <div class="col-md-6 col-sm-12">
+    </div>
+    <!-- Вариант 1: Bootstrap в связке с Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+            crossorigin="anonymous"></script>
 
 </body>
 </html>

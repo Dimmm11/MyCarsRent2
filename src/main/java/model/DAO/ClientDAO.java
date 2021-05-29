@@ -24,6 +24,37 @@ public class ClientDAO {
         }
         return list;
     }
+    public static List<Client> getClients(int index, int offset) {
+        List<Client> list = new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet rs=null;
+        Connection con = null;
+        try {
+            con = ConnectionPoolHolder.getDataSource().getConnection();
+            pst = con.prepareStatement(SqlQuarry.PAGE_CLIENTS);
+            pst.setInt(1, index);
+            pst.setInt(2, offset);
+            rs = pst.executeQuery();
+
+            ClientMapper cm = new ClientMapper();
+            while (rs.next()) {
+                Client client = cm.mapFromResultSet(rs);
+                list.add(client);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                con.close();
+                pst.close();
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return list;
+    }
 
     public static Client getClient(String login) {
         String name = SqlQuarry.CLIENT.replaceAll("login", login);

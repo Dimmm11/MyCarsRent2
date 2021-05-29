@@ -35,7 +35,7 @@ Filter for access admin content
   </filter>
   <filter-mapping>
     <filter-name>ManagerFilter</filter-name>
-    <url-pattern>/managerClients</url-pattern>
+<!--    <url-pattern>/managerClients</url-pattern>-->
     <url-pattern>/welcomeManager</url-pattern>
     <url-pattern>/managerCars</url-pattern>
     <url-pattern>/managerOrders</url-pattern>

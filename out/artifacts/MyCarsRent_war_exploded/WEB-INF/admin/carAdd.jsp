@@ -39,8 +39,7 @@
                                border-width: medium;
                                font-weight: bold">
         </form>
-        <%--        <h2><fmt:message key="Welcome"/></h2>--%>
-        <%--        <p><fmt:message key="login_register"/></p>--%>
+
     </div>
 </div>
 
@@ -57,7 +56,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Вариант 1: Bootstrap в связке с Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"

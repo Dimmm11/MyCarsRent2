@@ -98,6 +98,28 @@ public class CarDAO {
         return carsByClient;
     }
 
+    public static synchronized List<Car> getCarsByClient(Client client, int index, int offset) {
+        List<Car> carsByClient = new ArrayList<>();
+        PreparedStatement pst = null;
+        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
+            con.setAutoCommit(false);
+            pst = con.prepareStatement(SqlQuarry.PAGE_CARS_BY_CLIENT);
+            pst.setInt(1, client.getId());
+            pst.setInt(2, index);
+            pst.setInt(3, offset);
+
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Car car = new CarMapper().mapFromResultSet(rs);
+                carsByClient.add(car);
+            }
+            con.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return carsByClient;
+    }
+
     public static List<Car> getAllCars() {
         List<Car> allCars = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();

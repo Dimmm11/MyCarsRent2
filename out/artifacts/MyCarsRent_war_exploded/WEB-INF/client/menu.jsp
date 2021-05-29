@@ -54,35 +54,6 @@
 </div>
 <div class="main">
     <div class="col-md-6 col-sm-12">
-<%--        <c:if test="${sessionScope.role>0}">--%>
-<%--            <form action="${pageContext.request.contextPath}/logout" method="post">--%>
-<%--            <button type="submit" class="btn btn-secondary">Logout</button>--%>
-<%--            </form>--%>
-<%--        </c:if>--%>
-
-
-<%--        <c:choose>--%>
-
-<%--&lt;%&ndash;            <c:when test="${sessionScope.role==3}">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                <jsp:include page="/WEB-INF/admin/welcomeAdmin.jsp"/>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            </c:when>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            &ndash;%&gt;--%>
-<%--&lt;%&ndash;            <c:when test="${sessionScope.role==2}">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                <jsp:include page="/WEB-INF/manager/welcomeManager.jsp"/>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            </c:when>&ndash;%&gt;--%>
-
-<%--            <c:when test="${sessionScope.role==1}">--%>
-<%--                <form action="${pageContext.request.contextPath}/profile">--%>
-<%--                    <button type="submit" class="btn btn-secondary" formmethod="post">My orders</button>--%>
-<%--                </form>--%>
-<%--            </c:when>--%>
-<%--        </c:choose>--%>
-
-<%--        <c:if test="${sessionScope.client!=null}">--%>
-<%--            <form action="${pageContext.request.contextPath}/profile">--%>
-<%--                <button type="submit" class="btn btn-secondary" formmethod="post">Profile</button>--%>
-<%--            </form>--%>
-<%--        </c:if>--%>
 
         <form action="${pageContext.request.contextPath}/carSelect" method="post">
             <tr>

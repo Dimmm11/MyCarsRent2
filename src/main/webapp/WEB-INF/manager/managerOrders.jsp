@@ -72,6 +72,7 @@
 
 
         <c:set var="counter" value="0" scope="page"/>
+
         <c:forEach var="order" items="${requestScope.orders}">
             <tr>
                 <td>

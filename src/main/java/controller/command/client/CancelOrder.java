@@ -15,6 +15,6 @@ public class CancelOrder implements Command {
         HttpSession session = request.getSession();
         OrderDAO.cancelOrder(Integer.parseInt(request.getParameter("orderId")));
 
-        return "/WEB-INF/client/profile.jsp";
+        return "/profile";
     }
 }

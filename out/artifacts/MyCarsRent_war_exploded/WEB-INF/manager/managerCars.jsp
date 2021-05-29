@@ -55,8 +55,6 @@
                 </form>
             </c:when>
         </c:choose>
-        <%--        <h2><fmt:message key="Welcome"/></h2>--%>
-        <%--        <p><fmt:message key="login_register"/></p>--%>
     </div>
 </div>
 <div class="container-fluid">
@@ -65,26 +63,6 @@
         </div>
 
         <div class="col-md-4">
-<%--            <c:choose>--%>
-<%--                <c:when test="${sessionScope.role==3}">--%>
-<%--                    <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">--%>
-<%--                        <input type="submit" value="back to menu"--%>
-<%--                               style="background-color: darkseagreen;--%>
-<%--                               border-width: medium;--%>
-<%--                               font-weight: bold">--%>
-<%--                    </form>--%>
-<%--                    <jsp:include page="../admin/carAdd.jsp"/>--%>
-
-<%--                </c:when>--%>
-<%--                <c:when test="${sessionScope.role==2}">--%>
-<%--                    <form action="${pageContext.request.contextPath}/welcomeManager" method="post">--%>
-<%--                        <input type="submit" value="back to menu"--%>
-<%--                               style="background-color: darkseagreen;--%>
-<%--                               border-width: medium;--%>
-<%--                               font-weight: bold">--%>
-<%--                    </form>--%>
-<%--                </c:when>--%>
-<%--            </c:choose>--%>
         </div>
         <div class="col-md-4">
             <c:if test="${sessionScope.role>0}">
@@ -95,6 +73,7 @@
         </div>
     </div>
 </div>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
@@ -110,8 +89,8 @@
                             <th>Car class</th>
                             <th>Model</th>
                             <th>Price</th>
-                            <th></th>   <!-- form set price -->
-                            <th></th>  <!-- add car button-->
+                            <th></th>
+                            <th></th>
                         </tr>
                         <c:forEach var="car" items="${requestScope.allCars}">
                             <tr>

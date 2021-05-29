@@ -47,6 +47,7 @@ public class OrderDAO {
         PreparedStatement st = null;
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
+            con.setAutoCommit(false);
             st = con.prepareStatement(SqlQuarry.MAKE_ORDER);
             st.setInt(1, client.getId());
             st.setInt(2, car.getId());
@@ -92,6 +93,31 @@ public class OrderDAO {
         }
         return orders;
     }
+
+    public static synchronized List<Order> getOrdersByClient(Client client, int index, int offset) {
+        List<Order> orders = new ArrayList<>();
+        PreparedStatement pst = null;
+        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
+            con.setAutoCommit(false);
+            pst = con.prepareStatement(SqlQuarry.PAGE_ORDERS_BY_CLIENT);
+            pst.setInt(1, client.getId());
+            pst.setInt(2, index);
+            pst.setInt(3, offset);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Order order = new OrderMapper().mapFromResultSet(rs);
+                orders.add(order);
+            }
+            con.commit();
+        } catch (SQLException e) {
+            System.out.println("FAILED to get Orders FROM orders (OrderDAO.getOrders)");
+            System.out.println(e.getMessage());
+        }
+        return orders;
+    }
+
 
     public static List<Order> getAllOrders() {
         List<Order> orders = new ArrayList<>();
