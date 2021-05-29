@@ -1,13 +1,13 @@
 
+Z	java:S106#"9Replace this use of System.out or System.err by a logger.(‰Ñıÿÿÿÿ8×ß…¤š/
+X	java:S125$"<This block of commented-out lines of code should be removed.(çØ¬´8×ß…¤š/
 Z	java:S106"9Replace this use of System.out or System.err by a logger.(ş£Û·ûÿÿÿÿ8×ß…¤š/
-H
-java:S1481"+Remove this unused "client" local variable.(Ğ¥è8×ß…¤š/
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(ÒŞæşÿÿÿÿ8¤†ªš/
 £
 java:S1186+"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ü›ºÆıÿÿÿÿ8×ß…¤š/
-Z	java:S106#"9Replace this use of System.out or System.err by a logger.(‰Ñıÿÿÿÿ8×ß…¤š/
-X	java:S125"<This block of commented-out lines of code should be removed.(¡‰äâ8ŒˆÓ™›/
-Z	java:S106""9Replace this use of System.out or System.err by a logger.(ş£Û·ûÿÿÿÿ8×ß…¤š/
-X	java:S125$"<This block of commented-out lines of code should be removed.(çØ¬´8×ß…¤š/
 
 java:S11860"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‚“¶î8×ß…¤š/
+H
+java:S1481"+Remove this unused "client" local variable.(Ğ¥è8×ß…¤š/
+Z	java:S106""9Replace this use of System.out or System.err by a logger.(ş£Û·ûÿÿÿÿ8×ß…¤š/
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(ÒŞæşÿÿÿÿ8¤†ªš/
+X	java:S125"<This block of commented-out lines of code should be removed.(¡‰äâ8ŒˆÓ™›/

@@ -28,6 +28,7 @@
 
 <div class="sidenav">
     <div class="login-main-text">
+        <h1>${sessionScope.clientName}</h1>
         <form action="${pageContext.request.contextPath}/menu" method="post">
             <input type="submit" value="back to menu"
                    style="background-color: darkseagreen;border-width: medium;font-weight: bold">
@@ -58,6 +59,7 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-7">
+            <h1 style="color: darkslategray">My orders:</h1>
             <c:choose>
                 <c:when test="${requestScope.orders.size()>0}">
                     <c:set var="counter" value="0" scope="page"/>
@@ -108,7 +110,7 @@
                     </table>
                 </c:when>
                 <c:otherwise>
-                    <p class="redText">Sorry, no available cars</p>
+                    <p class="redText">You have no orders</p>
                 </c:otherwise>
             </c:choose>
         </div>

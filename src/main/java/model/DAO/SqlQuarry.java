@@ -35,9 +35,12 @@ public interface SqlQuarry {
     String PAGE_ALLCARS = "SELECT * FROM cars LIMIT ? , ? ;";
 
     String ORDERS_ALL = "SELECT * FROM orders;";
+    String PAGE_ORDERS_ALL = "SELECT * FROM orders LIMIT ? , ? ;";
     String ORDERED_CARS = "SELECT * FROM cars WHERE car_status='ORDERED';";
+    String PAGE_ORDERED_CARS = "SELECT * FROM cars WHERE car_status='ORDERED' LIMIT ? , ? ;";
     String ADMIN_CLIENTS = "SELECT * FROM clients;";
     String ADMIN_STAFF = "SELECT * FROM clients WHERE role_id > 1;";
+    String PAGE_ADMIN_STAFF = "SELECT * FROM clients WHERE role_id > 1 LIMIT ? , ? ;";
     String STAFF = "SELECT * FROM clients WHERE role_id IN (3,2);";
     String ADD_CAR = "INSERT INTO cars (marque, car_class, model, price) VALUES (?,?,?,?);";
     String DELETE_CAR = "DELETE FROM cars WHERE id = ?  ;";

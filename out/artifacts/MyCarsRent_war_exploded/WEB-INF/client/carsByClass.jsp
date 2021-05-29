@@ -78,7 +78,7 @@
                         </tr>
                         <c:forEach var="car" items="${requestScope.carsByClass}">
                             <tr>
-                                <form action="${pageContext.request.contextPath}/order">
+                                <form action="${pageContext.request.contextPath}/order" method="post">
                                     <td><c:out value="${car.marque}"/></td>
                                     <td><c:out value="${car.model}"/></td>
                                     <td><c:out value="${car.price}"/></td>

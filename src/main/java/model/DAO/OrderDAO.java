@@ -134,6 +134,32 @@ public class OrderDAO {
         }
         return orders;
     }
+    public static List<Order> getAllOrders(int index, int offset) {
+        List<Order> orders = new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
+            pst = con.prepareStatement(SqlQuarry.PAGE_ORDERS_ALL);
+            pst.setInt(1,index);
+            pst.setInt(2,offset);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Order order = new OrderMapper().mapFromResultSet(rs);
+                orders.add(order);
+            }
+        } catch (SQLException e) {
+            System.out.println("FAILED OrderDAO.getAllOrders(PAGE)");
+            System.out.println(e.getMessage());
+        }finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return orders;
+    }
 
     public static synchronized void setReason(int orderId, String reason) {
         Connection con = null;

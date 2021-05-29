@@ -15,8 +15,10 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <style><%@include file="/CSS/loginPage.css"%></style>
-<%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/loginPage.css"/>--%>
+    <style>
+        <%@include file="/CSS/loginPage.css" %>
+    </style>
+    <%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/loginPage.css"/>--%>
     <title>Admin staff</title>
 
 </head>
@@ -24,7 +26,7 @@
 
 <div class="sidenav">
     <div class="login-main-text">
-                <h1 style="text-decoration: underline">ADMIN</h1>
+        <h1 style="text-decoration: underline">ADMIN</h1>
         <br>
         <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
             <input type="submit" value="back to menu"
@@ -52,42 +54,105 @@
         </div>
     </div>
 </div>
+<%-- ===================================== --%>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-7">
+            <c:choose>
+                <c:when test="${requestScope.staff.size()>0}">
+                    <h2>Staff:</h2>
+                    <table class="fl-table">
+                        <tr>
+                            <th>Id</th>
+                            <th>Login</th>
+                            <th>Password</th>
+                            <th>Passport</th>
+                            <th>Role</th>
+                            <th></th>  <!-- make manager -->
+
+                        </tr>
+                        <c:forEach var="worker" items="${requestScope.staff}">
+                            <tr>
+                                <td><c:out value="${worker.id}"/></td>
+                                <td><c:out value="${worker.login}"/></td>
+                                <td><c:out value="${worker.password}"/></td>
+                                <td><c:out value="${worker.passport}"/></td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${worker.role_id==3}">
+                                            <p style="font-size: large;color: darkred">ADMIN</p>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p style="font-size: large;color: darkslategray">Manager</p>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                                <td>
+                                    <form action="${pageContext.request.contextPath}/managers" method="post">
+                                        <input type="hidden" value="${worker.login}" name="login">
+                                        <input type="hidden" value="removeManager" name="adminAction">
+                                        <input type="submit" value="remove rights">
+                                    </form>
+                                <td>
+
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </c:when>
+            </c:choose>
+        </div>
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
+<%-- ===================================== --%>
 <div class="main">
-    <div class="col-md-6 col-sm-12">
-<%--        <c:if test="${sessionScope.role>0}">--%>
-<%--            <form action="${pageContext.request.contextPath}/logout" method="post">--%>
-<%--                <button type="submit" class="btn btn-secondary">Logout</button>--%>
-<%--            </form>--%>
-<%--        </c:if>--%>
-
-            <c:forEach var="worker" items="${requestScope.staff}">
-                <tr>
-                    <td>
-                        <ul>
-                            <li>id: <c:out value="${worker.id}"/></li>
-                            <li>login: <c:out value="${worker.login}"/></li>
-                            <li>password: <c:out value="${worker.password}"/></li>
-                            <li>passport: <c:out value="${worker.passport}"/></li>
-
-                                <c:choose>
-                                    <c:when test="${worker.role_id==3}">
-                            <li>role: <p style="font-size: x-large"><c:out value="ADMIN"/></p></li>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <li>role: <c:out value="${worker.role_id}"/></li>
-                                    </c:otherwise>
-                                </c:choose>
-                            <li>status: <c:out value="${worker.status}"/></li>
-                            <form action="${pageContext.request.contextPath}/managers" method="post">
-                                <input type="hidden" value="${worker.login}" name="login">
-                                <input type="hidden" value="removeManager" name="adminAction">
-                                <input type="submit" value="remove rights">
-                            </form>
-                        </ul>
-                    </td>
-                </tr>
-                <hr>
+    <div class="container" style="position: static;bottom: 30%">
+        <table>
+            <c:set var="i" value="1" scope="request"/>
+            <c:forEach begin="1" end="${requestScope.numPages}">
+                <th style="font-size: medium">
+                    <form action="${pageContext.request.contextPath}/adminStaff" method="post">
+                        <input type="hidden" name="page" value="${i}">
+                        <input type="submit" value="${i}">
+                    </form>
+                    <c:set var="i" value="${i+1}" scope="page"/>
+                </th>
             </c:forEach>
+        </table>
+    </div>
+    <div class="col-md-6 col-sm-12">
+
+        <%--        <c:forEach var="worker" items="${requestScope.staff}">--%>
+        <%--            <tr>--%>
+        <%--                <td>--%>
+        <%--                    <ul>--%>
+        <%--                        <li>id: <c:out value="${worker.id}"/></li>--%>
+        <%--                        <li>login: <c:out value="${worker.login}"/></li>--%>
+        <%--                        <li>password: <c:out value="${worker.password}"/></li>--%>
+        <%--                        <li>passport: <c:out value="${worker.passport}"/></li>--%>
+
+        <%--                        <c:choose>--%>
+        <%--                            <c:when test="${worker.role_id==3}">--%>
+        <%--                                <li>role: <p style="font-size: x-large"><c:out value="ADMIN"/></p></li>--%>
+        <%--                            </c:when>--%>
+        <%--                            <c:otherwise>--%>
+        <%--                                <li>role: <c:out value="${worker.role_id}"/></li>--%>
+        <%--                            </c:otherwise>--%>
+        <%--                        </c:choose>--%>
+        <%--                        <li>status: <c:out value="${worker.status}"/></li>--%>
+        <%--                        <form action="${pageContext.request.contextPath}/managers" method="post">--%>
+        <%--                            <input type="hidden" value="${worker.login}" name="login">--%>
+        <%--                            <input type="hidden" value="removeManager" name="adminAction">--%>
+        <%--                            <input type="submit" value="remove rights">--%>
+        <%--                        </form>--%>
+        <%--                    </ul>--%>
+        <%--                </td>--%>
+        <%--            </tr>--%>
+        <%--            <hr>--%>
+        <%--        </c:forEach>--%>
 
         <div class="login-form">
         </div>

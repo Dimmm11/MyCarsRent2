@@ -69,7 +69,7 @@
                         </form>
                     </th>
                     <th>
-                        <form action="${pageContext.request.contextPath}/adminstaff" method="post">
+                        <form action="${pageContext.request.contextPath}/adminStaff" method="post">
                             <input type="submit" value="staff">
                         </form>
                     </th>

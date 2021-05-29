@@ -135,7 +135,6 @@
     </div>
     <div class="col-md-2">
     </div>
-
 </div>
 
 
@@ -154,7 +153,6 @@
                 </th>
             </c:forEach>
         </table>
-
     </div>
     <div class="col-md-6 col-sm-12">
 

@@ -167,6 +167,31 @@ public class CarDAO {
         }
         return allCars;
     }
+    public static List<Car> getOrderedCars(int index,int offset) {
+        List<Car> allCars = new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
+            pst = con.prepareStatement(SqlQuarry.PAGE_ORDERED_CARS);
+            pst.setInt(1,index);
+            pst.setInt(2,offset);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Car car = new CarMapper().mapFromResultSet(rs);
+                allCars.add(car);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try{
+                pst.close();
+                rs.close();
+            }catch (SQLException e){
+                e.getMessage();
+            }
+        }
+        return allCars;
+    }
 
     public static synchronized boolean addCar(Car car) {
         boolean result = false;

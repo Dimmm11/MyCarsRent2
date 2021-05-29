@@ -67,7 +67,7 @@
         <div class="col-md-7">
             <c:choose>
                 <c:when test="${requestScope.adminClients.size()>0}">
-                    <h2>Cars:<u style="text-decoration: underline">${requestScope.car_class}</u></h2>
+                    <h2>Clients:<u style="text-decoration: underline">${requestScope.car_class}</u></h2>
                     <table class="fl-table">
                         <tr>
                             <th>Id</th>
@@ -135,7 +135,6 @@
     </div>
     <div class="col-md-2">
     </div>
-
 </div>
 
 
@@ -154,67 +153,9 @@
                 </th>
             </c:forEach>
         </table>
-
     </div>
     <div class="col-md-6 col-sm-12">
-<%--        <c:if test="${sessionScope.role>0}">--%>
-<%--            <form action="${pageContext.request.contextPath}/logout" method="post">--%>
-<%--                <button type="submit" class="btn btn-secondary">Logout</button>--%>
-<%--            </form>--%>
-<%--        </c:if>--%>
 
-<%--            <c:forEach var="client" items="${requestScope.adminClients}">--%>
-<%--                <tr>--%>
-<%--                    <td>--%>
-<%--                        <ul>--%>
-<%--                            <li>id: <c:out value="${client.id}"/></li>--%>
-<%--                            <li>login: <c:out value="${client.login}"/></li>--%>
-<%--                            <li>password: <c:out value="${client.password}"/></li>--%>
-<%--                            <li>passport: <c:out value="${client.passport}"/></li>--%>
-<%--                            <li>role: <c:out value="${client.role_id}"/></li>--%>
-<%--                            <li>status: <c:out value="${client.status}"/></li>--%>
-<%--                        </ul>--%>
-<%--                    </td>--%>
-<%--                </tr>--%>
-<%--                <table>--%>
-<%--                    <th>--%>
-<%--                        <c:choose>--%>
-<%--                            <c:when test="${client.status.equals('ACTIVE')}">--%>
-<%--                                <form action="${pageContext.request.contextPath}/ban" method="post">--%>
-<%--                                    <input type="hidden" value="${client.login}" name="login">--%>
-<%--                                    <input type="submit" value="ban"--%>
-<%--                                           style="background-color: darksalmon;border-width: medium;font-weight: bold">--%>
-<%--                                </form>--%>
-<%--                            </c:when>--%>
-<%--                            <c:otherwise>--%>
-<%--                                <form action="${pageContext.request.contextPath}/unBan" method="post">--%>
-<%--                                    <input type="hidden" value="${client.login}" name="login">--%>
-<%--                                    <input type="submit" value="UNBAN"--%>
-<%--                                           style="background-color: darksalmon;border-width: medium;font-weight: bold">--%>
-<%--                                </form>--%>
-<%--                            </c:otherwise>--%>
-<%--                        </c:choose>--%>
-<%--                    </th>--%>
-<%--                    <th>--%>
-<%--                        <form method="post" action="${pageContext.request.contextPath}/deleteClient">--%>
-<%--                            <input type="hidden" value="${client.login}" name="login">--%>
-<%--                            <input type="submit" value="delete"--%>
-<%--                                   style="background-color: coral;border-width: medium;font-weight: bold">--%>
-<%--                        </form>--%>
-<%--                    </th>--%>
-<%--                    <th>--%>
-<%--                        <c:if test="${sessionScope.role==3}">--%>
-<%--                            <form action="${pageContext.request.contextPath}/managers" method="post">--%>
-<%--                                <input type="hidden" value="${client.login}" name="login">--%>
-<%--                                <input type="hidden" value="makeManager" name="adminAction">--%>
-<%--                                <input type="submit" value="make manager"--%>
-<%--                                       style="background-color: mediumseagreen;border-width: medium;font-weight: bold">--%>
-<%--                            </form>--%>
-<%--                        </c:if>--%>
-<%--                    </th>--%>
-<%--                </table>--%>
-<%--                <hr>--%>
-<%--            </c:forEach>--%>
         <div class="login-form">
         </div>
     </div>

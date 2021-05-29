@@ -85,6 +85,34 @@ public class ClientDAO {
         }
         return staff;
     }
+    public static List<Client> getStaff(int index, int offset) {
+        List<Client> staff = new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
+            pst = con.prepareStatement(SqlQuarry.PAGE_ADMIN_STAFF);
+            pst.setInt(1,index);
+            pst.setInt(2,offset);
+
+            rs = pst.executeQuery();
+
+            ClientMapper cm = new ClientMapper();
+            while (rs.next()) {
+                Client client = cm.mapFromResultSet(rs);
+                staff.add(client);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return staff;
+    }
 
     public static synchronized boolean deleteClient(String login) {
         Client client = getClient(login);

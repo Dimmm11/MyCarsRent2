@@ -2,7 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${param.lang}"/>
-<fmt:setBundle basename="main.java.service.loginPage"/>
+<fmt:setBundle basename="my"/>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -15,9 +16,9 @@
           crossorigin="anonymous">
 
 
-    <%--    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--%>
-    <%--    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>--%>
-    <%--    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>--%>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <style>
         <%@include file="/CSS/loginPage.css" %>
     </style>
@@ -40,7 +41,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a style="font-size: xx-large" class="navbar-brand" href="#">Cars rent</a>
+                <a style="font-size: xx-large" class="navbar-brand" href="#"><fmt:message key="Cars_rent"/></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -57,26 +58,43 @@
 
 
         <div class="login-form">
-<c:out value="${requestScope.error.toString()}"/>
+            <c:out value="${requestScope.error.toString()}"/>
             <form action="${pageContext.request.contextPath}/login" method="post">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Username" name="Login">
+                    <input type="text" class="form-control" placeholder="<fmt:message key="Username"/>" name="Login">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Password" name="Password">
+                    <input type="text" class="form-control" placeholder="<fmt:message key="Password"/>" name="Password">
                 </div>
                 <%--                <input type="hidden" name="lang" value="<%=request.getParameter("lang")%>">--%>
 
-                <button type="submit" class="btn btn-black">Login</button>
+                <button type="submit" class="btn btn-black">
+                    <%--                    Login--%>
+                    <fmt:message key="Login"/>
+                </button>
             </form>
 
             <form>
                 <%--                <input type="hidden" name="lang" value="<%=request.getParameter("lang")%>">--%>
-                <button type="submit" class="btn btn-secondary"
-                        formaction="${pageContext.request.contextPath}/register.jsp" formmethod="post">Registration
+                <button type="submit"
+                        class="btn btn-secondary"
+                        formaction="${pageContext.request.contextPath}/register.jsp"
+                        formmethod="post" name="lang" value="${sessionScope.lang}">
+                    <fmt:message key="Registration"/>
                 </button>
             </form>
-
+            <%--            <div class="container">--%>
+            <%--                <a style="font-size: large" href="${pageContext.request.contextPath}/login.jsp?lang=ru">ru</a>--%>
+            <%--                <a style="font-size: large" href="${pageContext.request.contextPath}/login.jsp?lang=en">en</a>--%>
+            <%--            </div>--%>
+            <form action="login.jsp" method="post">
+                <input type="hidden" name="lang" value="ru">
+                <input type="submit" value="ru">
+            </form>
+            <form action="login.jsp" method="post">
+                <input type="hidden" name="lang" value="en">
+                <input type="submit" value="en">
+            </form>
         </div>
     </div>
 </div>

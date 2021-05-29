@@ -43,7 +43,7 @@
                                border-width: medium;
                                font-weight: bold">
                 </form>
-                <jsp:include page="../admin/carAdd.jsp"/>
+<%--                <jsp:include page="../admin/carAdd.jsp"/>--%>
 
             </c:when>
             <c:when test="${sessionScope.role==2}">
@@ -133,8 +133,6 @@
     </div>
 
 </div>
-
-
 <div class="main">
     <div class="container" style="position: static;bottom: 30%">
         <table>
@@ -149,8 +147,16 @@
                 </th>
             </c:forEach>
         </table>
-
     </div>
+    <c:if test="${sessionScope.role==3}">
+            <form method="post" action="${pageContext.request.contextPath}/caradd">
+                <input type="text" placeholder="marque" name="marque">
+                <input type="text" placeholder="class" name="car_class">
+                <input type="text" placeholder="model" name="model">
+                <input type="number" placeholder="price" name="price">
+                <input type="submit" value="add car">
+            </form>
+    </c:if>
     <div class="col-md-6 col-sm-12">
         <div class="login-form">
         </div>

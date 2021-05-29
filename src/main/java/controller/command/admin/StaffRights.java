@@ -15,7 +15,7 @@ public class StaffRights implements Command {
         String adminAction = request.getParameter("adminAction");
         if(adminAction.equals("removeManager")){
             ClientDAO.removeManager(request.getParameter("login"));
-            return "adminstaff";
+            return "adminStaff";
         }else {
             ClientDAO.makeManager(request.getParameter("login"));
             return "managerClients";

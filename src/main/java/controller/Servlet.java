@@ -38,7 +38,7 @@ public class Servlet extends HttpServlet {
         commands.put("welcomeAdmin", new WelcomeAdmin());
         commands.put("admincars", new AdminCars());
         commands.put("adminclients", new AdminClients());
-        commands.put("adminstaff", new AdminStaff());
+        commands.put("adminStaff", new AdminStaff());
         commands.put("caradd", new AdminCarAdd());
         commands.put("adminDeleteCar", new AdminDeleteCar());
         commands.put("adminaddcar", new AddCarButton());

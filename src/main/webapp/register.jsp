@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="my"/>
 <html>
 <head>
     <meta charset="utf-8">
@@ -24,7 +26,7 @@
 
 <div class="sidenav">
     <div class="login-main-text">
-        <h2>Registration</h2>
+        <h2><fmt:message key="Registration"/></h2>
         <%--        <h2><fmt:message key="Welcome"/></h2>--%>
         <%--        <p><fmt:message key="login_register"/></p>--%>
     </div>
@@ -34,32 +36,31 @@
         <div class="login-form">
             <form>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Login" name="Login">
+                    <input type="text" class="form-control" placeholder="<fmt:message key="Login"/>" name="Login">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Password" name="Password">
+                    <input type="text" class="form-control" placeholder="<fmt:message key="Password">" name="Password">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Passport" name="Passport">
+                    <input type="text" class="form-control" placeholder="<fmt:message key="Passport">" name="Passport">
                 </div>
                 <table>
                     <tr>
                         <th>
                             <button type="submit" class="btn btn-secondary"
                                     formaction="${pageContext.request.contextPath}/register"
-                                    formmethod="post">Submit</button>
+                                    formmethod="post"><fmt:message key="Registration"/></button>
                         </th>
                         <th>
                             <button type="submit" class="btn btn-secondary"
                                     formaction="${pageContext.request.contextPath}/login.jsp"
-                                    formmethod="post">Login</button>
+                                    formmethod="post"><fmt:message key="Login"/></button>
                         </th>
                     </tr>
                 </table>
                 <c:if test="${requestScope.error!=null}">
                     <c:out value="${requestScope.error.toString()}"/>
                 </c:if>
-
 
 
             </form>
