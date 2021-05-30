@@ -2,8 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
-
-
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="my"/>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -20,7 +20,6 @@
     <style>
         <%@include file="/CSS/loginPage.css" %>
     </style>
-    <%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}CSS/loginPage.css"/>--%>
     <title>Profile</title>
 
 </head>
@@ -30,8 +29,9 @@
     <div class="login-main-text">
         <h1>${sessionScope.clientName}</h1>
         <form action="${pageContext.request.contextPath}/menu" method="post">
-            <input type="submit" value="back to menu"
-                   style="background-color: darkseagreen;border-width: medium;font-weight: bold">
+            <button type="submit" class="btn btn-secondary" formmethod="post"><fmt:message key="Back_to_menu"/></button>
+<%--            <input type="submit" value="back to menu"--%>
+<%--                   style="background-color: darkseagreen;border-width: medium;font-weight: bold">--%>
         </form>
 
     </div>
@@ -47,7 +47,7 @@
         <div class="col-md-4">
             <c:if test="${sessionScope.role>0}">
                 <form action="${pageContext.request.contextPath}/logout" method="post">
-                    <button type="submit" class="btn btn-secondary">Logout</button>
+                    <button type="submit" class="btn btn-secondary"><fmt:message key="Logout"/></button>
                 </form>
             </c:if>
         </div>
@@ -59,22 +59,22 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-7">
-            <h1 style="color: darkslategray">My orders:</h1>
+            <h1 style="color: darkslategray"><fmt:message key="My_orders"/>:</h1>
             <c:choose>
                 <c:when test="${requestScope.orders.size()>0}">
                     <c:set var="counter" value="0" scope="page"/>
                     <table class="fl-table">
                         <tr>
-                            <th>Order ID</th>
-                            <th>Car marque</th>
-                            <th>Car model</th>
-                            <th>Driver</th>
-                            <th>Term</th>
-                            <th>OrderStatus</th>
-                            <th>comment</th>
-                            <th>Rent cost</th>
-                            <th>Penalty</th>
-                            <th>Total cost</th>
+                            <th>ID</th>
+                            <th><fmt:message key="Marque"/></th>
+                            <th><fmt:message key="Model"/></th>
+                            <th><fmt:message key="Driver"/></th>
+                            <th><fmt:message key="Term"/></th>
+                            <th><fmt:message key="Order_status"/></th>
+                            <th><fmt:message key="Comment"/></th>
+                            <th><fmt:message key="Rent"/></th>
+                            <th><fmt:message key="Penalty"/></th>
+                            <th><fmt:message key="Total_cost"/></th>
                             <th></th>
                         </tr>
                         <c:forEach var="order" items="${requestScope.orders}">
@@ -82,9 +82,13 @@
                                 <td><c:out value="${order.id}"/></td>
                                 <td><c:out value="${requestScope.cars.get(counter).marque}"/></td>
                                 <td><c:out value="${requestScope.cars.get(counter).model}"/></td>
-                                <td><c:out value="${order.driver}"/></td>
+                                <td>
+                                    <fmt:message key="${order.driver}"/>
+                                </td>
                                 <td><c:out value="${order.term}"/></td>
-                                <td><c:out value="${order.confirmed}"/></td>
+                                <td>
+                                    <fmt:message key="${order.confirmed}"/>
+                                </td>
                                 <td><c:out value="${order.comment}"/></td>
                                 <td><c:out value="${order.rent_cost}"/></td>
                                 <td><c:out value="${order.penalty}"/></td>
@@ -93,13 +97,13 @@
                                     <c:choose>
                                         <c:when test="${order.confirmed.equals('CONFIRMED')}">
                                             <form>
-                                                <button type="submit" class="btn btn-secondary">Pay</button>
+                                                <button type="submit" class="btn btn-secondary"><fmt:message key="Pay"/></button>
                                             </form>
                                         </c:when>
                                         <c:when test="${order.confirmed.equals('ON CHECK')}">
                                             <form action="${pageContext.request.contextPath}/cancelOrder" method="post">
                                                 <input type="hidden" name="orderId" value="${order.id}">
-                                                <button type="submit" class="btn btn-secondary">cancel</button>
+                                                <button type="submit" class="btn btn-secondary"><fmt:message key="cancel"/></button>
                                             </form>
                                         </c:when>
                                     </c:choose>
@@ -128,7 +132,8 @@
                     <form action="${pageContext.request.contextPath}/profile" method="post">
                         <input type="hidden" name="car_class" value="${requestScope.car_class}">
                         <input type="hidden" name="page" value="${i}">
-                        <input type="submit" value="${i}">
+                        <button type="submit" class="btn btn-secondary">${i}</button>
+<%--                        <input type="submit" value="${i}">--%>
                     </form>
                     <c:set var="i" value="${i+1}" scope="page"/>
                 </th>

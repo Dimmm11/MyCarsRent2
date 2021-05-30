@@ -26,7 +26,7 @@
 
 <div class="sidenav">
     <div class="login-main-text">
-        <h2>Registration</h2>
+        <h2><fmt:message key="Registration"/></h2>
         <%--        <h2><fmt:message key="Welcome"/></h2>--%>
         <%--        <p><fmt:message key="login_register"/></p>--%>
     </div>
@@ -39,17 +39,17 @@
                     <input type="text" class="form-control" placeholder="<fmt:message key="Login"/>" name="Login">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Password" name="Password">
+                    <input type="text" class="form-control" placeholder="<fmt:message key="Password">" name="Password">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Passport" name="Passport">
+                    <input type="text" class="form-control" placeholder="<fmt:message key="Passport">" name="Passport">
                 </div>
                 <table>
                     <tr>
                         <th>
                             <button type="submit" class="btn btn-secondary"
                                     formaction="${pageContext.request.contextPath}/register"
-                                    formmethod="post">Submit</button>
+                                    formmethod="post"><fmt:message key="Registration"/></button>
                         </th>
                         <th>
                             <button type="submit" class="btn btn-secondary"

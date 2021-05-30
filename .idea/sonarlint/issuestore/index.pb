@@ -171,3 +171,5 @@ Q
 .src/main/java/model/DAO/impl/JDBCOrderDao.java,6\5\657b678ecb88af03dd287c36121225fcdf225ed1
 l
 <src/main/java/controller/command/service/PageCalculator.java,5\8\5894c1682058874ae5b3b4d5f86c3e8313d29445
+e
+5src/main/java/controller/command/language/LangRu.java,8\d\8da0cb713ed55d9db2eba924409101d8120ec39b

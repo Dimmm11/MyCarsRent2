@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value="${param.lang}"/>
+<fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="my"/>
 
 <html>
@@ -87,6 +87,8 @@
             <%--                <a style="font-size: large" href="${pageContext.request.contextPath}/login.jsp?lang=ru">ru</a>--%>
             <%--                <a style="font-size: large" href="${pageContext.request.contextPath}/login.jsp?lang=en">en</a>--%>
             <%--            </div>--%>
+
+<%--            <form action="login.jsp" method="post">--%>
             <form action="login.jsp" method="post">
                 <input type="hidden" name="lang" value="ru">
                 <input type="submit" value="ru">

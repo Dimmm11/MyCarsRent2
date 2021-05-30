@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="my"/>
 <html>
 <head>
     <meta charset="utf-8">
@@ -26,13 +28,14 @@
 
 <div class="sidenav">
     <div class="login-main-text">
-        <h1 style="text-decoration: underline">ADMIN</h1>
+        <h1 style="text-decoration: underline"><fmt:message key="Admin"/></h1>
         <br>
         <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
-            <input type="submit" value="back to menu"
-                   style="background-color: darkseagreen;
-                               border-width: medium;
-                               font-weight: bold">
+            <button type="submit" class="btn btn-secondary"><fmt:message key="Back_to_menu"/></button>
+<%--            <input type="submit" value="back to menu"--%>
+<%--                   style="background-color: darkseagreen;--%>
+<%--                               border-width: medium;--%>
+<%--                               font-weight: bold">--%>
         </form>
     </div>
 </div>
@@ -48,7 +51,7 @@
         <div class="col-md-4">
             <c:if test="${sessionScope.role>0}">
                 <form action="${pageContext.request.contextPath}/logout" method="post">
-                    <button type="submit" class="btn btn-secondary">Logout</button>
+                    <button type="submit" class="btn btn-secondary"><fmt:message key="Logout"/></button>
                 </form>
             </c:if>
         </div>
@@ -62,14 +65,14 @@
         <div class="col-md-7">
             <c:choose>
                 <c:when test="${requestScope.staff.size()>0}">
-                    <h2>Staff:</h2>
+                    <h2><fmt:message key="Staff"/>:</h2>
                     <table class="fl-table">
                         <tr>
                             <th>Id</th>
-                            <th>Login</th>
-                            <th>Password</th>
-                            <th>Passport</th>
-                            <th>Role</th>
+                            <th><fmt:message key="Login"/></th>
+                            <th><fmt:message key="Password"/></th>
+                            <th><fmt:message key="Passport"/></th>
+                            <th><fmt:message key="Role"/></th>
                             <th></th>  <!-- make manager -->
 
                         </tr>
@@ -82,10 +85,10 @@
                                 <td>
                                     <c:choose>
                                         <c:when test="${worker.role_id==3}">
-                                            <p style="font-size: large;color: darkred">ADMIN</p>
+                                            <p style="font-size: large;color: darkred"><fmt:message key="ADMIN"/></p>
                                         </c:when>
                                         <c:otherwise>
-                                            <p style="font-size: large;color: darkslategray">Manager</p>
+                                            <p style="font-size: large;color: darkslategray"><fmt:message key="Manager"/></p>
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
@@ -93,7 +96,8 @@
                                     <form action="${pageContext.request.contextPath}/managers" method="post">
                                         <input type="hidden" value="${worker.login}" name="login">
                                         <input type="hidden" value="removeManager" name="adminAction">
-                                        <input type="submit" value="remove rights">
+                                        <button type="submit" class="btn btn-secondary"><fmt:message key="Remove_rights"/></button>
+<%--                                        <input type="submit" value="remove rights">--%>
                                     </form>
                                 <td>
 
@@ -116,7 +120,8 @@
                 <th style="font-size: medium">
                     <form action="${pageContext.request.contextPath}/adminStaff" method="post">
                         <input type="hidden" name="page" value="${i}">
-                        <input type="submit" value="${i}">
+                        <button type="submit" class="btn btn-secondary">${i}</button>
+<%--                        <input type="submit" value="${i}">--%>
                     </form>
                     <c:set var="i" value="${i+1}" scope="page"/>
                 </th>

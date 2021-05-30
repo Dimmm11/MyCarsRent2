@@ -61,6 +61,10 @@ public class Servlet extends HttpServlet {
         commands.put("register", new Registration());
         commands.put("ban", new Ban());
 
+//        commands.put("ru", new LangRu());
+
+
+
     }
 
     @Override

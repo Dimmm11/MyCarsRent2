@@ -2,7 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
-
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="my"/>
 
 <html lang="en">
 <head>
@@ -18,15 +19,14 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <style><%@include file="/CSS/loginPage.css"%></style>
-<%--    <link rel="stylesheet" type="text/css" href="<c:url value="${pageContext.request.contextPath}/CSS/loginPage.css"/>"/>--%>
-    <title>Menu</title>
+    <title><fmt:message key="Menu"/></title>
 
 </head>
 <body>
 
 <div class="sidenav">
     <div class="login-main-text">
-        <h2>Welcome, <c:out value="${sessionScope.clientName}"/></h2>
+        <h2><fmt:message key="Welcome"/>, <c:out value="${sessionScope.clientName}"/></h2>
 
     </div>
 </div>
@@ -38,7 +38,7 @@
         <div class="col-md-4">
             <c:if test="${sessionScope.client!=null}">
                 <form action="profile">
-                    <button type="submit" class="btn btn-secondary" formmethod="post">My orders</button>
+                    <button type="submit" class="btn btn-secondary" formmethod="post"><fmt:message key="My_orders"/></button>
                 </form>
             </c:if>
 
@@ -46,7 +46,7 @@
         <div class="col-md-4">
             <c:if test="${sessionScope.role>0}">
                 <form action="${pageContext.request.contextPath}/logout" method="post">
-                    <button type="submit" class="btn btn-secondary">Logout</button>
+                    <button type="submit" class="btn btn-secondary"><fmt:message key="Logout"/></button>
                 </form>
             </c:if>
         </div>
@@ -57,23 +57,27 @@
 
         <form action="${pageContext.request.contextPath}/carSelect" method="post">
             <tr>
-                <td>Cars by class: </td>
+                <td><fmt:message key="Cars_by_class"/>: </td>
                 <td>
                     <select name="car_class">
+                        <option selected disabled value> --- </option>
                         <option value="econom">econom</option>
                         <option value="middle">middle</option>
                         <option value="business">business</option>
-                        <input type="submit" value="submit">
+
+<%--                        <input type="submit" value="submit">--%>
                     </select>
                 </td>
             </tr>
+            <button type="submit" class="btn btn-secondary"><fmt:message key="Submit"/></button>
         </form>
 
         <form action="${pageContext.request.contextPath}/carSelect" method="post">
             <tr>
-                <td>Cars by marque: </td>
+                <td><fmt:message key="Cars_by_marque"/>: </td>
                 <td>
                     <select name="marque">
+                        <option selected disabled value> --- </option>
                         <option value="Audi">Audi</option>
                         <option value="Chevrolet">Chevrolet</option>
                         <option value="Ford">Ford</option>
@@ -88,10 +92,11 @@
                         <option value="Volkswagen">Volkswagen</option>
                         <option value="Bentley">Bentley</option>
                         <option value="Supercar">Supercar</option>
-                        <input type="submit" value="submit">
+<%--                        <input type="submit" value="submit">--%>
                     </select>
                 </td>
             </tr>
+            <button type="submit" class="btn btn-secondary"><fmt:message key="Submit"/></button>
         </form>
 
 

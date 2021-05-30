@@ -10,14 +10,21 @@ public abstract class DaoFactory {
     public abstract OrderDAO createOrderDao();
 
     public static DaoFactory getInstance(){
-        if( daoFactory == null ){
-            synchronized (DaoFactory.class){
-                if(daoFactory==null){
-                    DaoFactory temp = new JDBCDaoFactory();
-                    daoFactory = temp;
-                }
-            }
+        if(daoFactory==null){
+            daoFactory = new JDBCDaoFactory();
         }
         return daoFactory;
     }
+
+//    public static DaoFactory getInstance(){
+//        if( daoFactory == null ){
+//            synchronized (DaoFactory.class){
+//                if(daoFactory==null){
+//                    DaoFactory temp = new JDBCDaoFactory();
+//                    daoFactory = temp;
+//                }
+//            }
+//        }
+//        return daoFactory;
+//    }
 }

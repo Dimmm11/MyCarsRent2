@@ -2,7 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
-
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="my"/>
 
 <html lang="en">
 <head>
@@ -20,8 +21,7 @@
     <style>
         <%@include file="/CSS/loginPage.css" %>
     </style>
-    <%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}CSS/loginPage.css"/>--%>
-    <title>Orders</title>
+    <title><fmt:message key="Orders"/></title>
 
 </head>
 <body>
@@ -30,18 +30,19 @@
     <div class="login-main-text">
         <c:choose>
             <c:when test="${sessionScope.role==3}">
-                <h1 style="text-decoration: underline">ADMIN</h1>
+                <h1 style="text-decoration: underline"><fmt:message key="ADMIN"/></h1>
             </c:when>
             <c:when test="${sessionScope.role==2}">
-                <h1 style="text-decoration: underline">MANAGER</h1>
+                <h1 style="text-decoration: underline"><fmt:message key="Manager"/></h1>
             </c:when>
         </c:choose>
         <br>
         <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
-            <input type="submit" value="back to menu"
-                   style="background-color: darkseagreen;
-                               border-width: medium;
-                               font-weight: bold">
+            <button type="submit" class="btn btn-secondary"><fmt:message key="Back_to_menu"/></button>
+<%--            <input type="submit" value="back to menu"--%>
+<%--                   style="background-color: darkseagreen;--%>
+<%--                               border-width: medium;--%>
+<%--                               font-weight: bold">--%>
         </form>
 
     </div>
@@ -58,7 +59,7 @@
         <div class="col-md-4">
             <c:if test="${sessionScope.role>0}">
                 <form action="${pageContext.request.contextPath}/logout" method="post">
-                    <button type="submit" class="btn btn-secondary">Logout</button>
+                    <button type="submit" class="btn btn-secondary"><fmt:message key="Logout"/></button>
                 </form>
             </c:if>
         </div>
@@ -73,19 +74,19 @@
             <c:set var="counter" value="0" scope="page"/>
             <c:choose>
                 <c:when test="${requestScope.orders.size()>0}">
-                    <h2>Orders:</h2>
+                    <h2><fmt:message key="Orders"/>:</h2>
                     <table class="fl-table">
                         <tr>
-                            <th>Order ID</th>
-                            <th>Car marque</th>
-                            <th>Car model</th>
-                            <th>Driver</th>
-                            <th>Term(hours)</th>
-                            <th>Order status</th>
-                            <th>Comment</th>
-                            <th>Penalty</th>
-                            <th>Rent</th>
-                            <th>Total cost</th>
+                            <th>ID</th>
+                            <th><fmt:message key="Marque"/></th>
+                            <th><fmt:message key="Model"/></th>
+                            <th><fmt:message key="Driver"/></th>
+                            <th><fmt:message key="Term"/></th>
+                            <th><fmt:message key="Order_status"/></th>
+                            <th><fmt:message key="Comment"/></th>
+                            <th><fmt:message key="Penalty"/></th>
+                            <th><fmt:message key="Rent"/></th>
+                            <th><fmt:message key="Total_cost"/></th>
                         </tr>
                         <c:forEach var="order" items="${requestScope.orders}">
                             <tr>
@@ -95,31 +96,35 @@
                                 <td><c:out value="${order.driver}"/></td>
                                 <td><c:out value="${order.term}"/></td>
                                 <td>
-                                    <c:out value="${order.confirmed}"/>
+                                     <fmt:message key="${order.confirmed}"/>
                                     <form action="${pageContext.request.contextPath}/setOrderStatus" method="post">
                                         <select name="orderStatus">
-                                            <option value="ON CHECK" selected>ON CHECK</option>
-                                            <option value="CONFIRMED">CONFIRMED</option>
-                                            <option value="REJECTED">REJECTED</option>
+                                            <option disabled selected value> --- </option>
+                                            <option value="ON CHECK"><fmt:message key="ON CHECK"/></option>
+                                            <option value="CONFIRMED"><fmt:message key="CONFIRMED"/></option>
+                                            <option value="REJECTED"><fmt:message key="REJECTED"/></option>
                                             <input type="hidden" name="orderId" value="${order.id}">
-                                            <input type="submit" value="set">
+                                            <button type="submit" class="btn btn-secondary"><fmt:message key="set_"/></button>
+<%--                                            <input type="submit" value="set">--%>
                                         </select>
                                     </form>
                                 </td>
                                 <td>
                                    <p style="color: brown"><c:out value="${order.comment}"/></p>
                                     <form action="${pageContext.request.contextPath}/setReason" method="post">
-                                        <input type="text" name="reason" placeholder="comment" style="width: 100px">
+                                        <input type="text" name="reason" placeholder="<fmt:message key="Comment"/>" style="width: 100px">
                                         <input type="hidden" name="orderId" value="${order.id}">
-                                        <input type="submit" value="set">
+                                        <button type="submit" class="btn btn-secondary"><fmt:message key="set_"/></button>
+<%--                                        <input type="submit" value="set">--%>
                                     </form>
                                 </td>
                                 <td>
                                     <c:out value="${order.penalty}"/>
                                     <form action="${pageContext.request.contextPath}/setPenalty" method="post">
                                         <input type="hidden" name="orderId" value="${order.id}">
-                                        <input type="number" name="penalty" placeholder="penalty" style="width: 50px">
-                                        <input type="submit" value="set">
+                                        <input type="number" name="penalty" placeholder="<fmt:message key="Penalty"/>" style="width: 50px">
+                                        <button type="submit" class="btn btn-secondary"><fmt:message key="set_"/></button>
+<%--                                        <input type="submit" value="set">--%>
                                     </form>
                                 </td>
                                 <td>
@@ -151,7 +156,8 @@
                 <th style="font-size: medium">
                     <form action="${pageContext.request.contextPath}/managerOrders" method="post">
                         <input type="hidden" name="page" value="${i}">
-                        <input type="submit" value="${i}">
+                        <button type="submit" class="btn btn-secondary">${i}</button>
+<%--                        <input type="submit" value="${i}">--%>
                     </form>
                     <c:set var="i" value="${i+1}" scope="page"/>
                 </th>

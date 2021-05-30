@@ -109,15 +109,22 @@ public class JDBCCarDao implements CarDAO {
 
     public List<Car> getAllCars() {
         List<Car> allCars = new ArrayList<>();
+        ResultSet rs=null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            ResultSet rs = st.executeQuery(SqlQuarry.ALLCARS);
+            rs = st.executeQuery(SqlQuarry.ALLCARS);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
                 allCars.add(car);
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return allCars;
     }
@@ -125,17 +132,26 @@ public class JDBCCarDao implements CarDAO {
     public List<Car> getAllCars(int index, int offset) {
         List<Car> allCars = new ArrayList<>();
         PreparedStatement st = null;
+        ResultSet rs = null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
             st = con.prepareStatement(SqlQuarry.PAGE_ALLCARS);
             st.setInt(1, index);
             st.setInt(2, offset);
-            ResultSet rs = st.executeQuery();
+            rs = st.executeQuery();
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
                 allCars.add(car);
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                System.out.println("connect closed in JDBCCarDAO.getAllCars");
+                st.close();
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return allCars;
     }

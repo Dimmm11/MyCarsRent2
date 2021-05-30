@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="my"/>
 <html>
 <head>
     <meta charset="utf-8">
@@ -15,8 +17,9 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <style><%@include file="/CSS/loginPage.css"%></style>
-<%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/loginPage.css"/>--%>
+    <style>
+        <%@include file="/CSS/loginPage.css" %>
+    </style>
     <title>Manager clients</title>
 
 </head>
@@ -26,18 +29,15 @@
     <div class="login-main-text">
         <c:choose>
             <c:when test="${sessionScope.role==3}">
-                <h1 style="text-decoration: underline">ADMIN</h1>
+                <h1 style="text-decoration: underline"><fmt:message key="ADMIN"/></h1>
             </c:when>
             <c:when test="${sessionScope.role==2}">
-                <h1 style="text-decoration: underline">MANAGER</h1>
+                <h1 style="text-decoration: underline"><fmt:message key="Manager"/></h1>
             </c:when>
         </c:choose>
         <br>
         <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
-            <input type="submit" value="back to menu"
-                   style="background-color: darkseagreen;
-                               border-width: medium;
-                               font-weight: bold">
+            <button type="submit" class="btn btn-secondary"><fmt:message key="Back_to_menu"/></button>
         </form>
     </div>
 </div>
@@ -53,7 +53,7 @@
         <div class="col-md-4">
             <c:if test="${sessionScope.role>0}">
                 <form action="${pageContext.request.contextPath}/logout" method="post">
-                    <button type="submit" class="btn btn-secondary">Logout</button>
+                    <button type="submit" class="btn btn-secondary"><fmt:message key="Logout"/></button>
                 </form>
             </c:if>
         </div>
@@ -67,17 +67,18 @@
         <div class="col-md-7">
             <c:choose>
                 <c:when test="${requestScope.adminClients.size()>0}">
-                    <h2>Clients:<u style="text-decoration: underline">${requestScope.car_class}</u></h2>
+                    <h2><fmt:message key="Clients"/>:<u style="text-decoration: underline">${requestScope.car_class}</u>
+                    </h2>
                     <table class="fl-table">
                         <tr>
                             <th>Id</th>
-                            <th>Login</th>
-                            <th>Password</th>
-                            <th>Passport</th>
-                            <th>Status</th>
-                            <th> </th>  <!-- make manager -->
-                            <th> </th>  <!-- delete -->
-                            <th> </th>    <!-- ban -->
+                            <th><fmt:message key="Login"/></th>
+                            <th><fmt:message key="Password"/></th>
+                            <th><fmt:message key="Passport"/></th>
+                            <th><fmt:message key="Status"/></th>
+                            <th></th>  <!-- make manager -->
+                            <th></th>  <!-- delete -->
+                            <th></th>    <!-- ban -->
                         </tr>
                         <c:forEach var="client" items="${requestScope.adminClients}">
                             <tr>
@@ -85,21 +86,26 @@
                                 <td><c:out value="${client.login}"/></td>
                                 <td><c:out value="${client.password}"/></td>
                                 <td><c:out value="${client.passport}"/></td>
-                                <td><c:out value="${client.status}"/></td>
+                                <td>
+                                    <fmt:message key="${client.status}"/>
+                                        <%--                                    <c:out value="${client.status}"/>--%>
+                                </td>
                                 <td>
                                     <c:choose>
                                         <c:when test="${client.status.equals('ACTIVE')}">
                                             <form action="${pageContext.request.contextPath}/ban" method="post">
                                                 <input type="hidden" value="${client.login}" name="login">
-                                                <input type="submit" value="ban"
-                                                       style="background-color: darksalmon;border-width: medium;font-weight: bold">
+                                                <button type="submit" class="btn btn-secondary"><fmt:message
+                                                        key="Ban"/></button>
+                                                    <%--                                                <input type="submit" value="ban" style="background-color: darksalmon;border-width: medium;font-weight: bold">--%>
                                             </form>
                                         </c:when>
                                         <c:otherwise>
                                             <form action="${pageContext.request.contextPath}/unBan" method="post">
                                                 <input type="hidden" value="${client.login}" name="login">
-                                                <input type="submit" value="UNBAN"
-                                                       style="background-color: darksalmon;border-width: medium;font-weight: bold">
+                                                <button type="submit" class="btn btn-secondary"><fmt:message
+                                                        key="unban"/></button>
+                                                    <%--                                                <input type="submit" value="UNBAN" style="background-color: darksalmon;border-width: medium;font-weight: bold">--%>
                                             </form>
                                         </c:otherwise>
                                     </c:choose>
@@ -108,8 +114,9 @@
                                     <c:if test="${sessionScope.role==3}">
                                         <form method="post" action="${pageContext.request.contextPath}/deleteClient">
                                             <input type="hidden" value="${client.login}" name="login">
-                                            <input type="submit" value="delete"
-                                                   style="background-color: coral;border-width: medium;font-weight: bold">
+                                            <button type="submit" class="btn btn-secondary"><fmt:message
+                                                    key="Delete"/></button>
+                                                <%--                                            <input type="submit" value="delete" style="background-color: coral;border-width: medium;font-weight: bold">--%>
                                         </form>
                                     </c:if>
                                 </td>
@@ -118,8 +125,9 @@
                                         <form action="${pageContext.request.contextPath}/managers" method="post">
                                             <input type="hidden" value="${client.login}" name="login">
                                             <input type="hidden" value="makeManager" name="adminAction">
-                                            <input type="submit" value="make manager"
-                                                   style="background-color: mediumseagreen;border-width: medium;font-weight: bold">
+                                            <button type="submit" class="btn btn-secondary"><fmt:message
+                                                    key="Make_manager"/></button>
+                                                <%--                                            <input type="submit" value="make manager" style="background-color: mediumseagreen;border-width: medium;font-weight: bold">--%>
                                         </form>
                                     </c:if>
                                 </td>
@@ -147,7 +155,8 @@
                 <th style="font-size: medium">
                     <form action="${pageContext.request.contextPath}/managerClients" method="post">
                         <input type="hidden" name="page" value="${i}">
-                        <input type="submit" value="${i}">
+                        <button type="submit" class="btn btn-secondary">${i}</button>
+                            <%--                        <input type="submit" value="${i}">--%>
                     </form>
                     <c:set var="i" value="${i+1}" scope="page"/>
                 </th>

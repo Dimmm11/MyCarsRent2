@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="my"/>
 <html>
 <head>
     <meta charset="utf-8">
@@ -17,14 +19,14 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <style><%@include file="/CSS/loginPage.css"%></style>
 <%--    <link rel="stylesheet" type="text/css" href="<c:url value="${pageContext.request.contextPath}/CSS/loginPage.css" />"/>--%>
-    <title>Manager page</title>
+    <title><fmt:message key="Manager"/></title>
 
 </head>
 <body>
 
 <div class="sidenav">
     <div class="login-main-text">
-        <h2>Welcome, manager!</h2>
+        <h2><fmt:message key="Welcome"/>, <fmt:message key="Manager"/>!</h2>
     </div>
 </div>
 <div class="container-fluid">
@@ -39,7 +41,7 @@
         <div class="col-md-4">
             <c:if test="${sessionScope.role>0}">
                 <form action="${pageContext.request.contextPath}/logout" method="post">
-                    <button type="submit" class="btn btn-secondary">Logout</button>
+                    <button type="submit" class="btn btn-secondary"><fmt:message key="Logout"/></button>
                 </form>
             </c:if>
         </div>
@@ -47,29 +49,27 @@
 </div>
 <div class="main">
     <div class="col-md-6 col-sm-12">
-<%--        <c:if test="${sessionScope.role>0}">--%>
-<%--            <form action="${pageContext.request.contextPath}/logout" method="post">--%>
-<%--                <button type="submit" class="btn btn-secondary">Logout</button>--%>
-<%--            </form>--%>
-<%--        </c:if>--%>
         <div class="login-form">
             <hr>
             <table>
-                <caption>Manager</caption>
+                <caption><fmt:message key="Manager"/></caption>
                 <tr>
                     <th>
                         <form action="${pageContext.request.contextPath}/managerCars" method="post">
-                            <input type="submit" value="all cars">
+                            <button type="submit" class="btn btn-secondary"><fmt:message key="Cars"/></button>
+<%--                            <input type="submit" value="all cars">--%>
                         </form>
                     </th>
                     <th>
                         <form action="${pageContext.request.contextPath}/managerClients" method="post">
-                            <input type="submit" value="all users">
+                            <button type="submit" class="btn btn-secondary"><fmt:message key="Clients"/></button>
+<%--                            <input type="submit" value="all users">--%>
                         </form>
                     </th>
                     <th>
                         <form action="${pageContext.request.contextPath}/managerOrders" method="post">
-                            <input type="submit" value="orders">
+                            <button type="submit" class="btn btn-secondary"><fmt:message key="Orders"/></button>
+<%--                            <input type="submit" value="orders">--%>
                         </form>
                     </th>
                 </tr>

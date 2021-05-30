@@ -2,57 +2,48 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
-
-<fmt:setLocale value="${param.lang}"/>
-<fmt:setBundle basename="main.java.service.loginPage"/>
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="my"/>
 
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
           crossorigin="anonymous">
-
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <style>
         <%@include file="/CSS/loginPage.css" %>
     </style>
-    <%--    <link rel="stylesheet" type="text/css" href="CSS/loginPage.css"/>--%>
-    <title>Cars by marque</title>
-
+    <title><fmt:message key="Cars_by_marque"/></title>
 </head>
 <body>
 <div class="sidenav">
     <div class="login-main-text">
         <form action="${pageContext.request.contextPath}/menu" method="post">
-            <input type="submit" value="back to menu"
-                   style="background-color: darkseagreen;border-width: medium;font-weight: bold">
+            <button type="submit" class="btn btn-secondary"><fmt:message key="Back_to_menu"/></button>
         </form>
-
     </div>
 </div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4">
         </div>
-
         <div class="col-md-4">
             <c:if test="${sessionScope.client!=null}">
                 <form action="profile">
-                    <button type="submit" class="btn btn-secondary" formmethod="post">My orders</button>
+                    <button type="submit" class="btn btn-secondary" formmethod="post"><fmt:message key="My_orders"/></button>
                 </form>
             </c:if>
-
         </div>
         <div class="col-md-4">
             <c:if test="${sessionScope.role>0}">
                 <form action="${pageContext.request.contextPath}/logout" method="post">
-                    <button type="submit" class="btn btn-secondary">Logout</button>
+                    <button type="submit" class="btn btn-secondary"><fmt:message key="Logout"/></button>
                 </form>
             </c:if>
         </div>
@@ -60,20 +51,19 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-
         <div class="col-md-3">
         </div>
-
         <div class="col-md-7">
             <c:choose>
                 <c:when test="${requestScope.carsByMarque.size()>0}">
-                    <h2>Marque:<u style="text-decoration: underline">${requestScope.marque}</u></h2>
+                    <h2><fmt:message key="Marque"/>:<u style="text-decoration: underline">${requestScope.marque}</u>
+                    </h2>
                     <table class="fl-table">
                         <tr>
-                            <th>Model</th>
-                            <th>Price</th>
-                            <th>Driver</th>
-                            <th>Term</th>
+                            <th><fmt:message key="Model"/></th>
+                            <th><fmt:message key="Price"/></th>
+                            <th><fmt:message key="Driver"/></th>
+                            <th><fmt:message key="Term"/></th>
                             <th></th>
                         </tr>
                         <c:forEach var="car" items="${requestScope.carsByMarque}">
@@ -81,36 +71,34 @@
                                 <form action="${pageContext.request.contextPath}/order">
                                     <td><c:out value="${car.model}"/></td>
                                     <td><c:out value="${car.price}"/></td>
-
                                     <input type="hidden" name="id" value="${car.id}">
                                     <input type="hidden" name="marque" value="${car.marque}">
                                     <input type="hidden" name="model" value="${car.model}">
                                     <input type="hidden" name="price" value="${car.price}">
-                                    <td><input type="radio" name="driver" value="yes">yes</input>
-                                        <input type="radio" name="driver" value="no">no</input> </td>
-
-                                    <td><input type="number" min="1" name="term" placeholder="term" style="width: 70px">
+                                    <td><input type="radio" name="driver" value="yes"><fmt:message key="YES"/></input>
+                                        <input type="radio" name="driver" value="no"><fmt:message key="NO"/></input>
                                     </td>
-                                    <td><input type="submit" value="make order"></td>
-
+                                    <td><input type="number" min="1" name="term" placeholder="<fmt:message key="Term"/>"
+                                               style="width: 70px">
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-secondary"><fmt:message key="make_order"/></button>
+                                            <%--                                        <input type="submit" value="make order">--%>
+                                    </td>
                                 </form>
                             </tr>
                         </c:forEach>
                     </table>
                 </c:when>
                 <c:otherwise>
-                    <p class="redText">Sorry, no available cars</p>
+                    <p class="redText">. . .</p>
                 </c:otherwise>
             </c:choose>
         </div>
     </div>
-
     <div class="col-md-2">
     </div>
-
 </div>
-
-
 <div class="main">
     <div class="container" style="position: static; bottom: 30%">
         <table>
@@ -120,25 +108,21 @@
                     <form action="${pageContext.request.contextPath}/carSelect" method="post">
                         <input type="hidden" name="marque" value="${requestScope.marque}">
                         <input type="hidden" name="page" value="${i}">
-                        <input type="submit" value="${i}">
+                        <button type="submit" class="btn btn-secondary">${i}</button>
+                            <%--                        <input type="submit" value="${i}">--%>
                     </form>
                     <c:set var="i" value="${i+1}" scope="page"/>
                 </th>
             </c:forEach>
         </table>
-
     </div>
     <div class="col-md-6 col-sm-12">
-
     </div>
 </div>
 </div>
-
-
 <!-- Вариант 1: Bootstrap в связке с Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-
 </body>
 </html>
