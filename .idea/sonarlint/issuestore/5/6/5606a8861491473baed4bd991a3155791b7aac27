@@ -1,0 +1,16 @@
+
+]	java:S125"<This block of commented-out lines of code should be removed.(†é¨úÿÿÿÿ8…Ïø›/
+X	java:S125!"<This block of commented-out lines of code should be removed.(§øíû8…Ïø›/
+U	java:S106$"9Replace this use of System.out or System.err by a logger.(—8…Ïø›/
+Z	java:S106;"9Replace this use of System.out or System.err by a logger.(¼ùÛÃÿÿÿÿÿ8…Ïø›/
+g
+java:S1192)"JDefine a constant instead of duplicating this literal "sortOrder" 6 times.(©ãùÎ8…Ïø›/
+d
+java:S1192%"GDefine a constant instead of duplicating this literal "column" 6 times.(ô«û8…Ïø›/
+U	java:S106#"9Replace this use of System.out or System.err by a logger.(ËÒ½¬8…Ïø›/
+H
+java:S1481"+Remove this unused "marque" local variable.(´¡ÕÑ8³æŒø›/
+U	java:S1068"9Replace this use of System.out or System.err by a logger.(ÄüÿÊ8…Ïø›/
+l
+java:S1192"JDefine a constant instead of duplicating this literal "car_class" 5 times.(¹Áòøÿÿÿÿ8…Ïø›/
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹Áòøÿÿÿÿ8…Ïø›/
