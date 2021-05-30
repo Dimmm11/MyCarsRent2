@@ -26,6 +26,24 @@ public class CarDAO {
         }
         return carsByClass;
     }
+    public static List<Car> getCarsByClass(String carClass,String column, String sortingOrder) {
+        List<Car> carsByClass = new ArrayList<>();
+        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
+             Statement st = con.createStatement()) {
+            String sql = SqlQuarry.CARS_BY_CLASS.replace("carclass", carClass).replace(";", " ORDER BY "+column+" "+sortingOrder+" ;");
+            System.out.println("sql string: "+sql);
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Car car = new CarMapper().mapFromResultSet(rs);
+                carsByClass.add(car);
+            }
+        } catch (SQLException | NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+        return carsByClass;
+    }
+
+
 
     public static List<Car> getCarsByClass(String carClass, int index, int offset) {
         List<Car> carsByClass = new ArrayList<>();
@@ -47,11 +65,28 @@ public class CarDAO {
         return carsByClass;
     }
 
+
     public static List<Car> getCarsByMarque(String marque) {
         List<Car> carsByMarque = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
             String sql = SqlQuarry.CARS_BY_MARQUE.replaceAll("carmarque", marque);
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Car car = new CarMapper().mapFromResultSet(rs);
+                carsByMarque.add(car);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return carsByMarque;
+    }
+    public static List<Car> getCarsByMarque(String marque,String column, String sortingOrder) {
+        List<Car> carsByMarque = new ArrayList<>();
+        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
+             Statement st = con.createStatement()) {
+            String sql = SqlQuarry.CARS_BY_MARQUE.replaceAll("carmarque", marque).replace(";", " ORDER BY "+column+" "+sortingOrder+" ;");
+            System.out.println("sql: "+sql);
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
@@ -134,7 +169,38 @@ public class CarDAO {
         }
         return allCars;
     }
+// ==============================================================================
+    public static List<Car> getAllCars(String column, String sortingOrder) {
+        List<Car> allCars = new ArrayList<>();
+        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
+             Statement st = con.createStatement()) {
+            String ss = SqlQuarry.ALLCARS.replaceAll(";"," ORDER BY "+column+" "+sortingOrder+" ;");
+            System.out.println(ss);
+            ResultSet rs = st.executeQuery(ss);
+            while (rs.next()) {
+                Car car = new CarMapper().mapFromResultSet(rs);
+                allCars.add(car);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allCars;
+    }
 
+    public static List<Car> getAllCars(List<Car> allCars,int startIndex, int lastIndex) {
+        List<Car> sortedCars = new ArrayList<>();
+        System.out.println("startIndex: "+startIndex);
+        if(allCars.size()-1 < lastIndex){
+            lastIndex =startIndex+ ((allCars.size())-startIndex);
+            System.out.println("lastIndex: "+lastIndex);
+        }
+        sortedCars = allCars.subList(startIndex, lastIndex);
+
+        return sortedCars;
+    }
+
+
+// ===================================================================================
     public static List<Car> getAllCars(int index, int offset) {
         List<Car> allCars = new ArrayList<>();
         PreparedStatement st = null;

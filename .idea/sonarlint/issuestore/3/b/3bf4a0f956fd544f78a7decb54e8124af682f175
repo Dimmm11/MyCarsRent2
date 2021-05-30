@@ -1,11 +1,11 @@
 
-Ö
-java:S1989P"hHandle the following exceptions that could be thrown by "processRequest": ServletException, IOException.(ëÅü—8Œﬂ≠…ö/
+X	java:S125"<This block of commented-out lines of code should be removed.(—Ü¶Â8Œﬂ≠…ö/
 \
 java:S1161":Add the "@Override" annotation above this method signature(ß‹ß¶ˇˇˇˇˇ8Œﬂ≠…ö/
+Ö
+java:S1989P"hHandle the following exceptions that could be thrown by "processRequest": ServletException, IOException.(ëÅü—8Œﬂ≠…ö/
 Ö
 java:S1989J"hHandle the following exceptions that could be thrown by "processRequest": ServletException, IOException.(ëÅü—8Œﬂ≠…ö/
 z
 java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(‘Ê‰≠˘ˇˇˇˇ8Œﬂ≠…ö/
-X	java:S125"<This block of commented-out lines of code should be removed.(—Ü¶Â8Œﬂ≠…ö/
 ]	java:S125@"<This block of commented-out lines of code should be removed.(ˇ‡‡∑˙ˇˇˇˇ8¥⁄â‰õ/

@@ -122,7 +122,7 @@
                                     <c:out value="${order.penalty}"/>
                                     <form action="${pageContext.request.contextPath}/setPenalty" method="post">
                                         <input type="hidden" name="orderId" value="${order.id}">
-                                        <input type="number" name="penalty" placeholder="<fmt:message key="Penalty"/>" style="width: 50px">
+                                        <input type="number" name="penalty" placeholder="<fmt:message key="Penalty"/>" style="width: 50px" min="0">
                                         <button type="submit" class="btn btn-secondary"><fmt:message key="set_"/></button>
 <%--                                        <input type="submit" value="set">--%>
                                     </form>

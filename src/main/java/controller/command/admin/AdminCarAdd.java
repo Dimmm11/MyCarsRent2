@@ -20,6 +20,6 @@ public class AdminCarAdd implements Command {
                 BigDecimal.valueOf(Double.parseDouble(request.getParameter("price")))
         );
         CarDAO.addCar(car);
-        return "managerCars";
+        return "redirect:/managerCars";
     }
 }

@@ -11,8 +11,6 @@ public class LogOutFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse)response;
         HttpServletRequest req = (HttpServletRequest) request;
 
-    // disabled
-
         resp.setHeader("Pragma", "No-cache");
         resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         resp.setDateHeader("Expires", -1);

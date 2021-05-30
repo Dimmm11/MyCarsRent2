@@ -55,7 +55,7 @@
 <div class="main">
     <div class="col-md-6 col-sm-12">
 
-        <form action="${pageContext.request.contextPath}/carSelect" method="post">
+        <form action="${pageContext.request.contextPath}/carsByClass" method="post">
             <tr>
                 <td><fmt:message key="Cars_by_class"/>: </td>
                 <td>
@@ -72,7 +72,7 @@
             <button type="submit" class="btn btn-secondary"><fmt:message key="Submit"/></button>
         </form>
 
-        <form action="${pageContext.request.contextPath}/carSelect" method="post">
+        <form action="${pageContext.request.contextPath}/carsByMarque" method="post">
             <tr>
                 <td><fmt:message key="Cars_by_marque"/>: </td>
                 <td>

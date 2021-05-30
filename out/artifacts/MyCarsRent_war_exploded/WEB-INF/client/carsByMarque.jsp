@@ -56,8 +56,15 @@
         <div class="col-md-7">
             <c:choose>
                 <c:when test="${requestScope.carsByMarque.size()>0}">
-                    <h2><fmt:message key="Marque"/>:<u style="text-decoration: underline">${requestScope.marque}</u>
-                    </h2>
+                    <form action="${pageContext.request.contextPath}/carsByMarque" method="post">
+                        <select name="column">
+                            <option value="price"><fmt:message key="Price"/></option>
+                        </select>
+                        <input type="radio" name="sortOrder" value="ASC"><fmt:message key="ASC"/></input>
+                        <input type="radio" name="sortOrder" value="DESC"><fmt:message key="DESC"/></input>
+                        <input type="submit" value="<fmt:message key="sort"/>">
+                    </form>
+                    <h2><fmt:message key="Marque"/>: ${requestScope.marque}</h2>
                     <table class="fl-table">
                         <tr>
                             <th><fmt:message key="Model"/></th>
@@ -105,7 +112,7 @@
             <c:set var="i" value="1" scope="page"/>
             <c:forEach begin="1" end="${requestScope.numPages}">
                 <th style="font-size: medium">
-                    <form action="${pageContext.request.contextPath}/carSelect" method="post">
+                    <form action="${pageContext.request.contextPath}/carsByMarque" method="post">
                         <input type="hidden" name="marque" value="${requestScope.marque}">
                         <input type="hidden" name="page" value="${i}">
                         <button type="submit" class="btn btn-secondary">${i}</button>

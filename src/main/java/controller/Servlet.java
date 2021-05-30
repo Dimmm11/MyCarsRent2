@@ -2,11 +2,8 @@ package controller;
 
 import controller.command.*;
 import controller.command.admin.*;
-import controller.command.client.CancelOrder;
-import controller.command.client.CarSelect;
+import controller.command.client.*;
 import controller.command.Registration;
-import controller.command.client.MakeOrder;
-import controller.command.client.Profile;
 import controller.command.manager.*;
 import model.entity.Client;
 
@@ -30,7 +27,10 @@ public class Servlet extends HttpServlet {
 //                new LogOutCommand());
         commands.put("login", new LoginCommand());
         commands.put("logout", new LogOutCommand());
-        commands.put("carSelect", new CarSelect());
+//        commands.put("carSelect", new CarSelect());
+        commands.put("carsByMarque", new CarsByMarque());
+        commands.put("carsByClass", new CarsByClass());
+
         commands.put("order", new MakeOrder());
         commands.put("cancelOrder", new CancelOrder());
         commands.put("profile", new Profile());

@@ -16,6 +16,11 @@ public class LoginFilter implements Filter {
 
         HttpSession session = req.getSession();
         Client client = (Client) session.getAttribute("client");
+        //===================== ???????????????????????????
+//        resp.setHeader("Pragma", "No-cache");
+//        resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+//        resp.setDateHeader("Expires", -1);
+        //===========================?????????????????????
 
         /**
          *  forward to basic Page if Logged in
@@ -29,7 +34,7 @@ public class LoginFilter implements Filter {
                 System.out.println("role 2 LoginFilter");
                 req.getRequestDispatcher("/WEB-INF/manager/welcomeManager.jsp").forward(req, resp);
             }
-            if(client.getRole_id()==1) {
+            if (client.getRole_id() == 1) {
                 System.out.println("role 1 LoginFilter");
                 req.getRequestDispatcher("/WEB-INF/client/menu.jsp").forward(req, resp);
             }
@@ -37,6 +42,7 @@ public class LoginFilter implements Filter {
             System.out.println("client == null in LoginFilter");
             chain.doFilter(request, response);
         }
+
     }
 
     @Override

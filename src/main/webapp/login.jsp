@@ -14,15 +14,12 @@
           rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
           crossorigin="anonymous">
-
-
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <style>
         <%@include file="/CSS/loginPage.css" %>
     </style>
-    <%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/loginPage.css"/>--%>
     <title>Login page</title>
 
 </head>
@@ -31,9 +28,7 @@
 
 <div class="sidenav">
     <div class="login-main-text">
-        <h2>Login page</h2>
-        <%--        <h2><fmt:message key="Welcome"/></h2>--%>
-        <%--        <p><fmt:message key="login_register"/></p>--%>
+        <h2><fmt:message key="Welcome"/></h2>
     </div>
 </div>
 
@@ -55,8 +50,6 @@
         </nav>
     </header>
     <div class="col-md-6 col-sm-12">
-
-
         <div class="login-form">
             <c:out value="${requestScope.error.toString()}"/>
             <form action="${pageContext.request.contextPath}/login" method="post">
@@ -66,16 +59,12 @@
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="<fmt:message key="Password"/>" name="Password">
                 </div>
-                <%--                <input type="hidden" name="lang" value="<%=request.getParameter("lang")%>">--%>
-
                 <button type="submit" class="btn btn-black">
-                    <%--                    Login--%>
                     <fmt:message key="Login"/>
                 </button>
             </form>
 
             <form>
-                <%--                <input type="hidden" name="lang" value="<%=request.getParameter("lang")%>">--%>
                 <button type="submit"
                         class="btn btn-secondary"
                         formaction="${pageContext.request.contextPath}/register.jsp"
@@ -83,12 +72,6 @@
                     <fmt:message key="Registration"/>
                 </button>
             </form>
-            <%--            <div class="container">--%>
-            <%--                <a style="font-size: large" href="${pageContext.request.contextPath}/login.jsp?lang=ru">ru</a>--%>
-            <%--                <a style="font-size: large" href="${pageContext.request.contextPath}/login.jsp?lang=en">en</a>--%>
-            <%--            </div>--%>
-
-<%--            <form action="login.jsp" method="post">--%>
             <form action="login.jsp" method="post">
                 <input type="hidden" name="lang" value="ru">
                 <input type="submit" value="ru">
@@ -100,13 +83,6 @@
         </div>
     </div>
 </div>
-
-<%--<div class="main">--%>
-<%--    <div class="container">--%>
-<%--        <a style="font-size: large" href="${pageContext.request.contextPath}/welcome.jsp?lang=ru">ru</a>--%>
-<%--        <a style="font-size: large" href="${pageContext.request.contextPath}/welcome.jsp?lang=en">en</a>--%>
-<%--    </div>--%>
-<%--</div>--%>
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"

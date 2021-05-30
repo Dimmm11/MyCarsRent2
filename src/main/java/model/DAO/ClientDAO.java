@@ -1,6 +1,8 @@
 package model.DAO;
 
+import model.DAO.mapper.CarMapper;
 import model.connection.ConnectionPoolHolder;
+import model.entity.Car;
 import model.entity.Client;
 import model.DAO.mapper.ClientMapper;
 
@@ -55,6 +57,25 @@ public class ClientDAO {
         }
         return list;
     }
+
+    public static List<Client> getClients(String column, String sortingOrder) {
+        List<Client> clients = new ArrayList<>();
+        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
+             Statement st = con.createStatement()) {
+            String ss = SqlQuarry.CLIENTS.replaceAll(";"," ORDER BY "+column+" "+sortingOrder+" ;");
+//            System.out.println(ss);
+            ResultSet rs = st.executeQuery(ss);
+            ClientMapper cm = new ClientMapper();
+            while (rs.next()) {
+                Client client = cm.mapFromResultSet(rs);
+                clients.add(client);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return clients;
+    }
+
 
     public static Client getClient(String login) {
         String name = SqlQuarry.CLIENT.replaceAll("login", login);

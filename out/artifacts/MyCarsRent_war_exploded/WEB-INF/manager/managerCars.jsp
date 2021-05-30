@@ -85,6 +85,18 @@
         <div class="col-md-7">
             <c:choose>
                 <c:when test="${requestScope.allCars.size()>0}">
+<%--                    ====================================--%>
+                    <form action="${pageContext.request.contextPath}/managerCars" method="post">
+                        <select name="column">
+                            <option value="price">price</option>
+                            <option value="marque">marque</option>
+                        </select>
+                        <input type="radio" name="sortOrder" value="ASC">ASC</input>
+                        <input type="radio" name="sortOrder" value="DESC">DESC</input>
+                        <input type="submit" value="sort!">
+                    </form>
+
+<%--                    =======================================--%>
                     <h2><fmt:message key="Cars"/>:<u style="text-decoration: underline">${requestScope.car_class}</u></h2>
                     <table class="fl-table">
                         <tr>
@@ -106,7 +118,7 @@
                                 <td>
                                     <form method="post" action="updatePrice">
                                         <input type="hidden" name="id" value="${car.id}">
-                                        <input type="number" placeholder="<fmt:message key="Price"/>" name="price" style="width: 70px">
+                                        <input type="number" placeholder="<fmt:message key="Price"/>" name="price" style="width: 70px" min="0">
                                         <button type="submit" class="btn btn-secondary"><fmt:message key="Update"/></button>
 <%--                                        <input type="submit" value="update">--%>
                                     </form>
@@ -160,7 +172,7 @@
                 <input type="text" placeholder="<fmt:message key="Marque"/>" name="marque">
                 <input type="text" placeholder="<fmt:message key="Car_class"/>" name="car_class">
                 <input type="text" placeholder="<fmt:message key="Model"/>" name="model">
-                <input type="number" placeholder="<fmt:message key="Price"/>" name="price">
+                <input type="number" placeholder="<fmt:message key="Price"/>" name="price" min="0">
                 <button type="submit" class="btn btn-secondary"><fmt:message key="Add"/></button>
 <%--                <input type="submit" value="add car">--%>
             </form>
