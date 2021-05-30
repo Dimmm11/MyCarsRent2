@@ -30,36 +30,38 @@ public class Servlet extends HttpServlet {
 //        commands.put("carSelect", new CarSelect());
         commands.put("carsByMarque", new CarsByMarque());
         commands.put("carsByClass", new CarsByClass());
-
+        commands.put("menu", new Menu());
         commands.put("order", new MakeOrder());
         commands.put("cancelOrder", new CancelOrder());
         commands.put("profile", new Profile());
 
+
         commands.put("welcomeAdmin", new WelcomeAdmin());
-        commands.put("admincars", new AdminCars());
-        commands.put("adminclients", new AdminClients());
+//        commands.put("admincars", new AdminCars());
+//        commands.put("adminclients", new AdminClients());
         commands.put("adminStaff", new AdminStaff());
         commands.put("caradd", new AdminCarAdd());
         commands.put("adminDeleteCar", new AdminDeleteCar());
-        commands.put("adminaddcar", new AddCarButton());
-        commands.put("adminOrders", new AdminOrders());
-        commands.put("unBan", new AdminUnBan());
+//        commands.put("adminaddcar", new AddCarButton());
+//        commands.put("adminOrders", new AdminOrders());
+
 
         commands.put("welcomeManager", new WelcomeManager());
         commands.put("managerCars", new ManagerCars());
         commands.put("managerClients", new ManagerClients());
         commands.put("managerOrders", new ManagerOrders());
-        commands.put("menu", new Menu());
+
         commands.put("deleteClient", new DeleteClient());
-        commands.put("managers", new StaffRights());
+        commands.put("setRights", new StaffRights());
         commands.put("updatePrice", new UpdatePrice());
         commands.put("setReason", new SetReason());
         commands.put("setPenalty", new ManagerSetPenalty());
         commands.put("setOrderStatus", new SetOrderStatus());
         commands.put("returnCar", new CarReturn());
+        commands.put("ban", new Ban());
+        commands.put("unBan", new UnBan());
 
         commands.put("register", new Registration());
-        commands.put("ban", new Ban());
 
 //        commands.put("ru", new LangRu());
 

@@ -39,29 +39,40 @@
         <br>
         <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
             <button type="submit" class="btn btn-secondary"><fmt:message key="Back_to_menu"/></button>
-<%--            <input type="submit" value="back to menu"--%>
-<%--                   style="background-color: darkseagreen;--%>
-<%--                               border-width: medium;--%>
-<%--                               font-weight: bold">--%>
+            <%--            <input type="submit" value="back to menu"--%>
+            <%--                   style="background-color: darkseagreen;--%>
+            <%--                               border-width: medium;--%>
+            <%--                               font-weight: bold">--%>
         </form>
 
     </div>
 </div>
 <div class="container-fluid">
     <div class="row">
-
+        <div class="col-md-4"></div>
+        <div class="col-md-4"></div>
         <div class="col-md-4">
-        </div>
-
-        <div class="col-md-4">
-        </div>
-
-        <div class="col-md-4">
-            <c:if test="${sessionScope.role>0}">
-                <form action="${pageContext.request.contextPath}/logout" method="post">
-                    <button type="submit" class="btn btn-secondary"><fmt:message key="Logout"/></button>
-                </form>
-            </c:if>
+            <table>
+                <th>
+                    <c:if test="${sessionScope.role>0}">
+                        <form action="${pageContext.request.contextPath}/logout" method="post">
+                            <button type="submit" class="btn btn-secondary"><fmt:message key="Logout"/></button>
+                        </form>
+                    </c:if>
+                </th>
+                <th>
+                    <form action="${pageContext.request.contextPath}/managerOrders" method="post">
+                        <input type="hidden" name="lang" value="ru">
+                        <input type="submit" value="ru">
+                    </form>
+                </th>
+                <th>
+                    <form action="${pageContext.request.contextPath}/managerOrders" method="post">
+                        <input type="hidden" name="lang" value="en">
+                        <input type="submit" value="en">
+                    </form>
+                </th>
+            </table>
         </div>
     </div>
 </div>
@@ -96,35 +107,40 @@
                                 <td><c:out value="${order.driver}"/></td>
                                 <td><c:out value="${order.term}"/></td>
                                 <td>
-                                     <fmt:message key="${order.confirmed}"/>
+                                    <fmt:message key="${order.confirmed}"/>
                                     <form action="${pageContext.request.contextPath}/setOrderStatus" method="post">
                                         <select name="orderStatus">
-                                            <option disabled selected value> --- </option>
+                                            <option disabled selected value> ---</option>
                                             <option value="ON CHECK"><fmt:message key="ON CHECK"/></option>
                                             <option value="CONFIRMED"><fmt:message key="CONFIRMED"/></option>
                                             <option value="REJECTED"><fmt:message key="REJECTED"/></option>
                                             <input type="hidden" name="orderId" value="${order.id}">
-                                            <button type="submit" class="btn btn-secondary"><fmt:message key="set_"/></button>
-<%--                                            <input type="submit" value="set">--%>
+                                            <button type="submit" class="btn btn-secondary"><fmt:message
+                                                    key="set_"/></button>
+                                                <%--                                            <input type="submit" value="set">--%>
                                         </select>
                                     </form>
                                 </td>
                                 <td>
-                                   <p style="color: brown"><c:out value="${order.comment}"/></p>
+                                    <p style="color: brown"><c:out value="${order.comment}"/></p>
                                     <form action="${pageContext.request.contextPath}/setReason" method="post">
-                                        <input type="text" name="reason" placeholder="<fmt:message key="Comment"/>" style="width: 100px">
+                                        <input type="text" name="reason" placeholder="<fmt:message key="Comment"/>"
+                                               style="width: 100px">
                                         <input type="hidden" name="orderId" value="${order.id}">
-                                        <button type="submit" class="btn btn-secondary"><fmt:message key="set_"/></button>
-<%--                                        <input type="submit" value="set">--%>
+                                        <button type="submit" class="btn btn-secondary"><fmt:message
+                                                key="set_"/></button>
+                                            <%--                                        <input type="submit" value="set">--%>
                                     </form>
                                 </td>
                                 <td>
                                     <c:out value="${order.penalty}"/>
                                     <form action="${pageContext.request.contextPath}/setPenalty" method="post">
                                         <input type="hidden" name="orderId" value="${order.id}">
-                                        <input type="number" name="penalty" placeholder="<fmt:message key="Penalty"/>" style="width: 50px" min="0">
-                                        <button type="submit" class="btn btn-secondary"><fmt:message key="set_"/></button>
-<%--                                        <input type="submit" value="set">--%>
+                                        <input type="number" name="penalty" placeholder="<fmt:message key="Penalty"/>"
+                                               style="width: 50px" min="0">
+                                        <button type="submit" class="btn btn-secondary"><fmt:message
+                                                key="set_"/></button>
+                                            <%--                                        <input type="submit" value="set">--%>
                                     </form>
                                 </td>
                                 <td>
@@ -157,7 +173,7 @@
                     <form action="${pageContext.request.contextPath}/managerOrders" method="post">
                         <input type="hidden" name="page" value="${i}">
                         <button type="submit" class="btn btn-secondary">${i}</button>
-<%--                        <input type="submit" value="${i}">--%>
+                            <%--                        <input type="submit" value="${i}">--%>
                     </form>
                     <c:set var="i" value="${i+1}" scope="page"/>
                 </th>
@@ -168,6 +184,7 @@
     <div class="col-md-6 col-sm-12">
 
         <div class="login-form">
+
         </div>
     </div>
     <div class="col-md-6 col-sm-12">

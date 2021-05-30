@@ -1,4 +1,4 @@
-package controller.command.admin;
+package controller.command.manager;
 
 import controller.command.Command;
 import model.DAO.ClientDAO;

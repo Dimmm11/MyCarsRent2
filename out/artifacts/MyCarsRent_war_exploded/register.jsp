@@ -23,7 +23,6 @@
 
 </head>
 <body>
-
 <div class="sidenav">
     <div class="login-main-text">
         <h2><fmt:message key="Registration"/></h2>
@@ -39,10 +38,10 @@
                     <input type="text" class="form-control" placeholder="<fmt:message key="Login"/>" name="Login">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="<fmt:message key="Password">" name="Password">
+                    <input type="text" class="form-control" placeholder="<fmt:message key="Password"/>" name="Password">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="<fmt:message key="Passport">" name="Passport">
+                    <input type="text" class="form-control" placeholder="<fmt:message key="Passport"/>" name="Passport">
                 </div>
                 <table>
                     <tr>
@@ -61,23 +60,26 @@
                 <c:if test="${requestScope.error!=null}">
                     <c:out value="${requestScope.error.toString()}"/>
                 </c:if>
-
-
             </form>
             <c:if test="${requestScope.fail!=null}">
                 <c:out value="${requestScope.fail.toString()}"/>
             </c:if>
-
+            <form action="${pageContext.request.requestURI}" method="post">
+                <input type="hidden" name="lang" value="ru">
+                <input type="submit" value="ru">
+            </form>
+            <form action="${pageContext.request.requestURI}" method="post">
+                <input type="hidden" name="lang" value="en">
+                <input type="submit" value="en">
+            </form>
         </div>
     </div>
 </div>
-
-
 <!-- Вариант 1: Bootstrap в связке с Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
 
-
+</script>
 </body>
 </html>

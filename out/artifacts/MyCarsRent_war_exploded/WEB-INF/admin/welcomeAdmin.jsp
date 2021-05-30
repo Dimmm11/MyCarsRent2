@@ -39,11 +39,28 @@
         </div>
 
         <div class="col-md-4">
-            <c:if test="${sessionScope.role>0}">
-                <form action="${pageContext.request.contextPath}/logout" method="post">
-                    <button type="submit" class="btn btn-secondary"><fmt:message key="Logout"/></button>
-                </form>
-            </c:if>
+
+            <table>
+                <th>
+                    <c:if test="${sessionScope.role>0}">
+                        <form action="${pageContext.request.contextPath}/logout" method="post">
+                            <button type="submit" class="btn btn-secondary"><fmt:message key="Logout"/></button>
+                        </form>
+                    </c:if>
+                </th>
+                <th>
+                    <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
+                        <input type="hidden" name="lang" value="ru">
+                        <input type="submit" value="ru">
+                    </form>
+                </th>
+                <th>
+                    <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
+                        <input type="hidden" name="lang" value="en">
+                        <input type="submit" value="en">
+                    </form>
+                </th>
+            </table>
         </div>
     </div>
 </div>

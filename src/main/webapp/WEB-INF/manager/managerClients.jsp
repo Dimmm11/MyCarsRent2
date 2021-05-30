@@ -51,11 +51,28 @@
         </div>
 
         <div class="col-md-4">
-            <c:if test="${sessionScope.role>0}">
-                <form action="${pageContext.request.contextPath}/logout" method="post">
-                    <button type="submit" class="btn btn-secondary"><fmt:message key="Logout"/></button>
-                </form>
-            </c:if>
+
+            <table>
+                <th>
+                    <c:if test="${sessionScope.role>0}">
+                        <form action="${pageContext.request.contextPath}/logout" method="post">
+                            <button type="submit" class="btn btn-secondary"><fmt:message key="Logout"/></button>
+                        </form>
+                    </c:if>
+                </th>
+                <th>
+                    <form action="${pageContext.request.contextPath}/managerClients" method="post">
+                        <input type="hidden" name="lang" value="ru">
+                        <input type="submit" value="ru">
+                    </form>
+                </th>
+                <th>
+                    <form action="${pageContext.request.contextPath}/managerClients" method="post">
+                        <input type="hidden" name="lang" value="en">
+                        <input type="submit" value="en">
+                    </form>
+                </th>
+            </table>
         </div>
     </div>
 </div>
@@ -122,7 +139,7 @@
                                 </td>
                                 <td>
                                     <c:if test="${sessionScope.role==3}">
-                                        <form action="${pageContext.request.contextPath}/managers" method="post">
+                                        <form action="${pageContext.request.contextPath}/setRights" method="post">
                                             <input type="hidden" value="${client.login}" name="login">
                                             <input type="hidden" value="makeManager" name="adminAction">
                                             <button type="submit" class="btn btn-secondary"><fmt:message

@@ -72,11 +72,11 @@
                     <fmt:message key="Registration"/>
                 </button>
             </form>
-            <form action="login.jsp" method="post">
+            <form action="${pageContext.request.requestURI}" method="post">
                 <input type="hidden" name="lang" value="ru">
                 <input type="submit" value="ru">
             </form>
-            <form action="login.jsp" method="post">
+            <form action="${pageContext.request.requestURI}" method="post">
                 <input type="hidden" name="lang" value="en">
                 <input type="submit" value="en">
             </form>

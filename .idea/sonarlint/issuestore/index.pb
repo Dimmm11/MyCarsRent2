@@ -72,8 +72,6 @@ b
 X
 (src/main/webapp/WEB-INF/client/order.jsp,7\b\7bfa39c63ad7498c4e07c3d636e449d4ced97ea8
 f
-6src/main/java/controller/command/client/CarSelect.java,2\1\21757a0226bcaf89fd88f1337147150a01c4616c
-f
 6src/main/java/controller/command/client/MakeOrder.java,e\8\e8cbf97c19a84aedf6fe3188004d998916dbfb7e
 U
 %src/main/java/model/DAO/OrderDAO.java,2\2\2225addf20e39b3bd1e510d86d8c9976eab4f5c8
@@ -173,3 +171,9 @@ l
 <src/main/java/controller/command/service/PageCalculator.java,5\8\5894c1682058874ae5b3b4d5f86c3e8313d29445
 e
 5src/main/java/controller/command/language/LangRu.java,8\d\8da0cb713ed55d9db2eba924409101d8120ec39b
+e
+5src/main/java/model/service/pagination/Paginator.java,2\a\2a9c1cdf4b4401ea98c0c095ab0040b7de918646
+h
+8src/main/java/controller/command/client/CarsByClass.java,5\6\5606a8861491473baed4bd991a3155791b7aac27
+i
+9src/main/java/controller/command/client/CarsByMarque.java,4\6\4675bd7e7b92567e9f978193ad341cb1a9cb5df6

@@ -1,11 +1,9 @@
 
-X	java:S1251"<This block of commented-out lines of code should be removed.(ƒ¿Ğ‚8±”åî›/
+]	java:S125"<This block of commented-out lines of code should be removed.(ÛöÉışÿÿÿÿ8‘¬Èí›/
+W	java:S1251"<This block of commented-out lines of code should be removed.(‘ì×g8®¨Ëì›/
+Z	java:S106-"9Replace this use of System.out or System.err by a logger.(£ØÄüúÿÿÿÿ8¥™»î›/
 d
-java:S1192"GDefine a constant instead of duplicating this literal "column" 6 times.(ô«û8¾À°î›/
-Z	java:S1067"9Replace this use of System.out or System.err by a logger.(·İß°şÿÿÿÿ8äÏ»î›/
-Z	java:S1065"9Replace this use of System.out or System.err by a logger.(£ØÄüúÿÿÿÿ8¥™»î›/
-W	java:S1259"<This block of commented-out lines of code should be removed.(‘ì×g8®¨Ëì›/
-]	java:S125 "<This block of commented-out lines of code should be removed.(•¿ıÿÿÿÿ8“×Òî›/
+java:S1192"GDefine a constant instead of duplicating this literal "column" 6 times.(ô«û8¾À°î›/
 g
-java:S1192!"JDefine a constant instead of duplicating this literal "sortOrder" 6 times.(©ãùÎ8÷ä±î›/
-]	java:S125"<This block of commented-out lines of code should be removed.(ÛöÉışÿÿÿÿ8‘¬Èí›/
+java:S1192"JDefine a constant instead of duplicating this literal "sortOrder" 6 times.(©ãùÎ8÷ä±î›/
+Z	java:S106/"9Replace this use of System.out or System.err by a logger.(·İß°şÿÿÿÿ8äÏ»î›/
