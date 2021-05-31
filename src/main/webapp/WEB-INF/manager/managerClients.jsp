@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="my"/>
+<%@taglib prefix="ex" uri="/WEB-INF/tlds/myTags" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -191,6 +192,11 @@
     <div class="col-md-6 col-sm-12">
 
         <div class="login-form">
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <div id="bottom">
+            <ex:TimeTag/>
         </div>
     </div>
 </div>

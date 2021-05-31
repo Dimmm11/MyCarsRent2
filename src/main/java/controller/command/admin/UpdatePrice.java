@@ -1,7 +1,9 @@
 package controller.command.admin;
 
 import controller.command.Command;
-import model.DAO.CarDAO;
+import controller.command.client.Const;
+import model.DAO.impl.JDBCCarDao;
+import model.DAO.impl.JDBCDaoFactory;
 import model.entity.Car;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +15,12 @@ import java.math.BigDecimal;
 public class UpdatePrice implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        Car car = CarDAO.getCarById(Integer.parseInt(request.getParameter("id")));
-        CarDAO.updatePrice(BigDecimal.valueOf(Long.parseLong(request.getParameter("price"))),car);
+        try (JDBCCarDao carDao = (JDBCCarDao) JDBCDaoFactory.getInstance().createCarDao()) {
+            Car car = carDao.getCarById(Integer.parseInt(request.getParameter(Const.ID)));
+            carDao.updatePrice(BigDecimal.valueOf(Long.parseLong(request.getParameter(Const.PRICE))), car);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "managerCars";
     }
 }

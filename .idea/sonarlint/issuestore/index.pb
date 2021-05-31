@@ -155,3 +155,9 @@ P
  src/main/java/model/DAO/Sql.java,9\1\9142ab1d04c3cc5a7c42b94ca6236bed05378965
 b
 2src/main/java/controller/command/client/Const.java,d\5\d50ce57bb7b4bcccd8258220e94c44874be5df97
+W
+'src/main/java/controller/tag/MyTag.java,7\1\713f36e57edbd15ef0d95e6f00ba9a2f48a940a7
+V
+&src/main/webapp/WEB-INF/tlds/myTag.tag,c\1\c159004ae44503244b3b60853c164af113f8a327
+W
+'src/main/webapp/WEB-INF/tlds/myTags.tld,0\1\01d4c108b47aeb3e642f332d2d313adb28ae33a2

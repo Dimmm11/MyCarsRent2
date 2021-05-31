@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="my"/>
-
+<%@taglib prefix="ex" uri="/WEB-INF/tlds/myTags" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
           rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
           crossorigin="anonymous">
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <style>
         <%@include file="/CSS/loginPage.css" %>
     </style>
@@ -24,14 +24,11 @@
 
 </head>
 <body>
-
-
 <div class="sidenav">
     <div class="login-main-text">
         <h2><fmt:message key="Welcome"/></h2>
     </div>
 </div>
-
 <div class="main">
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -49,6 +46,34 @@
             </div>
         </nav>
     </header>
+<%--    ===========================--%>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <table>
+                    <th>
+                    </th>
+                    <th>
+                        <form action="${pageContext.request.requestURI}" method="post">
+                            <input type="hidden" name="lang" value="ru">
+                            <input type="submit" value="ru">
+                        </form>
+                    </th>
+                    <th>
+                        <form action="${pageContext.request.requestURI}" method="post">
+                            <input type="hidden" name="lang" value="en">
+                            <input type="submit" value="en">
+                        </form>
+                    </th>
+                </table>
+            </div>
+        </div>
+    </div>
+<%--    ===========================--%>
     <div class="col-md-6 col-sm-12">
         <div class="login-form">
             <c:out value="${requestScope.error.toString()}"/>
@@ -63,7 +88,6 @@
                     <fmt:message key="Login"/>
                 </button>
             </form>
-
             <form>
                 <button type="submit"
                         class="btn btn-secondary"
@@ -72,14 +96,11 @@
                     <fmt:message key="Registration"/>
                 </button>
             </form>
-            <form action="${pageContext.request.requestURI}" method="post">
-                <input type="hidden" name="lang" value="ru">
-                <input type="submit" value="ru">
-            </form>
-            <form action="${pageContext.request.requestURI}" method="post">
-                <input type="hidden" name="lang" value="en">
-                <input type="submit" value="en">
-            </form>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <div id="bottom">
+            <ex:TimeTag/>
         </div>
     </div>
 </div>

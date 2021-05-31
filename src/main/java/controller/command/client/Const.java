@@ -17,5 +17,18 @@ public interface Const {
     String TERM = "term";
     String CLIENT = "client";
     String ORDERS = "orders";
-
+    String MODEL = "model";
+    String PRICE = "price";
+    String CAR_ID = "carId";
+    String STAFF = "staff";
+    String LOGIN = "login";
+    String ADMIN_ACTION = "adminAction";
+    String REMOVE_MANAGER = "removeManager";
+    String ORDER_ID = "orderId";
+    String CLIENT_ID = "clientId";
+    String ALLCARS = "allCars";
+    String ADMIN_CLIENTS = "adminClients";
+    String PENALTY = "penalty";
+    String ORDER_STATUS = "orderStatus";
+    String REASON = "reason";
 }

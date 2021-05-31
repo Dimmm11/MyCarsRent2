@@ -1,8 +1,8 @@
 package controller.command;
 
-import model.DAO.ClientDAO;
+import model.DAO.myOldDAO.ClientDAO;
 import model.entity.Client;
-import model.service.CheckClient;
+import model.util.CheckClient;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

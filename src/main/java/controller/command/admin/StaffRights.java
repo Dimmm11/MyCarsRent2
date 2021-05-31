@@ -1,8 +1,9 @@
 package controller.command.admin;
 
 import controller.command.Command;
-import model.DAO.ClientDAO;
-import model.entity.Client;
+import controller.command.client.Const;
+import model.DAO.impl.JDBCClientDao;
+import model.DAO.impl.JDBCDaoFactory;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,12 +14,20 @@ import javax.servlet.http.HttpServletRequest;
 public class StaffRights implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        String adminAction = request.getParameter("adminAction");
-        if(adminAction.equals("removeManager")){
-            ClientDAO.removeManager(request.getParameter("login"));
+        String adminAction = request.getParameter(Const.ADMIN_ACTION);
+        if (adminAction.equals(Const.REMOVE_MANAGER)) {
+            try (JDBCClientDao clientDao = (JDBCClientDao) JDBCDaoFactory.getInstance().createClientDao();) {
+                clientDao.removeManager(request.getParameter(Const.LOGIN));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return "adminStaff";
-        }else {
-            ClientDAO.makeManager(request.getParameter("login"));
+        } else {
+            try (JDBCClientDao clientDao = (JDBCClientDao) JDBCDaoFactory.getInstance().createClientDao();) {
+                clientDao.makeManager(request.getParameter(Const.LOGIN));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return "managerClients";
         }
     }

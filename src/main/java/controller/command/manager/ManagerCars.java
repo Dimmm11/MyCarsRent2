@@ -1,59 +1,56 @@
 package controller.command.manager;
 
 import controller.command.Command;
-import model.service.pagination.PageCalculator;
-import model.DAO.CarDAO;
+import controller.command.client.Const;
+import model.DAO.impl.JDBCCarDao;
+import model.DAO.impl.JDBCDaoFactory;
+import model.util.pagination.PageCalculator;
 import model.entity.Car;
-import model.service.pagination.Paginator;
+import model.util.pagination.Paginator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerCars implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        int page = 1;
-        if (request.getParameter("page") != null) {
-            page = Integer.parseInt(request.getParameter("page"));
-        }
-
-//        List<Car> allCars = CarDAO.getAllCars();
-//        List<Car> cars = CarDAO.getAllCars((page - 1) * 3, 3);
-        //================================== НАЧИНАЮ ТВОРИТЬ ДИЧЬ
         HttpSession session = request.getSession();
-
-        String column = (String) session.getAttribute("column");
+        int page = 1;
+        if (request.getParameter(Const.PAGE) != null) {
+            page = Integer.parseInt(request.getParameter(Const.PAGE));
+        }
+        //================================== НАЧИНАЮ ТВОРИТЬ
+        String column = (String) session.getAttribute(Const.COLUMN);
         if(column==null){
-            column="id";
+            column=Const.ID;
         }
-        String sortOrder = (String) session.getAttribute("sortOrder");
+        String sortOrder = (String) session.getAttribute(Const.SORT_ORDER);
         if(sortOrder==null){
-            sortOrder="ASC";
+            sortOrder=Const.ASC;
         }
-        if(request.getParameter("column")!=null){
-            session.setAttribute("column", request.getParameter("column"));
+        if(request.getParameter(Const.COLUMN)!=null){
+            session.setAttribute(Const.COLUMN, request.getParameter(Const.COLUMN));
         }else {
-            session.setAttribute("column", column);
+            session.setAttribute(Const.COLUMN, column);
         }
-        if(request.getParameter("sortOrder")!=null){
-            session.setAttribute("sortOrder", request.getParameter("sortOrder"));
+        if(request.getParameter(Const.SORT_ORDER)!=null){
+            session.setAttribute(Const.SORT_ORDER, request.getParameter(Const.SORT_ORDER));
         }else {
-            session.setAttribute("sortOrder", sortOrder);
+            session.setAttribute(Const.SORT_ORDER, sortOrder);
         }
-        List<Car> allCars = CarDAO.getAllCars((String)session.getAttribute("column"),(String)session.getAttribute("sortOrder"));
+        List<Car> allCars=new ArrayList<>();
+        try (JDBCCarDao carDao = (JDBCCarDao) JDBCDaoFactory.getInstance().createCarDao()) {
+            allCars = carDao.getAllCars((String) session.getAttribute(Const.COLUMN), (String) session.getAttribute(Const.SORT_ORDER));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         List<Car> cars =  new Paginator<Car>().getEntitiesForPage(allCars,(page - 1) * 3, (page - 1) * 3+3);
-        // ==========================
-//        JDBCCarDao carDao = (JDBCCarDao) JDBCDaoFactory.getInstance().createCarDao();
-//        List<Car> allCars = carDao.getAllCars();
-//        List<Car> cars = carDao.getAllCars((page - 1) * 3, 3);
-        // =========================
-
         int numPages = new PageCalculator().getNumPages(allCars.size());
-
-        request.setAttribute("page", page);
-        request.setAttribute("numPages", numPages);
-        request.setAttribute("allCars", cars);
+        request.setAttribute(Const.PAGE, page);
+        request.setAttribute(Const.NUM_PAGES, numPages);
+        request.setAttribute(Const.ALLCARS, cars);
         return "/WEB-INF/manager/managerCars.jsp";
 
     }

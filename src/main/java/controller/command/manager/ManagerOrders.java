@@ -1,9 +1,11 @@
 package controller.command.manager;
 
 import controller.command.Command;
-import model.service.pagination.PageCalculator;
-import model.DAO.CarDAO;
-import model.DAO.OrderDAO;
+import controller.command.client.Const;
+import model.DAO.impl.JDBCCarDao;
+import model.DAO.impl.JDBCDaoFactory;
+import model.DAO.impl.JDBCOrderDao;
+import model.util.pagination.PageCalculator;
 import model.entity.Car;
 import model.entity.Order;
 
@@ -13,31 +15,23 @@ import java.util.List;
 public class ManagerOrders implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-
-
-//        List<Order> orders = OrderDAO.getAllOrders();
-//        request.setAttribute("orders", orders);
-//
-//        List<Car> cars = CarDAO.getOrderedCars();
-//        request.setAttribute("cars", cars);
         int page = 1;
-        if (request.getParameter("page") != null) {
-            page = Integer.parseInt(request.getParameter("page"));
+        if (request.getParameter(Const.PAGE) != null) {
+            page = Integer.parseInt(request.getParameter(Const.PAGE));
         }
-        List<Order> allOrders = OrderDAO.getAllOrders();
-        List<Order> orders = OrderDAO.getAllOrders((page - 1) * 3, 3);
-
-        List<Car> allCars = CarDAO.getOrderedCars();
-        List<Car> cars = CarDAO.getOrderedCars((page - 1) * 3, 3);
-
-        int numPages = new PageCalculator().getNumPages(allOrders.size());
-
-        request.setAttribute("page", page);
-        request.setAttribute("numPages", numPages);
-        request.setAttribute("cars", cars);
-        request.setAttribute("orders", orders);
-
-
+        try (JDBCCarDao carDao = (JDBCCarDao) JDBCDaoFactory.getInstance().createCarDao();
+             JDBCOrderDao orderDao = (JDBCOrderDao) JDBCDaoFactory.getInstance().createOrderDao()) {
+            List<Order> allOrders = orderDao.getAllOrders();
+            List<Order> orders = orderDao.getAllOrders((page - 1) * 3, 3);
+            List<Car> cars = carDao.getOrderedCars((page - 1) * 3, 3);
+            int numPages = new PageCalculator().getNumPages(allOrders.size());
+            request.setAttribute(Const.PAGE, page);
+            request.setAttribute(Const.NUM_PAGES, numPages);
+            request.setAttribute(Const.CARS, cars);
+            request.setAttribute(Const.ORDERS, orders);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "/WEB-INF/manager/managerOrders.jsp";
     }
 

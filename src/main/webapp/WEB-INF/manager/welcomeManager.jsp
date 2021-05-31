@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="my"/>
+<%@taglib prefix="ex" uri="/WEB-INF/tlds/myTags" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -31,15 +32,11 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-
         <div class="col-md-4">
         </div>
-
         <div class="col-md-4">
         </div>
-
         <div class="col-md-4">
-
             <table>
                 <th>
                     <c:if test="${sessionScope.role>0}">
@@ -92,6 +89,11 @@
                 </tr>
             </table>
             <hr>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <div id="bottom">
+            <ex:TimeTag/>
         </div>
     </div>
 </div>

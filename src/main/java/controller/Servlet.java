@@ -78,10 +78,8 @@ public class Servlet extends HttpServlet {
         Command command = commands.get(path);
         String page = command.execute(request);
         if (page.contains("redirect:")) {
-            System.out.println("foooo");
             response.sendRedirect(page.replace("redirect:", "/cars"));
         } else {
-            System.out.println("else in servlet");
             if (session.getAttribute("client") == null) {
                 Client client = new Client();
                 session.setAttribute("client", client);

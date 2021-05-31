@@ -4,6 +4,7 @@
 <%@ page isELIgnored="false" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="my"/>
+<%@taglib prefix="ex" uri="/WEB-INF/tlds/myTags" %>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -40,10 +41,8 @@
     <div class="row">
         <div class="col-md-4">
         </div>
-
         <div class="col-md-4">
         </div>
-
         <div class="col-md-4">
 
             <table>
@@ -158,6 +157,11 @@
         </table>
     </div>
     <div class="col-md-6 col-sm-12">
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <div id="bottom">
+            <ex:TimeTag/>
+        </div>
     </div>
     <!-- Вариант 1: Bootstrap в связке с Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"

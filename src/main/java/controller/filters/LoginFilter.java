@@ -27,15 +27,12 @@ public class LoginFilter implements Filter {
          */
         if (client != null) {
             if (client.getRole_id() == 3) {
-                System.out.println("role 3 LoginFilter");
                 req.getRequestDispatcher("/WEB-INF/admin/welcomeAdmin.jsp").forward(req, resp);
             }
             if (client.getRole_id() == 2) {
-                System.out.println("role 2 LoginFilter");
                 req.getRequestDispatcher("/WEB-INF/manager/welcomeManager.jsp").forward(req, resp);
             }
             if (client.getRole_id() == 1) {
-                System.out.println("role 1 LoginFilter");
                 req.getRequestDispatcher("/WEB-INF/client/menu.jsp").forward(req, resp);
             }
         } else {

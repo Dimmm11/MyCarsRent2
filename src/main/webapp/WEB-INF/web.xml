@@ -21,11 +21,8 @@ Filter for access admin content
   </filter>
   <filter-mapping>
     <filter-name>AdminFilter</filter-name>
-<!--    <url-pattern>/adminclients</url-pattern>-->
-<!--    <url-pattern>/admincars</url-pattern>-->
     <url-pattern>/welcomeAdmin</url-pattern>
     <url-pattern>/adminStaff</url-pattern>
-<!--    <url-pattern>/adminorders</url-pattern>-->
   </filter-mapping>
   <!-- ==============================================
   Filter for access manager content
@@ -63,18 +60,6 @@ Filter for access admin content
     <url-pattern>/logout</url-pattern>
   </filter-mapping>
 
-
-
-
-<!--  <filter>-->
-<!--    <filter-name>AccessFilter</filter-name>-->
-<!--    <filter-class>controller.filters.AccessFilter</filter-class>-->
-<!--  </filter>-->
-<!--  <filter-mapping>-->
-<!--    <filter-name>AccessFilter</filter-name>-->
-<!--    <url-pattern>/*</url-pattern>-->
-<!--  </filter-mapping>-->
-  
   <servlet>
     <servlet-name>Servlet</servlet-name>
     <servlet-class>controller.Servlet</servlet-class>

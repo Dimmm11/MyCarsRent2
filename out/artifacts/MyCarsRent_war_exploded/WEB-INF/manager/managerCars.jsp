@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="my"/>
+<%@taglib prefix="ex" uri="/WEB-INF/tlds/myTags" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -20,7 +21,6 @@
     <style>
         <%@include file="/CSS/loginPage.css" %>
     </style>
-    <%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/loginPage.css"/>--%>
     <title><fmt:message key="Cars"/></title>
 
 </head>
@@ -48,11 +48,9 @@
     <div class="row">
         <div class="col-md-4">
         </div>
-
         <div class="col-md-4">
         </div>
         <div class="col-md-4">
-
             <table>
                 <th>
                     <c:if test="${sessionScope.role>0}">
@@ -85,7 +83,6 @@
         <div class="col-md-7">
             <c:choose>
                 <c:when test="${requestScope.allCars.size()>0}">
-<%--                    ====================================--%>
                     <form action="${pageContext.request.contextPath}/managerCars" method="post">
                         <select name="column">
                             <option value="price">price</option>
@@ -95,9 +92,8 @@
                         <input type="radio" name="sortOrder" value="DESC">DESC</input>
                         <input type="submit" value="sort!">
                     </form>
-
-<%--                    =======================================--%>
-                    <h2><fmt:message key="Cars"/>:<u style="text-decoration: underline">${requestScope.car_class}</u></h2>
+                    <h2><fmt:message key="Cars"/>:<u style="text-decoration: underline">${requestScope.car_class}</u>
+                    </h2>
                     <table class="fl-table">
                         <tr>
                             <th>Id</th>
@@ -118,9 +114,10 @@
                                 <td>
                                     <form method="post" action="updatePrice">
                                         <input type="hidden" name="id" value="${car.id}">
-                                        <input type="number" placeholder="<fmt:message key="Price"/>" name="price" style="width: 70px" min="0">
-                                        <button type="submit" class="btn btn-secondary"><fmt:message key="Update"/></button>
-<%--                                        <input type="submit" value="update">--%>
+                                        <input type="number" placeholder="<fmt:message key="Price"/>" name="price"
+                                               style="width: 70px" min="0">
+                                        <button type="submit" class="btn btn-secondary"><fmt:message
+                                                key="Update"/></button>
                                     </form>
                                 </td>
                                 <td>
@@ -128,8 +125,8 @@
                                         <c:when test="${sessionScope.role==3}">
                                             <form action="${pageContext.request.contextPath}/adminDeleteCar">
                                                 <input type="hidden" name="carId" value="${car.id}">
-                                                <button type="submit" class="btn btn-secondary"><fmt:message key="Delete"/></button>
-<%--                                                <input type="submit" value="delete car">--%>
+                                                <button type="submit" class="btn btn-secondary"><fmt:message
+                                                        key="Delete"/></button>
                                             </form>
                                         </c:when>
                                         <c:when test="${sessionScope.role==2}">
@@ -160,7 +157,6 @@
                     <form action="${pageContext.request.contextPath}/managerCars" method="post">
                         <input type="hidden" name="page" value="${i}">
                         <button type="submit" class="btn btn-secondary">${i}</button>
-<%--                        <input type="submit" value="${i}">--%>
                     </form>
                     <c:set var="i" value="${i+1}" scope="page"/>
                 </th>
@@ -168,27 +164,27 @@
         </table>
     </div>
     <c:if test="${sessionScope.role==3}">
-            <form method="post" action="${pageContext.request.contextPath}/caradd">
-                <input type="text" placeholder="<fmt:message key="Marque"/>" name="marque">
-                <input type="text" placeholder="<fmt:message key="Car_class"/>" name="car_class">
-                <input type="text" placeholder="<fmt:message key="Model"/>" name="model">
-                <input type="number" placeholder="<fmt:message key="Price"/>" name="price" min="0">
-                <button type="submit" class="btn btn-secondary"><fmt:message key="Add"/></button>
-<%--                <input type="submit" value="add car">--%>
-            </form>
+        <form method="post" action="${pageContext.request.contextPath}/caradd">
+            <input type="text" placeholder="<fmt:message key="Marque"/>" name="marque">
+            <input type="text" placeholder="<fmt:message key="Car_class"/>" name="car_class">
+            <input type="text" placeholder="<fmt:message key="Model"/>" name="model">
+            <input type="number" placeholder="<fmt:message key="Price"/>" name="price" min="0">
+            <button type="submit" class="btn btn-secondary"><fmt:message key="Add"/></button>
+        </form>
     </c:if>
     <div class="col-md-6 col-sm-12">
         <div class="login-form">
         </div>
     </div>
+    <div class="col-md-6 col-sm-12">
+        <div id="bottom">
+            <ex:TimeTag/>
+        </div>
+    </div>
 </div>
-
-
 <!-- Вариант 1: Bootstrap в связке с Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-
-
 </body>
 </html>

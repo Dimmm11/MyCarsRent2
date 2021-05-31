@@ -1,8 +1,9 @@
 package controller.command.admin;
 
 import controller.command.Command;
-import model.DAO.ClientDAO;
-import model.entity.Client;
+import controller.command.client.Const;
+import model.DAO.impl.JDBCClientDao;
+import model.DAO.impl.JDBCDaoFactory;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 public class DeleteClient implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        ClientDAO.deleteClient(request.getParameter("login"));
+        try (JDBCClientDao clientDao = (JDBCClientDao) JDBCDaoFactory.getInstance().createClientDao()) {
+            clientDao.deleteClient(request.getParameter(Const.LOGIN));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return "managerClients";
     }
 }

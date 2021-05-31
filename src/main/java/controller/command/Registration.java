@@ -1,7 +1,7 @@
 package controller.command;
 
-import controller.command.Command;
-import model.DAO.ClientDAO;
+import model.DAO.impl.JDBCClientDao;
+import model.DAO.impl.JDBCDaoFactory;
 import model.entity.Client;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,14 +22,14 @@ public class Registration implements Command {
         /**
          * If registration successful - send to Page
          */
-        try {
-            if (ClientDAO.register(client)) {
-                client = ClientDAO.getClient(request.getParameter("Login"));
+        try (JDBCClientDao clientDao = (JDBCClientDao) JDBCDaoFactory.getInstance().createClientDao()){
+            if (clientDao.register(client)) {
+                client = clientDao.getClient(request.getParameter("Login"));
                 session.setAttribute("client", client);
                 session.setAttribute("role", client.getRole_id());
                 return "/WEB-INF/client/menu.jsp";
             }
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             request.setAttribute("error", e.getMessage());
             return "register.jsp";
         }

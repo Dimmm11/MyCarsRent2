@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="my"/>
+<%@taglib prefix="ex" uri="/WEB-INF/tlds/myTags" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -146,37 +147,8 @@
         </table>
     </div>
     <div class="col-md-6 col-sm-12">
-
-        <%--        <c:forEach var="worker" items="${requestScope.staff}">--%>
-        <%--            <tr>--%>
-        <%--                <td>--%>
-        <%--                    <ul>--%>
-        <%--                        <li>id: <c:out value="${worker.id}"/></li>--%>
-        <%--                        <li>login: <c:out value="${worker.login}"/></li>--%>
-        <%--                        <li>password: <c:out value="${worker.password}"/></li>--%>
-        <%--                        <li>passport: <c:out value="${worker.passport}"/></li>--%>
-
-        <%--                        <c:choose>--%>
-        <%--                            <c:when test="${worker.role_id==3}">--%>
-        <%--                                <li>role: <p style="font-size: x-large"><c:out value="ADMIN"/></p></li>--%>
-        <%--                            </c:when>--%>
-        <%--                            <c:otherwise>--%>
-        <%--                                <li>role: <c:out value="${worker.role_id}"/></li>--%>
-        <%--                            </c:otherwise>--%>
-        <%--                        </c:choose>--%>
-        <%--                        <li>status: <c:out value="${worker.status}"/></li>--%>
-        <%--                        <form action="${pageContext.request.contextPath}/managers" method="post">--%>
-        <%--                            <input type="hidden" value="${worker.login}" name="login">--%>
-        <%--                            <input type="hidden" value="removeManager" name="adminAction">--%>
-        <%--                            <input type="submit" value="remove rights">--%>
-        <%--                        </form>--%>
-        <%--                    </ul>--%>
-        <%--                </td>--%>
-        <%--            </tr>--%>
-        <%--            <hr>--%>
-        <%--        </c:forEach>--%>
-
-        <div class="login-form">
+        <div id="bottom">
+            <ex:TimeTag/>
         </div>
     </div>
 </div>
