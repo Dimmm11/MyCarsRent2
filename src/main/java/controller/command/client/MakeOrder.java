@@ -13,19 +13,15 @@ import javax.servlet.http.HttpSession;
 public class MakeOrder implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        Car car = CarDAO.getCarById(Integer.parseInt(request.getParameter("id")));
-        String driver = request.getParameter("driver");
-        int term = Integer.parseInt(request.getParameter("term"));
-
         HttpSession session = request.getSession();
-        Client client = (Client)session.getAttribute("client");
-
-        request.setAttribute("car", car);
-        request.setAttribute("driver", driver);
-        request.setAttribute("term", term);
-
+        Car car = CarDAO.getCarById(Integer.parseInt(request.getParameter(Const.ID)));
+        String driver = request.getParameter(Const.DRIVER);
+        int term = Integer.parseInt(request.getParameter(Const.TERM));
+        Client client = (Client)session.getAttribute(Const.CLIENT);
+        request.setAttribute(Const.CAR, car);
+        request.setAttribute(Const.DRIVER, driver);
+        request.setAttribute(Const.TERM, term);
         OrderDAO.carOrder(car, client, driver, term);
-
         return "/profile";
     }
 }

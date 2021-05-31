@@ -26,8 +26,8 @@ public class Servlet extends HttpServlet {
 //        commands.put("logout",
 //                new LogOutCommand());
         commands.put("login", new LoginCommand());
+        commands.put("register", new Registration());
         commands.put("logout", new LogOutCommand());
-//        commands.put("carSelect", new CarSelect());
         commands.put("carsByMarque", new CarsByMarque());
         commands.put("carsByClass", new CarsByClass());
         commands.put("menu", new Menu());
@@ -35,16 +35,10 @@ public class Servlet extends HttpServlet {
         commands.put("cancelOrder", new CancelOrder());
         commands.put("profile", new Profile());
 
-
         commands.put("welcomeAdmin", new WelcomeAdmin());
-//        commands.put("admincars", new AdminCars());
-//        commands.put("adminclients", new AdminClients());
         commands.put("adminStaff", new AdminStaff());
         commands.put("caradd", new AdminCarAdd());
         commands.put("adminDeleteCar", new AdminDeleteCar());
-//        commands.put("adminaddcar", new AddCarButton());
-//        commands.put("adminOrders", new AdminOrders());
-
 
         commands.put("welcomeManager", new WelcomeManager());
         commands.put("managerCars", new ManagerCars());
@@ -60,12 +54,6 @@ public class Servlet extends HttpServlet {
         commands.put("returnCar", new CarReturn());
         commands.put("ban", new Ban());
         commands.put("unBan", new UnBan());
-
-        commands.put("register", new Registration());
-
-//        commands.put("ru", new LangRu());
-
-
 
     }
 
@@ -90,8 +78,10 @@ public class Servlet extends HttpServlet {
         Command command = commands.get(path);
         String page = command.execute(request);
         if (page.contains("redirect:")) {
+            System.out.println("foooo");
             response.sendRedirect(page.replace("redirect:", "/cars"));
         } else {
+            System.out.println("else in servlet");
             if (session.getAttribute("client") == null) {
                 Client client = new Client();
                 session.setAttribute("client", client);

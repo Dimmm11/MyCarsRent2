@@ -3,7 +3,7 @@ package model.DAO;
 /**
  * sql-quarries
  */
-public interface SqlQuarry {
+public interface Sql {
     String CLIENTS = "SELECT * FROM clients WHERE role_id=1;";
     String PAGE_CLIENTS = "SELECT * FROM clients WHERE role_id=1 LIMIT ? , ? ;";
     String CLIENT = "SELECT * FROM clients WHERE name = 'login' ;";

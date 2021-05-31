@@ -1,6 +1,6 @@
 package model.service;
 
-import model.DAO.SqlQuarry;
+import model.DAO.Sql;
 import model.connection.ConnectionPoolHolder;
 
 import java.sql.Connection;
@@ -9,9 +9,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class CheckClient {
+    /**
+     * Accepts input
+     * @param login
+     * @param password
+     * to check by DB
+     * @return true, if client is present in DB
+     */
     public static boolean isValidClient(String login, String password) {
         boolean result = false;
-        String name = SqlQuarry.CLIENT.replace("login", login);
+        String name = Sql.CLIENT.replace("login", login);
         String log = "";
         String pass = "";
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();

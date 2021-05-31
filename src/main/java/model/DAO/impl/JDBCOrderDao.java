@@ -1,6 +1,6 @@
 package model.DAO.impl;
 
-import model.DAO.SqlQuarry;
+import model.DAO.Sql;
 import model.DAO.mapper.OrderMapper;
 import model.DAO.tryService.OrderDAO;
 import model.connection.ConnectionPoolHolder;
@@ -26,7 +26,7 @@ public class JDBCOrderDao implements OrderDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.CAR_ORDER);
+            PreparedStatement st = con.prepareStatement(Sql.CAR_ORDER);
             st.setInt(1, car.getId());
             if (model.DAO.OrderDAO.makeOrder(car, client, driver, term))
                 result = st.executeUpdate() > 0;
@@ -55,7 +55,7 @@ public class JDBCOrderDao implements OrderDAO {
         PreparedStatement st = null;
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
-            st = con.prepareStatement(SqlQuarry.MAKE_ORDER);
+            st = con.prepareStatement(Sql.MAKE_ORDER);
             st.setInt(1, client.getId());
             st.setInt(2, car.getId());
             st.setString(3, driver);
@@ -88,7 +88,7 @@ public class JDBCOrderDao implements OrderDAO {
         List<Order> orders = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            ResultSet rs = st.executeQuery(SqlQuarry.ORDERS_BY_CLIENT.replaceAll("clientid", String.valueOf(client.getId())));
+            ResultSet rs = st.executeQuery(Sql.ORDERS_BY_CLIENT.replaceAll("clientid", String.valueOf(client.getId())));
             while (rs.next()) {
                 Order order = new OrderMapper().mapFromResultSet(rs);
                 orders.add(order);
@@ -105,7 +105,7 @@ public class JDBCOrderDao implements OrderDAO {
         List<Order> orders = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            ResultSet rs = st.executeQuery(SqlQuarry.ORDERS_ALL);
+            ResultSet rs = st.executeQuery(Sql.ORDERS_ALL);
             while (rs.next()) {
                 Order order = new OrderMapper().mapFromResultSet(rs);
                 orders.add(order);
@@ -124,7 +124,7 @@ public class JDBCOrderDao implements OrderDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            st = con.prepareStatement(SqlQuarry.SET_REASON);
+            st = con.prepareStatement(Sql.SET_REASON);
             st.setString(1, reason);
             st.setInt(2, orderId);
             result = st.executeUpdate()>0;
@@ -151,18 +151,18 @@ public class JDBCOrderDao implements OrderDAO {
         try {
             con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
             Statement stt = con.createStatement();
-            ResultSet rs = stt.executeQuery(SqlQuarry.GET_RENT_COST.replaceAll("orderId", String.valueOf(orderId)));
+            ResultSet rs = stt.executeQuery(Sql.GET_RENT_COST.replaceAll("orderId", String.valueOf(orderId)));
              boolean temp =  rs.next();
             BigDecimal bd = rs.getBigDecimal(1);
 
             con.setAutoCommit(false);
 
-            st = con.prepareStatement(SqlQuarry.SET_PENALTY);
+            st = con.prepareStatement(Sql.SET_PENALTY);
             st.setBigDecimal(1, penalty);
             st.setInt(2, orderId);
 //            st.executeUpdate();
 
-            st1 = con.prepareStatement(SqlQuarry.SET_TOTAL_COST);
+            st1 = con.prepareStatement(Sql.SET_TOTAL_COST);
             st1.setBigDecimal(1, penalty.add(bd));
             st1.setInt(2, orderId);
 //            st1.executeUpdate();
@@ -192,7 +192,7 @@ public class JDBCOrderDao implements OrderDAO {
         try {
             con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            st = con.prepareStatement(SqlQuarry.SET_ORDER_STATUS);
+            st = con.prepareStatement(Sql.SET_ORDER_STATUS);
             st.setString(1, reason);
             st.setInt(2, orderId);
             result = st.executeUpdate()>0;
@@ -219,14 +219,14 @@ public class JDBCOrderDao implements OrderDAO {
         PreparedStatement st3 = null;
         try {
             con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
-            st = con.prepareStatement(SqlQuarry.RETURN_CAR);
+            st = con.prepareStatement(Sql.RETURN_CAR);
             st.setInt(1, orderId);
 
-            st2 = con.prepareStatement(SqlQuarry.FINISHED_ORDER);
+            st2 = con.prepareStatement(Sql.FINISHED_ORDER);
             st2.setInt(1, orderId);
             st2.setInt(2, clientId);
 
-            st3 = con.prepareStatement(SqlQuarry.DELETE_ORDER);
+            st3 = con.prepareStatement(Sql.DELETE_ORDER);
             st3.setInt(1, orderId);
 
             result = (st.executeUpdate() > 0 && st2.executeUpdate() > 0 && st3.executeUpdate() > 0);
@@ -252,10 +252,10 @@ public class JDBCOrderDao implements OrderDAO {
         PreparedStatement st3 = null;
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
-            st = con.prepareStatement(SqlQuarry.RETURN_CAR);
+            st = con.prepareStatement(Sql.RETURN_CAR);
             st.setInt(1, orderId);
 
-            st3 = con.prepareStatement(SqlQuarry.DELETE_ORDER);
+            st3 = con.prepareStatement(Sql.DELETE_ORDER);
             st3.setInt(1, orderId);
 
             result = (st.executeUpdate() > 0 && st3.executeUpdate() > 0);

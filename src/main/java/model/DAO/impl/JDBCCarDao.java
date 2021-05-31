@@ -1,6 +1,6 @@
 package model.DAO.impl;
 
-import model.DAO.SqlQuarry;
+import model.DAO.Sql;
 import model.DAO.mapper.CarMapper;
 import model.DAO.tryService.CarDAO;
 import model.connection.ConnectionPoolHolder;
@@ -24,7 +24,7 @@ public class JDBCCarDao implements CarDAO {
         List<Car> carsByClass = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            String sql = SqlQuarry.CARS_BY_CLASS.replace("carclass", carClass);
+            String sql = Sql.CARS_BY_CLASS.replace("carclass", carClass);
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
@@ -40,7 +40,7 @@ public class JDBCCarDao implements CarDAO {
         List<Car> carsByClass = new ArrayList<>();
         PreparedStatement stt = null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
-            stt = con.prepareStatement(SqlQuarry.DYNAMIC_CAR_CLASS);
+            stt = con.prepareStatement(Sql.DYNAMIC_CAR_CLASS);
             stt.setString(1, carClass);
             stt.setInt(2, index);
             stt.setInt(3, offset);
@@ -60,7 +60,7 @@ public class JDBCCarDao implements CarDAO {
         List<Car> carsByMarque = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            String sql = SqlQuarry.CARS_BY_MARQUE.replaceAll("carmarque", marque);
+            String sql = Sql.CARS_BY_MARQUE.replaceAll("carmarque", marque);
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
@@ -76,7 +76,7 @@ public class JDBCCarDao implements CarDAO {
         List<Car> carsByMarque = new ArrayList<>();
         PreparedStatement stt = null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
-            stt = con.prepareStatement(SqlQuarry.DYNAMIC_CAR_MARQUE);
+            stt = con.prepareStatement(Sql.DYNAMIC_CAR_MARQUE);
             stt.setString(1, marque);
             stt.setInt(2, index);
             stt.setInt(3, offset);
@@ -95,7 +95,7 @@ public class JDBCCarDao implements CarDAO {
         List<Car> carsByClient = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            String sql = SqlQuarry.CARS_BY_CLIENT.replaceAll("clientid", String.valueOf(client.getId()));
+            String sql = Sql.CARS_BY_CLIENT.replaceAll("clientid", String.valueOf(client.getId()));
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
@@ -112,7 +112,7 @@ public class JDBCCarDao implements CarDAO {
         ResultSet rs=null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            rs = st.executeQuery(SqlQuarry.ALLCARS);
+            rs = st.executeQuery(Sql.ALLCARS);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
                 allCars.add(car);
@@ -134,7 +134,7 @@ public class JDBCCarDao implements CarDAO {
         PreparedStatement st = null;
         ResultSet rs = null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
-            st = con.prepareStatement(SqlQuarry.PAGE_ALLCARS);
+            st = con.prepareStatement(Sql.PAGE_ALLCARS);
             st.setInt(1, index);
             st.setInt(2, offset);
             rs = st.executeQuery();
@@ -160,7 +160,7 @@ public class JDBCCarDao implements CarDAO {
         List<Car> allCars = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            ResultSet rs = st.executeQuery(SqlQuarry.ORDERED_CARS);
+            ResultSet rs = st.executeQuery(Sql.ORDERED_CARS);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
                 allCars.add(car);
@@ -177,7 +177,7 @@ public class JDBCCarDao implements CarDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.ADD_CAR);
+            PreparedStatement st = con.prepareStatement(Sql.ADD_CAR);
 
             st.setString(1, car.getMarque());
             st.setString(2, car.getClazz());
@@ -209,7 +209,7 @@ public class JDBCCarDao implements CarDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.PRICE_UPDATE);
+            PreparedStatement st = con.prepareStatement(Sql.PRICE_UPDATE);
 
             st.setBigDecimal(1, price);
             st.setInt(2, car.getId());
@@ -239,7 +239,7 @@ public class JDBCCarDao implements CarDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.GET_CAR_BY_ID);
+            PreparedStatement st = con.prepareStatement(Sql.GET_CAR_BY_ID);
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
             rs.next();
@@ -269,7 +269,7 @@ public class JDBCCarDao implements CarDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.DELETE_CAR);
+            PreparedStatement st = con.prepareStatement(Sql.DELETE_CAR);
             st.setInt(1, id);
 
             result = st.executeUpdate() > 0;

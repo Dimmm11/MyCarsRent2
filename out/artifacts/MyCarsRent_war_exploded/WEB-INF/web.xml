@@ -22,9 +22,9 @@ Filter for access admin content
   <filter-mapping>
     <filter-name>AdminFilter</filter-name>
 <!--    <url-pattern>/adminclients</url-pattern>-->
-    <url-pattern>/admincars</url-pattern>
+<!--    <url-pattern>/admincars</url-pattern>-->
     <url-pattern>/welcomeAdmin</url-pattern>
-    <url-pattern>/adminstaff</url-pattern>
+    <url-pattern>/adminStaff</url-pattern>
 <!--    <url-pattern>/adminorders</url-pattern>-->
   </filter-mapping>
   <!-- ==============================================

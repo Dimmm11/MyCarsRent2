@@ -7,7 +7,8 @@ import model.entity.Client;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * set Rights to user
+ * set Rights to user, depending
+ * on request parameter
  */
 public class StaffRights implements Command {
     @Override

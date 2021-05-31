@@ -1,8 +1,6 @@
 package model.DAO;
 
-import model.DAO.mapper.CarMapper;
 import model.connection.ConnectionPoolHolder;
-import model.entity.Car;
 import model.entity.Client;
 import model.DAO.mapper.ClientMapper;
 
@@ -15,7 +13,7 @@ public class ClientDAO {
         List<Client> list = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement();
-             ResultSet rs = st.executeQuery(SqlQuarry.CLIENTS)) {
+             ResultSet rs = st.executeQuery(Sql.CLIENTS)) {
             ClientMapper cm = new ClientMapper();
             while (rs.next()) {
                 Client client = cm.mapFromResultSet(rs);
@@ -33,7 +31,7 @@ public class ClientDAO {
         Connection con = null;
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
-            pst = con.prepareStatement(SqlQuarry.PAGE_CLIENTS);
+            pst = con.prepareStatement(Sql.PAGE_CLIENTS);
             pst.setInt(1, index);
             pst.setInt(2, offset);
             rs = pst.executeQuery();
@@ -62,7 +60,7 @@ public class ClientDAO {
         List<Client> clients = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            String ss = SqlQuarry.CLIENTS.replaceAll(";"," ORDER BY "+column+" "+sortingOrder+" ;");
+            String ss = Sql.CLIENTS.replaceAll(";"," ORDER BY "+column+" "+sortingOrder+" ;");
 //            System.out.println(ss);
             ResultSet rs = st.executeQuery(ss);
             ClientMapper cm = new ClientMapper();
@@ -78,7 +76,7 @@ public class ClientDAO {
 
 
     public static Client getClient(String login) {
-        String name = SqlQuarry.CLIENT.replaceAll("login", login);
+        String name = Sql.CLIENT.replaceAll("login", login);
         Client client = null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement();
@@ -95,7 +93,7 @@ public class ClientDAO {
         List<Client> staff = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement();
-             ResultSet rs = st.executeQuery(SqlQuarry.ADMIN_STAFF)) {
+             ResultSet rs = st.executeQuery(Sql.ADMIN_STAFF)) {
             ClientMapper cm = new ClientMapper();
             while (rs.next()) {
                 Client client = cm.mapFromResultSet(rs);
@@ -111,7 +109,7 @@ public class ClientDAO {
         PreparedStatement pst = null;
         ResultSet rs = null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
-            pst = con.prepareStatement(SqlQuarry.PAGE_ADMIN_STAFF);
+            pst = con.prepareStatement(Sql.PAGE_ADMIN_STAFF);
             pst.setInt(1,index);
             pst.setInt(2,offset);
 
@@ -143,12 +141,12 @@ public class ClientDAO {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
 
-            PreparedStatement stt = con.prepareStatement(SqlQuarry.MOVE_CLIENT_TO_REMOVED);
+            PreparedStatement stt = con.prepareStatement(Sql.MOVE_CLIENT_TO_REMOVED);
             stt.setInt(1, client.getId());
             stt.setString(2, client.getLogin());
             stt.setString(3, client.getPassport());
 
-            PreparedStatement st = con.prepareStatement(SqlQuarry.DELETE_CLIENT);
+            PreparedStatement st = con.prepareStatement(Sql.DELETE_CLIENT);
             st.setString(1, login);
             result = (stt.executeUpdate() > 0 && st.executeUpdate() > 0);
 
@@ -179,7 +177,7 @@ public class ClientDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.MAKE_MANAGER);
+            PreparedStatement st = con.prepareStatement(Sql.MAKE_MANAGER);
             st.setString(1, login);
             result = st.executeUpdate() > 0;
             con.commit();
@@ -207,7 +205,7 @@ public class ClientDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.REMOVE_MANAGER);
+            PreparedStatement st = con.prepareStatement(Sql.REMOVE_MANAGER);
             st.setString(1, login);
             result = st.executeUpdate() > 0;
             con.commit();
@@ -235,7 +233,7 @@ public class ClientDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.REGISTER);
+            PreparedStatement st = con.prepareStatement(Sql.REGISTER);
             st.setString(1, client.getLogin());
             st.setString(2, client.getPassword());
             st.setString(3, client.getPassport());
@@ -265,7 +263,7 @@ public class ClientDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.BAN);
+            PreparedStatement st = con.prepareStatement(Sql.BAN);
             st.setString(1, login);
             result = st.executeUpdate() > 0;
             con.commit();
@@ -293,7 +291,7 @@ public class ClientDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.UNBAN);
+            PreparedStatement st = con.prepareStatement(Sql.UNBAN);
             st.setString(1, login);
             result = st.executeUpdate() > 0;
             con.commit();

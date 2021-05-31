@@ -1,7 +1,7 @@
 package controller.command.client;
 
 import controller.command.Command;
-import controller.command.service.PageCalculator;
+import model.service.pagination.PageCalculator;
 import model.DAO.CarDAO;
 import model.entity.Car;
 import model.service.pagination.Paginator;
@@ -15,59 +15,51 @@ public class CarsByClass implements Command {
     public String execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
         List<Car> cars;
-
-        String marque = request.getParameter("marque");
-
-        try{
-//                cars = CarDAO.getCarsByClass(request.getParameter("car_class"));
-//                request.setAttribute("marque",request.getParameter("marque"));
-//                request.setAttribute("carsByClass", cars);
+        try {
             int page = 1;
-            if(request.getParameter("page")!=null){
-                page = Integer.parseInt(request.getParameter("page"));
+            if (request.getParameter(Const.PAGE) != null) {
+                page = Integer.parseInt(request.getParameter(Const.PAGE));
             }
-            String car_class = request.getParameter("car_class");
-            if(session.getAttribute("car_class")==null){
-                session.setAttribute("car_class", car_class);
+            String carClass = request.getParameter(Const.CAR_CLASS);
+            if (carClass == null) {
+                carClass = (String)session.getAttribute(Const.CAR_CLASS);
             }
-//                List<Car> allCars = CarDAO.getCarsByClass(car_class);
-//                cars = CarDAO.getCarsByClass(car_class, (page-1)*3, 3);
-            System.out.println("I am in CarSelect ELSE");
-            System.out.println("Page: "+page);
-            String column = (String) session.getAttribute("column");
-            if(column==null){
-                column="id";
+            session.setAttribute(Const.CAR_CLASS, carClass);
+            String column = (String) session.getAttribute(Const.COLUMN);
+            if (column == null) {
+                column = Const.ID;
             }
-            String sortOrder = (String) session.getAttribute("sortOrder");
-            if(sortOrder==null){
-                sortOrder="ASC";
+            String sortOrder = (String) session.getAttribute(Const.SORT_ORDER);
+            if (sortOrder == null) {
+                sortOrder = Const.ASC;
             }
-            if(request.getParameter("column")!=null){
-                session.setAttribute("column", request.getParameter("column"));
-            }else {
-                session.setAttribute("column", column);
+            if (request.getParameter(Const.COLUMN) != null) {
+                session.setAttribute(Const.COLUMN, request.getParameter(Const.COLUMN));
+            } else {
+                session.setAttribute(Const.COLUMN, column);
             }
-            if(request.getParameter("sortOrder")!=null){
-                session.setAttribute("sortOrder", request.getParameter("sortOrder"));
-            }else {
-                session.setAttribute("sortOrder", sortOrder);
+            if (request.getParameter(Const.SORT_ORDER) != null) {
+                session.setAttribute(Const.SORT_ORDER, request.getParameter(Const.SORT_ORDER));
+            } else {
+                session.setAttribute(Const.SORT_ORDER, sortOrder);
             }
-            List<Car> allCars = CarDAO.getCarsByClass((String) session.getAttribute("car_class"), (String)session.getAttribute("column"),(String)session.getAttribute("sortOrder"));
+            List<Car> allCars = CarDAO.getCarsByClass((String) session.getAttribute(Const.CAR_CLASS),
+                    (String) session.getAttribute(Const.COLUMN),
+                    (String) session.getAttribute(Const.SORT_ORDER));
             System.out.println("allCars.size: "+allCars.size());
-            cars = new Paginator<Car>().getEntitiesForPage(allCars, (page-1)*3, (page - 1) * 3+3);
 
-            System.out.println("cars list size: "+cars.size());
+            cars = new Paginator<Car>().getEntitiesForPage(allCars,
+                    (page - 1) * 3,
+                    (page - 1) * 3 + 3);
             int numPages = new PageCalculator().getNumPages(allCars.size());
-            request.setAttribute("page",page);
-            request.setAttribute("numPages",numPages);
-            request.setAttribute("carsByClass", cars);
-            request.setAttribute("car_class", car_class);
-
+            request.setAttribute(Const.PAGE, page);
+            request.setAttribute(Const.NUM_PAGES, numPages);
+            request.setAttribute(Const.CARS_BY_CLASS, cars);
+            request.setAttribute(Const.CAR_CLASS, carClass);
             return "/WEB-INF/client/carsByClass.jsp";
-        }catch (Exception e){
-            e.printStackTrace();
+        } catch (Exception e) {
             request.setAttribute("error", e.getMessage());
-            return "index.jsp";
+            return "redirect:/index.jsp";
         }
     }
 }

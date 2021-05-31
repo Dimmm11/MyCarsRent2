@@ -1,6 +1,6 @@
 package model.DAO.impl;
 
-import model.DAO.SqlQuarry;
+import model.DAO.Sql;
 import model.DAO.mapper.ClientMapper;
 import model.DAO.tryService.ClientDAO;
 import model.connection.ConnectionPoolHolder;
@@ -27,7 +27,7 @@ public class JDBCClientDao implements ClientDAO {
         try{
             con = ConnectionPoolHolder.getDataSource().getConnection();
             st = con.createStatement();
-            rs = st.executeQuery(SqlQuarry.CLIENTS);
+            rs = st.executeQuery(Sql.CLIENTS);
             ClientMapper cm = new ClientMapper();
             while (rs.next()) {
                 Client client = cm.mapFromResultSet(rs);
@@ -53,7 +53,7 @@ public class JDBCClientDao implements ClientDAO {
         Connection con = null;
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
-             pst = con.prepareStatement(SqlQuarry.PAGE_CLIENTS);
+             pst = con.prepareStatement(Sql.PAGE_CLIENTS);
              pst.setInt(1, index);
              pst.setInt(2, offset);
            rs = pst.executeQuery();
@@ -80,7 +80,7 @@ public class JDBCClientDao implements ClientDAO {
 
 
     public Client getClient(String login) {
-        String name = SqlQuarry.CLIENT.replaceAll("login", login);
+        String name = Sql.CLIENT.replaceAll("login", login);
         Client client = null;
         try (Connection con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement();
@@ -97,7 +97,7 @@ public class JDBCClientDao implements ClientDAO {
         List<Client> staff = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement();
-             ResultSet rs = st.executeQuery(SqlQuarry.ADMIN_STAFF)) {
+             ResultSet rs = st.executeQuery(Sql.ADMIN_STAFF)) {
             ClientMapper cm = new ClientMapper();
             while (rs.next()) {
                 Client client = cm.mapFromResultSet(rs);
@@ -117,12 +117,12 @@ public class JDBCClientDao implements ClientDAO {
             con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
 
-            PreparedStatement stt = con.prepareStatement(SqlQuarry.MOVE_CLIENT_TO_REMOVED);
+            PreparedStatement stt = con.prepareStatement(Sql.MOVE_CLIENT_TO_REMOVED);
             stt.setInt(1, client.getId());
             stt.setString(2, client.getLogin());
             stt.setString(3, client.getPassport());
 
-            PreparedStatement st = con.prepareStatement(SqlQuarry.DELETE_CLIENT);
+            PreparedStatement st = con.prepareStatement(Sql.DELETE_CLIENT);
             st.setString(1, login);
             result = (stt.executeUpdate() > 0 && st.executeUpdate() > 0);
 
@@ -153,7 +153,7 @@ public class JDBCClientDao implements ClientDAO {
         try {
             con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.MAKE_MANAGER);
+            PreparedStatement st = con.prepareStatement(Sql.MAKE_MANAGER);
             st.setString(1, login);
             result = st.executeUpdate() > 0;
             con.commit();
@@ -181,7 +181,7 @@ public class JDBCClientDao implements ClientDAO {
         try {
             con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.REMOVE_MANAGER);
+            PreparedStatement st = con.prepareStatement(Sql.REMOVE_MANAGER);
             st.setString(1, login);
             result = st.executeUpdate() > 0;
             con.commit();
@@ -209,7 +209,7 @@ public class JDBCClientDao implements ClientDAO {
         try {
             con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.REGISTER);
+            PreparedStatement st = con.prepareStatement(Sql.REGISTER);
             st.setString(1, client.getLogin());
             st.setString(2, client.getPassword());
             st.setString(3, client.getPassport());
@@ -239,7 +239,7 @@ public class JDBCClientDao implements ClientDAO {
         try {
             con = model.connection.ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.BAN);
+            PreparedStatement st = con.prepareStatement(Sql.BAN);
             st.setString(1, login);
             result = st.executeUpdate() > 0;
             con.commit();
@@ -267,7 +267,7 @@ public class JDBCClientDao implements ClientDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.UNBAN);
+            PreparedStatement st = con.prepareStatement(Sql.UNBAN);
             st.setString(1, login);
             result = st.executeUpdate() > 0;
             con.commit();

@@ -31,19 +31,19 @@
         <c:choose>
             <c:when test="${sessionScope.role==3}">
                 <h1 style="text-decoration: underline"><fmt:message key="ADMIN"/></h1>
+                <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
+                    <button type="submit" class="btn btn-secondary"><fmt:message key="Back_to_menu"/></button>
+                </form>
             </c:when>
             <c:when test="${sessionScope.role==2}">
                 <h1 style="text-decoration: underline"><fmt:message key="Manager"/></h1>
+                <form action="${pageContext.request.contextPath}/welcomeManager" method="post">
+                    <button type="submit" class="btn btn-secondary"><fmt:message key="Back_to_menu"/></button>
+                </form>
             </c:when>
         </c:choose>
         <br>
-        <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
-            <button type="submit" class="btn btn-secondary"><fmt:message key="Back_to_menu"/></button>
-            <%--            <input type="submit" value="back to menu"--%>
-            <%--                   style="background-color: darkseagreen;--%>
-            <%--                               border-width: medium;--%>
-            <%--                               font-weight: bold">--%>
-        </form>
+
 
     </div>
 </div>

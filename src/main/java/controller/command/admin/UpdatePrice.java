@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 
 /**
- * update Price for Car
+ * update Price for a Car
  */
 public class UpdatePrice implements Command {
     @Override

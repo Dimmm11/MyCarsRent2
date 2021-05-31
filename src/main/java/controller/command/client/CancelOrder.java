@@ -9,12 +9,14 @@ import model.entity.Client;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Cancel order status 'ordered'
+ * in DB
+ */
 public class CancelOrder implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        HttpSession session = request.getSession();
         OrderDAO.cancelOrder(Integer.parseInt(request.getParameter("orderId")));
-
         return "/profile";
     }
 }

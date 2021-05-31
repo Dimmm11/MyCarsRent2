@@ -15,7 +15,7 @@ public class CarDAO {
         List<Car> carsByClass = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            String sql = SqlQuarry.CARS_BY_CLASS.replace("carclass", carClass);
+            String sql = Sql.CARS_BY_CLASS.replace("carclass", carClass);
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
@@ -30,7 +30,7 @@ public class CarDAO {
         List<Car> carsByClass = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            String sql = SqlQuarry.CARS_BY_CLASS.replace("carclass", carClass).replace(";", " ORDER BY "+column+" "+sortingOrder+" ;");
+            String sql = Sql.CARS_BY_CLASS.replace("carclass", carClass).replace(";", " ORDER BY "+column+" "+sortingOrder+" ;");
             System.out.println("sql string: "+sql);
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -49,7 +49,7 @@ public class CarDAO {
         List<Car> carsByClass = new ArrayList<>();
         PreparedStatement stt = null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
-            stt = con.prepareStatement(SqlQuarry.DYNAMIC_CAR_CLASS);
+            stt = con.prepareStatement(Sql.DYNAMIC_CAR_CLASS);
             stt.setString(1, carClass);
             stt.setInt(2, index);
             stt.setInt(3, offset);
@@ -70,7 +70,7 @@ public class CarDAO {
         List<Car> carsByMarque = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            String sql = SqlQuarry.CARS_BY_MARQUE.replaceAll("carmarque", marque);
+            String sql = Sql.CARS_BY_MARQUE.replaceAll("carmarque", marque);
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
@@ -85,7 +85,7 @@ public class CarDAO {
         List<Car> carsByMarque = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            String sql = SqlQuarry.CARS_BY_MARQUE.replaceAll("carmarque", marque).replace(";", " ORDER BY "+column+" "+sortingOrder+" ;");
+            String sql = Sql.CARS_BY_MARQUE.replaceAll("carmarque", marque).replace(";", " ORDER BY "+column+" "+sortingOrder+" ;");
             System.out.println("sql: "+sql);
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -102,7 +102,7 @@ public class CarDAO {
         List<Car> carsByMarque = new ArrayList<>();
         PreparedStatement stt = null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
-            stt = con.prepareStatement(SqlQuarry.DYNAMIC_CAR_MARQUE);
+            stt = con.prepareStatement(Sql.DYNAMIC_CAR_MARQUE);
             stt.setString(1, marque);
             stt.setInt(2, index);
             stt.setInt(3, offset);
@@ -121,7 +121,7 @@ public class CarDAO {
         List<Car> carsByClient = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            String sql = SqlQuarry.CARS_BY_CLIENT.replaceAll("clientid", String.valueOf(client.getId()));
+            String sql = Sql.CARS_BY_CLIENT.replaceAll("clientid", String.valueOf(client.getId()));
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
@@ -138,7 +138,7 @@ public class CarDAO {
         PreparedStatement pst = null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
             con.setAutoCommit(false);
-            pst = con.prepareStatement(SqlQuarry.PAGE_CARS_BY_CLIENT);
+            pst = con.prepareStatement(Sql.PAGE_CARS_BY_CLIENT);
             pst.setInt(1, client.getId());
             pst.setInt(2, index);
             pst.setInt(3, offset);
@@ -159,7 +159,7 @@ public class CarDAO {
         List<Car> allCars = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            ResultSet rs = st.executeQuery(SqlQuarry.ALLCARS);
+            ResultSet rs = st.executeQuery(Sql.ALLCARS);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
                 allCars.add(car);
@@ -174,7 +174,7 @@ public class CarDAO {
         List<Car> allCars = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            String ss = SqlQuarry.ALLCARS.replaceAll(";"," ORDER BY "+column+" "+sortingOrder+" ;");
+            String ss = Sql.ALLCARS.replaceAll(";"," ORDER BY "+column+" "+sortingOrder+" ;");
             System.out.println(ss);
             ResultSet rs = st.executeQuery(ss);
             while (rs.next()) {
@@ -205,7 +205,7 @@ public class CarDAO {
         List<Car> allCars = new ArrayList<>();
         PreparedStatement st = null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
-            st = con.prepareStatement(SqlQuarry.PAGE_ALLCARS);
+            st = con.prepareStatement(Sql.PAGE_ALLCARS);
             st.setInt(1, index);
             st.setInt(2, offset);
             ResultSet rs = st.executeQuery();
@@ -223,7 +223,7 @@ public class CarDAO {
         List<Car> allCars = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            ResultSet rs = st.executeQuery(SqlQuarry.ORDERED_CARS);
+            ResultSet rs = st.executeQuery(Sql.ORDERED_CARS);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
                 allCars.add(car);
@@ -238,7 +238,7 @@ public class CarDAO {
         PreparedStatement pst = null;
         ResultSet rs = null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
-            pst = con.prepareStatement(SqlQuarry.PAGE_ORDERED_CARS);
+            pst = con.prepareStatement(Sql.PAGE_ORDERED_CARS);
             pst.setInt(1,index);
             pst.setInt(2,offset);
             rs = pst.executeQuery();
@@ -265,7 +265,7 @@ public class CarDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.ADD_CAR);
+            PreparedStatement st = con.prepareStatement(Sql.ADD_CAR);
 
             st.setString(1, car.getMarque());
             st.setString(2, car.getClazz());
@@ -297,7 +297,7 @@ public class CarDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.PRICE_UPDATE);
+            PreparedStatement st = con.prepareStatement(Sql.PRICE_UPDATE);
 
             st.setBigDecimal(1, price);
             st.setInt(2, car.getId());
@@ -327,7 +327,7 @@ public class CarDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.GET_CAR_BY_ID);
+            PreparedStatement st = con.prepareStatement(Sql.GET_CAR_BY_ID);
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
             rs.next();
@@ -357,7 +357,7 @@ public class CarDAO {
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(SqlQuarry.DELETE_CAR);
+            PreparedStatement st = con.prepareStatement(Sql.DELETE_CAR);
             st.setInt(1, id);
 
             result = st.executeUpdate() > 0;

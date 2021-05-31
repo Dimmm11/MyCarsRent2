@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class Main {
+public class Main{
     public static void main(String[] args) {
 //        JDBCCarDao carDao = (JDBCCarDao) new JDBCDaoFactory().createCarDao();
 //        JDBCCarDao carDao = (JDBCCarDao)JDBCDaoFactory.getInstance().createCarDao();

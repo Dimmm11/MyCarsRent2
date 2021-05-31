@@ -1,7 +1,7 @@
 package controller.command.client;
 
 import controller.command.Command;
-import controller.command.service.PageCalculator;
+import model.service.pagination.PageCalculator;
 import model.DAO.CarDAO;
 import model.DAO.OrderDAO;
 import model.entity.Car;
@@ -14,37 +14,24 @@ import java.util.List;
 public class Profile implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        Client cl = (Client) request.getSession().getAttribute("client");
-        System.out.println("CL is: "+cl.getLogin());
         List<Order> orders = OrderDAO.getOrdersByClient((Client) request
                 .getSession()
-                .getAttribute("client"));
-//        request.setAttribute("orders", orders);
-        List<Car> cars = CarDAO.getCarsByClient((Client) request
-                .getSession()
-                .getAttribute("client"));
-//        request.setAttribute("cars", cars);
-// =========================================================
+                .getAttribute(Const.CLIENT));
         int page = 1;
-        if(request.getParameter("page")!=null){
-            page = Integer.parseInt(request.getParameter("page"));
+        if(request.getParameter(Const.PAGE)!=null){
+            page = Integer.parseInt(request.getParameter(Const.PAGE));
         }
         List<Order> ordersOnPage = OrderDAO.getOrdersByClient((Client) request
                 .getSession()
-                .getAttribute("client"), (page-1)*3, 3);
-        System.out.println("orders on page size: "+ordersOnPage.size());
+                .getAttribute(Const.CLIENT), (page-1)*3, 3);
         List<Car> carsOnPage = CarDAO.getCarsByClient((Client) request
                 .getSession()
-                .getAttribute("client"), (page-1)*3, 3);
-        System.out.println("cars on page size: "+carsOnPage.size());
+                .getAttribute(Const.CLIENT), (page-1)*3, 3);
         int numPages = new PageCalculator().getNumPages(orders.size());
-
-        request.setAttribute("page", page);
-        request.setAttribute("numPages", numPages);
-        request.setAttribute("orders", ordersOnPage);
-        request.setAttribute("cars", carsOnPage);
-
-
+        request.setAttribute(Const.PAGE, page);
+        request.setAttribute(Const.NUM_PAGES, numPages);
+        request.setAttribute(Const.ORDERS, ordersOnPage);
+        request.setAttribute(Const.CARS, carsOnPage);
         return "/WEB-INF/client/profile.jsp";
     }
 }

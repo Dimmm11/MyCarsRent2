@@ -1,7 +1,7 @@
 package controller.command.manager;
 
 import controller.command.Command;
-import controller.command.service.PageCalculator;
+import model.service.pagination.PageCalculator;
 import model.DAO.CarDAO;
 import model.DAO.OrderDAO;
 import model.entity.Car;

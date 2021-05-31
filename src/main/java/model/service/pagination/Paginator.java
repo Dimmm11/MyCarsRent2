@@ -1,6 +1,5 @@
 package model.service.pagination;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,11 +15,9 @@ public class Paginator <T>{
      * @return portion of entities to send on page
      */
     public List<T> getEntitiesForPage(List<T> entities, int startIndex, int lastIndex) {
-        List<T> sortedCars = new ArrayList<>();
-//        System.out.println("startIndex: "+startIndex);
+        List<T> sortedCars;
         if(entities.size()-1 < lastIndex){
             lastIndex =startIndex+ ((entities.size())-startIndex);
-//            System.out.println("lastIndex: "+lastIndex);
         }
         sortedCars = entities.subList(startIndex, lastIndex);
         return sortedCars;

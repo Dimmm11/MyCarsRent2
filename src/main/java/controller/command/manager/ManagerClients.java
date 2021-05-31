@@ -1,18 +1,11 @@
 package controller.command.manager;
 
 import controller.command.Command;
-import controller.command.service.PageCalculator;
-import model.DAO.CarDAO;
+import model.service.pagination.PageCalculator;
 import model.DAO.ClientDAO;
-import model.DAO.impl.JDBCClientDao;
-import model.DAO.impl.JDBCDaoFactory;
-import model.entity.Car;
 import model.entity.Client;
-import model.service.pagination.Paginator;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerClients implements Command {
