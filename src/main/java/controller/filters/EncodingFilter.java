@@ -1,13 +1,12 @@
 package controller.filters;
 
+import controller.constants.Const;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Locale;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 public class EncodingFilter implements Filter {
     @Override
@@ -17,25 +16,20 @@ public class EncodingFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
-        HttpServletResponse resp = (HttpServletResponse) servletResponse;
         HttpSession session = req.getSession();
-
         /**
          * set language
          */
         String lang = "en";
-        if(session.getAttribute("lang")!=null){
-            lang=(String)session.getAttribute("lang");
+        Optional<String> sessionOpt = Optional.ofNullable((String) session.getAttribute("lang"));
+        if(sessionOpt.isPresent()){
+            lang=sessionOpt.get();
         }
-        if(req.getParameter("lang")!=null) {
-           lang = req.getParameter("lang");
+        Optional<String> requestOpt = Optional.ofNullable(req.getParameter(Const.LANG));
+        if(requestOpt.isPresent()){
+            lang = requestOpt.get();
         }
-        System.out.println("----------------------");
-        System.out.println(lang);
-        session.setAttribute("lang", lang);
-        System.out.println("lang in session: "+ session.getAttribute("lang"));
-        System.out.println("-----------------");
-
+        session.setAttribute(Const.LANG, lang);
         /**
          * encoding
          */

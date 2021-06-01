@@ -1,6 +1,6 @@
 package controller.filters;
 
-import model.entity.Client;
+import controller.constants.Const;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -13,22 +13,11 @@ public class AdminFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-
         HttpSession session = req.getSession();
-        Client client = (Client) session.getAttribute("client");
-        System.out.println("client in AdminFilter");
-        if(session.getAttribute("role")==null){ // ??????????
-            resp.sendRedirect("redirect:/login.jsp");
-        }
-        if((int)session.getAttribute("role")==3){
-            System.out.println("role from AdminFIlter = "+(int)session.getAttribute("role"));
-            chain.doFilter(request,response);
-        }else {
-            System.out.println("role from AdminFIlter = "+(int)session.getAttribute("role"));
-            System.out.println("YOU ARE NOT ADMIN FROM FILTER)");
-//            req.getRequestDispatcher("/WEB-INF/client/login.jsp").forward(req,resp);
-            resp.sendRedirect("redirect:/login.jsp");
-
+        if ((int) session.getAttribute(Const.ROLE) == 3) {
+            chain.doFilter(request, response);
+        } else {
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
         }
     }
 

@@ -1,6 +1,16 @@
 <web-app version="3.0">
   <display-name>Archetype Created Web Application</display-name>
-
+  <!-- ==============================================
+Access filter
+ ============================================== -->
+  <filter>
+    <filter-name>RoleSetFilter</filter-name>
+    <filter-class>controller.filters.RoleSetFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>RoleSetFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
   <!-- ==============================================
 Encoding filter
  ============================================== -->
@@ -25,6 +35,19 @@ Filter for access admin content
     <url-pattern>/adminStaff</url-pattern>
   </filter-mapping>
   <!-- ==============================================
+Filter for access client content
+ ============================================== -->
+  <filter>
+    <filter-name>ClientFilter</filter-name>
+    <filter-class>controller.filters.ClientFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ClientFilter</filter-name>
+    <url-pattern>/profile</url-pattern>
+    <url-pattern>/carsByClass</url-pattern>
+    <url-pattern>/carsByMarque</url-pattern>
+  </filter-mapping>
+  <!-- ==============================================
   Filter for access manager content
    ============================================== -->
   <filter>
@@ -45,7 +68,7 @@ Filter for access admin content
   </filter>
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
-    <url-pattern>/login.jsp</url-pattern>  <!-- ??????????? -->
+<!--    <url-pattern>/login.jsp</url-pattern>  &lt;!&ndash; ??????????? &ndash;&gt;-->
     <url-pattern>/login</url-pattern>
   </filter-mapping>
   <!-- ==============================================

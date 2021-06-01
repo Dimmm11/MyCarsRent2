@@ -1,6 +1,7 @@
 package controller.command.client;
 
 import controller.command.Command;
+import controller.constants.Const;
 import model.DAO.impl.JDBCCarDao;
 import model.DAO.impl.JDBCDaoFactory;
 import model.util.pagination.PageCalculator;
@@ -38,13 +39,9 @@ public class CarsByClass implements Command {
             if(!sortOpt.isPresent()){
                 sortOrder = Const.ASC;
             }
-
             Optional<String> stringOptional = Optional.ofNullable(request.getParameter(Const.COLUMN));
             String column1 = stringOptional.orElse(column);
             session.setAttribute(Const.COLUMN, column1);
-
-
-
             Optional<String> orderOptional = Optional.ofNullable(request.getParameter(Const.SORT_ORDER));
             String orderSort = orderOptional.orElse(sortOrder);
             session.setAttribute(Const.SORT_ORDER,orderSort);

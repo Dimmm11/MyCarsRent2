@@ -3,6 +3,7 @@ package controller.filters;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LogOutFilter implements Filter {
@@ -11,10 +12,18 @@ public class LogOutFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse)response;
         HttpServletRequest req = (HttpServletRequest) request;
 
+        HttpSession session = req.getSession();
+        ServletContext context = request.getServletContext();
+        /**
+         * Clear session
+         */
+        session.setAttribute("client", null);
+        session.setAttribute("role", 0);
+        context.setAttribute("client", null);
+
         resp.setHeader("Pragma", "No-cache");
         resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         resp.setDateHeader("Expires", -1);
-        System.out.println("LogOutFilter ....");
         chain.doFilter(request,response);
     }
 

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class Servlet extends HttpServlet {
     private Map<String, Command> commands = new HashMap<>();
@@ -80,11 +81,6 @@ public class Servlet extends HttpServlet {
         if (page.contains("redirect:")) {
             response.sendRedirect(page.replace("redirect:", "/cars"));
         } else {
-            if (session.getAttribute("client") == null) {
-                Client client = new Client();
-                session.setAttribute("client", client);
-                session.setAttribute("role", 0);
-            }
             request.getRequestDispatcher(page).forward(request, response);
         }
     }

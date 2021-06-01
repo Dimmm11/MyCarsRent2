@@ -1,4 +1,4 @@
-package controller.command.client;
+package controller.constants;
 
 public interface Const {
     String PAGE = "page";
@@ -31,4 +31,6 @@ public interface Const {
     String PENALTY = "penalty";
     String ORDER_STATUS = "orderStatus";
     String REASON = "reason";
+    String ROLE = "role";
+    String LANG = "lang";
 }

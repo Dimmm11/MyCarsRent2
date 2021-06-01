@@ -44,7 +44,6 @@
             </c:if>
         </div>
         <div class="col-md-4">
-
             <table>
                 <th>
                     <c:if test="${sessionScope.role>0}">
@@ -105,13 +104,15 @@
                                     <input type="hidden" name="marque" value="${car.marque}">
                                     <input type="hidden" name="model" value="${car.model}">
                                     <input type="hidden" name="price" value="${car.price}">
-                                    <td><input type="radio" name="driver" value="yes"><fmt:message key="YES"/></input>
-                                        <input type="radio" name="driver" value="no"><fmt:message key="NO"/></input> </td>
-                                    <td><input type="number" min="1" name="term" placeholder="<fmt:message key="Term"/>" style="width: 70px">
+                                    <td>
+                                        <input type="radio" name="driver" value="yes"><fmt:message key="YES"/></input>
+                                        <input type="radio" name="driver" value="no"><fmt:message key="NO"/></input>
+                                    </td>
+                                    <td>
+                                        <input type="number" min="1" name="term" placeholder="<fmt:message key="Term"/>" style="width: 70px">
                                     </td>
                                     <td>
                                         <button type="submit" class="btn btn-secondary"><fmt:message key="make_order"/></button>
-<%--                                        <input type="submit" value="make order">--%>
                                     </td>
                                 </form>
                             </tr>

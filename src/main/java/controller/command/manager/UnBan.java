@@ -1,7 +1,7 @@
 package controller.command.manager;
 
 import controller.command.Command;
-import controller.command.client.Const;
+import controller.constants.Const;
 import model.DAO.impl.JDBCClientDao;
 import model.DAO.impl.JDBCDaoFactory;
 
