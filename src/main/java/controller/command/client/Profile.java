@@ -13,6 +13,7 @@ import model.entity.Order;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 public class Profile implements Command {
     @Override
@@ -23,8 +24,9 @@ public class Profile implements Command {
                     .getSession()
                     .getAttribute(Const.CLIENT));
             int page = 1;
-            if(request.getParameter(Const.PAGE)!=null){
-                page = Integer.parseInt(request.getParameter(Const.PAGE));
+            Optional<String> pageOptional = Optional.ofNullable(request.getParameter(Const.PAGE));
+            if (pageOptional.isPresent()) {
+                page = Integer.parseInt(pageOptional.get());
             }
             List<Order> ordersOnPage = orderDao.getOrdersByClient((Client) request
                     .getSession()

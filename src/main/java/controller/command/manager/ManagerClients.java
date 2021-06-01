@@ -9,14 +9,20 @@ import model.entity.Client;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 public class ManagerClients implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         int page = 1;
-        if (request.getParameter(Const.PAGE) != null) {
-            page = Integer.parseInt(request.getParameter(Const.PAGE));
+//        if (request.getParameter(Const.PAGE) != null) {
+//            page = Integer.parseInt(request.getParameter(Const.PAGE));
+//        }
+        Optional<String> pageOptional = Optional.ofNullable(request.getParameter(Const.PAGE));
+        if (pageOptional.isPresent()) {
+            page = Integer.parseInt(pageOptional.get());
         }
+        //=================================
         try (JDBCClientDao clientDao = (JDBCClientDao) JDBCDaoFactory.getInstance().createClientDao()) {
             List<Client> allClients = clientDao.getClients();
             List<Client> clients = clientDao.getClients((page - 1) * 3, 3);

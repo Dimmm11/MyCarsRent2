@@ -11,13 +11,15 @@ import model.entity.Order;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 public class ManagerOrders implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         int page = 1;
-        if (request.getParameter(Const.PAGE) != null) {
-            page = Integer.parseInt(request.getParameter(Const.PAGE));
+        Optional<String> pageOptional = Optional.ofNullable(request.getParameter(Const.PAGE));
+        if (pageOptional.isPresent()) {
+            page = Integer.parseInt(pageOptional.get());
         }
         try (JDBCCarDao carDao = (JDBCCarDao) JDBCDaoFactory.getInstance().createCarDao();
              JDBCOrderDao orderDao = (JDBCOrderDao) JDBCDaoFactory.getInstance().createOrderDao()) {

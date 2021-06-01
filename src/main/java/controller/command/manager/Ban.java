@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 public class Ban implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        try(JDBCClientDao clientDao = (JDBCClientDao) JDBCDaoFactory.getInstance().createClientDao()){
+        try (JDBCClientDao clientDao = (JDBCClientDao) JDBCDaoFactory.getInstance().createClientDao()) {
             clientDao.ban(request.getParameter(Const.LOGIN));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "managerClients";
