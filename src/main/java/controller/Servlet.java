@@ -76,7 +76,7 @@ public class Servlet extends HttpServlet {
         HttpSession session = request.getSession();
         String path = request.getRequestURI();
         path = path.replaceAll(".*/cars/", "");
-        Command command = commands.get(path);
+        Command command = commands.getOrDefault(path, g -> "/error404.html");
         String page = command.execute(request);
         if (page.contains("redirect:")) {
             response.sendRedirect(page.replace("redirect:", "/cars"));

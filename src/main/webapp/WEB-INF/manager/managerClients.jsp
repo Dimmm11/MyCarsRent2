@@ -43,11 +43,6 @@
             </c:when>
         </c:choose>
         <br>
-
-
-
-
-
     </div>
 </div>
 <div class="container-fluid">
@@ -85,7 +80,6 @@
         </div>
     </div>
 </div>
-<%-- =============================================================--%>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
@@ -102,9 +96,9 @@
                             <th><fmt:message key="Password"/></th>
                             <th><fmt:message key="Passport"/></th>
                             <th><fmt:message key="Status"/></th>
-                            <th></th>  <!-- make manager -->
-                            <th></th>  <!-- delete -->
-                            <th></th>    <!-- ban -->
+                            <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         <c:forEach var="client" items="${requestScope.adminClients}">
                             <tr>
@@ -114,7 +108,6 @@
                                 <td><c:out value="${client.passport}"/></td>
                                 <td>
                                     <fmt:message key="${client.status}"/>
-                                        <%--                                    <c:out value="${client.status}"/>--%>
                                 </td>
                                 <td>
                                     <c:choose>
@@ -123,7 +116,6 @@
                                                 <input type="hidden" value="${client.login}" name="login">
                                                 <button type="submit" class="btn btn-secondary"><fmt:message
                                                         key="Ban"/></button>
-                                                    <%--                                                <input type="submit" value="ban" style="background-color: darksalmon;border-width: medium;font-weight: bold">--%>
                                             </form>
                                         </c:when>
                                         <c:otherwise>
@@ -131,7 +123,6 @@
                                                 <input type="hidden" value="${client.login}" name="login">
                                                 <button type="submit" class="btn btn-secondary"><fmt:message
                                                         key="unban"/></button>
-                                                    <%--                                                <input type="submit" value="UNBAN" style="background-color: darksalmon;border-width: medium;font-weight: bold">--%>
                                             </form>
                                         </c:otherwise>
                                     </c:choose>
@@ -142,7 +133,6 @@
                                             <input type="hidden" value="${client.login}" name="login">
                                             <button type="submit" class="btn btn-secondary"><fmt:message
                                                     key="Delete"/></button>
-                                                <%--                                            <input type="submit" value="delete" style="background-color: coral;border-width: medium;font-weight: bold">--%>
                                         </form>
                                     </c:if>
                                 </td>
@@ -153,7 +143,6 @@
                                             <input type="hidden" value="makeManager" name="adminAction">
                                             <button type="submit" class="btn btn-secondary"><fmt:message
                                                     key="Make_manager"/></button>
-                                                <%--                                            <input type="submit" value="make manager" style="background-color: mediumseagreen;border-width: medium;font-weight: bold">--%>
                                         </form>
                                     </c:if>
                                 </td>

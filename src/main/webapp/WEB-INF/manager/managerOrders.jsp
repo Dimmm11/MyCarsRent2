@@ -76,7 +76,6 @@
         </div>
     </div>
 </div>
-<%-- ===================================================== --%>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
@@ -115,21 +114,17 @@
                                             <option value="CONFIRMED"><fmt:message key="CONFIRMED"/></option>
                                             <option value="REJECTED"><fmt:message key="REJECTED"/></option>
                                             <input type="hidden" name="orderId" value="${order.id}">
-                                            <button type="submit" class="btn btn-secondary"><fmt:message
-                                                    key="set_"/></button>
-                                                <%--                                            <input type="submit" value="set">--%>
+                                            <button type="submit" class="btn btn-secondary"><fmt:message key="set_"/></button>
                                         </select>
                                     </form>
                                 </td>
                                 <td>
                                     <p style="color: brown"><c:out value="${order.comment}"/></p>
                                     <form action="${pageContext.request.contextPath}/setReason" method="post">
-                                        <input type="text" name="reason" placeholder="<fmt:message key="Comment"/>"
+                                        <input type="text" name="reason" maxlength="40" placeholder="<fmt:message key="Comment"/>"
                                                style="width: 100px">
                                         <input type="hidden" name="orderId" value="${order.id}">
-                                        <button type="submit" class="btn btn-secondary"><fmt:message
-                                                key="set_"/></button>
-                                            <%--                                        <input type="submit" value="set">--%>
+                                        <button type="submit" class="btn btn-secondary"><fmt:message key="set_"/></button>
                                     </form>
                                 </td>
                                 <td>
@@ -137,10 +132,9 @@
                                     <form action="${pageContext.request.contextPath}/setPenalty" method="post">
                                         <input type="hidden" name="orderId" value="${order.id}">
                                         <input type="number" name="penalty" placeholder="<fmt:message key="Penalty"/>"
-                                               style="width: 50px" min="0">
+                                               style="width: 50px" min="0" max="100000">
                                         <button type="submit" class="btn btn-secondary"><fmt:message
                                                 key="set_"/></button>
-                                            <%--                                        <input type="submit" value="set">--%>
                                     </form>
                                 </td>
                                 <td>

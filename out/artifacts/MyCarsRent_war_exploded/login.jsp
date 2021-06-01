@@ -76,13 +76,18 @@
 <%--    ===========================--%>
     <div class="col-md-6 col-sm-12">
         <div class="login-form">
-            <c:out value="${requestScope.error.toString()}"/>
             <form action="${pageContext.request.contextPath}/login" method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="<fmt:message key="Username"/>" name="Login">
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="<fmt:message key="Password"/>" name="Password">
+
+                    <c:if test="${sessionScope.loginError!=null}">
+                        <c:out value="${sessionScope.loginError}"/>
+                    </c:if>
+
+
                 </div>
                 <button type="submit" class="btn btn-black">
                     <fmt:message key="Login"/>

@@ -33,24 +33,16 @@
         <br>
         <form action="${pageContext.request.contextPath}/welcomeAdmin" method="post">
             <button type="submit" class="btn btn-secondary"><fmt:message key="Back_to_menu"/></button>
-<%--            <input type="submit" value="back to menu"--%>
-<%--                   style="background-color: darkseagreen;--%>
-<%--                               border-width: medium;--%>
-<%--                               font-weight: bold">--%>
         </form>
     </div>
 </div>
 <div class="container-fluid">
     <div class="row">
-
         <div class="col-md-4">
         </div>
-
         <div class="col-md-4">
         </div>
-
         <div class="col-md-4">
-
             <table>
                 <th>
                     <c:if test="${sessionScope.role>0}">
@@ -91,8 +83,7 @@
                             <th><fmt:message key="Password"/></th>
                             <th><fmt:message key="Passport"/></th>
                             <th><fmt:message key="Role"/></th>
-                            <th></th>  <!-- make manager -->
-
+                            <th></th>
                         </tr>
                         <c:forEach var="worker" items="${requestScope.staff}">
                             <tr>
@@ -115,10 +106,8 @@
                                         <input type="hidden" value="${worker.login}" name="login">
                                         <input type="hidden" value="removeManager" name="adminAction">
                                         <button type="submit" class="btn btn-secondary"><fmt:message key="Remove_rights"/></button>
-<%--                                        <input type="submit" value="remove rights">--%>
                                     </form>
                                 <td>
-
                             </tr>
                         </c:forEach>
                     </table>
@@ -129,7 +118,6 @@
     <div class="col-md-2">
     </div>
 </div>
-<%-- ===================================== --%>
 <div class="main">
     <div class="container" style="position: static;bottom: 30%">
         <table>
@@ -139,7 +127,6 @@
                     <form action="${pageContext.request.contextPath}/adminStaff" method="post">
                         <input type="hidden" name="page" value="${i}">
                         <button type="submit" class="btn btn-secondary">${i}</button>
-<%--                        <input type="submit" value="${i}">--%>
                     </form>
                     <c:set var="i" value="${i+1}" scope="page"/>
                 </th>

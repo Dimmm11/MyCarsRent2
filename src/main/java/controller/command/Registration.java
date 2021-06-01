@@ -6,23 +6,39 @@ import model.entity.Client;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Registration implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
+        String login = request.getParameter("Login");
+        String password = request.getParameter("Password");
+        String passport = request.getParameter("Passport");
         /**
-         * client from registration
+         * empty fields check
          */
-        Client client = new Client(
-                request.getParameter("Login"),
-                request.getParameter("Password"),
-                request.getParameter("Passport")
-        );
+        if (login == null || login.equals("")
+                || password == null || password.equals("")
+                || passport == null || passport.equals("")) {
+            session.setAttribute("loginError", "All fields required");
+            return "redirect:/register.jsp";
+        }
         /**
-         * If registration successful - send to Page
+         * matching regex check
          */
-        try (JDBCClientDao clientDao = (JDBCClientDao) JDBCDaoFactory.getInstance().createClientDao()){
+        Matcher loginMatch = Pattern.compile("[A-Za-z\\u0406-\\u04570-9]{2,12}").matcher(login);
+        Matcher passwordMatch = Pattern.compile("[A-Za-z\\u0406-\\u04570-9]{2,12}").matcher(password);
+        if (!loginMatch.matches() || !passwordMatch.matches()) {
+            session.setAttribute("loginError", "Required sequence of letters & digits from 2 to 12 symbols");
+            return "redirect:/register.jsp";
+        }
+        Client client = new Client(login, password, passport);
+        /**
+         * If registration successful - send to Page, else - print error
+         */
+        try (JDBCClientDao clientDao = (JDBCClientDao) JDBCDaoFactory.getInstance().createClientDao()) {
             if (clientDao.register(client)) {
                 client = clientDao.getClient(request.getParameter("Login"));
                 session.setAttribute("client", client);
@@ -30,13 +46,9 @@ public class Registration implements Command {
                 return "/WEB-INF/client/menu.jsp";
             }
         } catch (Exception e) {
-            request.setAttribute("error", e.getMessage());
-            return "register.jsp";
+            session.setAttribute("loginError", "Such user exists");
+            return "redirect:/register.jsp";
         }
-        /**
-         * return with Fail-message
-         */
-        request.setAttribute("fail", "Such login exists");
         return "register.jsp";
     }
 }

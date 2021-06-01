@@ -137,8 +137,6 @@ a
 1src/main/java/controller/command/manager/Ban.java,8\f\8ff2d8c0a79d6689e8a4bdfff01b061f83c0b5df
 P
  src/main/java/model/DAO/Sql.java,9\1\9142ab1d04c3cc5a7c42b94ca6236bed05378965
-b
-2src/main/java/controller/command/client/Const.java,d\5\d50ce57bb7b4bcccd8258220e94c44874be5df97
 W
 'src/main/webapp/WEB-INF/tlds/myTags.tld,0\1\01d4c108b47aeb3e642f332d2d313adb28ae33a2
 \
@@ -153,3 +151,13 @@ b
 2src/main/java/model/util/pagination/Paginator.java,6\1\6111d84f5b62e3681834829078006e7c84db3ebf
 g
 7src/main/java/model/util/pagination/PageCalculator.java,8\b\8b46561c4d676da68341088ae70c65c9b0387ca4
+c
+3src/main/java/controller/filters/RoleSetFilter.java,7\4\74b936fb456701fbdab877f1cc13c5ce5e900884
+]
+-src/main/java/controller/constants/Const.java,1\1\11de2300ce0c2558edd4e21624ad30ff0a3e4db3
+b
+2src/main/java/controller/filters/ClientFilter.java,c\b\cb26b130338cbe29424c362cb41f32c7e8bfb4e3
+P
+ src/main/webapp/CSS/error404.css,4\6\46dcf0b2d275cc824d8f5be94c3ad3f9c516ed51
+M
+src/main/webapp/error404.html,b\d\bd98343f27ccf05998684ffc9216225257de173f

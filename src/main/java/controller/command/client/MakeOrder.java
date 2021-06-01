@@ -9,6 +9,7 @@ import model.entity.Car;
 import model.entity.Client;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class MakeOrder implements Command {
@@ -26,7 +27,7 @@ public class MakeOrder implements Command {
             request.setAttribute(Const.TERM, term);
             orderDao.carOrder(car, client, driver, term);
         }catch (Exception e){
-            e.printStackTrace();
+             return "redirect:/error404.html";
         }
         return "/profile";
     }

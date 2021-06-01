@@ -4,6 +4,7 @@ import controller.command.Command;
 import controller.constants.Const;
 import model.DAO.impl.JDBCCarDao;
 import model.DAO.impl.JDBCDaoFactory;
+import model.DAO.service.CarService;
 import model.util.pagination.PageCalculator;
 import model.entity.Car;
 import model.util.pagination.Paginator;
@@ -17,7 +18,7 @@ public class CarsByClass implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        try (JDBCCarDao carDao = (JDBCCarDao) JDBCDaoFactory.getInstance().createCarDao()) {
+//        try (JDBCCarDao carDao = (JDBCCarDao) JDBCDaoFactory.getInstance().createCarDao()) {
             int page = 1;
             Optional<String> optionalPage = Optional.ofNullable(request.getParameter(Const.PAGE));
             if (optionalPage.isPresent()) {
@@ -45,7 +46,8 @@ public class CarsByClass implements Command {
             Optional<String> orderOptional = Optional.ofNullable(request.getParameter(Const.SORT_ORDER));
             String orderSort = orderOptional.orElse(sortOrder);
             session.setAttribute(Const.SORT_ORDER,orderSort);
-            List<Car> allCars = carDao.getCarsByClass((String) session.getAttribute(Const.CAR_CLASS),
+            List<Car> allCars = new CarService().getCarsByClass(
+                    (String) session.getAttribute(Const.CAR_CLASS),
                     (String) session.getAttribute(Const.COLUMN),
                     (String) session.getAttribute(Const.SORT_ORDER));
             List<Car> cars = new Paginator<Car>().getEntitiesForPage(allCars,
@@ -56,11 +58,6 @@ public class CarsByClass implements Command {
             request.setAttribute(Const.NUM_PAGES, numPages);
             request.setAttribute(Const.CARS_BY_CLASS, cars);
             request.setAttribute(Const.CAR_CLASS, carClass);
-
-        } catch (Exception e) {
-            request.setAttribute("error", e.getMessage());
-            return "redirect:/index.jsp";
-        }
         return "/WEB-INF/client/carsByClass.jsp";
     }
 }

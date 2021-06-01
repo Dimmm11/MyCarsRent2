@@ -32,7 +32,7 @@ public class ManagerOrders implements Command {
             request.setAttribute(Const.CARS, cars);
             request.setAttribute(Const.ORDERS, orders);
         } catch (Exception e) {
-            e.printStackTrace();
+            return "redirect:/page404.html";
         }
         return "/WEB-INF/manager/managerOrders.jsp";
     }

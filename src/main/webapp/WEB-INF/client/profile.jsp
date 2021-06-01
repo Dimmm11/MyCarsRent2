@@ -31,10 +31,7 @@
         <h1>${sessionScope.clientName}</h1>
         <form action="${pageContext.request.contextPath}/menu" method="post">
             <button type="submit" class="btn btn-secondary" formmethod="post"><fmt:message key="Back_to_menu"/></button>
-<%--            <input type="submit" value="back to menu"--%>
-<%--                   style="background-color: darkseagreen;border-width: medium;font-weight: bold">--%>
         </form>
-
     </div>
 </div>
 <div class="container-fluid">
@@ -44,7 +41,6 @@
         <div class="col-md-4">
         </div>
         <div class="col-md-4">
-
             <table>
                 <th>
                     <c:if test="${sessionScope.role>0}">

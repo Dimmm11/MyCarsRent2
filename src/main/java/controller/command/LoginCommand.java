@@ -6,6 +6,8 @@ import model.util.CheckClient;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LoginCommand implements Command {
 
@@ -14,15 +16,20 @@ public class LoginCommand implements Command {
         HttpSession session = request.getSession();
         String name = request.getParameter("Login");
         String pass = request.getParameter("Password");
-        request.setAttribute("error", "");
+
         if (name == null || name.equals("") || pass == null || pass.equals("")) {
+            session.setAttribute("loginError", "All fields required");
             return "redirect:/login.jsp";
         }
+
+
+
+
         /**
          * check user in DB
          */
         if (!CheckClient.isValidClient(name, pass)) {
-            request.setAttribute("error", "wrong client data");
+            session.setAttribute("loginError", "Wrong authorization data");
             return "redirect:/login.jsp";
         }
         /**

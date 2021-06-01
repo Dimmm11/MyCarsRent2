@@ -8,7 +8,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -114,8 +113,8 @@
                                 <td>
                                     <form method="post" action="updatePrice">
                                         <input type="hidden" name="id" value="${car.id}">
-                                        <input type="number" placeholder="<fmt:message key="Price"/>" name="price"
-                                               style="width: 70px" min="0">
+                                        <input type="number" min="0" max="1000" placeholder="<fmt:message key="Price"/>" name="price"
+                                               style="width: 70px">
                                         <button type="submit" class="btn btn-secondary"><fmt:message
                                                 key="Update"/></button>
                                     </form>

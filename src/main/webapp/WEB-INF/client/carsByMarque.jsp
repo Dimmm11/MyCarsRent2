@@ -102,12 +102,11 @@
                                     <td><input type="radio" name="driver" value="yes"><fmt:message key="YES"/></input>
                                         <input type="radio" name="driver" value="no"><fmt:message key="NO"/></input>
                                     </td>
-                                    <td><input type="number" min="1" name="term" placeholder="<fmt:message key="Term"/>"
+                                    <td><input type="number" min="1" max="${24*30}" name="term" placeholder="<fmt:message key="Term"/>"
                                                style="width: 70px">
                                     </td>
                                     <td>
                                         <button type="submit" class="btn btn-secondary"><fmt:message key="make_order"/></button>
-                                            <%--                                        <input type="submit" value="make order">--%>
                                     </td>
                                 </form>
                             </tr>
@@ -115,7 +114,7 @@
                     </table>
                 </c:when>
                 <c:otherwise>
-                    <p class="redText">. . .</p>
+                    <p class="redText">Sorry, no available cars</p>
                 </c:otherwise>
             </c:choose>
         </div>
@@ -133,7 +132,6 @@
                         <input type="hidden" name="marque" value="${requestScope.marque}">
                         <input type="hidden" name="page" value="${i}">
                         <button type="submit" class="btn btn-secondary">${i}</button>
-                            <%--                        <input type="submit" value="${i}">--%>
                     </form>
                     <c:set var="i" value="${i+1}" scope="page"/>
                 </th>

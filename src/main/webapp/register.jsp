@@ -43,6 +43,9 @@
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="<fmt:message key="Passport"/>" name="Passport">
+                    <c:if test="${sessionScope.loginError!=null}">
+                        <c:out value="${sessionScope.loginError}"/>
+                    </c:if>
                 </div>
                 <table>
                     <tr>

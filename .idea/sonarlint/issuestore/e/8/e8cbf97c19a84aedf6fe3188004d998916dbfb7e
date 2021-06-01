@@ -1,15 +1,7 @@
 
+`
+java:S1128"CRemove this unused import 'javax.servlet.http.HttpServletResponse'.(Á¨ïë8‡âæÄœ/
 h
-java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Ó¤Œ‚8±À¤–œ/
-^
-java:S1128"<Remove this unused import 'jdk.nashorn.internal.scripts.JD'.(óúîÞûÿÿÿÿ8±À¤–œ/
-Q
-java:S1128"/Remove this unused import 'model.DAO.OrderDAO'.(¦Œ»‡þÿÿÿÿ8º¤¬–œ/
+java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Ó¤Œ‚8Ïø«–œ/
 m
-java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Œªêéøÿÿÿÿ8Ïø«–œ/
-L
-java:S1128"/Remove this unused import 'model.entity.Order'.(ûëùý8˜¯äÏ™/
-V
-java:S1128"9Remove this unused import 'model.DAO.impl.JDBCClientDao'.(ÑïµØ8Ïø«–œ/
-O
-java:S1128"-Remove this unused import 'model.DAO.CarDAO'.(‡™õ×ûÿÿÿÿ8ÇÙ¨–œ/
+java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Œªêéøÿÿÿÿ8è¿Áœ/

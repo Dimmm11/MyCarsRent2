@@ -1,9 +1,5 @@
 
-Q
-java:S1128	"/Remove this unused import 'model.DAO.OrderDAO'.(¦Œ»‡þÿÿÿÿ8ÖÓÔ˜œ/
 h
-java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Ó¤Œ‚8ÊðÒ˜œ/
+java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Ó¤Œ‚8ÊðÒ˜œ/
 m
-java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Œªêéøÿÿÿÿ8ÊðÒ˜œ/
-O
-java:S1128	"-Remove this unused import 'model.DAO.CarDAO'.(‡™õ×ûÿÿÿÿ8·öÞ˜œ/
+java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Œªêéøÿÿÿÿ8ÊðÒ˜œ/

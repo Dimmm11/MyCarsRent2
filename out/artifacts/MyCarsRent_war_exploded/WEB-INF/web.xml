@@ -61,14 +61,15 @@ Filter for access client content
     <url-pattern>/managerCars</url-pattern>
     <url-pattern>/managerOrders</url-pattern>
   </filter-mapping>
-
+  <!-- ==============================================
+  Filter Login
+   ============================================== -->
   <filter>
     <filter-name>LoginFilter</filter-name>
     <filter-class>controller.filters.LoginFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
-<!--    <url-pattern>/login.jsp</url-pattern>  &lt;!&ndash; ??????????? &ndash;&gt;-->
     <url-pattern>/login</url-pattern>
   </filter-mapping>
   <!-- ==============================================

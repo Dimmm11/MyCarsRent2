@@ -1,12 +1,16 @@
 
-Ö
-java:S1989G"hHandle the following exceptions that could be thrown by "processRequest": ServletException, IOException.(ëÅü—8Œﬂ≠…ö/
-Ö
-java:S1989A"hHandle the following exceptions that could be thrown by "processRequest": ServletException, IOException.(ëÅü—8Œﬂ≠…ö/
-c
-java:S1192T"GDefine a constant instead of duplicating this literal "client" 3 times.(ºöÏa8îì©≠ú/
-X	java:S125"<This block of commented-out lines of code should be removed.(—Ü¶Â8Œﬂ≠…ö/
-\
-java:S1161":Add the "@Override" annotation above this method signature(ß‹ß¶ˇˇˇˇˇ8Œﬂ≠…ö/
 z
-java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(‘Ê‰≠˘ˇˇˇˇ8Œﬂ≠…ö/
+java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(‘Ê‰≠˘ˇˇˇˇ8 ™›æú/
+Ö
+java:S1989A"hHandle the following exceptions that could be thrown by "processRequest": ServletException, IOException.(ëÅü—8 ™›æú/
+Q
+java:S1128"/Remove this unused import 'java.util.Optional'.(®òÎ›¸ˇˇˇˇ8¥¨’¿ú/
+\
+java:S1161":Add the "@Override" annotation above this method signature(ß‹ß¶ˇˇˇˇˇ8 ™›æú/
+X	java:S125"<This block of commented-out lines of code should be removed.(—Ü¶Â8 ™›æú/
+Ö
+java:S1989G"hHandle the following exceptions that could be thrown by "processRequest": ServletException, IOException.(ëÅü—8 ™›æú/
+N
+java:S1481L",Remove this unused "session" local variable.(˚›Ÿπ˛ˇˇˇˇ8„î—¿ú/
+M
+java:S1128"0Remove this unused import 'model.entity.Client'.(ﬂêª≠8¥¨’¿ú/

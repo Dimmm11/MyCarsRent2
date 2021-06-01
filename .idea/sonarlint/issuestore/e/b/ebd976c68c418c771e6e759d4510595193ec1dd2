@@ -1,13 +1,3 @@
 
-M
-java:S1128"0Remove this unused import 'model.entity.Client'.(ß»­8„¥Ù´›/
-X
-java:S1128";Remove this unused import 'javax.servlet.http.HttpSession'.(í¨ô8¥¼™‹œ/
-O
-java:S1128"-Remove this unused import 'model.DAO.CarDAO'.(‡™õ×ûÿÿÿÿ8æòÚ—›/
-Q
-java:S1128"/Remove this unused import 'model.DAO.OrderDAO'.(¦Œ»‡şÿÿÿÿ8ª‹–œ/
 m
-java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(‡½¾¾ùÿÿÿÿ8´Í‡–œ/
-J
-java:S1128"-Remove this unused import 'model.entity.Car'.(©¯ÉÊ8æòÚ—›/
+java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(‡½¾¾ùÿÿÿÿ8´Í‡–œ/
