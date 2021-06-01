@@ -5,6 +5,8 @@ import controller.constants.Const;
 import model.DAO.impl.JDBCCarDao;
 import model.DAO.impl.JDBCDaoFactory;
 import model.DAO.impl.JDBCOrderDao;
+import model.DAO.service.CarService;
+import model.DAO.service.OrderService;
 import model.util.pagination.PageCalculator;
 import model.entity.Car;
 import model.entity.Order;
@@ -21,19 +23,14 @@ public class ManagerOrders implements Command {
         if (pageOptional.isPresent()) {
             page = Integer.parseInt(pageOptional.get());
         }
-        try (JDBCCarDao carDao = (JDBCCarDao) JDBCDaoFactory.getInstance().createCarDao();
-             JDBCOrderDao orderDao = (JDBCOrderDao) JDBCDaoFactory.getInstance().createOrderDao()) {
-            List<Order> allOrders = orderDao.getAllOrders();
-            List<Order> orders = orderDao.getAllOrders((page - 1) * 3, 3);
-            List<Car> cars = carDao.getOrderedCars((page - 1) * 3, 3);
-            int numPages = new PageCalculator().getNumPages(allOrders.size());
-            request.setAttribute(Const.PAGE, page);
-            request.setAttribute(Const.NUM_PAGES, numPages);
-            request.setAttribute(Const.CARS, cars);
-            request.setAttribute(Const.ORDERS, orders);
-        } catch (Exception e) {
-            return "redirect:/page404.html";
-        }
+        List<Order> allOrders = new OrderService().getAllOrders();
+        List<Order> orders = new OrderService().getAllOrders((page - 1) * 3, 3);
+        List<Car> cars = new CarService().getOrderedCars((page - 1) * 3, 3);
+        int numPages = new PageCalculator().getNumPages(allOrders.size());
+        request.setAttribute(Const.PAGE, page);
+        request.setAttribute(Const.NUM_PAGES, numPages);
+        request.setAttribute(Const.CARS, cars);
+        request.setAttribute(Const.ORDERS, orders);
         return "/WEB-INF/manager/managerOrders.jsp";
     }
 

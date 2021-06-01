@@ -1,6 +1,6 @@
 
-TWeb:TableWithoutCaptionCheck0" Add a description to this table.(¿‰˜ÿÿÿÿÿ8³Íˆü›/
 ]Web:DoctypePresenceCheck":Insert a <!DOCTYPE> declaration to before this <html> tag.(ñ§½W
-s Web:TableHeaderHasIdOrScopeCheck1";Add either an 'id' or a 'scope' attribute to this <th> tag.(™À§ãÿÿÿÿÿ8‰—‰ü›/
+TWeb:TableWithoutCaptionCheck0" Add a description to this table.(¿‰˜ÿÿÿÿÿ8³Íˆü›/
 s Web:TableHeaderHasIdOrScopeCheck8";Add either an 'id' or a 'scope' attribute to this <th> tag.(™À§ãÿÿÿÿÿ8‰—‰ü›/
 s Web:TableHeaderHasIdOrScopeCheck>";Add either an 'id' or a 'scope' attribute to this <th> tag.(™À§ãÿÿÿÿÿ8‰—‰ü›/
+s Web:TableHeaderHasIdOrScopeCheck1";Add either an 'id' or a 'scope' attribute to this <th> tag.(™À§ãÿÿÿÿÿ8‰—‰ü›/

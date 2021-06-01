@@ -16,15 +16,10 @@ public class LoginCommand implements Command {
         HttpSession session = request.getSession();
         String name = request.getParameter("Login");
         String pass = request.getParameter("Password");
-
         if (name == null || name.equals("") || pass == null || pass.equals("")) {
             session.setAttribute("loginError", "All fields required");
             return "redirect:/login.jsp";
         }
-
-
-
-
         /**
          * check user in DB
          */
@@ -54,7 +49,6 @@ public class LoginCommand implements Command {
         /**
          * All checks passed, send to Page
          */
-        System.out.println("ROLE IN LoginCommand(): " + (int) session.getAttribute("role"));
         if ((int) session.getAttribute("role") == 3) {
             return "/WEB-INF/admin/welcomeAdmin.jsp";
         }

@@ -1,0 +1,7 @@
+
+W
+java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(Íç°Ω8êÈ—»ú/
+X	java:S125"<This block of commented-out lines of code should be removed.(ù£ùó8◊˚ÿ»ú/
+U
+java:S1128"8Remove this unused import 'model.DAO.tryService.CarDAO'.(õà∆Ó8Á•Ã»ú/
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(”ô≈†˚ˇˇˇˇ

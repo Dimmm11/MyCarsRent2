@@ -1,6 +1,5 @@
 package model.util;
 
-import model.DAO.Sql;
 import model.connection.ConnectionPoolHolder;
 
 import java.sql.Connection;

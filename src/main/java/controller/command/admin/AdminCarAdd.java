@@ -4,6 +4,7 @@ import controller.command.Command;
 import controller.constants.Const;
 import model.DAO.impl.JDBCCarDao;
 import model.DAO.impl.JDBCDaoFactory;
+import model.DAO.service.CarService;
 import model.entity.Car;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +22,7 @@ public class AdminCarAdd implements Command {
                 request.getParameter(Const.MODEL),
                 BigDecimal.valueOf(Double.parseDouble(request.getParameter(Const.PRICE)))
         );
-        try (JDBCCarDao carDao = (JDBCCarDao) JDBCDaoFactory.getInstance().createCarDao()) {
-            carDao.addCar(car);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        new CarService().addCar(car);
         return "redirect:/managerCars";
     }
 }

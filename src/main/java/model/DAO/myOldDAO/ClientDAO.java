@@ -1,6 +1,6 @@
 package model.DAO.myOldDAO;
 
-import model.DAO.Sql;
+import model.util.Sql;
 import model.connection.ConnectionPoolHolder;
 import model.entity.Client;
 import model.DAO.mapper.ClientMapper;

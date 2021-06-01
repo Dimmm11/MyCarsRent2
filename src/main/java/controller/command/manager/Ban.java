@@ -4,6 +4,7 @@ import controller.command.Command;
 import controller.constants.Const;
 import model.DAO.impl.JDBCClientDao;
 import model.DAO.impl.JDBCDaoFactory;
+import model.DAO.service.ClientService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,11 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 public class Ban implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        try (JDBCClientDao clientDao = (JDBCClientDao) JDBCDaoFactory.getInstance().createClientDao()) {
-            clientDao.ban(request.getParameter(Const.LOGIN));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        new ClientService().ban(request.getParameter(Const.LOGIN));
         return "managerClients";
     }
 }

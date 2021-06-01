@@ -1,4 +1,4 @@
-package model.DAO.tryService;
+package model.DAO;
 
 import model.DAO.impl.JDBCDaoFactory;
 

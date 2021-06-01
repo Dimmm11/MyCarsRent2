@@ -20,7 +20,8 @@ public class CarsByMarque implements Command {
         HttpSession session = request.getSession();
         List<Car> cars;
         Optional<String> marqueOptional = Optional.ofNullable(request.getParameter(Const.MARQUE));
-        String marque = marqueOptional.orElse((String) session.getAttribute(Const.MARQUE));
+        String marque = marqueOptional
+                .orElse((String) session.getAttribute(Const.MARQUE));
         session.setAttribute(Const.MARQUE, marque);
         int page = 1;
         Optional<String> pageOptional = Optional.ofNullable(request.getParameter(Const.PAGE));
@@ -36,11 +37,13 @@ public class CarsByMarque implements Command {
             sortOrder = Const.ASC;
         }
         Optional<String> columnOptional = Optional.ofNullable(request.getParameter(Const.COLUMN));
-        String col = columnOptional.orElse(column);
-        session.setAttribute(Const.COLUMN, col);
+        String columnAttribute = columnOptional
+                .orElse(column);
+        session.setAttribute(Const.COLUMN, columnAttribute);
         Optional<String> orderOptional = Optional.ofNullable(request.getParameter(Const.SORT_ORDER));
-        String ord = orderOptional.orElse(sortOrder);
-        session.setAttribute(Const.SORT_ORDER, ord);
+        String orderAttribute = orderOptional
+                .orElse(sortOrder);
+        session.setAttribute(Const.SORT_ORDER, orderAttribute);
         List<Car> allCars = new CarService().getCarsByMarque(
                 (String) session.getAttribute(Const.MARQUE),
                 (String) session.getAttribute(Const.COLUMN),

@@ -1,8 +1,8 @@
 package model.DAO.impl;
 
-import model.DAO.Sql;
+import model.util.Sql;
 import model.DAO.mapper.CarMapper;
-import model.DAO.tryService.CarDAO;
+import model.DAO.CarDAO;
 import model.connection.ConnectionPoolHolder;
 import model.entity.Car;
 import model.entity.Client;
@@ -36,11 +36,11 @@ public class JDBCCarDao implements CarDAO {
         return carsByClass;
     }
 
-    public List<Car> getCarsByClass(String carClass,String column, String sortingOrder) {
+    public List<Car> getCarsByClass(String carClass, String column, String sortingOrder) {
         List<Car> carsByClass = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            String sql = Sql.CARS_BY_CLASS.replace("carclass", carClass).replace(";", " ORDER BY "+column+" "+sortingOrder+" ;");
+            String sql = Sql.CARS_BY_CLASS.replace("carclass", carClass).replace(";", " ORDER BY " + column + " " + sortingOrder + " ;");
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
@@ -87,12 +87,12 @@ public class JDBCCarDao implements CarDAO {
         return carsByMarque;
     }
 
-    public List<Car> getCarsByMarque(String marque,String column, String sortingOrder) {
+    public List<Car> getCarsByMarque(String marque, String column, String sortingOrder) {
         List<Car> carsByMarque = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            String sql = Sql.CARS_BY_MARQUE.replaceAll("carmarque", marque).replace(";", " ORDER BY "+column+" "+sortingOrder+" ;");
-            System.out.println("sql: "+sql);
+            String sql = Sql.CARS_BY_MARQUE.replaceAll("carmarque", marque).replace(";", " ORDER BY " + column + " " + sortingOrder + " ;");
+            System.out.println("sql: " + sql);
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
@@ -180,7 +180,7 @@ public class JDBCCarDao implements CarDAO {
         List<Car> allCars = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            String ss = Sql.ALLCARS.replaceAll(";"," ORDER BY "+column+" "+sortingOrder+" ;");
+            String ss = Sql.ALLCARS.replaceAll(";", " ORDER BY " + column + " " + sortingOrder + " ;");
             System.out.println(ss);
             ResultSet rs = st.executeQuery(ss);
             while (rs.next()) {
@@ -193,12 +193,12 @@ public class JDBCCarDao implements CarDAO {
         return allCars;
     }
 
-    public List<Car> getAllCars(List<Car> allCars,int startIndex, int lastIndex) {
+    public List<Car> getAllCars(List<Car> allCars, int startIndex, int lastIndex) {
         List<Car> sortedCars = new ArrayList<>();
-        System.out.println("startIndex: "+startIndex);
-        if(allCars.size()-1 < lastIndex){
-            lastIndex =startIndex+ ((allCars.size())-startIndex);
-            System.out.println("lastIndex: "+lastIndex);
+        System.out.println("startIndex: " + startIndex);
+        if (allCars.size() - 1 < lastIndex) {
+            lastIndex = startIndex + ((allCars.size()) - startIndex);
+            System.out.println("lastIndex: " + lastIndex);
         }
         sortedCars = allCars.subList(startIndex, lastIndex);
 
@@ -238,14 +238,14 @@ public class JDBCCarDao implements CarDAO {
         return allCars;
     }
 
-    public List<Car> getOrderedCars(int index,int offset) {
+    public List<Car> getOrderedCars(int index, int offset) {
         List<Car> allCars = new ArrayList<>();
         PreparedStatement pst = null;
         ResultSet rs = null;
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
             pst = con.prepareStatement(Sql.PAGE_ORDERED_CARS);
-            pst.setInt(1,index);
-            pst.setInt(2,offset);
+            pst.setInt(1, index);
+            pst.setInt(2, offset);
             rs = pst.executeQuery();
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
@@ -253,11 +253,11 @@ public class JDBCCarDao implements CarDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            try{
+        } finally {
+            try {
                 pst.close();
                 rs.close();
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 e.getMessage();
             }
         }
@@ -279,7 +279,6 @@ public class JDBCCarDao implements CarDAO {
             result = st.executeUpdate() > 0;
             con.commit();
         } catch (SQLException e) {
-            System.out.println("FAILED to add a car");
             try {
                 con.rollback();
             } catch (SQLException throwables) {
@@ -381,6 +380,7 @@ public class JDBCCarDao implements CarDAO {
         }
         return result;
     }
+
     // =================================================
     @Override
     public boolean create(Car car) {

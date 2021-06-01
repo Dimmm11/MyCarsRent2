@@ -1,3 +1,5 @@
 
-m
-java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(¨³Β¥ÿÿÿÿÿ8«τεΐ/
+S
+java:S1128"6Remove this unused import 'model.DAO.impl.JDBCCarDao'.(°ΊΉή8ειΫΙ/
+W
+java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(κ΅½8ειΫΙ/

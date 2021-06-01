@@ -1,7 +1,7 @@
 
 `
 java:S1128"CRemove this unused import 'javax.servlet.http.HttpServletResponse'.(Á¨ïë8‡âæÄœ/
-h
-java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Ó¤Œ‚8Ïø«–œ/
 m
 java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Œªêéøÿÿÿÿ8è¿Áœ/
+h
+java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Ó¤Œ‚8Ïø«–œ/

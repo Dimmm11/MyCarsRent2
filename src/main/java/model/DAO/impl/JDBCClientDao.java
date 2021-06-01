@@ -1,8 +1,8 @@
 package model.DAO.impl;
 
-import model.DAO.Sql;
+import model.util.Sql;
 import model.DAO.mapper.ClientMapper;
-import model.DAO.tryService.ClientDAO;
+import model.DAO.ClientDAO;
 import model.connection.ConnectionPoolHolder;
 import model.entity.Client;
 
@@ -190,7 +190,6 @@ public class JDBCClientDao implements ClientDAO {
             result = st.executeUpdate() > 0;
             con.commit();
         } catch (SQLException e) {
-            System.out.println("FAILED to make manager");
             try {
                 con.rollback();
             } catch (SQLException throwables) {

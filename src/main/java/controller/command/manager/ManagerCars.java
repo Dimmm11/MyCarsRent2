@@ -4,6 +4,7 @@ import controller.command.Command;
 import controller.constants.Const;
 import model.DAO.impl.JDBCCarDao;
 import model.DAO.impl.JDBCDaoFactory;
+import model.DAO.service.CarService;
 import model.util.pagination.PageCalculator;
 import model.entity.Car;
 import model.util.pagination.Paginator;
@@ -33,13 +34,8 @@ public class ManagerCars implements Command {
         Optional<String> sortStringOpt = Optional.ofNullable(request.getParameter(Const.SORT_ORDER));
         String sortAttribute = sortStringOpt.orElse(sortOrder);
         session.setAttribute(Const.SORT_ORDER, sortAttribute);
-        List<Car> allCars = new ArrayList<>();
-        try (JDBCCarDao carDao = (JDBCCarDao) JDBCDaoFactory.getInstance().createCarDao()) {
-            allCars = carDao.getAllCars((String) session.getAttribute(Const.COLUMN),
+        List<Car> allCars = new CarService().getAllCars((String) session.getAttribute(Const.COLUMN),
                     (String) session.getAttribute(Const.SORT_ORDER));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         List<Car> cars = new Paginator<Car>().getEntitiesForPage(allCars,
                 (page - 1) * 3,
                 (page - 1) * 3 + 3);

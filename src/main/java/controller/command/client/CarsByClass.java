@@ -18,7 +18,6 @@ public class CarsByClass implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
-//        try (JDBCCarDao carDao = (JDBCCarDao) JDBCDaoFactory.getInstance().createCarDao()) {
             int page = 1;
             Optional<String> optionalPage = Optional.ofNullable(request.getParameter(Const.PAGE));
             if (optionalPage.isPresent()) {
@@ -41,10 +40,12 @@ public class CarsByClass implements Command {
                 sortOrder = Const.ASC;
             }
             Optional<String> stringOptional = Optional.ofNullable(request.getParameter(Const.COLUMN));
-            String column1 = stringOptional.orElse(column);
+            String column1 = stringOptional
+                    .orElse(column);
             session.setAttribute(Const.COLUMN, column1);
             Optional<String> orderOptional = Optional.ofNullable(request.getParameter(Const.SORT_ORDER));
-            String orderSort = orderOptional.orElse(sortOrder);
+            String orderSort = orderOptional
+                    .orElse(sortOrder);
             session.setAttribute(Const.SORT_ORDER,orderSort);
             List<Car> allCars = new CarService().getCarsByClass(
                     (String) session.getAttribute(Const.CAR_CLASS),

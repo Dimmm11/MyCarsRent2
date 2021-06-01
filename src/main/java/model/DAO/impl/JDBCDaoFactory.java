@@ -1,9 +1,9 @@
 package model.DAO.impl;
 
-import model.DAO.tryService.CarDAO;
-import model.DAO.tryService.ClientDAO;
-import model.DAO.tryService.DaoFactory;
-import model.DAO.tryService.OrderDAO;
+import model.DAO.CarDAO;
+import model.DAO.ClientDAO;
+import model.DAO.DaoFactory;
+import model.DAO.OrderDAO;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

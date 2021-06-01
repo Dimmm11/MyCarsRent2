@@ -1,4 +1,4 @@
-package model.DAO;
+package model.util;
 
 /**
  * sql-quarries
