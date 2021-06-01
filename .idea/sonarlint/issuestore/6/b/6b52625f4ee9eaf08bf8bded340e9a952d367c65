@@ -1,7 +1,3 @@
 
-d
-java:S1192"GDefine a constant instead of duplicating this literal "column" 6 times.(ô«û8¾À°î›/
-]	java:S125"<This block of commented-out lines of code should be removed.(ÛöÉışÿÿÿÿ8‘¬Èí›/
-W	java:S125/"<This block of commented-out lines of code should be removed.(‘ì×g8®¨Ëì›/
-g
-java:S1192"JDefine a constant instead of duplicating this literal "sortOrder" 6 times.(©ãùÎ8÷ä±î›/
+m
+java:S3252,"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(¨³Â¥ÿÿÿÿÿ8Úœ½•œ/

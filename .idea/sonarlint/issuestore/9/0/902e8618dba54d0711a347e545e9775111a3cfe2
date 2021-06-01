@@ -1,4 +1,9 @@
 
-W	java:S125"<This block of commented-out lines of code should be removed.(®¼ÅF8Ü½Ç›/
-N
-java:S1481",Remove this unused "allCars" local variable.(Òï·ıÿÿÿÿ8ìÄĞÇ›/
+Q
+java:S1128	"/Remove this unused import 'model.DAO.OrderDAO'.(¦Œ»‡şÿÿÿÿ8ÖÓÔ˜œ/
+h
+java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Ó¤Œ‚8ÊğÒ˜œ/
+m
+java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Œªêéøÿÿÿÿ8ÊğÒ˜œ/
+O
+java:S1128	"-Remove this unused import 'model.DAO.CarDAO'.(‡™õ×ûÿÿÿÿ8·öŞ˜œ/

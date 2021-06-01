@@ -1,12 +1,10 @@
 
 X	java:S125"<This block of commented-out lines of code should be removed.(Ñ†¦å8Îß­Éš/
-Z	java:S106T"9Replace this use of System.out or System.err by a logger.(¾µÕøÿÿÿÿ8·ÓÜü›/
-\
-java:S1161":Add the "@Override" annotation above this method signature(§Ü§¦ÿÿÿÿÿ8Îß­Éš/
 …
 java:S1989@"hHandle the following exceptions that could be thrown by "processRequest": ServletException, IOException.(‘ŸÑ8Îß­Éš/
-Z	java:S106Q"9Replace this use of System.out or System.err by a logger.(Áô—´şÿÿÿÿ8š›Õü›/
-z
-java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(Ôæä­ùÿÿÿÿ8Îß­Éš/
 …
 java:S1989F"hHandle the following exceptions that could be thrown by "processRequest": ServletException, IOException.(‘ŸÑ8Îß­Éš/
+z
+java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(Ôæä­ùÿÿÿÿ8Îß­Éš/
+\
+java:S1161":Add the "@Override" annotation above this method signature(§Ü§¦ÿÿÿÿÿ8Îß­Éš/

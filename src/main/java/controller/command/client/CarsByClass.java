@@ -18,38 +18,36 @@ public class CarsByClass implements Command {
         HttpSession session = request.getSession();
         try (JDBCCarDao carDao = (JDBCCarDao) JDBCDaoFactory.getInstance().createCarDao()) {
             int page = 1;
-//            if (request.getParameter(Const.PAGE) != null) {
-//                page = Integer.parseInt(request.getParameter(Const.PAGE));
-//            }
-//            ============================================optional
             Optional<String> optionalPage = Optional.ofNullable(request.getParameter(Const.PAGE));
             if (optionalPage.isPresent()) {
                 page = Integer.parseInt(optionalPage.get());
             }
-//            ============================================
             String carClass = request.getParameter(Const.CAR_CLASS);
-            if (carClass == null) {
-                carClass = (String) session.getAttribute(Const.CAR_CLASS);
+            Optional<String> carClassOpt = Optional.ofNullable(request.getParameter(Const.CAR_CLASS));
+            if(!carClassOpt.isPresent()){
+                carClass = (String)session.getAttribute(Const.CAR_CLASS);
             }
             session.setAttribute(Const.CAR_CLASS, carClass);
             String column = (String) session.getAttribute(Const.COLUMN);
-            if (column == null) {
+            Optional<String> columnOpt = Optional.ofNullable((String)session.getAttribute(Const.COLUMN));
+            if(!columnOpt.isPresent()){
                 column = Const.ID;
             }
             String sortOrder = (String) session.getAttribute(Const.SORT_ORDER);
-            if (sortOrder == null) {
+            Optional<String> sortOpt = Optional.ofNullable((String) session.getAttribute(Const.SORT_ORDER));
+            if(!sortOpt.isPresent()){
                 sortOrder = Const.ASC;
             }
-            if (request.getParameter(Const.COLUMN) != null) {
-                session.setAttribute(Const.COLUMN, request.getParameter(Const.COLUMN));
-            } else {
-                session.setAttribute(Const.COLUMN, column);
-            }
-            if (request.getParameter(Const.SORT_ORDER) != null) {
-                session.setAttribute(Const.SORT_ORDER, request.getParameter(Const.SORT_ORDER));
-            } else {
-                session.setAttribute(Const.SORT_ORDER, sortOrder);
-            }
+
+            Optional<String> stringOptional = Optional.ofNullable(request.getParameter(Const.COLUMN));
+            String column1 = stringOptional.orElse(column);
+            session.setAttribute(Const.COLUMN, column1);
+
+
+
+            Optional<String> orderOptional = Optional.ofNullable(request.getParameter(Const.SORT_ORDER));
+            String orderSort = orderOptional.orElse(sortOrder);
+            session.setAttribute(Const.SORT_ORDER,orderSort);
             List<Car> allCars = carDao.getCarsByClass((String) session.getAttribute(Const.CAR_CLASS),
                     (String) session.getAttribute(Const.COLUMN),
                     (String) session.getAttribute(Const.SORT_ORDER));

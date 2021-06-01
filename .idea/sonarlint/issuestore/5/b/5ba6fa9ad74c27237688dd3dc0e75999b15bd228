@@ -1,3 +1,5 @@
 
-M
-java:S1128"0Remove this unused import 'model.entity.Client'.(ß»­8çµûí™/
+m
+java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Óé›’úÿÿÿÿ8¾¼ù•œ/
+m
+java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Óé›’úÿÿÿÿ8™Æö•œ/

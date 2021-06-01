@@ -1,8 +1,8 @@
 
-h
-java:S1192"FDefine a constant instead of duplicating this literal "error" 3 times.(Ü„°®øÿÿÿÿ8ÁÒËñš/
+v
+java:S1192"TDefine a constant instead of duplicating this literal "redirect:/login.jsp" 3 times.(Â²™ÿÿÿÿÿ8“ëÊñš/
 d
 java:S1192"GDefine a constant instead of duplicating this literal "client" 3 times.(Ğ¥è8±ŒüØ™/
 U	java:S1062"9Replace this use of System.out or System.err by a logger.(¬ü“í8ªÏÃ¡š/
-v
-java:S1192"TDefine a constant instead of duplicating this literal "redirect:/login.jsp" 3 times.(Â²™ÿÿÿÿÿ8“ëÊñš/
+h
+java:S1192"FDefine a constant instead of duplicating this literal "error" 3 times.(Ü„°®øÿÿÿÿ8ÁÒËñš/
