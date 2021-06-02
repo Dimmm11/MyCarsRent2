@@ -6,6 +6,8 @@ import controller.command.client.*;
 import controller.command.Registration;
 import controller.command.manager.*;
 import model.entity.Client;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -18,7 +20,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+
 public class Servlet extends HttpServlet {
+    private static final Logger logger = LogManager.getLogger();
     private Map<String, Command> commands = new HashMap<>();
 
     public void init(ServletConfig servletConfig) {
@@ -55,7 +59,6 @@ public class Servlet extends HttpServlet {
         commands.put("returnCar", new CarReturn());
         commands.put("ban", new Ban());
         commands.put("unBan", new UnBan());
-
     }
 
     @Override
@@ -74,13 +77,20 @@ public class Servlet extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+//        request.setCharacterEncoding("UTF-8");
+//         response.setContentType("text/html");
+//         response.setCharacterEncoding("UTF-8");
+
         String path = request.getRequestURI();
+        logger.debug(path);
         path = path.replaceAll(".*/cars/", "");
         Command command = commands.getOrDefault(path, g -> "/error404.html");
         String page = command.execute(request);
         if (page.contains("redirect:")) {
+            logger.info(String.format("servlet redirect%s", page.replace("redirect:", "/cars")));
             response.sendRedirect(page.replace("redirect:", "/cars"));
         } else {
+            logger.info(String.format("servlet forward: %s", page));
             request.getRequestDispatcher(page).forward(request, response);
         }
     }

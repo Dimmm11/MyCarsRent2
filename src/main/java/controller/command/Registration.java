@@ -2,7 +2,10 @@ package controller.command;
 
 import model.DAO.impl.JDBCClientDao;
 import model.DAO.impl.JDBCDaoFactory;
+import model.DAO.service.ClientService;
 import model.entity.Client;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,8 +13,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Registration implements Command {
+    private static final Logger logger = LogManager.getLogger(Registration.class.getName());
+
     @Override
     public String execute(HttpServletRequest request) {
+        logger.info("Registration...");
         HttpSession session = request.getSession();
         String login = request.getParameter("Login");
         String password = request.getParameter("Password");
@@ -38,17 +44,16 @@ public class Registration implements Command {
         /**
          * If registration successful - send to Page, else - print error
          */
-        try (JDBCClientDao clientDao = (JDBCClientDao) JDBCDaoFactory.getInstance().createClientDao()) {
-            if (clientDao.register(client)) {
-                client = clientDao.getClient(request.getParameter("Login"));
-                session.setAttribute("client", client);
-                session.setAttribute("role", client.getRole_id());
-                return "/WEB-INF/client/menu.jsp";
-            }
-        } catch (Exception e) {
-            session.setAttribute("loginError", "Such user exists");
-            return "redirect:/register.jsp";
+        if (new ClientService().register(client)) {
+            client = new ClientService().getClient(request.getParameter("Login"));
+            session.setAttribute("clientName", login);
+            session.setAttribute("client", client);
+            session.setAttribute("role", client.getRole_id());
+            logger.info("Registered client: {}", client);
+            return "/menu";
         }
-        return "register.jsp";
+        logger.info(String.format("Such user exists%s", login));
+        session.setAttribute("loginError", "Such user exists");
+        return "redirect:/register.jsp";
     }
 }

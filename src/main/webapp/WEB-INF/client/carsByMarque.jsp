@@ -94,7 +94,14 @@
                             <tr>
                                 <form action="${pageContext.request.contextPath}/order">
                                     <td><c:out value="${car.model}"/></td>
-                                    <td><c:out value="${car.price}"/></td>
+                                    <c:choose>
+                                        <c:when test="${sessionScope.lang.equals('en')}">
+                                            <td><c:out value="${car.price}"/><fmt:message key="cur"/></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td><c:out value="${car.price*27}"/><fmt:message key="cur"/></td>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <input type="hidden" name="id" value="${car.id}">
                                     <input type="hidden" name="marque" value="${car.marque}">
                                     <input type="hidden" name="model" value="${car.model}">

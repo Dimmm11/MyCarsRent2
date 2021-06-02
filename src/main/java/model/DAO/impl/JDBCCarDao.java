@@ -19,7 +19,6 @@ public class JDBCCarDao implements CarDAO {
         this.connection = connection;
     }
 
-    // =================================================
     public List<Car> getCarsByClass(String carClass) {
         List<Car> carsByClass = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
@@ -40,7 +39,8 @@ public class JDBCCarDao implements CarDAO {
         List<Car> carsByClass = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            String sql = Sql.CARS_BY_CLASS.replace("carclass", carClass).replace(";", " ORDER BY " + column + " " + sortingOrder + " ;");
+            String sql = Sql.CARS_BY_CLASS.replace("carclass", carClass).replace(";",
+                    " ORDER BY " + column + " " + sortingOrder + " ;");
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
@@ -91,8 +91,8 @@ public class JDBCCarDao implements CarDAO {
         List<Car> carsByMarque = new ArrayList<>();
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
-            String sql = Sql.CARS_BY_MARQUE.replaceAll("carmarque", marque).replace(";", " ORDER BY " + column + " " + sortingOrder + " ;");
-            System.out.println("sql: " + sql);
+            String sql = Sql.CARS_BY_MARQUE.replaceAll("carmarque", marque).replace(";",
+                    " ORDER BY " + column + " " + sortingOrder + " ;");
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
@@ -148,7 +148,6 @@ public class JDBCCarDao implements CarDAO {
             pst.setInt(1, client.getId());
             pst.setInt(2, index);
             pst.setInt(3, offset);
-
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
@@ -157,6 +156,12 @@ public class JDBCCarDao implements CarDAO {
             con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                pst.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return carsByClient;
     }
@@ -181,7 +186,6 @@ public class JDBCCarDao implements CarDAO {
         try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
              Statement st = con.createStatement()) {
             String ss = Sql.ALLCARS.replaceAll(";", " ORDER BY " + column + " " + sortingOrder + " ;");
-            System.out.println(ss);
             ResultSet rs = st.executeQuery(ss);
             while (rs.next()) {
                 Car car = new CarMapper().mapFromResultSet(rs);
@@ -195,13 +199,10 @@ public class JDBCCarDao implements CarDAO {
 
     public List<Car> getAllCars(List<Car> allCars, int startIndex, int lastIndex) {
         List<Car> sortedCars = new ArrayList<>();
-        System.out.println("startIndex: " + startIndex);
         if (allCars.size() - 1 < lastIndex) {
             lastIndex = startIndex + ((allCars.size()) - startIndex);
-            System.out.println("lastIndex: " + lastIndex);
         }
         sortedCars = allCars.subList(startIndex, lastIndex);
-
         return sortedCars;
     }
 
@@ -271,7 +272,6 @@ public class JDBCCarDao implements CarDAO {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(Sql.ADD_CAR);
-
             st.setString(1, car.getMarque());
             st.setString(2, car.getClazz());
             st.setString(3, car.getModel());
@@ -298,11 +298,11 @@ public class JDBCCarDao implements CarDAO {
     public boolean updatePrice(BigDecimal price, Car car) {
         boolean result = false;
         Connection con = null;
+        PreparedStatement st=null;
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(Sql.PRICE_UPDATE);
-
+            st = con.prepareStatement(Sql.PRICE_UPDATE);
             st.setBigDecimal(1, price);
             st.setInt(2, car.getId());
             result = st.executeUpdate() > 0;
@@ -316,6 +316,7 @@ public class JDBCCarDao implements CarDAO {
             e.printStackTrace();
         } finally {
             try {
+                st.close();
                 con.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -327,10 +328,11 @@ public class JDBCCarDao implements CarDAO {
     public Car getCarById(int id) {
         Car car = null;
         Connection con = null;
+        PreparedStatement st =null;
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(Sql.GET_CAR_BY_ID);
+            st = con.prepareStatement(Sql.GET_CAR_BY_ID);
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
             rs.next();
@@ -345,6 +347,7 @@ public class JDBCCarDao implements CarDAO {
             e.printStackTrace();
         } finally {
             try {
+                st.close();
                 con.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -356,10 +359,11 @@ public class JDBCCarDao implements CarDAO {
     public boolean deleteCar(int id) {
         boolean result = false;
         Connection con = null;
+        PreparedStatement st = null;
         try {
             con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(Sql.DELETE_CAR);
+            st = con.prepareStatement(Sql.DELETE_CAR);
             st.setInt(1, id);
 
             result = st.executeUpdate() > 0;
@@ -373,6 +377,7 @@ public class JDBCCarDao implements CarDAO {
             e.printStackTrace();
         } finally {
             try {
+                st.close();
                 con.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -381,7 +386,6 @@ public class JDBCCarDao implements CarDAO {
         return result;
     }
 
-    // =================================================
     @Override
     public boolean create(Car car) {
         return false;

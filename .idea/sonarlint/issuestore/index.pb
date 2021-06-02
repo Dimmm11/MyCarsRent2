@@ -107,18 +107,8 @@ h
 -src/main/java/model/DAO/mapper/CarMapper.java,e\1\e1e6d446e7eda77983b89a0c0a16a7a2ce3a3b0b
 _
 /src/main/java/model/DAO/mapper/OrderMapper.java,b\9\b9880f001d8407589541308c899716de42d52abf
-`
-0src/main/java/model/DAO/tryService/OrderDAO.java,b\1\b18352b854f5615e8f956cf05b47bc8e82d3c576
 f
 6src/main/java/model/DAO/impl/ConnectionPoolHolder.java,7\5\750d5b6d3ac5d4f6a853544ad0563a12fb06bbbb
-^
-.src/main/java/model/DAO/tryService/CarDAO.java,7\b\7bd0bf5f9f93a0f539a951e04197daf4f456d573
-b
-2src/main/java/model/DAO/tryService/GenericDao.java,b\e\bead0c5c8c948f6a40951ea09e5be541aa79be0c
-b
-2src/main/java/model/DAO/tryService/DaoFactory.java,d\9\d9a44e5ed5ac07b3189b73698f701b9a3ca70e21
-a
-1src/main/java/model/DAO/tryService/ClientDAO.java,8\b\8b3f09de1c6593bc96405acff70242996b728e38
 `
 0src/main/java/model/DAO/impl/JDBCDaoFactory.java,b\c\bc0b94e59dfba76c7961e4f06e8d419b9b966944
 \
@@ -135,8 +125,6 @@ c
 3src/main/java/controller/command/manager/UnBan.java,9\a\9a36682ce8e7d90fa889757f823c042ed647225c
 a
 1src/main/java/controller/command/manager/Ban.java,8\f\8ff2d8c0a79d6689e8a4bdfff01b061f83c0b5df
-P
- src/main/java/model/DAO/Sql.java,9\1\9142ab1d04c3cc5a7c42b94ca6236bed05378965
 W
 'src/main/webapp/WEB-INF/tlds/myTags.tld,0\1\01d4c108b47aeb3e642f332d2d313adb28ae33a2
 \
@@ -165,3 +153,17 @@ _
 /src/main/java/model/DAO/service/CarService.java,4\9\499219b7932ad0ddbca9e66f94f9eaa2e4362981
 a
 1src/main/java/model/DAO/service/OrderService.java,3\4\346cabaaac16e5487aab5c1f3894047cc8af2835
+b
+2src/main/java/model/DAO/service/ClientService.java,4\8\48a37200da3e17bddaad00f19661f7715854340e
+Q
+!src/main/java/model/util/Sql.java,8\5\85654b9b12c48db23bbf089c66ace8445b86dd24
+S
+#src/main/java/model/DAO/CarDAO.java,0\1\01fbccb678431e2d6eac26a21983f8777177be98
+V
+&src/main/java/model/DAO/ClientDAO.java,e\a\ead502c70a0ce763d722fa13130a1de360f0acfb
+W
+'src/main/java/model/DAO/GenericDao.java,3\1\31ce0f31325dd0299c91095eb73d6c16fd61acbe
+W
+'src/main/java/model/DAO/DaoFactory.java,1\b\1ba9bf8381286061cc5a5b42cf430cab88b6910c
+U
+%src/main/java/model/DAO/OrderDAO.java,2\2\2225addf20e39b3bd1e510d86d8c9976eab4f5c8

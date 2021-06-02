@@ -1,3 +1,5 @@
 
-m
-java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(‡½¾¾ùÿÿÿÿ8¹â˜œ/
+W
+java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(ê¡½8™æÌœ/
+U
+java:S1128"8Remove this unused import 'model.DAO.impl.JDBCOrderDao'.(ˆó¸õ8™æÌœ/

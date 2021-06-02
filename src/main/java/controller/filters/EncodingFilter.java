@@ -15,6 +15,9 @@ public class EncodingFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        servletRequest.setCharacterEncoding("UTF-8");
+        servletResponse.setContentType("text/html;charset=UTF-8");
+        servletResponse.setCharacterEncoding("UTF-8");
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpSession session = req.getSession();
         /**
@@ -33,9 +36,6 @@ public class EncodingFilter implements Filter {
         /**
          * encoding
          */
-        servletResponse.setContentType("text/html");
-        servletResponse.setCharacterEncoding("UTF-8");
-        servletRequest.setCharacterEncoding("UTF-8");
         filterChain.doFilter(servletRequest,servletResponse);
     }
 

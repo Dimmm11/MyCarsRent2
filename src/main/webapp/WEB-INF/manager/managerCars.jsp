@@ -109,7 +109,15 @@
                                 <td><c:out value="${car.marque}"/></td>
                                 <td><c:out value="${car.clazz}"/></td>
                                 <td><c:out value="${car.model}"/></td>
-                                <td><c:out value="${car.price}"/></td>
+                                <c:choose>
+                                    <c:when test="${sessionScope.lang.equals('en')}">
+                                        <td><c:out value="${car.price}"/><fmt:message key="cur"/></td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td><c:out value="${car.price*27}"/><fmt:message key="cur"/></td>
+                                    </c:otherwise>
+                                </c:choose>
+<%--                                <td><c:out value="${car.price}"/></td>--%>
                                 <td>
                                     <form method="post" action="updatePrice">
                                         <input type="hidden" name="id" value="${car.id}">

@@ -1,7 +1,9 @@
 
+S
+java:S1128"6Remove this unused import 'model.DAO.impl.JDBCCarDao'.(°º¹Ş8ÿÃ©Ìœ/
 `
-java:S1128"CRemove this unused import 'javax.servlet.http.HttpServletResponse'.(Á¨ïë8‡âæÄœ/
-m
-java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Œªêéøÿÿÿÿ8è¿Áœ/
-h
-java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(Ó¤Œ‚8Ïø«–œ/
+java:S1128"CRemove this unused import 'javax.servlet.http.HttpServletResponse'.(Á¨ïë8‡âæÄœ/
+U
+java:S1128"8Remove this unused import 'model.DAO.impl.JDBCOrderDao'.(ˆó¸õ8ÿÃ©Ìœ/
+W
+java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(ê¡½8ÿÃ©Ìœ/

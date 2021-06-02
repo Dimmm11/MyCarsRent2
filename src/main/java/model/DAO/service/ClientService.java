@@ -28,6 +28,15 @@ public class ClientService {
         }
         return list;
     }
+    public Client getClient(String login) {
+        Client client = new Client();
+        try (JDBCClientDao clientDao = (JDBCClientDao) daoFactory.createClientDao()) {
+            client = clientDao.getClient(login);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return client;
+    }
     public boolean deleteClient(String login) {
         boolean result=false;
         try (JDBCClientDao clientDao = (JDBCClientDao) daoFactory.createClientDao()) {
@@ -86,6 +95,15 @@ public class ClientService {
         boolean result=false;
         try (JDBCClientDao clientDao = (JDBCClientDao) daoFactory.createClientDao()) {
             result = clientDao.unBan(login);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    public boolean register(Client client) {
+        boolean result=false;
+        try (JDBCClientDao clientDao = (JDBCClientDao) daoFactory.createClientDao()) {
+            result = clientDao.register(client);
         } catch (Exception e) {
             e.printStackTrace();
         }

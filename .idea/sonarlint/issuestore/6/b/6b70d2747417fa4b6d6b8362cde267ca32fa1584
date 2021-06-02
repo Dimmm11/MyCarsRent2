@@ -1,4 +1,5 @@
 
-h
-java:S3252"KUse static access with "model.DAO.tryService.DaoFactory" for "getInstance".(á¡¦ç8½ÉÈ˜œ/
-]	java:S125"<This block of commented-out lines of code should be removed.(ŽìÏ¤úÿÿÿÿ8…éÎÁœ/
+V
+java:S1128"9Remove this unused import 'model.DAO.impl.JDBCClientDao'.(ÑïµØ8’«ÑÌœ/
+W
+java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(ê¡½8’«ÑÌœ/

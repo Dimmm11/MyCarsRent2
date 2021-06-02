@@ -8,6 +8,8 @@ import model.DAO.service.CarService;
 import model.util.pagination.PageCalculator;
 import model.entity.Car;
 import model.util.pagination.Paginator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,8 +17,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class CarsByMarque implements Command {
+    private static final Logger logger = LogManager.getLogger(CarsByMarque.class.getName());
     @Override
     public String execute(HttpServletRequest request) {
+        logger.info("CarsByMarque.execute...");
         HttpSession session = request.getSession();
         List<Car> cars;
         Optional<String> marqueOptional = Optional.ofNullable(request.getParameter(Const.MARQUE));
@@ -48,9 +52,11 @@ public class CarsByMarque implements Command {
                 (String) session.getAttribute(Const.MARQUE),
                 (String) session.getAttribute(Const.COLUMN),
                 (String) session.getAttribute(Const.SORT_ORDER));
+        logger.info(String.format("allCars.size: %d", allCars.size()));
         cars = new Paginator<Car>().getEntitiesForPage(allCars,
                 (page - 1) * 3,
                 (page - 1) * 3 + 3);
+        logger.info(String.format("cars.size: %d", cars.size()));
         int numPages = new PageCalculator().getNumPages(allCars.size());
         request.setAttribute(Const.PAGE, page);
         request.setAttribute(Const.NUM_PAGES, numPages);

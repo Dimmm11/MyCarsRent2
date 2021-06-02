@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
@@ -7,7 +7,7 @@
 <%@taglib prefix="ex" uri="/WEB-INF/tlds/myTags" %>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
@@ -103,7 +103,7 @@
                                 <td><c:out value="${order.id}"/></td>
                                 <td><c:out value="${requestScope.cars.get(counter).marque}"/></td>
                                 <td><c:out value="${requestScope.cars.get(counter).model}"/></td>
-                                <td><c:out value="${order.driver}"/></td>
+                                <td><fmt:message key="${order.driver}"/></td>
                                 <td><c:out value="${order.term}"/></td>
                                 <td>
                                     <fmt:message key="${order.confirmed}"/>
@@ -120,15 +120,27 @@
                                 </td>
                                 <td>
                                     <p style="color: brown"><c:out value="${order.comment}"/></p>
-                                    <form action="${pageContext.request.contextPath}/setReason" method="post">
-                                        <input type="text" name="reason" maxlength="40" placeholder="<fmt:message key="Comment"/>"
+                                    <form action="${pageContext.request.contextPath}/setReason" method="post" accept-charset="UTF-8">
+                                        <input type="text"
+                                               name="reason"
+                                               maxlength="40"
+                                               placeholder="<fmt:message key="Comment"/>"
                                                style="width: 100px">
                                         <input type="hidden" name="orderId" value="${order.id}">
                                         <button type="submit" class="btn btn-secondary"><fmt:message key="set_"/></button>
                                     </form>
                                 </td>
                                 <td>
-                                    <c:out value="${order.penalty}"/>
+                                    <c:choose>
+                                    <c:when test="${sessionScope.lang.equals('en')}">
+                               <c:out value="${order.penalty}"/><fmt:message key="cur"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:out value="${order.penalty*27}"/><fmt:message key="cur"/>
+                                </c:otherwise>
+                                </c:choose>
+<%--                                    ======================================--%>
+<%--                                    <c:out value="${order.penalty}"/>--%>
                                     <form action="${pageContext.request.contextPath}/setPenalty" method="post">
                                         <input type="hidden" name="orderId" value="${order.id}">
                                         <input type="number" name="penalty" placeholder="<fmt:message key="Penalty"/>"
@@ -138,10 +150,26 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <c:out value="${order.rent_cost}"/>
+                                    <c:choose>
+                                    <c:when test="${sessionScope.lang.equals('en')}">
+                                <c:out value="${order.rent_cost}"/><fmt:message key="cur"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:out value="${order.rent_cost*27}"/><fmt:message key="cur"/>
+                                </c:otherwise>
+                                </c:choose>
+<%--                                    <c:out value="${order.rent_cost}"/>--%>
                                 </td>
                                 <td>
-                                    <c:out value="${order.total_cost}"/>
+                                    <c:choose>
+                                        <c:when test="${sessionScope.lang.equals('en')}">
+                                            <c:out value="${order.total_cost}"/><fmt:message key="cur"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:out value="${order.total_cost*27}"/><fmt:message key="cur"/>
+                                        </c:otherwise>
+                                    </c:choose>
+<%--                                    <c:out value="${order.total_cost}"/>--%>
                                 </td>
                             </tr>
                             <c:set var="counter" value="${counter+1}" scope="page"/>
