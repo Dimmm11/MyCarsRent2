@@ -242,6 +242,7 @@ public class JDBCClientDao implements ClientDAO {
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(Sql.REGISTER);
             st.setString(1, client.getLogin());
+
             st.setString(2, client.getPassword());
             st.setString(3, client.getPassport());
             result = st.executeUpdate() > 0;

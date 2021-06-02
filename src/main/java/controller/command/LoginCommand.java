@@ -1,16 +1,17 @@
 package controller.command;
 
-import controller.command.client.Profile;
-import model.DAO.myOldDAO.ClientDAO;
+
+import model.DAO.service.ClientService;
 import model.entity.Client;
 import model.util.CheckClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Optional;
+
 
 public class LoginCommand implements Command {
     private static final Logger logger = LogManager.getLogger(LoginCommand.class.getName());
@@ -20,6 +21,12 @@ public class LoginCommand implements Command {
         HttpSession session = request.getSession();
         String name = request.getParameter("Login");
         String pass = request.getParameter("Password");
+        //=============================
+//        BCrypt.gensalt()
+
+
+
+
         if (name == null || name.equals("") || pass == null || pass.equals("")) {
             session.setAttribute("loginError", "All fields required");
             return "redirect:/login.jsp";
@@ -36,13 +43,18 @@ public class LoginCommand implements Command {
          * set User to Session
          */
         Client client = (Client) session.getAttribute("client");
-        if (client == null) {
-            client = ClientDAO.getClient(name);
-            logger.info(String.format("Set client to session:%s", client));
-            session.setAttribute("role", client.getRole_id());
-            session.setAttribute("client", client);
-            session.setAttribute("clientName", name);
-        }
+//        if (client == null) {
+            Optional<Client> clientOptional = Optional.ofNullable(client);
+            if(!clientOptional.isPresent()){
+                client = new ClientService().getClient(name);
+                logger.info(String.format("Set client to session:%s", client));
+                session.setAttribute("role", client.getRole_id());
+                session.setAttribute("client", client);
+                session.setAttribute("clientName", name);
+            }
+//        }
+
+
         /**
          * check if User is Banned
          */

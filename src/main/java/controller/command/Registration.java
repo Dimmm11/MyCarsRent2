@@ -1,7 +1,6 @@
 package controller.command;
 
-import model.DAO.impl.JDBCClientDao;
-import model.DAO.impl.JDBCDaoFactory;
+
 import model.DAO.service.ClientService;
 import model.entity.Client;
 import org.apache.logging.log4j.LogManager;
@@ -41,6 +40,7 @@ public class Registration implements Command {
             return "redirect:/register.jsp";
         }
         Client client = new Client(login, password, passport);
+        logger.info(String.format("Client: %s, %s, %s", login, passport, passport));
         /**
          * If registration successful - send to Page, else - print error
          */
