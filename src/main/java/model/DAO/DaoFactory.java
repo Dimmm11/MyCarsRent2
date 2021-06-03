@@ -9,13 +9,6 @@ public abstract class DaoFactory {
     public abstract ClientDAO createClientDao();
     public abstract OrderDAO createOrderDao();
 
-//    public static DaoFactory getInstance(){
-//        if(daoFactory==null){
-//            daoFactory = new JDBCDaoFactory();
-//        }
-//        return daoFactory;
-//    }
-
     public static DaoFactory getInstance(){
         if( daoFactory == null ){
             synchronized (DaoFactory.class){

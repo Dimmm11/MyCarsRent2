@@ -17,9 +17,10 @@ public class JDBCClientDao implements ClientDAO {
     public JDBCClientDao(Connection connection) {
         this.connection = connection;
     }
+    @Override
     public List<Client> getClients() {
         List<Client> list = new ArrayList<>();
-        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
+        try (Connection con = connection;
              Statement st = con.createStatement();
              ResultSet rs = st.executeQuery(Sql.CLIENTS)) {
             ClientMapper cm = new ClientMapper();
@@ -33,18 +34,16 @@ public class JDBCClientDao implements ClientDAO {
         return list;
     }
 
+    @Override
     public List<Client> getClients(int index, int offset) {
         List<Client> list = new ArrayList<>();
         PreparedStatement pst = null;
         ResultSet rs=null;
-        Connection con = null;
-        try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+        try (Connection con = connection){
             pst = con.prepareStatement(Sql.PAGE_CLIENTS);
             pst.setInt(1, index);
             pst.setInt(2, offset);
             rs = pst.executeQuery();
-
             ClientMapper cm = new ClientMapper();
             while (rs.next()) {
                 Client client = cm.mapFromResultSet(rs);
@@ -54,7 +53,6 @@ public class JDBCClientDao implements ClientDAO {
             e.printStackTrace();
         }finally {
             try {
-                con.close();
                 pst.close();
                 rs.close();
             } catch (SQLException e) {
@@ -65,28 +63,11 @@ public class JDBCClientDao implements ClientDAO {
         return list;
     }
 
-    public List<Client> getClients(String column, String sortingOrder) {
-        List<Client> clients = new ArrayList<>();
-        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
-             Statement st = con.createStatement()) {
-            String ss = Sql.CLIENTS.replaceAll(";"," ORDER BY "+column+" "+sortingOrder+" ;");
-//            System.out.println(ss);
-            ResultSet rs = st.executeQuery(ss);
-            ClientMapper cm = new ClientMapper();
-            while (rs.next()) {
-                Client client = cm.mapFromResultSet(rs);
-                clients.add(client);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return clients;
-    }
-
+    @Override
     public Client getClient(String login) {
         String name = Sql.CLIENT.replaceAll("login", login);
         Client client = null;
-        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
+        try (Connection con = connection;
              Statement st = con.createStatement();
              ResultSet rs = st.executeQuery(name)) {
             rs.next();
@@ -97,9 +78,10 @@ public class JDBCClientDao implements ClientDAO {
         return client;
     }
 
+    @Override
     public List<Client> getStaff() {
         List<Client> staff = new ArrayList<>();
-        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
+        try (Connection con = connection;
              Statement st = con.createStatement();
              ResultSet rs = st.executeQuery(Sql.ADMIN_STAFF)) {
             ClientMapper cm = new ClientMapper();
@@ -113,17 +95,16 @@ public class JDBCClientDao implements ClientDAO {
         return staff;
     }
 
+    @Override
     public List<Client> getStaff(int index, int offset) {
         List<Client> staff = new ArrayList<>();
         PreparedStatement pst = null;
         ResultSet rs = null;
-        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
+        try (Connection con = connection) {
             pst = con.prepareStatement(Sql.PAGE_ADMIN_STAFF);
             pst.setInt(1,index);
             pst.setInt(2,offset);
-
             rs = pst.executeQuery();
-
             ClientMapper cm = new ClientMapper();
             while (rs.next()) {
                 Client client = cm.mapFromResultSet(rs);
@@ -142,27 +123,28 @@ public class JDBCClientDao implements ClientDAO {
         return staff;
     }
 
+    /**
+     * Transaction
+     * @param login - client name
+     * @return true if client deleted
+     */
+    @Override
     public boolean deleteClient(String login) {
         Client client = getClient(login);
         boolean result = false;
         Connection con = null;
         try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+            con = connection;
             con.setAutoCommit(false);
-
             PreparedStatement stt = con.prepareStatement(Sql.MOVE_CLIENT_TO_REMOVED);
             stt.setInt(1, client.getId());
             stt.setString(2, client.getLogin());
             stt.setString(3, client.getPassport());
-
             PreparedStatement st = con.prepareStatement(Sql.DELETE_CLIENT);
             st.setString(1, login);
             result = (stt.executeUpdate() > 0 && st.executeUpdate() > 0);
-
             con.commit();
-
         } catch (SQLException e) {
-            System.out.println("FAILED to delete client");
             try {
                 con.rollback();
             } catch (SQLException throwables) {
@@ -180,11 +162,12 @@ public class JDBCClientDao implements ClientDAO {
 
     }
 
+    @Override
     public boolean makeManager(String login) {
         boolean result = false;
         Connection con = null;
         try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+            con = connection;
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(Sql.MAKE_MANAGER);
             st.setString(1, login);
@@ -207,18 +190,18 @@ public class JDBCClientDao implements ClientDAO {
         return result;
     }
 
+    @Override
     public boolean removeManager(String login) {
         boolean result = false;
         Connection con = null;
         try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+            con = connection;
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(Sql.REMOVE_MANAGER);
             st.setString(1, login);
             result = st.executeUpdate() > 0;
             con.commit();
         } catch (SQLException e) {
-            System.out.println("FAILED to remove manager");
             try {
                 con.rollback();
             } catch (SQLException throwables) {
@@ -240,11 +223,12 @@ public class JDBCClientDao implements ClientDAO {
      * @param client incoming Client from Registration form
      * @return result or Registration try
      */
+    @Override
     public boolean register(Client client) {
         boolean result = false;
         Connection con = null;
         try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+            con = connection;
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(Sql.REGISTER);
             st.setString(1, client.getLogin());
@@ -270,11 +254,12 @@ public class JDBCClientDao implements ClientDAO {
         return result;
     }
 
+    @Override
     public boolean ban(String login) {
         boolean result = false;
         Connection con = null;
         try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+            con = connection;
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(Sql.BAN);
             st.setString(1, login);
@@ -298,11 +283,12 @@ public class JDBCClientDao implements ClientDAO {
         return result;
     }
 
+    @Override
     public boolean unBan(String login) {
         boolean result = false;
         Connection con = null;
         try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+            con = connection;
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(Sql.UNBAN);
             st.setString(1, login);
@@ -324,32 +310,6 @@ public class JDBCClientDao implements ClientDAO {
             }
         }
         return result;
-    }
-
-    // =============================================
-    @Override
-    public boolean create(Client entity) {
-        return false;
-    }
-
-    @Override
-    public Client findById(int id) {
-        return null;
-    }
-
-    @Override
-    public List<Client> findAll() {
-        return null;
-    }
-
-    @Override
-    public boolean update(Client entity) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(int id) {
-        return false;
     }
 
     @Override
