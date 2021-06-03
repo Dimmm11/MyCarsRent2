@@ -76,18 +76,14 @@ public class Servlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-//        request.setCharacterEncoding("UTF-8");
-//         response.setContentType("text/html");
-//         response.setCharacterEncoding("UTF-8");
-
         String path = request.getRequestURI();
         logger.debug(path);
         path = path.replaceAll(".*/cars/", "");
-        Command command = commands.getOrDefault(path, g -> "/error404.html");
+        Command command = commands.get(path);
         String page = command.execute(request);
         if (page.contains("redirect:")) {
-            logger.info(String.format("servlet redirect%s", page.replace("redirect:", "/cars")));
+            logger.info(String.format("servlet redirect%s",
+                    page.replace("redirect: ", "/cars")));
             response.sendRedirect(page.replace("redirect:", "/cars"));
         } else {
             logger.info(String.format("servlet forward: %s", page));

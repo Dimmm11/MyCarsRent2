@@ -5,6 +5,7 @@ import model.DAO.mapper.ClientMapper;
 import model.DAO.ClientDAO;
 import model.connection.ConnectionPoolHolder;
 import model.entity.Client;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -234,6 +235,11 @@ public class JDBCClientDao implements ClientDAO {
         return result;
     }
 
+    /**
+     * Registration in DB using Bcrypt to hash password
+     * @param client incoming Client from Registration form
+     * @return result or Registration try
+     */
     public boolean register(Client client) {
         boolean result = false;
         Connection con = null;
@@ -242,13 +248,12 @@ public class JDBCClientDao implements ClientDAO {
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(Sql.REGISTER);
             st.setString(1, client.getLogin());
-
-            st.setString(2, client.getPassword());
+            String pass = BCrypt.hashpw(client.getPassword(), BCrypt.gensalt(5));
+            st.setString(2, pass);
             st.setString(3, client.getPassport());
             result = st.executeUpdate() > 0;
             con.commit();
         } catch (SQLException e) {
-
             try {
                 con.rollback();
             } catch (SQLException throwables) {

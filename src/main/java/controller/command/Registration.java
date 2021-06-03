@@ -40,7 +40,7 @@ public class Registration implements Command {
             return "redirect:/register.jsp";
         }
         Client client = new Client(login, password, passport);
-        logger.info(String.format("Client: %s, %s, %s", login, passport, passport));
+        logger.info(String.format("Client: %s, %s, %s", login, password, passport));
         /**
          * If registration successful - send to Page, else - print error
          */

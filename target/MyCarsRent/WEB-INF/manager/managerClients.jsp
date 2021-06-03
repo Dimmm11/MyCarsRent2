@@ -93,7 +93,7 @@
                         <tr>
                             <th>Id</th>
                             <th><fmt:message key="Login"/></th>
-                            <th><fmt:message key="Password"/></th>
+<%--                            <th><fmt:message key="Password"/></th>--%>
                             <th><fmt:message key="Passport"/></th>
                             <th><fmt:message key="Status"/></th>
                             <th></th>
@@ -104,7 +104,7 @@
                             <tr>
                                 <td><c:out value="${client.id}"/></td>
                                 <td><c:out value="${client.login}"/></td>
-                                <td><c:out value="${client.password}"/></td>
+<%--                                <td><c:out value="${client.password}"/></td>--%>
                                 <td><c:out value="${client.passport}"/></td>
                                 <td>
                                     <fmt:message key="${client.status}"/>

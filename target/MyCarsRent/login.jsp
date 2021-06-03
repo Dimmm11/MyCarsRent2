@@ -29,64 +29,87 @@
         <h2><fmt:message key="Welcome"/></h2>
     </div>
 </div>
-<div class="main">
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a style="font-size: xx-large" class="navbar-brand" href="#"><fmt:message key="Cars_rent"/></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-<%--                <form class="d-flex">--%>
-<%--                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">--%>
-<%--                    <button class="btn btn-outline-success" type="submit">Search</button>--%>
-<%--                </form>--%>
-            </div>
-        </nav>
-    </header>
-<%--    ===========================--%>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
-                <table>
-                    <th>
-                    </th>
-                    <th>
-                        <form action="${pageContext.request.requestURI}" method="post">
-                            <input type="hidden" name="lang" value="ru">
-                            <input type="submit" value="ru">
-                        </form>
-                    </th>
-                    <th>
-                        <form action="${pageContext.request.requestURI}" method="post">
-                            <input type="hidden" name="lang" value="en">
-                            <input type="submit" value="en">
-                        </form>
-                    </th>
-                </table>
-            </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <table>
+                <th>
+                </th>
+                <th>
+                    <form action="${pageContext.request.requestURI}" method="post">
+                        <input type="hidden" name="lang" value="ru">
+                        <input type="submit" value="ru">
+                    </form>
+                </th>
+                <th>
+                    <form action="${pageContext.request.requestURI}" method="post">
+                        <input type="hidden" name="lang" value="en">
+                        <input type="submit" value="en">
+                    </form>
+                </th>
+            </table>
         </div>
     </div>
-<%--    ===========================--%>
-    <div class="col-md-6 col-sm-12">
+</div>
+<img SRC="https://www.madeirarentcar.com/assets/homebanner/5cb748963fd74.png" width="1120" height="420" style="margin-left: 25%">
+<div class="main">
+<%--    <header>--%>
+<%--        <nav class="navbar navbar-expand-lg navbar-light bg-light">--%>
+<%--            <div class="container-fluid">--%>
+<%--                <a style="font-size: xx-large" class="navbar-brand" href="#"><fmt:message key="Cars_rent"/></a>--%>
+<%--                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"--%>
+<%--                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"--%>
+<%--                        aria-expanded="false" aria-label="Toggle navigation">--%>
+<%--                    <span class="navbar-toggler-icon"></span>--%>
+<%--                </button>--%>
+<%--&lt;%&ndash;                <form class="d-flex">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    <button class="btn btn-outline-success" type="submit">Search</button>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                </form>&ndash;%&gt;--%>
+<%--            </div>--%>
+<%--        </nav>--%>
+<%--    </header>--%>
+    <div class="container-fluid">
+<%--        <div class="row">--%>
+<%--            <div class="col-md-4">--%>
+<%--            </div>--%>
+<%--            <div class="col-md-4">--%>
+<%--            </div>--%>
+<%--            <div class="col-md-4">--%>
+<%--                <table>--%>
+<%--                    <th>--%>
+<%--                    </th>--%>
+<%--                    <th>--%>
+<%--                        <form action="${pageContext.request.requestURI}" method="post">--%>
+<%--                            <input type="hidden" name="lang" value="ru">--%>
+<%--                            <input type="submit" value="ru">--%>
+<%--                        </form>--%>
+<%--                    </th>--%>
+<%--                    <th>--%>
+<%--                        <form action="${pageContext.request.requestURI}" method="post">--%>
+<%--                            <input type="hidden" name="lang" value="en">--%>
+<%--                            <input type="submit" value="en">--%>
+<%--                        </form>--%>
+<%--                    </th>--%>
+<%--                </table>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <img SRC="https://www.madeirarentcar.com/assets/homebanner/5cb748963fd74.png" width="1120" height="420">--%>
         <div class="login-form">
             <form action="${pageContext.request.contextPath}/login" method="post">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="<fmt:message key="Username"/>" name="Login">
+                    <input type="text" class="form-control" placeholder="<fmt:message key="Username"/>" name="Login" style="width: 400px">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="<fmt:message key="Password"/>" name="Password">
+                    <input type="text" class="form-control" placeholder="<fmt:message key="Password"/>" name="Password" style="width: 400px">
 
                     <c:if test="${sessionScope.loginError!=null}">
                         <c:out value="${sessionScope.loginError}"/>
                     </c:if>
-
 
                 </div>
                 <button type="submit" class="btn btn-black">
@@ -102,6 +125,14 @@
                 </button>
             </form>
         </div>
+    </div>
+<%--    ===========================--%>
+
+
+
+
+    <div class="col-md-6 col-sm-12">
+
     </div>
     <div class="col-md-6 col-sm-12">
         <div id="bottom">

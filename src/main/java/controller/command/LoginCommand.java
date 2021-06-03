@@ -6,8 +6,6 @@ import model.entity.Client;
 import model.util.CheckClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.mindrot.jbcrypt.BCrypt;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
@@ -21,11 +19,6 @@ public class LoginCommand implements Command {
         HttpSession session = request.getSession();
         String name = request.getParameter("Login");
         String pass = request.getParameter("Password");
-        //=============================
-//        BCrypt.gensalt()
-
-
-
 
         if (name == null || name.equals("") || pass == null || pass.equals("")) {
             session.setAttribute("loginError", "All fields required");
@@ -43,7 +36,6 @@ public class LoginCommand implements Command {
          * set User to Session
          */
         Client client = (Client) session.getAttribute("client");
-//        if (client == null) {
             Optional<Client> clientOptional = Optional.ofNullable(client);
             if(!clientOptional.isPresent()){
                 client = new ClientService().getClient(name);
@@ -52,8 +44,6 @@ public class LoginCommand implements Command {
                 session.setAttribute("client", client);
                 session.setAttribute("clientName", name);
             }
-//        }
-
 
         /**
          * check if User is Banned

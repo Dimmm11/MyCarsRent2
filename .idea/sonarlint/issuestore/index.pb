@@ -129,12 +129,6 @@ W
 'src/main/webapp/WEB-INF/tlds/myTags.tld,0\1\01d4c108b47aeb3e642f332d2d313adb28ae33a2
 \
 ,src/main/java/controller/tag/TagHandler.java,2\0\20d2b1ec0651c8398301d408a39380b10a5bdf1a
-\
-,src/main/java/model/DAO/myOldDAO/CarDAO.java,7\5\7520153ab00aaef7ce084f69439ae9ed86a90677
-^
-.src/main/java/model/DAO/myOldDAO/OrderDAO.java,c\f\cf5705f8c13568cb6e83aaeeec880bbabf34760c
-_
-/src/main/java/model/DAO/myOldDAO/ClientDAO.java,e\9\e942b7c9b9e63753882875630bd0a02c75cbd8ef
 b
 2src/main/java/model/util/pagination/Paginator.java,6\1\6111d84f5b62e3681834829078006e7c84db3ebf
 g
@@ -167,3 +161,9 @@ W
 'src/main/java/model/DAO/DaoFactory.java,1\b\1ba9bf8381286061cc5a5b42cf430cab88b6910c
 U
 %src/main/java/model/DAO/OrderDAO.java,2\2\2225addf20e39b3bd1e510d86d8c9976eab4f5c8
+Z
+*src/main/java/controller/command/Main.java,3\0\301d13712029ca1a6915265eab6312d4eae6480e
+Y
+)src/main/java/model/util/CheckClient.java,2\8\28ad56e1ddd217d551240c9b8d4f0f2d9bf6692c
+T
+$src/main/webapp/dbConnect.properties,c\6\c699c697dee0412bc52caf398ecd9078a24c953b

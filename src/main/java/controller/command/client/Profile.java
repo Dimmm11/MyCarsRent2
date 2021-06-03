@@ -2,13 +2,9 @@ package controller.command.client;
 
 import controller.command.Command;
 import controller.constants.Const;
-import model.DAO.impl.JDBCCarDao;
-import model.DAO.impl.JDBCDaoFactory;
-import model.DAO.impl.JDBCOrderDao;
 import model.DAO.service.CarService;
 import model.DAO.service.OrderService;
 import model.util.pagination.PageCalculator;
-import model.DAO.myOldDAO.OrderDAO;
 import model.entity.Car;
 import model.entity.Client;
 import model.entity.Order;
@@ -24,7 +20,7 @@ public class Profile implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         logger.info("Profile.execute...");
-        List<Order> orders = OrderDAO.getOrdersByClient((Client) request
+        List<Order> orders = new OrderService().getOrdersByClient((Client) request
                 .getSession()
                 .getAttribute(Const.CLIENT));
         logger.info(String.format("orders:%d", orders.size()));

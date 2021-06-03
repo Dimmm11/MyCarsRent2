@@ -22,6 +22,15 @@ public class OrderService {
         }
         return list;
     }
+    public List<Order> getOrdersByClient(Client client) {
+        List<Order> list = new ArrayList<>();
+        try (JDBCOrderDao orderDao = (JDBCOrderDao) daoFactory.createOrderDao()) {
+            list = orderDao.getOrdersByClient(client);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     public boolean cancelOrder(int orderId) {
         boolean result=false;
         try (JDBCOrderDao orderDao = (JDBCOrderDao) daoFactory.createOrderDao()) {

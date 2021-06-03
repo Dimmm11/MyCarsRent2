@@ -1,7 +1,7 @@
 
-S
-java:S1128"6Remove this unused import 'model.DAO.impl.JDBCCarDao'.(°º¹Ş8ÎšËÉœ/
-W
-java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(ê¡½8ÎšËÉœ/
-U
-java:S1128"8Remove this unused import 'model.DAO.impl.JDBCOrderDao'.(ˆó¸õ8ÎšËÉœ/
+A
+java:S2629#"$Invoke method(s) only conditionally.(“·Æ¼8è‰Òôœ/
+F
+java:S2629"$Invoke method(s) only conditionally.(ä¥Ò©ÿÿÿÿÿ8è‰Òôœ/
+F
+java:S2629'"$Invoke method(s) only conditionally.(©€²²úÿÿÿÿ8è‰Òôœ/

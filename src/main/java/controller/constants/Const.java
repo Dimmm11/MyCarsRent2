@@ -22,6 +22,7 @@ public interface Const {
     String CAR_ID = "carId";
     String STAFF = "staff";
     String LOGIN = "login";
+    String PASSWORD = "password";
     String ADMIN_ACTION = "adminAction";
     String REMOVE_MANAGER = "removeManager";
     String ORDER_ID = "orderId";
@@ -33,4 +34,6 @@ public interface Const {
     String REASON = "reason";
     String ROLE = "role";
     String LANG = "lang";
+    String URL = "url";
+
 }

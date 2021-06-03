@@ -28,7 +28,7 @@ public class JDBCOrderDao implements OrderDAO {
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(Sql.CAR_ORDER);
             st.setInt(1, car.getId());
-            if (model.DAO.myOldDAO.OrderDAO.makeOrder(car, client, driver, term))
+            if (makeOrder(car, client, driver, term))
                 result = st.executeUpdate() > 0;
             con.commit();
         } catch (SQLException e) {

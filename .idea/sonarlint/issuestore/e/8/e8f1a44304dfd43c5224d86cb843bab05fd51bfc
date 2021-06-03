@@ -1,10 +1,11 @@
 
-d
-java:S1192!"GDefine a constant instead of duplicating this literal "client" 3 times.(Ğ¥è8±ŒüØ™/
-V
-java:S1128
-"4Remove this unused import 'java.util.regex.Pattern'.(Ã•…Äúÿÿÿÿ8Áß¿Ãœ/
-v
-java:S1192"TDefine a constant instead of duplicating this literal "redirect:/login.jsp" 3 times.(Â²™ÿÿÿÿÿ8ÖÆÂœ/
-Q
-java:S1128	"4Remove this unused import 'java.util.regex.Matcher'.(ëÅ›ã8Áß¿Ãœ/
+?
+java:S2629"$Invoke method(s) only conditionally.(•˜Êû8¼Í„èœ/
+t
+java:S1192"TDefine a constant instead of duplicating this literal "redirect:/login.jsp" 3 times.(Â²™ÿÿÿÿÿ8ÖÆÂœ/
+>
+java:S2629"$Invoke method(s) only conditionally.(˜æ8úŠèœ/
+b
+java:S1192"GDefine a constant instead of duplicating this literal "client" 3 times.(Ğ¥è8±ŒüØ™/
+?
+java:S2629"$Invoke method(s) only conditionally.(³‘îô8€ûêœ/
