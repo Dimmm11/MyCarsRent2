@@ -1,8 +1,8 @@
 
-TWeb:TableWithoutCaptionCheck'" Add a description to this table.(¿‰˜ÿÿÿÿÿ8ÖÛ¹òœ/
+NWeb:ImgWithoutAltCheck:"%Add an "alt" attribute to this image.(÷¦ø»8ÖÛ¹òœ/
+s Web:TableHeaderHasIdOrScopeCheck0";Add either an 'id' or a 'scope' attribute to this <th> tag.(™À§ãÿÿÿÿÿ8ÖÛ¹òœ/
 s Web:TableHeaderHasIdOrScopeCheck(";Add either an 'id' or a 'scope' attribute to this <th> tag.(™À§ãÿÿÿÿÿ8ÖÛ¹òœ/
 jWeb:DoctypePresenceCheck":Insert a <!DOCTYPE> declaration to before this <html> tag.(œ÷Ãûÿÿÿÿ8—àœ²™/
-NWeb:ImgWithoutAltCheck:"%Add an "alt" attribute to this image.(÷¦ø»8ÖÛ¹òœ/
 s Web:TableHeaderHasIdOrScopeCheck*";Add either an 'id' or a 'scope' attribute to this <th> tag.(™À§ãÿÿÿÿÿ8ÖÛ¹òœ/
-s Web:TableHeaderHasIdOrScopeCheck0";Add either an 'id' or a 'scope' attribute to this <th> tag.(™À§ãÿÿÿÿÿ8ÖÛ¹òœ/
+TWeb:TableWithoutCaptionCheck'" Add a description to this table.(¿‰˜ÿÿÿÿÿ8ÖÛ¹òœ/
 a	Web:S5254"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷Ãûÿÿÿÿ8¯ªĞ›/

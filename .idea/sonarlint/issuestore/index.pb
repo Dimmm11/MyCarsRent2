@@ -167,3 +167,11 @@ Y
 )src/main/java/model/util/CheckClient.java,2\8\28ad56e1ddd217d551240c9b8d4f0f2d9bf6692c
 T
 $src/main/webapp/dbConnect.properties,c\6\c699c697dee0412bc52caf398ecd9078a24c953b
+c
+3src/test/java/model/DAO/service/CarServiceTest.java,b\8\b841afa67155137cae8cc9a4637b619f6c945d3b
+R
+"src/main/java/controller/Main.java,6\5\650fa1777788e3539b02217f72bbbc04443393f5
+]
+-src/test/java/model/DAO/impl/DBConnector.java,a\6\a6f5104e490d9fd3e3dba604feb03e1cf61d0756
+`
+0src/test/java/model/DAO/impl/JDBCCarDaoTest.java,8\6\862027b930e1f22e9ea5df83ec38af940de5c333

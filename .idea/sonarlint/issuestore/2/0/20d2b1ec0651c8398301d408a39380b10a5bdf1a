@@ -1,0 +1,19 @@
+
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ññË“/
+Y
+java:S1128"7Remove this unused import 'model.DAO.mapper.CarMapper'.(Ì«Ïåüÿÿÿÿ8ññË“/
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8ññË“/
+L
+java:S1128"/Remove this unused import 'java.sql.Statement'.(ÏÖÔø8ññË“/
+O
+java:S1128"2Remove this unused import 'java.sql.SQLException'.(ÛïÆŸ8ññË“/
+M
+java:S1128"0Remove this unused import 'java.sql.Connection'.(¥ËôÖ8ññË“/
+[
+java:S1128">Remove this unused import 'com.mysql.cj.jdbc.MysqlDataSource'.(ğÈƒÏ8ññË“/
+K
+java:S1128"/Remove this unused import 'java.sql.ResultSet'.(ˆóÚw8ññË“/
+J
+java:S1128"-Remove this unused import 'model.entity.Car'.(©¯ÉÊ8ññË“/

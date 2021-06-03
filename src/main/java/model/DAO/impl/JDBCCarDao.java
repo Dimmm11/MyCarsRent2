@@ -37,7 +37,7 @@ public class JDBCCarDao implements CarDAO {
 
     public List<Car> getCarsByClass(String carClass, String column, String sortingOrder) {
         List<Car> carsByClass = new ArrayList<>();
-        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
+        try (Connection con = connection;
              Statement st = con.createStatement()) {
             String sql = Sql.CARS_BY_CLASS.replace("carclass", carClass).replace(";",
                     " ORDER BY " + column + " " + sortingOrder + " ;");
@@ -89,7 +89,7 @@ public class JDBCCarDao implements CarDAO {
 
     public List<Car> getCarsByMarque(String marque, String column, String sortingOrder) {
         List<Car> carsByMarque = new ArrayList<>();
-        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
+        try (Connection con = connection;
              Statement st = con.createStatement()) {
             String sql = Sql.CARS_BY_MARQUE.replaceAll("carmarque", marque).replace(";",
                     " ORDER BY " + column + " " + sortingOrder + " ;");
@@ -142,7 +142,7 @@ public class JDBCCarDao implements CarDAO {
     public List<Car> getCarsByClient(Client client, int index, int offset) {
         List<Car> carsByClient = new ArrayList<>();
         PreparedStatement pst = null;
-        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
+        try (Connection con = connection) {
             con.setAutoCommit(false);
             pst = con.prepareStatement(Sql.PAGE_CARS_BY_CLIENT);
             pst.setInt(1, client.getId());
@@ -183,7 +183,7 @@ public class JDBCCarDao implements CarDAO {
 
     public List<Car> getAllCars(String column, String sortingOrder) {
         List<Car> allCars = new ArrayList<>();
-        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection();
+        try (Connection con = connection;
              Statement st = con.createStatement()) {
             String ss = Sql.ALLCARS.replaceAll(";", " ORDER BY " + column + " " + sortingOrder + " ;");
             ResultSet rs = st.executeQuery(ss);
@@ -243,7 +243,7 @@ public class JDBCCarDao implements CarDAO {
         List<Car> allCars = new ArrayList<>();
         PreparedStatement pst = null;
         ResultSet rs = null;
-        try (Connection con = ConnectionPoolHolder.getDataSource().getConnection()) {
+        try (Connection con = connection) {
             pst = con.prepareStatement(Sql.PAGE_ORDERED_CARS);
             pst.setInt(1, index);
             pst.setInt(2, offset);
@@ -269,7 +269,7 @@ public class JDBCCarDao implements CarDAO {
         boolean result = false;
         Connection con = null;
         try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+            con = connection;
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(Sql.ADD_CAR);
             st.setString(1, car.getMarque());
@@ -300,7 +300,7 @@ public class JDBCCarDao implements CarDAO {
         Connection con = null;
         PreparedStatement st=null;
         try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+            con = connection;
             con.setAutoCommit(false);
             st = con.prepareStatement(Sql.PRICE_UPDATE);
             st.setBigDecimal(1, price);
@@ -330,7 +330,7 @@ public class JDBCCarDao implements CarDAO {
         Connection con = null;
         PreparedStatement st =null;
         try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+            con = connection;
             con.setAutoCommit(false);
             st = con.prepareStatement(Sql.GET_CAR_BY_ID);
             st.setInt(1, id);
@@ -361,7 +361,7 @@ public class JDBCCarDao implements CarDAO {
         Connection con = null;
         PreparedStatement st = null;
         try {
-            con = ConnectionPoolHolder.getDataSource().getConnection();
+            con = connection;
             con.setAutoCommit(false);
             st = con.prepareStatement(Sql.DELETE_CAR);
             st.setInt(1, id);

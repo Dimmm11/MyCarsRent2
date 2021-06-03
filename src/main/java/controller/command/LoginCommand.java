@@ -35,6 +35,7 @@ public class LoginCommand implements Command {
         /**
          * set User to Session
          */
+
         Client client = (Client) session.getAttribute("client");
             Optional<Client> clientOptional = Optional.ofNullable(client);
             if(!clientOptional.isPresent()){

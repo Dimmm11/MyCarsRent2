@@ -2,6 +2,7 @@ package model.DAO.service;
 
 import model.DAO.impl.JDBCCarDao;
 import model.DAO.DaoFactory;
+import model.DAO.impl.JDBCDaoFactory;
 import model.entity.Car;
 import model.entity.Client;
 
@@ -37,6 +38,7 @@ public class CarService {
     public Car getCarById(int id) {
         Car car=new Car();
         try (JDBCCarDao carDao = (JDBCCarDao) daoFactory.createCarDao()) {
+//        try (JDBCCarDao carDao = daoFactory.createCarDao()) {
             car = carDao.getCarById(id);
         } catch (Exception e) {
             e.printStackTrace();

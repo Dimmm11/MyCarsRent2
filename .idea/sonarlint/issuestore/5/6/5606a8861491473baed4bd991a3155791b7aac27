@@ -1,11 +1,11 @@
 
-c
-java:S1128"ARemove this unused import 'controller.command.admin.AdminCarAdd'.(ÚÌã¤úÿÿÿÿ8•—Îçœ/
-A
-java:S2629?"$Invoke method(s) only conditionally.(ôÿìŞ8¹áÓçœ/
 S
 java:S1128"6Remove this unused import 'model.DAO.impl.JDBCCarDao'.(°º¹Ş8”ä¨Éœ/
-W
-java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(ê¡½8”ä¨Éœ/
+c
+java:S1128"ARemove this unused import 'controller.command.admin.AdminCarAdd'.(ÚÌã¤úÿÿÿÿ8•—Îçœ/
 F
 java:S2629;"$Invoke method(s) only conditionally.(Ğ­äŞÿÿÿÿÿ8öéÑçœ/
+A
+java:S2629?"$Invoke method(s) only conditionally.(ôÿìŞ8¹áÓçœ/
+W
+java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(ê¡½8”ä¨Éœ/
