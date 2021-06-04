@@ -15,15 +15,24 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
+/**
+ * Command accepts order parameters
+ * from request to make order
+ */
 public class MakeOrder implements Command {
     private static final Logger logger = LogManager.getLogger(MakeOrder.class.getName());
     @Override
     public String execute(HttpServletRequest request) {
         logger.info("MakeOrder.execute...");
         HttpSession session = request.getSession();
-        String driver = request.getParameter(Const.DRIVER);
-        int term = Integer.parseInt(request.getParameter(Const.TERM));
+        Optional<String> driverOptional = Optional.ofNullable(request.getParameter(Const.DRIVER));
+        String driver = driverOptional.orElse(Const.NO);
+        int term = 1;
+        if(!request.getParameter(Const.TERM).equals("")){
+            term = Integer.parseInt(request.getParameter(Const.TERM));
+        }
         Client client = (Client) session.getAttribute(Const.CLIENT);
         try {
             Car car = new CarService().getCarById(Integer.parseInt(request.getParameter(Const.ID)));

@@ -3,7 +3,6 @@ package model.DAO.impl;
 import model.util.Sql;
 import model.DAO.mapper.ClientMapper;
 import model.DAO.ClientDAO;
-import model.connection.ConnectionPoolHolder;
 import model.entity.Client;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -17,6 +16,7 @@ public class JDBCClientDao implements ClientDAO {
     public JDBCClientDao(Connection connection) {
         this.connection = connection;
     }
+
     @Override
     public List<Client> getClients() {
         List<Client> list = new ArrayList<>();
@@ -38,8 +38,8 @@ public class JDBCClientDao implements ClientDAO {
     public List<Client> getClients(int index, int offset) {
         List<Client> list = new ArrayList<>();
         PreparedStatement pst = null;
-        ResultSet rs=null;
-        try (Connection con = connection){
+        ResultSet rs = null;
+        try (Connection con = connection) {
             pst = con.prepareStatement(Sql.PAGE_CLIENTS);
             pst.setInt(1, index);
             pst.setInt(2, offset);
@@ -51,7 +51,7 @@ public class JDBCClientDao implements ClientDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 pst.close();
                 rs.close();
@@ -102,8 +102,8 @@ public class JDBCClientDao implements ClientDAO {
         ResultSet rs = null;
         try (Connection con = connection) {
             pst = con.prepareStatement(Sql.PAGE_ADMIN_STAFF);
-            pst.setInt(1,index);
-            pst.setInt(2,offset);
+            pst.setInt(1, index);
+            pst.setInt(2, offset);
             rs = pst.executeQuery();
             ClientMapper cm = new ClientMapper();
             while (rs.next()) {
@@ -112,7 +112,7 @@ public class JDBCClientDao implements ClientDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 pst.close();
                 rs.close();
@@ -125,6 +125,7 @@ public class JDBCClientDao implements ClientDAO {
 
     /**
      * Transaction
+     *
      * @param login - client name
      * @return true if client deleted
      */
@@ -133,14 +134,16 @@ public class JDBCClientDao implements ClientDAO {
         Client client = getClient(login);
         boolean result = false;
         Connection con = null;
+        PreparedStatement stt = null;
+        PreparedStatement st = null;
         try {
             con = connection;
             con.setAutoCommit(false);
-            PreparedStatement stt = con.prepareStatement(Sql.MOVE_CLIENT_TO_REMOVED);
+            stt = con.prepareStatement(Sql.MOVE_CLIENT_TO_REMOVED);
             stt.setInt(1, client.getId());
             stt.setString(2, client.getLogin());
             stt.setString(3, client.getPassport());
-            PreparedStatement st = con.prepareStatement(Sql.DELETE_CLIENT);
+            st = con.prepareStatement(Sql.DELETE_CLIENT);
             st.setString(1, login);
             result = (stt.executeUpdate() > 0 && st.executeUpdate() > 0);
             con.commit();
@@ -153,6 +156,8 @@ public class JDBCClientDao implements ClientDAO {
             e.printStackTrace();
         } finally {
             try {
+                st.close();
+                stt.close();
                 con.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -165,27 +170,12 @@ public class JDBCClientDao implements ClientDAO {
     @Override
     public boolean makeManager(String login) {
         boolean result = false;
-        Connection con = null;
-        try {
-            con = connection;
-            con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(Sql.MAKE_MANAGER);
-            st.setString(1, login);
-            result = st.executeUpdate() > 0;
-            con.commit();
+        try (Connection con = connection) {
+            Statement st = con.createStatement();
+            result = st.executeUpdate(Sql.MAKE_MANAGER
+                    .replace(" ? ", "'" + login + "'")) > 0;
         } catch (SQLException e) {
-            try {
-                con.rollback();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
             e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return result;
     }
@@ -193,33 +183,18 @@ public class JDBCClientDao implements ClientDAO {
     @Override
     public boolean removeManager(String login) {
         boolean result = false;
-        Connection con = null;
-        try {
-            con = connection;
-            con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(Sql.REMOVE_MANAGER);
-            st.setString(1, login);
-            result = st.executeUpdate() > 0;
-            con.commit();
+        try (Connection con = connection;
+             Statement st = con.createStatement()) {
+            result = st.executeUpdate(Sql.REMOVE_MANAGER.replace(" ? ", "'" + login + "'")) > 0;
         } catch (SQLException e) {
-            try {
-                con.rollback();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
             e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return result;
     }
 
     /**
      * Registration in DB using Bcrypt to hash password
+     *
      * @param client incoming Client from Registration form
      * @return result or Registration try
      */
@@ -257,28 +232,12 @@ public class JDBCClientDao implements ClientDAO {
     @Override
     public boolean ban(String login) {
         boolean result = false;
-        Connection con = null;
-        try {
-            con = connection;
-            con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(Sql.BAN);
-            st.setString(1, login);
-            result = st.executeUpdate() > 0;
-            con.commit();
+        try (Connection con = connection;
+             Statement st = con.createStatement()) {
+            result = st.executeUpdate(Sql.BAN
+                    .replace(" ? ", "'" + login + "'")) > 0;
         } catch (SQLException e) {
-            System.out.println("FAILED to BAN");
-            try {
-                con.rollback();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
             e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return result;
     }
@@ -286,38 +245,22 @@ public class JDBCClientDao implements ClientDAO {
     @Override
     public boolean unBan(String login) {
         boolean result = false;
-        Connection con = null;
-        try {
-            con = connection;
-            con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(Sql.UNBAN);
-            st.setString(1, login);
-            result = st.executeUpdate() > 0;
-            con.commit();
+        try (Connection con = connection;
+             Statement st = con.createStatement()) {
+            result = st.executeUpdate(Sql.UNBAN
+                    .replace(" ? ", "'" + login + "'")) > 0;
         } catch (SQLException e) {
-            System.out.println("FAILED to BAN");
-            try {
-                con.rollback();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
             e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return result;
     }
 
     @Override
     public void close() throws Exception {
-     try {
-         connection.close();
-     }catch (SQLException e){
-         throw new RuntimeException(e);
-     }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

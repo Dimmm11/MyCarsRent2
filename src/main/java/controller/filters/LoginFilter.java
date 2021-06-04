@@ -11,6 +11,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * Filter for preventing logged users
+ * to get Login page
+ */
 public class LoginFilter implements Filter {
     private static final Logger logger = LogManager.getLogger(LoginFilter.class.getName());
     @Override

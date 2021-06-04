@@ -3,7 +3,6 @@ package model.DAO.impl;
 import model.util.Sql;
 import model.DAO.mapper.OrderMapper;
 import model.DAO.OrderDAO;
-import model.connection.ConnectionPoolHolder;
 import model.entity.Car;
 import model.entity.Client;
 import model.entity.Order;
@@ -13,7 +12,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JDBCOrderDao implements OrderDAO{
+public class JDBCOrderDao implements OrderDAO {
     private Connection connection;
 
     public JDBCOrderDao(Connection connection) {
@@ -35,8 +34,8 @@ public class JDBCOrderDao implements OrderDAO{
         } catch (SQLException e) {
             try {
                 con.rollback();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException r) {
+                r.printStackTrace();
             }
             throw new RuntimeException(e);
         } finally {
@@ -65,7 +64,6 @@ public class JDBCOrderDao implements OrderDAO{
             st.setBigDecimal(5, car.getPrice().multiply(BigDecimal.valueOf(term)));
             st.setBigDecimal(6, car.getPrice().multiply(BigDecimal.valueOf(term)));
             result = st.executeUpdate() > 0;
-
             con.commit();
         } catch (SQLException e) {
             try {
@@ -77,7 +75,6 @@ public class JDBCOrderDao implements OrderDAO{
         } finally {
             try {
                 st.close();
-                con.close();
             } catch (NullPointerException | SQLException e) {
                 System.out.println(e.getMessage());
             }
@@ -224,13 +221,13 @@ public class JDBCOrderDao implements OrderDAO{
     }
 
     @Override
-    public boolean setOrderStatus(int orderId, String reason) {
+    public boolean setOrderStatus(int orderId, String orderStatus) {
         boolean result;
         PreparedStatement st = null;
         try (Connection con = connection) {
             con.setAutoCommit(false);
             st = con.prepareStatement(Sql.SET_ORDER_STATUS);
-            st.setString(1, reason);
+            st.setString(1, orderStatus);
             st.setInt(2, orderId);
             result = st.executeUpdate() > 0;
             con.commit();
@@ -279,7 +276,10 @@ public class JDBCOrderDao implements OrderDAO{
         boolean result = false;
         PreparedStatement st = null;
         PreparedStatement st3 = null;
-        try (Connection con = connection) {
+        Connection con = null;
+        try {
+            con = connection;
+            con.setAutoCommit(false);
             st = con.prepareStatement(Sql.RETURN_CAR);
             st.setInt(1, orderId);
 
@@ -289,7 +289,11 @@ public class JDBCOrderDao implements OrderDAO{
             result = (st.executeUpdate() > 0 && st3.executeUpdate() > 0);
             con.commit();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            try {
+                con.rollback();
+            } catch (SQLException ee) {
+                ee.printStackTrace();
+            }
         } finally {
             try {
                 st.close();

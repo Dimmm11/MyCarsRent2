@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Filter to prevent illegal access
+ * to admin pages
+ */
 public class AdminFilter implements Filter {
     private static final Logger logger = LogManager.getLogger(AdminFilter.class.getName());
     @Override

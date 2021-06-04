@@ -26,10 +26,6 @@ public class Servlet extends HttpServlet {
     private Map<String, Command> commands = new HashMap<>();
 
     public void init(ServletConfig servletConfig) {
-//        servletConfig.getServletContext()
-//                .setAttribute("loggedUsers", new HashSet<String>());
-//        commands.put("logout",
-//                new LogOutCommand());
         commands.put("login", new LoginCommand());
         commands.put("register", new Registration());
         commands.put("logout", new LogOutCommand());
@@ -76,18 +72,22 @@ public class Servlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String path = request.getRequestURI();
-        logger.debug(path);
-        path = path.replaceAll(".*/cars/", "");
-        Command command = commands.get(path);
-        String page = command.execute(request);
-        if (page.contains("redirect:")) {
-            logger.info(String.format("servlet redirect%s",
-                    page.replace("redirect: ", "/cars")));
-            response.sendRedirect(page.replace("redirect:", "/cars"));
-        } else {
-            logger.info(String.format("servlet forward: %s", page));
-            request.getRequestDispatcher(page).forward(request, response);
+        try {
+            String path = request.getRequestURI();
+            logger.debug(path);
+            path = path.replaceAll(".*/cars/", "");
+            Command command = commands.get(path);
+            String page = command.execute(request);
+            if (page.contains("redirect:")) {
+                logger.info(String.format("servlet redirect%s",
+                        page.replace("redirect: ", "/cars")));
+                response.sendRedirect(page.replace("redirect:", "/cars"));
+            } else {
+                logger.info(String.format("servlet forward: %s", page));
+                request.getRequestDispatcher(page).forward(request, response);
+            }
+        }catch (Exception e){
+            response.sendRedirect("index.jsp");
         }
     }
 }

@@ -1,7 +1,7 @@
 package model.DAO.impl;
 
-import model.entity.Car;
 import model.entity.Client;
+import model.entity.Order;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -15,13 +15,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
-
 import static org.junit.Assert.*;
-
-public class JDBCCarDaoTest {
-
+public class JDBCOrderDaoTest {
     Connection con;
-    JDBCCarDao jdbcCarDao;
+    JDBCOrderDao jdbcOrderDao;
 
     @BeforeClass
     public static void dbCreate() throws SQLException, FileNotFoundException {
@@ -36,46 +33,28 @@ public class JDBCCarDaoTest {
     @Before
     public void jdbcCreate() throws SQLException {
         con = DBConnector.getDataSource().getConnection();
-        jdbcCarDao = new JDBCCarDao(con);
+        jdbcOrderDao = new JDBCOrderDao(con);
     }
 
     @Test
-    public void testGetCarById() {
-        Car car = jdbcCarDao.getCarById(1);
-        assertNotNull(car);
-    }
-
-    @Test
-    public void testGetCarsByClass(){
-        List<Car> cars = jdbcCarDao.getCarsByClass("econom","price", "ASC");
-        assertEquals(1, cars.size());
-    }
-
-    @Test
-    public void testGetCarsByMarque(){
-        List<Car> cars = jdbcCarDao.getCarsByMarque("Skoda", "price", "ASC");
-        assertEquals(1,cars.size());
-    }
-
-    @Test
-    public void testGetCarsByClient(){
+    public void testGetOrdersByClient(){
         Client client = new Client();
         client.setId(3);
-        client.setLogin("Olya");
-        List<Car> orderedCars = jdbcCarDao.getCarsByClient(client, 0, 10);
-        assertEquals(2, orderedCars.size());
+        List<Order> orderList = jdbcOrderDao.getOrdersByClient(client);
+        assertEquals(2, orderList.size());
     }
 
     @Test
-    public void testGetAllCars(){
-        List<Car> allCars = jdbcCarDao.getAllCars("id", "ASC");
-        assertEquals(3, allCars.size());
+    public void testGetAllOrders(){
+        List<Order> orderList = jdbcOrderDao.getAllOrders();
+        assertTrue(orderList.size()>1);
     }
 
     @Test
-    public void testGetOrderedCars(){
-        List<Car> orderedCars = jdbcCarDao.getOrderedCars(0, 10);
-        assertEquals(2, orderedCars.size());
+    public void testSetReason(){
+        assertTrue(jdbcOrderDao.setReason(1, "test reason"));
     }
+
+
 
 }

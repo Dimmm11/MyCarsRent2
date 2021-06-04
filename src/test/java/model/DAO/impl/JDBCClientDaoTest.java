@@ -1,11 +1,13 @@
 package model.DAO.impl;
 
-import model.entity.Car;
 import model.entity.Client;
 import org.apache.ibatis.jdbc.ScriptRunner;
+import org.apache.logging.log4j.core.config.Order;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -15,13 +17,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
-
 import static org.junit.Assert.*;
-
-public class JDBCCarDaoTest {
-
+public class JDBCClientDaoTest {
     Connection con;
-    JDBCCarDao jdbcCarDao;
+    JDBCClientDao jdbcClientDao;
 
     @BeforeClass
     public static void dbCreate() throws SQLException, FileNotFoundException {
@@ -36,46 +35,54 @@ public class JDBCCarDaoTest {
     @Before
     public void jdbcCreate() throws SQLException {
         con = DBConnector.getDataSource().getConnection();
-        jdbcCarDao = new JDBCCarDao(con);
+        jdbcClientDao = new JDBCClientDao(con);
     }
 
     @Test
-    public void testGetCarById() {
-        Car car = jdbcCarDao.getCarById(1);
-        assertNotNull(car);
+    public void testGetClients(){
+        List<Client> clients = jdbcClientDao.getClients();
+        assertEquals("Olya",clients.get(0).getLogin());
     }
 
     @Test
-    public void testGetCarsByClass(){
-        List<Car> cars = jdbcCarDao.getCarsByClass("econom","price", "ASC");
-        assertEquals(1, cars.size());
+    public void testGetClient(){
+        Client client = jdbcClientDao.getClient("Olya");
+        assertEquals(3, client.getId());
     }
 
     @Test
-    public void testGetCarsByMarque(){
-        List<Car> cars = jdbcCarDao.getCarsByMarque("Skoda", "price", "ASC");
-        assertEquals(1,cars.size());
+    public void testGetStaff(){
+        List<Client> staff = jdbcClientDao.getStaff();
+        assertEquals(2,staff.size());
     }
 
     @Test
-    public void testGetCarsByClient(){
+    public void testMakeManager(){
+       assertTrue(jdbcClientDao.makeManager("Olya"));
+    }
+
+    @Test
+    public void testRemoveManager(){
+        assertTrue(jdbcClientDao.removeManager("Olya"));
+    }
+
+    @Test
+    public void testRegister(){
         Client client = new Client();
-        client.setId(3);
-        client.setLogin("Olya");
-        List<Car> orderedCars = jdbcCarDao.getCarsByClient(client, 0, 10);
-        assertEquals(2, orderedCars.size());
+        client.setLogin("Sasha");
+        client.setPassword("Qwerty");
+        client.setPassport("QQ123");
+        assertTrue(jdbcClientDao.register(client));
     }
 
     @Test
-    public void testGetAllCars(){
-        List<Car> allCars = jdbcCarDao.getAllCars("id", "ASC");
-        assertEquals(3, allCars.size());
+    public void testBan(){
+        assertTrue(jdbcClientDao.ban("Olya"));
     }
 
     @Test
-    public void testGetOrderedCars(){
-        List<Car> orderedCars = jdbcCarDao.getOrderedCars(0, 10);
-        assertEquals(2, orderedCars.size());
+    public void testUnBan() throws SQLException {
+        assertTrue(jdbcClientDao.unBan("Olya"));
     }
 
 }

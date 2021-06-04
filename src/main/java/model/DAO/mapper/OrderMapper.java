@@ -5,6 +5,9 @@ import model.entity.Order;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Mapper to get order from ResultSet
+ */
 public class OrderMapper implements ObjectMapper<Order>{
     @Override
     public Order mapFromResultSet(ResultSet rs) throws SQLException {

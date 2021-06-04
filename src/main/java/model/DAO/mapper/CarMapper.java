@@ -4,7 +4,9 @@ import model.entity.Car;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/**
+ * Mapper to get car from ResultSet
+ */
 public class CarMapper implements ObjectMapper<Car>{
     @Override
     public Car mapFromResultSet(ResultSet rs) throws SQLException {

@@ -1,6 +1,6 @@
 package model.util;
 
-import model.connection.ConnectionPoolHolder;
+import model.DAO.impl.ConnectionPoolHolder;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;
@@ -29,7 +29,6 @@ public class CheckClient {
                 hashPassword = rs.getString(3);
             }
             result = (log.equals(login) && BCrypt.checkpw(password, hashPassword));
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Filter to clear user's session
+ * after Logout command
+ */
 public class LogOutFilter implements Filter {
     private static final Logger logger = LogManager.getLogger(LogOutFilter.class.getName());
     @Override

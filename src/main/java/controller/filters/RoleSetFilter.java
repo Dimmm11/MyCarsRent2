@@ -10,6 +10,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * Filter to set client role
+ * in session
+ */
 public class RoleSetFilter implements Filter {
     private static final Logger logger = LogManager.getLogger(RoleSetFilter.class.getName());
     @Override

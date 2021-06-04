@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
+/**
+ * Filter to prevent illegal access
+ * to client pages
+ */
 public class ClientFilter implements Filter {
     private static final Logger logger = LogManager.getLogger(ClientFilter.class.getName());
     @Override

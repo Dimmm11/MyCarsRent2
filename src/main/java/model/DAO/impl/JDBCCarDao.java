@@ -3,10 +3,8 @@ package model.DAO.impl;
 import model.util.Sql;
 import model.DAO.mapper.CarMapper;
 import model.DAO.CarDAO;
-import model.connection.ConnectionPoolHolder;
 import model.entity.Car;
 import model.entity.Client;
-
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
@@ -54,7 +52,6 @@ public class JDBCCarDao implements CarDAO{
         }
         return carsByMarque;
     }
-
 
     @Override
     public List<Car> getCarsByClient(Client client, int index, int offset) {
@@ -132,10 +129,11 @@ public class JDBCCarDao implements CarDAO{
     public boolean addCar(Car car) {
         boolean result = false;
         Connection con = null;
+        PreparedStatement st = null;
         try {
             con = connection;
             con.setAutoCommit(false);
-            PreparedStatement st = con.prepareStatement(Sql.ADD_CAR);
+            st = con.prepareStatement(Sql.ADD_CAR);
             st.setString(1, car.getMarque());
             st.setString(2, car.getClazz());
             st.setString(3, car.getModel());
@@ -151,6 +149,7 @@ public class JDBCCarDao implements CarDAO{
             e.printStackTrace();
         } finally {
             try {
+                st.close();
                 con.close();
             } catch (SQLException e) {
                 e.printStackTrace();

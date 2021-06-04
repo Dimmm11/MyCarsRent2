@@ -17,6 +17,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Tag handler for custom tag
+ */
 public class TagHandler extends SimpleTagSupport {
     @Override
     public void doTag() throws JspException, IOException {

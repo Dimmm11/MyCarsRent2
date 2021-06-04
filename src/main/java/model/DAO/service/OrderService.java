@@ -1,7 +1,6 @@
 package model.DAO.service;
 
 import model.DAO.OrderDAO;
-import model.DAO.impl.JDBCOrderDao;
 import model.DAO.DaoFactory;
 import model.entity.Car;
 import model.entity.Client;
@@ -10,7 +9,9 @@ import model.entity.Order;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * service layer to call OrderDAO
+ */
 public class OrderService {
     DaoFactory daoFactory = DaoFactory.getInstance();
 
@@ -94,10 +95,10 @@ public class OrderService {
         return result;
     }
 
-    public boolean setOrderStatus(int orderId, String reason) {
+    public boolean setOrderStatus(int orderId, String orderStatus) {
         boolean result = false;
         try (OrderDAO orderDao = daoFactory.createOrderDao()) {
-            result = orderDao.setOrderStatus(orderId, reason);
+            result = orderDao.setOrderStatus(orderId, orderStatus);
         } catch (Exception e) {
             e.printStackTrace();
         }

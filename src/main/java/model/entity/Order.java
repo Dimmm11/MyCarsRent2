@@ -2,6 +2,7 @@ package model.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * entity
@@ -101,5 +102,20 @@ private String comment;
 
     public void setTerm(int term) {
         this.term = term;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return id == order.id &&
+                client_id == order.client_id &&
+                car_id == order.car_id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, client_id, car_id);
     }
 }

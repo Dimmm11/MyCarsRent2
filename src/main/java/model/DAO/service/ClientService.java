@@ -1,13 +1,14 @@
 package model.DAO.service;
 
 import model.DAO.ClientDAO;
-import model.DAO.impl.JDBCClientDao;
 import model.DAO.DaoFactory;
 import model.entity.Client;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * service layer to call ClientDAO
+ */
 public class ClientService {
     DaoFactory daoFactory = DaoFactory.getInstance();
 

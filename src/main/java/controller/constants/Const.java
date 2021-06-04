@@ -35,5 +35,5 @@ public interface Const {
     String ROLE = "role";
     String LANG = "lang";
     String URL = "url";
-
+    String NO = "NO";
 }

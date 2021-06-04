@@ -80,7 +80,6 @@
                         <tr>
                             <th>Id</th>
                             <th><fmt:message key="Login"/></th>
-                            <th><fmt:message key="Password"/></th>
                             <th><fmt:message key="Passport"/></th>
                             <th><fmt:message key="Role"/></th>
                             <th></th>
@@ -89,7 +88,6 @@
                             <tr>
                                 <td><c:out value="${worker.id}"/></td>
                                 <td><c:out value="${worker.login}"/></td>
-                                <td><c:out value="${worker.password}"/></td>
                                 <td><c:out value="${worker.passport}"/></td>
                                 <td>
                                     <c:choose>

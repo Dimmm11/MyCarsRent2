@@ -8,6 +8,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * Filter to set encoding and
+ * chosen language on page
+ */
 public class EncodingFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -20,23 +24,17 @@ public class EncodingFilter implements Filter {
         servletResponse.setCharacterEncoding("UTF-8");
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpSession session = req.getSession();
-        /**
-         * set language
-         */
         String lang = "en";
         Optional<String> sessionOpt = Optional.ofNullable((String) session.getAttribute("lang"));
-        if(sessionOpt.isPresent()){
-            lang=sessionOpt.get();
+        if (sessionOpt.isPresent()) {
+            lang = sessionOpt.get();
         }
         Optional<String> requestOpt = Optional.ofNullable(req.getParameter(Const.LANG));
-        if(requestOpt.isPresent()){
+        if (requestOpt.isPresent()) {
             lang = requestOpt.get();
         }
         session.setAttribute(Const.LANG, lang);
-        /**
-         * encoding
-         */
-        filterChain.doFilter(servletRequest,servletResponse);
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

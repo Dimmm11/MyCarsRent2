@@ -1,7 +1,12 @@
 
-U
-java:S1128"8Remove this unused import 'model.DAO.impl.JDBCOrderDao'.(ˆó¸õ8›·ßÌœ/
-W
-java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(ê¡½8›·ßÌœ/
+Z	java:S106#"9Replace this use of System.out or System.err by a logger.(à£åÙÿÿÿÿÿ8Í“ù›/
 S
 java:S1128"6Remove this unused import 'model.DAO.impl.JDBCCarDao'.(°º¹Ş8›·ßÌœ/
+]	java:S125"<This block of commented-out lines of code should be removed.(Çêëşÿÿÿÿ8Şå›/
+W
+java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(ê¡½8›·ßÌœ/
+Z	java:S106!"9Replace this use of System.out or System.err by a logger.(¤É“Ïıÿÿÿÿ8ö»ø›/
+U
+java:S1128"8Remove this unused import 'model.DAO.impl.JDBCOrderDao'.(ˆó¸õ8›·ßÌœ/
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(ä÷Şîøÿÿÿÿ8Ó¿ç›/
+Z	java:S106%"9Replace this use of System.out or System.err by a logger.(¼ûÒ•ıÿÿÿÿ8¥ÿú›/

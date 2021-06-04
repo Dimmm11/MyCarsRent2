@@ -9,6 +9,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Logout command
+ */
 public class LogOutCommand implements Command {
     private static final Logger logger = LogManager.getLogger(LogOutCommand.class.getName());
     @Override

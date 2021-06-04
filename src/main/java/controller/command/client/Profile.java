@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Command to get clients orders
+ * from DB and show on page
+ */
 public class Profile implements Command {
     private static final Logger logger = LogManager.getLogger(Profile.class.getName());
     @Override

@@ -17,6 +17,10 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Page showing cars by specific class,
+ * chosen by client
+ */
 public class CarsByClass implements Command {
     private static final Logger logger = LogManager.getLogger(CarsByClass.class.getName());
     @Override
@@ -27,11 +31,13 @@ public class CarsByClass implements Command {
         Optional<String> optionalPage = Optional.ofNullable(request.getParameter(Const.PAGE));
         if (optionalPage.isPresent()) {
             page = Integer.parseInt(optionalPage.get());
+            logger.info(String.format("page from request: %d", page));
         }
         String carClass = request.getParameter(Const.CAR_CLASS);
         Optional<String> carClassOpt = Optional.ofNullable(request.getParameter(Const.CAR_CLASS));
         if (!carClassOpt.isPresent()) {
             carClass = (String) session.getAttribute(Const.CAR_CLASS);
+            logger.info(String.format("CarClass from session: %s", carClass));
         }
         session.setAttribute(Const.CAR_CLASS, carClass);
         String column = (String) session.getAttribute(Const.COLUMN);

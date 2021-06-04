@@ -102,9 +102,31 @@
                                     <fmt:message key="${order.confirmed}"/>
                                 </td>
                                 <td><c:out value="${order.comment}"/></td>
-                                <td><c:out value="${order.rent_cost}"/></td>
-                                <td><c:out value="${order.penalty}"/></td>
-                                <td><c:out value="${order.total_cost}"/></td>
+<%--                               ========================================--%>
+                                <c:choose>
+                                    <c:when test="${sessionScope.lang.equals('en')}">
+                                        <td><c:out value="${order.rent_cost}"/><fmt:message key="cur"/></td>
+                                        <td><c:out value="${order.penalty}"/><fmt:message key="cur"/></td>
+                                        <td><c:out value="${order.total_cost}"/><fmt:message key="cur"/></td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td><c:out value="${car.price*27}"/><fmt:message key="cur"/></td>
+
+                                        <td><c:out value="${order.rent_cost*27}"/><fmt:message key="cur"/></td>
+                                        <td><c:out value="${order.penalty*27}"/><fmt:message key="cur"/></td>
+                                        <td><c:out value="${order.total_cost*27}"/><fmt:message key="cur"/></td>
+                                    </c:otherwise>
+                                </c:choose>
+
+<%--                                ===================================--%>
+<%--                                <td><c:out value="${order.rent_cost}"/></td>                                --%>
+<%--                                <td><c:out value="${order.penalty}"/></td>                                --%>
+<%--                                <td><c:out value="${order.total_cost}"/></td>--%>
+<%--                                --%>
+<%--                                --%>
+<%--                                --%>
+<%--                                --%>
+<%--                                --%>
                                 <td>
                                     <c:choose>
                                         <c:when test="${order.confirmed.equals('CONFIRMED')}">

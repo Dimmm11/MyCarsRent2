@@ -15,7 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Page showing cars by specific marque,
+ * chosen by client
+ */
 public class CarsByMarque implements Command {
     private static final Logger logger = LogManager.getLogger(CarsByMarque.class.getName());
     @Override

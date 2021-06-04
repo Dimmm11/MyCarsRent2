@@ -6,28 +6,20 @@ import controller.constants.Const;
 import model.DAO.impl.JDBCDaoFactory;
 import model.DAO.impl.JDBCOrderDao;
 import model.DAO.service.OrderService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
 public class SetReason implements Command {
+    private static final Logger logger = LogManager.getLogger(SetReason.class.getName());
     @Override
     public String execute(HttpServletRequest request) {
-//        try {
-//            request.setCharacterEncoding("cp1251");
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-
+        logger.info("SetReason...");
         String reason = request.getParameter(Const.REASON);
-//        try {
-//            String str = new String(request.getParameter(Const.REASON).getBytes("cp1251"), StandardCharsets.UTF_8);
-//            System.out.println(str);
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-        System.out.println(reason);
+        logger.info("Reason: "+reason);
         int orderId = Integer.parseInt(request.getParameter(Const.ORDER_ID));
         new OrderService().setReason(orderId, reason);
         return "/managerOrders";

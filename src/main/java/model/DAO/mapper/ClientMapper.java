@@ -4,7 +4,9 @@ import model.entity.Client;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/**
+ * Mapper to get client from ResultSet
+ */
 public class ClientMapper implements ObjectMapper<Client>{
     @Override
     public Client mapFromResultSet(ResultSet rs) throws SQLException {

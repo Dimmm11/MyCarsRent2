@@ -2,6 +2,9 @@ package model.DAO;
 
 import model.DAO.impl.JDBCDaoFactory;
 
+/**
+ * Factory to make Dao instances
+ */
 public abstract class DaoFactory {
     private static DaoFactory daoFactory;
 

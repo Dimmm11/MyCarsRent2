@@ -1,6 +1,8 @@
 package model.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
+
 /**
  * entity
  */
@@ -79,5 +81,21 @@ public class Client implements Serializable {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return id == client.id &&
+                login.equals(client.login) &&
+                password.equals(client.password) &&
+                passport.equals(client.passport);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(login, id, password, passport);
     }
 }

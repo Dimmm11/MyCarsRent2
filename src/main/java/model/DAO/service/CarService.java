@@ -1,9 +1,7 @@
 package model.DAO.service;
 
 import model.DAO.CarDAO;
-import model.DAO.impl.JDBCCarDao;
 import model.DAO.DaoFactory;
-import model.DAO.impl.JDBCDaoFactory;
 import model.entity.Car;
 import model.entity.Client;
 
@@ -11,6 +9,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * service layer to call CarDAO
+ */
 public class CarService {
     DaoFactory daoFactory = DaoFactory.getInstance();
 

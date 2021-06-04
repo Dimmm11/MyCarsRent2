@@ -11,6 +11,9 @@ import javax.servlet.http.HttpSession;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Registration command
+ */
 public class Registration implements Command {
     private static final Logger logger = LogManager.getLogger(Registration.class.getName());
 

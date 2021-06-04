@@ -87,8 +87,8 @@
                             <option value="price">price</option>
                             <option value="marque">marque</option>
                         </select>
-                        <input type="radio" name="sortOrder" value="ASC">ASC</input>
-                        <input type="radio" name="sortOrder" value="DESC">DESC</input>
+                        <input type="radio" name="sortOrder" value="ASC"><fmt:message key="ASC"/></input>
+                        <input type="radio" name="sortOrder" value="DESC"><fmt:message key="DESC"/></input>
                         <input type="submit" value="sort!">
                     </form>
                     <h2><fmt:message key="Cars"/>:<u style="text-decoration: underline">${requestScope.car_class}</u>
