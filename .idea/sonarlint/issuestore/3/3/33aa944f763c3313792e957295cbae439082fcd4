@@ -1,32 +1,22 @@
 
-m
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(»¢ó©8Íñ¥™/
+r
+java:S2095Ğ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ò™ú³ıÿÿÿÿ8Íñ¥™/
+c	java:S112İ"FDefine and throw a dedicated exception instead of using a generic one.(Æ¨¯Ğ8Íñ¥™/
 ]
-java:S2259:"@A "NullPointerException" could be thrown; "rs" is nullable here.(ÅÌ”Ù8î‰ ™/
-]
-java:S2259w"@A "NullPointerException" could be thrown; "rs" is nullable here.(ÅÌ”Ù8ñÖ”œ/
-c
-java:S2259 "@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8ô™Ç›/
-V	java:S106±"9Replace this use of System.out or System.err by a logger.(—£ê‰8Íñ¥™/
-e
-java:S5361E"HReplace this call to "replaceAll()" by a call to the "replace()" method.(Î‹ê¬8ñÖ”œ/
-m
-java:S2095¬"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¶Ó‹¼8Íñ¥™/
-V	java:S106”"9Replace this use of System.out or System.err by a logger.(—£ê‰8Íñ¥™/
+java:S22598"AA "NullPointerException" could be thrown; "pst" is nullable here.(ß¿£8î‰ ™/
 r
-java:S2095ğ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ò™ú³ıÿÿÿÿ8Íñ¥™/
-m
-java:S2095Î"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Œéº°8Íñ¥™/
-r
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Í¢½äúÿÿÿÿ8Íñ¥™/
-h	java:S112Ç"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Íñ¥™/
-r
-java:S2095²"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(›ª´×ûÿÿÿÿ8Íñ¥™/
-c	java:S112ı"FDefine and throw a dedicated exception instead of using a generic one.(Æ¨¯Ğ8Íñ¥™/
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Í¢½äúÿÿÿÿ8Íñ¥™/
+h	java:S112‡"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Íñ¥™/
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¦Û¯ãúÿÿÿÿ
-_
-java:S1128"BRemove this unused import 'model.connection.ConnectionPoolHolder'.(“âÉ½8×ï¯™/
+e
+java:S5361D"HReplace this call to "replaceAll()" by a call to the "replace()" method.(Î‹ê¬8ñÖ”œ/
+c
+java:S2259Ÿ"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8ô™Ç›/
 ]
-java:S22599"AA "NullPointerException" could be thrown; "pst" is nullable here.(ß¿£8î‰ ™/
+java:S22599"@A "NullPointerException" could be thrown; "rs" is nullable here.(ÅÌ”Ù8î‰ ™/
 ]
-java:S2259v"AA "NullPointerException" could be thrown; "pst" is nullable here.(ß¿£8Œº£™/
+java:S2259v"@A "NullPointerException" could be thrown; "rs" is nullable here.(ÅÌ”Ù8ñÖ”œ/
+]
+java:S2259u"AA "NullPointerException" could be thrown; "pst" is nullable here.(ß¿£8Œº£™/
+e
+java:S2095®"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8ÑÙŞ¯/

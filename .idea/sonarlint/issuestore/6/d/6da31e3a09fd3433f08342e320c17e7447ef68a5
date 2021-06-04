@@ -1,12 +1,17 @@
 
 R
 java:S1191"5Use classes from the Java API instead of Sun classes.(ÓÒÒÃ8š¥áœ/
-]	java:S125"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ8Ìøèàœ/
-U	java:S106"9Replace this use of System.out or System.err by a logger.(ƒ°û£8¶ì¨ßœ/
-k
-java:S1128"NRemove this unused import 'com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput'.(ÓÒÒÃ8š¥áœ/
 U
 java:S1128"8Remove this unused import 'model.DAO.impl.JDBCOrderDao'.(ˆó¸õ8ÆˆïÌœ/
+k
+java:S1128"NRemove this unused import 'com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput'.(ÓÒÒÃ8š¥áœ/
+^
+java:S1128"ARemove this unused import 'java.io.UnsupportedEncodingException'.(Ãµ…“8æñ²/
 W
 java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(ê¡½8ÆˆïÌœ/
-]	java:S125"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ8ìÛèàœ/
+[
+java:S1128">Remove this unused import 'java.nio.charset.StandardCharsets'.(ï˜ŞÛ8æñ²/
+T
+java:S2629"7Use the built-in formatting to construct this argument.(Ú›ÃŞ8ùš’²/
+^
+java:S3457"AFormat specifiers should be used instead of string concatenation.(Ú›ÃŞ8ùš’²/

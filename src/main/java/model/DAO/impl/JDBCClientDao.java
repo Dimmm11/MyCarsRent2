@@ -218,7 +218,6 @@ public class JDBCClientDao implements ClientDAO {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-            throw new RuntimeException("Such user exists");
         } finally {
             try {
                 con.close();

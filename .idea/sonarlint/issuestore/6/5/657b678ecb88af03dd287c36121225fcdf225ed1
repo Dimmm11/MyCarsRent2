@@ -1,57 +1,55 @@
 
+h	java:S112œ"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¾ø”œ/
 c
-java:S2259Œ"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8±ğ—™/
-h	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¾ø”œ/
-h	java:S112Õ"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8û‹ï”œ/
-^
-java:S2259¡"AA "NullPointerException" could be thrown; "pst" is nullable here.(ß¿£8éâí”œ/
-h	java:S112Š"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8™—•œ/
-^
-java:S2259¢"@A "NullPointerException" could be thrown; "rs" is nullable here.(ÅÌ”Ù8éâí”œ/
-l
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(óÆƒÕ8éâí”œ/
-[	java:S106¯"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8±ğ—™/
-g	java:S112)"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8™®ˆ•œ/
-g	java:S112L"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8©¨‰•œ/
-m
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(æ¨±œ8±ğ—™/
-g	java:S112z"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8£¸ó”œ/
-h	java:S112í"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Õñş”œ/
-d
-java:S2259Ù"AA "NullPointerException" could be thrown; "st1" is nullable here.(¸ƒ•ªûÿÿÿÿ8éâí”œ/
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¦Û¯ãúÿÿÿÿ
-j
-java:S2095Ç"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ğ‘‹õÿÿÿÿÿ8éâí”œ/
-b
-java:S2259O"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8éâí”œ/
-Z	java:S106Q"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8éâí”œ/
-r
-java:S2095 "OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(™ı›‰ûÿÿÿÿ8±ğ—™/
-r
-java:S2095Ï"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ó¹¯Íûÿÿÿÿ8éâí”œ/
-g	java:S112b"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÜÃğ”œ/
+java:S2259Š"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8±ğ—™/
 c
-java:S2259¹"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8éâí”œ/
-[	java:S106Û"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8éâí”œ/
-[	java:S106"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8±ğ—™/
+java:S2259Ö"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8éâí”œ/
+g	java:S112x"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8£¸ó”œ/
+g	java:S112J"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8©¨‰•œ/
+^
+java:S2259Ÿ"AA "NullPointerException" could be thrown; "pst" is nullable here.(ß¿£8éâí”œ/
+Z	java:S106O"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8éâí”œ/
+[	java:S106Œ"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8±ğ—™/
+c
+java:S2259«"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8±ğ—™/
+r
+java:S2095Í"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ó¹¯Íûÿÿÿÿ8éâí”œ/
+r
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(™ı›‰ûÿÿÿÿ8±ğ—™/
 q
-java:S2095m"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(şö»™şÿÿÿÿ8éâí”œ/
-r
-java:S2095„"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(™ı›‰ûÿÿÿÿ8±ğ—™/
-h	java:S112‰"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8±ğ—™/
+java:S2095k"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(şö»™şÿÿÿÿ8éâí”œ/
+h	java:S112ˆ"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8™—•œ/
+b
+java:S2259M"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8éâí”œ/
 c
-java:S2259Ø"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8éâí”œ/
-[	java:S106»"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8éâí”œ/
-[	java:S106ò"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8éâí”œ/
-c
-java:S2259­"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8±ğ—™/
-h	java:S112¶"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8†Æ†•œ/
+java:S2259·"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8éâí”œ/
+h	java:S112Ó"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8û‹ï”œ/
+h	java:S112´"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8†Æ†•œ/
+h	java:S112‡"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8±ğ—™/
+[	java:S106¹"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8éâí”œ/
+h	java:S112ë"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Õñş”œ/
+h	java:S112¸"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8±ğ—™/
+g	java:S112("FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8™®ˆ•œ/
 j
-java:S5361\"HReplace this call to "replaceAll()" by a call to the "replace()" method.(’Ï¨¤ıÿÿÿÿ8éâí”œ/
+java:S2095Å"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ğ‘‹õÿÿÿÿÿ8éâí”œ/
+[	java:S106Ù"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8éâí”œ/
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¦Û¯ãúÿÿÿÿ
+r
+java:S2095‚"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(™ı›‰ûÿÿÿÿ8±ğ—™/
 k
-java:S5361È"HReplace this call to "replaceAll()" by a call to the "replace()" method.(‰«Êùÿÿÿÿ8éâí”œ/
-h	java:S112º"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8±ğ—™/
-_
-java:S1128"BRemove this unused import 'model.connection.ConnectionPoolHolder'.(“âÉ½8 À˜™/
+java:S5361Æ"HReplace this call to "replaceAll()" by a call to the "replace()" method.(‰«Êùÿÿÿÿ8éâí”œ/
+[	java:S106­"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8±ğ—™/
 c
-java:S2259ğ"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8éâí”œ/
+java:S2259î"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8éâí”œ/
+[	java:S106ğ"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8éâí”œ/
+d
+java:S2259×"AA "NullPointerException" could be thrown; "st1" is nullable here.(¸ƒ•ªûÿÿÿÿ8éâí”œ/
+g	java:S112`"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÜÃğ”œ/
+j
+java:S5361Z"HReplace this call to "replaceAll()" by a call to the "replace()" method.(’Ï¨¤ıÿÿÿÿ8éâí”œ/
+^
+java:S2259 "@A "NullPointerException" could be thrown; "rs" is nullable here.(ÅÌ”Ù8éâí”œ/
+l
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(óÆƒÕ8éâí”œ/
+m
+java:S2095ÿ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(æ¨±œ8±ğ—™/

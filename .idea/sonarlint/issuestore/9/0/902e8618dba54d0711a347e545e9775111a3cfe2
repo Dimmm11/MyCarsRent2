@@ -1,12 +1,19 @@
 
-Z	java:S106#"9Replace this use of System.out or System.err by a logger.(à£åÙÿÿÿÿÿ8Í“ù›/
-S
-java:S1128"6Remove this unused import 'model.DAO.impl.JDBCCarDao'.(°º¹Ş8›·ßÌœ/
-]	java:S125"<This block of commented-out lines of code should be removed.(Çêëşÿÿÿÿ8Şå›/
+Y
+java:S2629""7Use the built-in formatting to construct this argument.(„ºüùıÿÿÿÿ8µ¦í±/
 W
 java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(ê¡½8›·ßÌœ/
-Z	java:S106!"9Replace this use of System.out or System.err by a logger.(¤É“Ïıÿÿÿÿ8ö»ø›/
+S
+java:S1128"6Remove this unused import 'model.DAO.impl.JDBCCarDao'.(°º¹Ş8›·ßÌœ/
+T
+java:S2629$"7Use the built-in formatting to construct this argument.(äñ¼ú8Ÿ¥î±/
 U
 java:S1128"8Remove this unused import 'model.DAO.impl.JDBCOrderDao'.(ˆó¸õ8›·ßÌœ/
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(ä÷Şîøÿÿÿÿ8Ó¿ç›/
-Z	java:S106%"9Replace this use of System.out or System.err by a logger.(¼ûÒ•ıÿÿÿÿ8¥ÿú›/
+^
+java:S3457$"AFormat specifiers should be used instead of string concatenation.(äñ¼ú8Ÿ¥î±/
+c
+java:S3457""AFormat specifiers should be used instead of string concatenation.(„ºüùıÿÿÿÿ8µ¦í±/
+Y
+java:S2629&"7Use the built-in formatting to construct this argument.(•Œ©úøÿÿÿÿ8œƒï±/
+c
+java:S3457&"AFormat specifiers should be used instead of string concatenation.(•Œ©úøÿÿÿÿ8œƒï±/

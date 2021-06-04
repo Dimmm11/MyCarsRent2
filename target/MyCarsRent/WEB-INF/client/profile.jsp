@@ -9,12 +9,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
           crossorigin="anonymous">
-
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -65,7 +63,6 @@
         </div>
     </div>
 </div>
-<!-- ================================================= -->
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
@@ -102,7 +99,6 @@
                                     <fmt:message key="${order.confirmed}"/>
                                 </td>
                                 <td><c:out value="${order.comment}"/></td>
-<%--                               ========================================--%>
                                 <c:choose>
                                     <c:when test="${sessionScope.lang.equals('en')}">
                                         <td><c:out value="${order.rent_cost}"/><fmt:message key="cur"/></td>
@@ -117,16 +113,6 @@
                                         <td><c:out value="${order.total_cost*27}"/><fmt:message key="cur"/></td>
                                     </c:otherwise>
                                 </c:choose>
-
-<%--                                ===================================--%>
-<%--                                <td><c:out value="${order.rent_cost}"/></td>                                --%>
-<%--                                <td><c:out value="${order.penalty}"/></td>                                --%>
-<%--                                <td><c:out value="${order.total_cost}"/></td>--%>
-<%--                                --%>
-<%--                                --%>
-<%--                                --%>
-<%--                                --%>
-<%--                                --%>
                                 <td>
                                     <c:choose>
                                         <c:when test="${order.confirmed.equals('CONFIRMED')}">
@@ -156,7 +142,6 @@
     <div class="col-md-2">
     </div>
 </div>
-<!-- ================================================= -->
 <div class="main">
     <div class="container" style="position: static; bottom: 30%">
         <table>

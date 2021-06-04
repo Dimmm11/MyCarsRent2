@@ -87,7 +87,7 @@ public class Servlet extends HttpServlet {
                 request.getRequestDispatcher(page).forward(request, response);
             }
         }catch (Exception e){
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("error.jsp");
         }
     }
 }

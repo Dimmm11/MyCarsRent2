@@ -1,11 +1,11 @@
 
-A
-java:S2629'"$Invoke method(s) only conditionally.(ª—œñ8Şéçœ/
-W
-java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(ê¡½8ÿÃ©Ìœ/
-U
-java:S1128"8Remove this unused import 'model.DAO.impl.JDBCOrderDao'.(ˆó¸õ8ÿÃ©Ìœ/
-`
-java:S1128"CRemove this unused import 'javax.servlet.http.HttpServletResponse'.(Á¨ïë8‡âæÄœ/
 S
 java:S1128"6Remove this unused import 'model.DAO.impl.JDBCCarDao'.(°º¹Ş8ÿÃ©Ìœ/
+`
+java:S1128"CRemove this unused import 'javax.servlet.http.HttpServletResponse'.(Á¨ïë8‡âæÄœ/
+W
+java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(ê¡½8ÿÃ©Ìœ/
+A
+java:S2629+"$Invoke method(s) only conditionally.(ª—œñ8Şéçœ/
+U
+java:S1128"8Remove this unused import 'model.DAO.impl.JDBCOrderDao'.(ˆó¸õ8ÿÃ©Ìœ/

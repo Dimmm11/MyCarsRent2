@@ -2,8 +2,6 @@ package controller.command.admin;
 
 import controller.command.Command;
 import controller.constants.Const;
-import model.DAO.impl.JDBCCarDao;
-import model.DAO.impl.JDBCDaoFactory;
 import model.DAO.service.CarService;
 import model.entity.Car;
 import org.apache.logging.log4j.LogManager;

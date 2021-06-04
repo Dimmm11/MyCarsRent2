@@ -1,7 +1,7 @@
 
 F
 java:S2629"$Invoke method(s) only conditionally.(æçšÊûÿÿÿÿ8Äì³çœ/
-V
-java:S1128"9Remove this unused import 'model.DAO.impl.JDBCClientDao'.(ÑïµØ8ßÏøËœ/
 W
 java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(ê¡½8ßÏøËœ/
+V
+java:S1128"9Remove this unused import 'model.DAO.impl.JDBCClientDao'.(ÑïµØ8ßÏøËœ/
