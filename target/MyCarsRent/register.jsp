@@ -39,7 +39,7 @@
                     <input type="text" class="form-control" placeholder="<fmt:message key="Login"/>" name="Login">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="<fmt:message key="Password"/>" name="Password">
+                    <input type="password" class="form-control" placeholder="<fmt:message key="Password"/>" name="Password">
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="<fmt:message key="Passport"/>" name="Passport">

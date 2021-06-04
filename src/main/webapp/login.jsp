@@ -105,7 +105,7 @@
                     <input type="text" class="form-control" placeholder="<fmt:message key="Username"/>" name="Login" style="width: 400px">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="<fmt:message key="Password"/>" name="Password" style="width: 400px">
+                    <input type="password" class="form-control" placeholder="<fmt:message key="Password"/>" name="Password" style="width: 400px">
 
                     <c:if test="${sessionScope.loginError!=null}">
                         <c:out value="${sessionScope.loginError}"/>
