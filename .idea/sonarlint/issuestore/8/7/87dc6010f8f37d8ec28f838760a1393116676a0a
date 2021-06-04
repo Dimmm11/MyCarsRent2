@@ -1,9 +1,0 @@
-
-U
-java:S1128"8Remove this unused import 'model.DAO.impl.JDBCOrderDao'.(ˆó¸õ8ÓŸëÌœ/
-W
-java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(ê¡½8ÓŸëÌœ/
-Y
-java:S2629"7Use the built-in formatting to construct this argument.(Ô¼ÎŠşÿÿÿÿ8ş”²/
-c
-java:S3457"AFormat specifiers should be used instead of string concatenation.(Ô¼ÎŠşÿÿÿÿ8ş”²/

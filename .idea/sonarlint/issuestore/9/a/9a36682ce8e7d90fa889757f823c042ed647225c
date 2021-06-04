@@ -1,7 +1,0 @@
-
-W
-java:S1128":Remove this unused import 'model.DAO.impl.JDBCDaoFactory'.(ê¡½8–£óÌœ/
-V
-java:S1128"9Remove this unused import 'model.DAO.impl.JDBCClientDao'.(ÑïµØ8–£óÌœ/
-^
-java:S3457"AFormat specifiers should be used instead of string concatenation.(òÈ˜½8‹ê”²/
