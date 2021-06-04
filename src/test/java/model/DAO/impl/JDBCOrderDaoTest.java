@@ -7,27 +7,28 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
+
 import static org.junit.Assert.*;
+
 public class JDBCOrderDaoTest {
     Connection con;
     JDBCOrderDao jdbcOrderDao;
 
     @BeforeClass
-    public static void dbCreate() throws SQLException, FileNotFoundException {
+    public static void dbCreate() throws SQLException, IOException {
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
         String mysqlUrl = "jdbc:mysql://localhost:3306?serverTimezone=EET";
         Connection con = DriverManager.getConnection(mysqlUrl, "root", "root");
         ScriptRunner sr = new ScriptRunner(con);
         Reader reader = new BufferedReader(new FileReader("src/main/resources/db-test.sql"));
         sr.runScript(reader);
+        reader.close();
     }
 
     @Before
@@ -37,7 +38,7 @@ public class JDBCOrderDaoTest {
     }
 
     @Test
-    public void testGetOrdersByClient(){
+    public void testGetOrdersByClient() {
         Client client = new Client();
         client.setId(3);
         List<Order> orderList = jdbcOrderDao.getOrdersByClient(client);
@@ -45,16 +46,29 @@ public class JDBCOrderDaoTest {
     }
 
     @Test
-    public void testGetAllOrders(){
+    public void testGetAllOrders() {
         List<Order> orderList = jdbcOrderDao.getAllOrders();
-        assertTrue(orderList.size()>1);
+        assertTrue(orderList.size() > 1);
     }
 
     @Test
-    public void testSetReason(){
+    public void testSetReason() {
         assertTrue(jdbcOrderDao.setReason(1, "test reason"));
     }
 
+    @Test
+    public void testSetPenalty() {
+        assertTrue(jdbcOrderDao.setPenalty(1, BigDecimal.valueOf(100)));
+    }
 
+    @Test
+    public void testSetOrderStatus() {
+        assertTrue(jdbcOrderDao.setOrderStatus(1, "CONFIRMED"));
+    }
+
+    @Test
+    public void testCancelOrder(){
+        assertTrue(jdbcOrderDao.cancelOrder(1));
+    }
 
 }

@@ -77,8 +77,7 @@
                 <td><fmt:message key="Cars_by_class"/>: </td>
                 <td>
                     <select name="car_class">
-                        <option selected disabled value> --- </option>
-                        <option value="econom">econom</option>
+                        <option value="econom" selected>econom</option>
                         <option value="middle">middle</option>
                         <option value="business">business</option>
 
@@ -94,8 +93,7 @@
                 <td><fmt:message key="Cars_by_marque"/>: </td>
                 <td>
                     <select name="marque">
-                        <option selected disabled value> --- </option>
-                        <option value="Audi">Audi</option>
+                        <option value="Audi" selected>Audi</option>
                         <option value="Chevrolet">Chevrolet</option>
                         <option value="Ford">Ford</option>
                         <option value="Honda">Honda</option>

@@ -190,7 +190,7 @@ public class JDBCOrderDao implements OrderDAO {
 
     @Override
     public boolean setPenalty(int orderId, BigDecimal penalty) {
-        boolean result;
+        boolean result = false;
         PreparedStatement st = null;
         PreparedStatement st1 = null;
         try (Connection con = connection) {
@@ -208,7 +208,11 @@ public class JDBCOrderDao implements OrderDAO {
             result = (st.executeUpdate() > 0 && st1.executeUpdate() > 0);
             con.commit();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            try {
+                connection.rollback();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         } finally {
             try {
                 st.close();
@@ -222,7 +226,7 @@ public class JDBCOrderDao implements OrderDAO {
 
     @Override
     public boolean setOrderStatus(int orderId, String orderStatus) {
-        boolean result;
+        boolean result = false;
         PreparedStatement st = null;
         try (Connection con = connection) {
             con.setAutoCommit(false);
@@ -232,7 +236,11 @@ public class JDBCOrderDao implements OrderDAO {
             result = st.executeUpdate() > 0;
             con.commit();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            try {
+                connection.rollback();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         } finally {
             try {
                 st.close();
@@ -282,10 +290,8 @@ public class JDBCOrderDao implements OrderDAO {
             con.setAutoCommit(false);
             st = con.prepareStatement(Sql.RETURN_CAR);
             st.setInt(1, orderId);
-
             st3 = con.prepareStatement(Sql.DELETE_ORDER);
             st3.setInt(1, orderId);
-
             result = (st.executeUpdate() > 0 && st3.executeUpdate() > 0);
             con.commit();
         } catch (SQLException e) {

@@ -5,12 +5,13 @@ import model.DAO.mapper.CarMapper;
 import model.DAO.CarDAO;
 import model.entity.Car;
 import model.entity.Client;
+
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JDBCCarDao implements CarDAO{
+public class JDBCCarDao implements CarDAO {
     private Connection connection;
 
     public JDBCCarDao(Connection connection) {
@@ -71,7 +72,7 @@ public class JDBCCarDao implements CarDAO{
             con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 pst.close();
             } catch (SQLException e) {
@@ -162,7 +163,7 @@ public class JDBCCarDao implements CarDAO{
     public boolean updatePrice(BigDecimal price, Car car) {
         boolean result = false;
         Connection con = null;
-        PreparedStatement st=null;
+        PreparedStatement st = null;
         try {
             con = connection;
             con.setAutoCommit(false);
@@ -193,7 +194,7 @@ public class JDBCCarDao implements CarDAO{
     public Car getCarById(int id) {
         Car car = null;
         Connection con = null;
-        PreparedStatement st =null;
+        PreparedStatement st = null;
         try {
             con = connection;
             con.setAutoCommit(false);

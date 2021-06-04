@@ -22,10 +22,8 @@
         <%@include file="/CSS/loginPage.css" %>
     </style>
     <title><fmt:message key="Orders"/></title>
-
 </head>
 <body>
-
 <div class="sidenav">
     <div class="login-main-text">
         <c:choose>
@@ -43,8 +41,6 @@
             </c:when>
         </c:choose>
         <br>
-
-
     </div>
 </div>
 <div class="container-fluid">
@@ -139,8 +135,6 @@
                                     <c:out value="${order.penalty*27}"/><fmt:message key="cur"/>
                                 </c:otherwise>
                                 </c:choose>
-<%--                                    ======================================--%>
-<%--                                    <c:out value="${order.penalty}"/>--%>
                                     <form action="${pageContext.request.contextPath}/setPenalty" method="post">
                                         <input type="hidden" name="orderId" value="${order.id}">
                                         <input type="number" name="penalty" placeholder="<fmt:message key="Penalty"/>"
@@ -158,7 +152,6 @@
                                     <c:out value="${order.rent_cost*27}"/><fmt:message key="cur"/>
                                 </c:otherwise>
                                 </c:choose>
-<%--                                    <c:out value="${order.rent_cost}"/>--%>
                                 </td>
                                 <td>
                                     <c:choose>
@@ -169,7 +162,6 @@
                                             <c:out value="${order.total_cost*27}"/><fmt:message key="cur"/>
                                         </c:otherwise>
                                     </c:choose>
-<%--                                    <c:out value="${order.total_cost}"/>--%>
                                 </td>
                             </tr>
                             <c:set var="counter" value="${counter+1}" scope="page"/>
@@ -185,7 +177,6 @@
     <div class="col-md-2">
     </div>
 </div>
-<%-- ===================================================== --%>
 <div class="main">
     <div class="container" style="position: static;bottom: 30%">
         <table>
@@ -195,13 +186,11 @@
                     <form action="${pageContext.request.contextPath}/managerOrders" method="post">
                         <input type="hidden" name="page" value="${i}">
                         <button type="submit" class="btn btn-secondary">${i}</button>
-                            <%--                        <input type="submit" value="${i}">--%>
                     </form>
                     <c:set var="i" value="${i+1}" scope="page"/>
                 </th>
             </c:forEach>
         </table>
-
     </div>
     <div class="col-md-6 col-sm-12">
         <div class="login-form">
@@ -213,13 +202,9 @@
             <ex:TimeTag/>
         </div>
     </div>
-
 </div>
-
-<!-- Вариант 1: Bootstrap в связке с Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-
 </body>
 </html>

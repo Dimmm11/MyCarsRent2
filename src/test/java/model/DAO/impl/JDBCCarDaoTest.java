@@ -7,10 +7,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -24,13 +22,14 @@ public class JDBCCarDaoTest {
     JDBCCarDao jdbcCarDao;
 
     @BeforeClass
-    public static void dbCreate() throws SQLException, FileNotFoundException {
+    public static void dbCreate() throws SQLException, IOException {
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
         String mysqlUrl = "jdbc:mysql://localhost:3306?serverTimezone=EET";
         Connection con = DriverManager.getConnection(mysqlUrl, "root", "root");
         ScriptRunner sr = new ScriptRunner(con);
         Reader reader = new BufferedReader(new FileReader("src/main/resources/db-test.sql"));
         sr.runScript(reader);
+        reader.close();
     }
 
     @Before
@@ -76,6 +75,37 @@ public class JDBCCarDaoTest {
     public void testGetOrderedCars(){
         List<Car> orderedCars = jdbcCarDao.getOrderedCars(0, 10);
         assertEquals(2, orderedCars.size());
+    }
+
+    @Test
+    public void testAddCar(){
+        Car car = new Car();
+        car.setMarque("testMarque");
+        car.setModel("testModel");
+        car.setClazz("econom");
+        car.setPrice(BigDecimal.valueOf(50));
+        assertTrue(jdbcCarDao.addCar(car));
+    }
+
+    @Test
+    public void testUpdatePrice() throws SQLException {
+        Car car = jdbcCarDao.getCarById(1);
+        con = DBConnector.getDataSource().getConnection();
+        jdbcCarDao = new JDBCCarDao(con);
+        assertTrue(jdbcCarDao.updatePrice(BigDecimal.valueOf(44),car));
+    }
+
+    @Test
+    public void testDeleteCar() throws SQLException {
+        Car car = new Car();
+        car.setMarque("test");
+        car.setModel("test");
+        car.setClazz("econom");
+        car.setPrice(BigDecimal.valueOf(50));
+        jdbcCarDao.addCar(car);
+        con = DBConnector.getDataSource().getConnection();
+        jdbcCarDao = new JDBCCarDao(con);
+        assertTrue(jdbcCarDao.deleteCar(4));
     }
 
 }

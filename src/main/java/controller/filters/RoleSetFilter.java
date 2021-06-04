@@ -31,7 +31,7 @@ public class RoleSetFilter implements Filter {
         if (roleOpt.isPresent()) {
             role = (int) roleOpt.get();
         }
-        logger.info("role: 0");
+        logger.info("role: "+role);
         session.setAttribute(Const.ROLE, role);
         chain.doFilter(request, response);
     }

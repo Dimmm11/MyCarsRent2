@@ -1,22 +1,21 @@
 
-r
-java:S2095Ğ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ò™ú³ıÿÿÿÿ8Íñ¥™/
-c	java:S112İ"FDefine and throw a dedicated exception instead of using a generic one.(Æ¨¯Ğ8Íñ¥™/
-]
-java:S22598"AA "NullPointerException" could be thrown; "pst" is nullable here.(ß¿£8î‰ ™/
-r
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Í¢½äúÿÿÿÿ8Íñ¥™/
-h	java:S112‡"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Íñ¥™/
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¦Û¯ãúÿÿÿÿ
-e
-java:S5361D"HReplace this call to "replaceAll()" by a call to the "replace()" method.(Î‹ê¬8ñÖ”œ/
 c
 java:S2259Ÿ"@A "NullPointerException" could be thrown; "st" is nullable here.(•û—ûÿÿÿÿ8ô™Ç›/
 ]
+java:S2259u"AA "NullPointerException" could be thrown; "pst" is nullable here.(ß¿£8Œº£™/
+r
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Í¢½äúÿÿÿÿ8Íñ¥™/
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¦Û¯ãúÿÿÿÿ
+]
 java:S22599"@A "NullPointerException" could be thrown; "rs" is nullable here.(ÅÌ”Ù8î‰ ™/
+r
+java:S2095Ğ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ò™ú³ıÿÿÿÿ8Íñ¥™/
 ]
 java:S2259v"@A "NullPointerException" could be thrown; "rs" is nullable here.(ÅÌ”Ù8ñÖ”œ/
-]
-java:S2259u"AA "NullPointerException" could be thrown; "pst" is nullable here.(ß¿£8Œº£™/
 e
 java:S2095®"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8ÑÙŞ¯/
+e
+java:S5361D"HReplace this call to "replaceAll()" by a call to the "replace()" method.(Î‹ê¬8ñÖ”œ/
+]
+java:S22598"AA "NullPointerException" could be thrown; "pst" is nullable here.(ß¿£8î‰ ™/
+h	java:S112†"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Íñ¥™/

@@ -9,10 +9,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,13 +20,14 @@ public class JDBCClientDaoTest {
     JDBCClientDao jdbcClientDao;
 
     @BeforeClass
-    public static void dbCreate() throws SQLException, FileNotFoundException {
+    public static void dbCreate() throws SQLException, IOException {
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
         String mysqlUrl = "jdbc:mysql://localhost:3306?serverTimezone=EET";
         Connection con = DriverManager.getConnection(mysqlUrl, "root", "root");
         ScriptRunner sr = new ScriptRunner(con);
         Reader reader = new BufferedReader(new FileReader("src/main/resources/db-test.sql"));
         sr.runScript(reader);
+        reader.close();
     }
 
     @Before
