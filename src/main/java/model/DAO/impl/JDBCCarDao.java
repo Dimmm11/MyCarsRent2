@@ -232,7 +232,6 @@ public class JDBCCarDao implements CarDAO {
             con.setAutoCommit(false);
             st = con.prepareStatement(Sql.DELETE_CAR);
             st.setInt(1, id);
-
             result = st.executeUpdate() > 0;
             con.commit();
         } catch (SQLException e) {

@@ -54,6 +54,21 @@ public class JDBCClientDaoTest {
         assertEquals(2,staff.size());
     }
 
+//    @Test
+//    public void testDeleteClient() throws SQLException{
+//        Client client = new Client();
+//        client.setLogin("test");
+//        client.setPassword("Test");
+//        client.setPassport("Test");
+//        jdbcClientDao.register(client);
+////        Connection c = DBConnector.getDataSource().getConnection();
+////        JDBCClientDao cl = new JDBCClientDao(c);
+////        assertTrue(cl.deleteClient("test"));
+//        con = DBConnector.getDataSource().getConnection();
+//        jdbcClientDao = new JDBCClientDao(con);
+//        assertTrue(jdbcClientDao.deleteClient("test"));
+//    }
+
     @Test
     public void testMakeManager(){
        assertTrue(jdbcClientDao.makeManager("Olya"));

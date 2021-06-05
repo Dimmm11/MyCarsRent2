@@ -14,7 +14,6 @@
           rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
           crossorigin="anonymous">
-
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -80,8 +79,6 @@
                         <option value="econom" selected>econom</option>
                         <option value="middle">middle</option>
                         <option value="business">business</option>
-
-<%--                        <input type="submit" value="submit">--%>
                     </select>
                 </td>
             </tr>
@@ -107,7 +104,6 @@
                         <option value="Volkswagen">Volkswagen</option>
                         <option value="Bentley">Bentley</option>
                         <option value="Supercar">Supercar</option>
-<%--                        <input type="submit" value="submit">--%>
                     </select>
                 </td>
             </tr>
@@ -123,7 +119,6 @@
     </div>
 </div>
 
-<!-- Вариант 1: Bootstrap в связке с Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>

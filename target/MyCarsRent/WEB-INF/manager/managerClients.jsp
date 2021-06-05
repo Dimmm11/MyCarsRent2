@@ -8,8 +8,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
@@ -22,10 +20,8 @@
         <%@include file="/CSS/loginPage.css" %>
     </style>
     <title>Manager clients</title>
-
 </head>
 <body>
-
 <div class="sidenav">
     <div class="login-main-text">
         <c:choose>
@@ -47,15 +43,11 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-
         <div class="col-md-4">
         </div>
-
         <div class="col-md-4">
         </div>
-
         <div class="col-md-4">
-
             <table>
                 <th>
                     <c:if test="${sessionScope.role>0}">
@@ -93,7 +85,6 @@
                         <tr>
                             <th>Id</th>
                             <th><fmt:message key="Login"/></th>
-<%--                            <th><fmt:message key="Password"/></th>--%>
                             <th><fmt:message key="Passport"/></th>
                             <th><fmt:message key="Status"/></th>
                             <th></th>
@@ -104,7 +95,6 @@
                             <tr>
                                 <td><c:out value="${client.id}"/></td>
                                 <td><c:out value="${client.login}"/></td>
-<%--                                <td><c:out value="${client.password}"/></td>--%>
                                 <td><c:out value="${client.passport}"/></td>
                                 <td>
                                     <fmt:message key="${client.status}"/>
@@ -159,9 +149,6 @@
     <div class="col-md-2">
     </div>
 </div>
-
-
-<%-- =============================================================--%>
 <div class="main">
     <div class="container" style="position: static;bottom: 30%">
         <table>
@@ -171,7 +158,6 @@
                     <form action="${pageContext.request.contextPath}/managerClients" method="post">
                         <input type="hidden" name="page" value="${i}">
                         <button type="submit" class="btn btn-secondary">${i}</button>
-                            <%--                        <input type="submit" value="${i}">--%>
                     </form>
                     <c:set var="i" value="${i+1}" scope="page"/>
                 </th>
@@ -189,13 +175,8 @@
         </div>
     </div>
 </div>
-
-
-<!-- Вариант 1: Bootstrap в связке с Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-
-
 </body>
 </html>
