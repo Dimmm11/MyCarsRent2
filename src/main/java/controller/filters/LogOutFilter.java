@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashSet;
 
 /**
  * Filter to clear user's session
@@ -25,12 +26,17 @@ public class LogOutFilter implements Filter {
         HttpSession session = req.getSession();
         ServletContext context = request.getServletContext();
         /**
-         * Clear session
+         * Clear session & remove current client from context
          */
         logger.info("Logout:"+req.getSession().getAttribute("client"));
+        String name = (String) session.getAttribute("clientName");
+        HashSet<String> loggedUsers = (HashSet<String>) req.getSession().getServletContext()
+                .getAttribute("loggedUsers");
+        loggedUsers.remove(name);
+        context.setAttribute("loggedUsers",loggedUsers);
         session.setAttribute("client", null);
         session.setAttribute("role", 0);
-        context.setAttribute("client", null);
+        context.setAttribute("userName", null);
         resp.setHeader("Pragma", "No-cache");
         resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         resp.setDateHeader("Expires", -1);

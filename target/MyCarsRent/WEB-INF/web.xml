@@ -1,9 +1,5 @@
 <web-app version="3.0">
   <display-name>Archetype Created Web Application</display-name>
-<!--  <context-param>-->
-<!--    <param-name>PARAMETER_ENCODING</param-name>-->
-<!--    <param-value>UTF-8</param-value>-->
-<!--  </context-param>-->
   <!-- ==============================================
 Encoding filter
 ============================================== -->
@@ -88,7 +84,9 @@ Filter for access client content
     <filter-name>LogOutFilter</filter-name>
     <url-pattern>/logout</url-pattern>
   </filter-mapping>
-
+  <!-- ==============================================
+  Servlet
+   ============================================== -->
   <servlet>
     <servlet-name>Servlet</servlet-name>
     <servlet-class>controller.Servlet</servlet-class>

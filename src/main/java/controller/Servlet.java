@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 
@@ -26,6 +27,9 @@ public class Servlet extends HttpServlet {
     private Map<String, Command> commands = new HashMap<>();
 
     public void init(ServletConfig servletConfig) {
+        servletConfig.getServletContext()
+                .setAttribute("loggedUsers", new HashSet<String>());
+
         commands.put("login", new LoginCommand());
         commands.put("register", new Registration());
         commands.put("logout", new LogOutCommand());

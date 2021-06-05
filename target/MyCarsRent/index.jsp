@@ -8,8 +8,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
@@ -20,30 +18,21 @@
     <style>
         <%@include file="/CSS/loginPage.css" %>
     </style>
-    <title>Login page</title>
-
+    <title>Starter page</title>
 </head>
 <body>
 <div style="text-align: center;margin-top: 10%">
     <div class="container-fluid">
-            <h2>Cars rent</h2>
-<%--            <a href="login.jsp"><fmt:message key="Login"/></a>--%>
-            <form action="login.jsp">
+        <h2>Cars rent</h2>
+        <form action="login.jsp">
             <button type="submit" class="btn btn-secondary"><fmt:message key="Login"/></button>
-            </form>
+        </form>
     </div>
     <div>
         <ex:TimeTag/>
+            <c:out value="${requestScope.error}"/>
     </div>
 </div>
-
-
-
-<c:if test="${requestScope.error!=null}">
-    <c:out value="${requestScope.error.toString()}"/>
-</c:if>
-
-
 
 </body>
 </html>

@@ -30,10 +30,9 @@
     </div>
     <div>
         <ex:TimeTag/>
+            <c:out value="${requestScope.error}"/>
     </div>
 </div>
-<c:if test="${requestScope.error!=null}">
-    <c:out value="${requestScope.error.toString()}"/>
-</c:if>
+
 </body>
 </html>

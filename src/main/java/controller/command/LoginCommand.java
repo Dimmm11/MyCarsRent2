@@ -6,6 +6,7 @@ import model.entity.Client;
 import model.util.CheckClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
@@ -15,6 +16,7 @@ import java.util.Optional;
  */
 public class LoginCommand implements Command {
     private static final Logger logger = LogManager.getLogger(LoginCommand.class.getName());
+
     @Override
     public String execute(HttpServletRequest request) {
         logger.info("LoginCommand.execute...");
@@ -22,10 +24,24 @@ public class LoginCommand implements Command {
         String name = request.getParameter("Login");
         String pass = request.getParameter("Password");
 
+
         if (name == null || name.equals("") || pass == null || pass.equals("")) {
+            session.setAttribute("client", null);
+            name = null;
             session.setAttribute("loginError", "All fields required");
             return "redirect:/login.jsp";
         }
+        /**
+         * check if such client is already Logged in
+         */
+        if (CommandUtility.checkUserIsLogged(request, name)) {
+            logger.info("Repeated access attempt by: " + name);
+            request.setAttribute("error", "try again later");
+            return "redirect:/index.jsp";
+        }
+        logger.info(String.format("Logged users: %s", request.getSession()
+                .getServletContext()
+                .getAttribute("loggedUsers")));
         /**
          * check user in DB
          */
@@ -39,14 +55,14 @@ public class LoginCommand implements Command {
          */
 
         Client client = (Client) session.getAttribute("client");
-            Optional<Client> clientOptional = Optional.ofNullable(client);
-            if(!clientOptional.isPresent()){
-                client = new ClientService().getClient(name);
-                logger.info(String.format("Set client to session:%s", client));
-                session.setAttribute("role", client.getRole_id());
-                session.setAttribute("client", client);
-                session.setAttribute("clientName", name);
-            }
+        Optional<Client> clientOptional = Optional.ofNullable(client);
+        if (!clientOptional.isPresent()) {
+            client = new ClientService().getClient(name);
+            logger.info(String.format("Set client to session:%s", client));
+            session.setAttribute("role", client.getRole_id());
+            session.setAttribute("client", client);
+            session.setAttribute("clientName", name);
+        }
 
         /**
          * check if User is Banned
@@ -58,6 +74,7 @@ public class LoginCommand implements Command {
             request.setAttribute("error", "user is BANNED");
             return "redirect:/login.jsp";
         }
+        CommandUtility.setClientInContext(request, client.getLogin());
         /**
          * All checks passed, send to Page
          */
