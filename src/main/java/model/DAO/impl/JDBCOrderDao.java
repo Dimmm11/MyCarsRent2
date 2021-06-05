@@ -258,6 +258,7 @@ public class JDBCOrderDao implements OrderDAO {
         PreparedStatement st2 = null;
         PreparedStatement st3 = null;
         try (Connection con = connection) {
+            con.setAutoCommit(false);
             st = con.prepareStatement(Sql.RETURN_CAR);
             st.setInt(1, orderId);
             st2 = con.prepareStatement(Sql.FINISHED_ORDER);

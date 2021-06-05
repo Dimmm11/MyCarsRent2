@@ -137,7 +137,7 @@ public class JDBCClientDao implements ClientDAO {
         PreparedStatement stt = null;
         PreparedStatement st = null;
         try {
-            con = connection;
+            con = ConnectionPoolHolder.getDataSource().getConnection();
             con.setAutoCommit(false);
             stt = con.prepareStatement(Sql.MOVE_CLIENT_TO_REMOVED);
             stt.setInt(1, client.getId());

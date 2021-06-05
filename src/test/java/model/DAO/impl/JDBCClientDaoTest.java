@@ -23,8 +23,8 @@ public class JDBCClientDaoTest {
     public static void dbCreate() throws SQLException, IOException {
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
         String mysqlUrl = "jdbc:mysql://localhost:3306?serverTimezone=EET";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "root");
-        ScriptRunner sr = new ScriptRunner(con);
+        Connection connection = DriverManager.getConnection(mysqlUrl, "root", "root");
+        ScriptRunner sr = new ScriptRunner(connection);
         Reader reader = new BufferedReader(new FileReader("src/main/resources/db-test.sql"));
         sr.runScript(reader);
         reader.close();
@@ -42,6 +42,7 @@ public class JDBCClientDaoTest {
         assertEquals("Olya",clients.get(0).getLogin());
     }
 
+
     @Test
     public void testGetClient(){
         Client client = jdbcClientDao.getClient("Olya");
@@ -53,21 +54,6 @@ public class JDBCClientDaoTest {
         List<Client> staff = jdbcClientDao.getStaff();
         assertEquals(2,staff.size());
     }
-
-//    @Test
-//    public void testDeleteClient() throws SQLException{
-//        Client client = new Client();
-//        client.setLogin("test");
-//        client.setPassword("Test");
-//        client.setPassport("Test");
-//        jdbcClientDao.register(client);
-////        Connection c = DBConnector.getDataSource().getConnection();
-////        JDBCClientDao cl = new JDBCClientDao(c);
-////        assertTrue(cl.deleteClient("test"));
-//        con = DBConnector.getDataSource().getConnection();
-//        jdbcClientDao = new JDBCClientDao(con);
-//        assertTrue(jdbcClientDao.deleteClient("test"));
-//    }
 
     @Test
     public void testMakeManager(){

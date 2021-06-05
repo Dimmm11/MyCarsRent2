@@ -48,7 +48,7 @@ public class JDBCOrderDaoTest {
     @Test
     public void testGetAllOrders() {
         List<Order> orderList = jdbcOrderDao.getAllOrders();
-        assertTrue(orderList.size() > 1);
+        assertTrue(orderList.size() > 0);
     }
 
     @Test
@@ -69,6 +69,11 @@ public class JDBCOrderDaoTest {
     @Test
     public void testCancelOrder(){
         assertTrue(jdbcOrderDao.cancelOrder(1));
+    }
+
+    @Test
+    public void testCarReturn(){
+        assertTrue(jdbcOrderDao.carReturn(2,3));
     }
 
 }
