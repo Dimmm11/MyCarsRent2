@@ -21,9 +21,7 @@
     <style>
         <%@include file="/CSS/loginPage.css" %>
     </style>
-    <%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/loginPage.css"/>--%>
     <title>Admin staff</title>
-
 </head>
 <body>
 

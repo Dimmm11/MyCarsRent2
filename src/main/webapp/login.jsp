@@ -57,48 +57,7 @@
 </div>
 <img SRC="https://www.madeirarentcar.com/assets/homebanner/5cb748963fd74.png" width="1120" height="420" style="margin-left: 25%">
 <div class="main">
-<%--    <header>--%>
-<%--        <nav class="navbar navbar-expand-lg navbar-light bg-light">--%>
-<%--            <div class="container-fluid">--%>
-<%--                <a style="font-size: xx-large" class="navbar-brand" href="#"><fmt:message key="Cars_rent"/></a>--%>
-<%--                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"--%>
-<%--                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"--%>
-<%--                        aria-expanded="false" aria-label="Toggle navigation">--%>
-<%--                    <span class="navbar-toggler-icon"></span>--%>
-<%--                </button>--%>
-<%--&lt;%&ndash;                <form class="d-flex">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <button class="btn btn-outline-success" type="submit">Search</button>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                </form>&ndash;%&gt;--%>
-<%--            </div>--%>
-<%--        </nav>--%>
-<%--    </header>--%>
     <div class="container-fluid">
-<%--        <div class="row">--%>
-<%--            <div class="col-md-4">--%>
-<%--            </div>--%>
-<%--            <div class="col-md-4">--%>
-<%--            </div>--%>
-<%--            <div class="col-md-4">--%>
-<%--                <table>--%>
-<%--                    <th>--%>
-<%--                    </th>--%>
-<%--                    <th>--%>
-<%--                        <form action="${pageContext.request.requestURI}" method="post">--%>
-<%--                            <input type="hidden" name="lang" value="ru">--%>
-<%--                            <input type="submit" value="ru">--%>
-<%--                        </form>--%>
-<%--                    </th>--%>
-<%--                    <th>--%>
-<%--                        <form action="${pageContext.request.requestURI}" method="post">--%>
-<%--                            <input type="hidden" name="lang" value="en">--%>
-<%--                            <input type="submit" value="en">--%>
-<%--                        </form>--%>
-<%--                    </th>--%>
-<%--                </table>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <img SRC="https://www.madeirarentcar.com/assets/homebanner/5cb748963fd74.png" width="1120" height="420">--%>
         <div class="login-form">
             <form action="${pageContext.request.contextPath}/login" method="post">
                 <div class="form-group">
@@ -126,13 +85,7 @@
             </form>
         </div>
     </div>
-<%--    ===========================--%>
-
-
-
-
     <div class="col-md-6 col-sm-12">
-
     </div>
     <div class="col-md-6 col-sm-12">
         <div id="bottom">
@@ -140,8 +93,6 @@
         </div>
     </div>
 </div>
-
-<!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>

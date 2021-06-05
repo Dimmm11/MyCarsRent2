@@ -6,5 +6,10 @@ Test database creation: db-test.sql (src/main/resources , creating by script run
 
 ____________Users____________
 Admin: Login - Dima, Password - Qwerty
+
 Manager: Login - Vasya, Password - Qwerty
+
 Client: Login - Olya, Password - Qwerty
+
+____________Tomcat____________
+set Application context as: /cars
