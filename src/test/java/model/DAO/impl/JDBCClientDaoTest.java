@@ -3,16 +3,14 @@ package model.DAO.impl;
 import model.entity.Client;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.logging.log4j.core.config.Order;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runners.MethodSorters;
 
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import static org.junit.Assert.*;
 public class JDBCClientDaoTest {
@@ -82,6 +80,13 @@ public class JDBCClientDaoTest {
     @Test
     public void testUnBan() throws SQLException {
         assertTrue(jdbcClientDao.unBan("Olya"));
+    }
+
+    @AfterClass
+    public static void dropDown() throws SQLException {
+        Connection conn = DBConnector.getDataSource().getConnection();
+        Statement st = conn.createStatement();
+        st.executeUpdate("DROP DATABASE cars_rent_test;");
     }
 
 }

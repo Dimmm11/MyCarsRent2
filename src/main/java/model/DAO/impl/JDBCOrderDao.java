@@ -6,6 +6,8 @@ import model.DAO.OrderDAO;
 import model.entity.Car;
 import model.entity.Client;
 import model.entity.Order;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -13,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JDBCOrderDao implements OrderDAO {
+    private static final Logger logger = LogManager.getLogger(JDBCOrderDao.class.getName());
+
     private Connection connection;
 
     public JDBCOrderDao(Connection connection) {
@@ -32,17 +36,17 @@ public class JDBCOrderDao implements OrderDAO {
                 result = st.executeUpdate() > 0;
             con.commit();
         } catch (SQLException e) {
+            logger.info(e.getMessage());
             try {
                 con.rollback();
             } catch (SQLException r) {
-                r.printStackTrace();
+                logger.info(r.getMessage());
             }
-            throw new RuntimeException(e);
         } finally {
             try {
                 con.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.info(e.getMessage());
             }
         }
         return result;
@@ -66,17 +70,17 @@ public class JDBCOrderDao implements OrderDAO {
             result = st.executeUpdate() > 0;
             con.commit();
         } catch (SQLException e) {
+            logger.info(e.getMessage());
             try {
                 con.rollback();
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                logger.info(throwables.getMessage());
             }
-            throw new RuntimeException(e);
         } finally {
             try {
                 st.close();
             } catch (NullPointerException | SQLException e) {
-                System.out.println(e.getMessage());
+                logger.info(e.getMessage());
             }
         }
         return result;
@@ -93,7 +97,7 @@ public class JDBCOrderDao implements OrderDAO {
                 orders.add(order);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.info(e.getMessage());
         }
         return orders;
     }
@@ -108,16 +112,14 @@ public class JDBCOrderDao implements OrderDAO {
             pst.setInt(1, client.getId());
             pst.setInt(2, index);
             pst.setInt(3, offset);
-
             ResultSet rs = pst.executeQuery();
-
             while (rs.next()) {
                 Order order = new OrderMapper().mapFromResultSet(rs);
                 orders.add(order);
             }
             con.commit();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.info(e.getMessage());
         }
         return orders;
     }
@@ -133,7 +135,7 @@ public class JDBCOrderDao implements OrderDAO {
                 orders.add(order);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.info(e.getMessage());
         }
         return orders;
     }
@@ -153,13 +155,13 @@ public class JDBCOrderDao implements OrderDAO {
                 orders.add(order);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.info(e.getMessage());
         } finally {
             try {
                 pst.close();
                 rs.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.info(e.getMessage());
             }
         }
         return orders;
@@ -167,7 +169,7 @@ public class JDBCOrderDao implements OrderDAO {
 
     @Override
     public boolean setReason(int orderId, String reason) {
-        boolean result;
+        boolean result=false;
         PreparedStatement st = null;
         try (Connection con = connection) {
             con.setAutoCommit(false);
@@ -177,12 +179,12 @@ public class JDBCOrderDao implements OrderDAO {
             result = st.executeUpdate() > 0;
             con.commit();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.info(e.getMessage());
         } finally {
             try {
                 st.close();
             } catch (NullPointerException | SQLException e) {
-                System.out.println(e.getMessage());
+                logger.info(e.getMessage());
             }
         }
         return result;
@@ -208,17 +210,18 @@ public class JDBCOrderDao implements OrderDAO {
             result = (st.executeUpdate() > 0 && st1.executeUpdate() > 0);
             con.commit();
         } catch (SQLException e) {
+            logger.info(e.getMessage());
             try {
                 connection.rollback();
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                logger.info(throwables.getMessage());
             }
         } finally {
             try {
                 st.close();
                 st1.close();
             } catch (NullPointerException | SQLException e) {
-                System.out.println(e.getMessage());
+                logger.info(e.getMessage());
             }
         }
         return result;
@@ -236,16 +239,17 @@ public class JDBCOrderDao implements OrderDAO {
             result = st.executeUpdate() > 0;
             con.commit();
         } catch (SQLException e) {
+            logger.info(e.getMessage());
             try {
                 connection.rollback();
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                logger.info(throwables.getMessage());
             }
         } finally {
             try {
                 st.close();
             } catch (NullPointerException | SQLException e) {
-                System.out.println(e.getMessage());
+                logger.info(e.getMessage());
             }
         }
         return result;
@@ -269,12 +273,12 @@ public class JDBCOrderDao implements OrderDAO {
             result = (st.executeUpdate() > 0 && st2.executeUpdate() > 0 && st3.executeUpdate() > 0);
             con.commit();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.info(e.getMessage());
         } finally {
             try {
                 st.close();
             } catch (NullPointerException | SQLException e) {
-                System.out.println(e.getMessage());
+                logger.info(e.getMessage());
             }
         }
         return result;
@@ -296,16 +300,17 @@ public class JDBCOrderDao implements OrderDAO {
             result = (st.executeUpdate() > 0 && st3.executeUpdate() > 0);
             con.commit();
         } catch (SQLException e) {
+            logger.info(e.getMessage());
             try {
                 con.rollback();
             } catch (SQLException ee) {
-                ee.printStackTrace();
+                logger.info(ee.getMessage());
             }
         } finally {
             try {
                 st.close();
             } catch (NullPointerException | SQLException e) {
-                System.out.println(e.getMessage());
+                logger.info(e.getMessage());
             }
         }
         return result;

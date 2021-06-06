@@ -3,6 +3,8 @@ package model.DAO.service;
 import model.DAO.ClientDAO;
 import model.DAO.DaoFactory;
 import model.entity.Client;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +12,22 @@ import java.util.List;
  * service layer to call ClientDAO
  */
 public class ClientService {
+    private static final Logger logger = LogManager.getLogger(ClientService.class.getName());
     DaoFactory daoFactory = DaoFactory.getInstance();
+
+    public ClientService() {
+    }
+
+    public ClientService(DaoFactory daoFactory) {
+        this.daoFactory = daoFactory;
+    }
 
     public List<Client> getStaff() {
         List<Client> list = new ArrayList<>();
         try (ClientDAO clientDao =  daoFactory.createClientDao()) {
             list = clientDao.getStaff();
         } catch (Exception e) {
-            e.printStackTrace();
+           logger.info(e.getMessage());
         }
         return list;
     }
@@ -27,7 +37,7 @@ public class ClientService {
         try (ClientDAO clientDao =  daoFactory.createClientDao()) {
             list = clientDao.getStaff(index,offset);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return list;
     }
@@ -37,7 +47,7 @@ public class ClientService {
         try (ClientDAO clientDao =  daoFactory.createClientDao()) {
             client = clientDao.getClient(login);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return client;
     }
@@ -47,7 +57,7 @@ public class ClientService {
         try (ClientDAO clientDao =  daoFactory.createClientDao()) {
             result = clientDao.deleteClient(login);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }
@@ -57,7 +67,7 @@ public class ClientService {
         try (ClientDAO clientDao =  daoFactory.createClientDao()) {
             result = clientDao.removeManager(login);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }
@@ -67,7 +77,7 @@ public class ClientService {
         try (ClientDAO clientDao =  daoFactory.createClientDao()) {
             result = clientDao.makeManager(login);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }
@@ -77,7 +87,7 @@ public class ClientService {
         try (ClientDAO clientDao =  daoFactory.createClientDao()) {
             result = clientDao.ban(login);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }
@@ -87,7 +97,7 @@ public class ClientService {
         try (ClientDAO clientDao =  daoFactory.createClientDao()) {
             list = clientDao.getClients();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return list;
     }
@@ -97,7 +107,7 @@ public class ClientService {
         try (ClientDAO clientDao =  daoFactory.createClientDao()) {
             list = clientDao.getClients(index,offset);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return list;
     }
@@ -107,7 +117,7 @@ public class ClientService {
         try (ClientDAO clientDao = daoFactory.createClientDao()) {
             result = clientDao.unBan(login);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }
@@ -117,7 +127,7 @@ public class ClientService {
         try (ClientDAO clientDao =  daoFactory.createClientDao()) {
             result = clientDao.register(client);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }

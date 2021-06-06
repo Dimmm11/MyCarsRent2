@@ -4,6 +4,8 @@ import model.util.Sql;
 import model.DAO.mapper.ClientMapper;
 import model.DAO.ClientDAO;
 import model.entity.Client;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
@@ -11,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JDBCClientDao implements ClientDAO {
+    private static final Logger logger = LogManager.getLogger(JDBCClientDao.class.getName());
+
     private Connection connection;
 
     public JDBCClientDao(Connection connection) {
@@ -29,7 +33,7 @@ public class JDBCClientDao implements ClientDAO {
                 list.add(client);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return list;
     }
@@ -50,15 +54,14 @@ public class JDBCClientDao implements ClientDAO {
                 list.add(client);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         } finally {
             try {
                 pst.close();
                 rs.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.info(e.getMessage());
             }
-
         }
         return list;
     }
@@ -73,7 +76,7 @@ public class JDBCClientDao implements ClientDAO {
             rs.next();
             client = new ClientMapper().mapFromResultSet(rs);
         } catch (SQLException e) {
-            e.printStackTrace();
+           logger.info(e.getMessage());
         }
         return client;
     }
@@ -90,7 +93,7 @@ public class JDBCClientDao implements ClientDAO {
                 staff.add(client);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return staff;
     }
@@ -111,13 +114,13 @@ public class JDBCClientDao implements ClientDAO {
                 staff.add(client);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         } finally {
             try {
                 pst.close();
                 rs.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.info(e.getMessage());
             }
         }
         return staff;
@@ -148,19 +151,19 @@ public class JDBCClientDao implements ClientDAO {
             result = (stt.executeUpdate() > 0 && st.executeUpdate() > 0);
             con.commit();
         } catch (SQLException e) {
+            logger.info(e.getMessage());
             try {
                 con.rollback();
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                logger.info(throwables.getMessage());
             }
-            e.printStackTrace();
         } finally {
             try {
                 st.close();
                 stt.close();
                 con.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.info(e.getMessage());
             }
         }
         return result;
@@ -175,7 +178,7 @@ public class JDBCClientDao implements ClientDAO {
             result = st.executeUpdate(Sql.MAKE_MANAGER
                     .replace(" ? ", "'" + login + "'")) > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }
@@ -187,7 +190,7 @@ public class JDBCClientDao implements ClientDAO {
              Statement st = con.createStatement()) {
             result = st.executeUpdate(Sql.REMOVE_MANAGER.replace(" ? ", "'" + login + "'")) > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }
@@ -213,16 +216,17 @@ public class JDBCClientDao implements ClientDAO {
             result = st.executeUpdate() > 0;
             con.commit();
         } catch (SQLException e) {
+            logger.info(e.getMessage());
             try {
                 con.rollback();
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                logger.info(throwables.getMessage());
             }
         } finally {
             try {
                 con.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.info(e.getMessage());
             }
         }
         return result;
@@ -236,7 +240,7 @@ public class JDBCClientDao implements ClientDAO {
             result = st.executeUpdate(Sql.BAN
                     .replace(" ? ", "'" + login + "'")) > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }
@@ -249,7 +253,7 @@ public class JDBCClientDao implements ClientDAO {
             result = st.executeUpdate(Sql.UNBAN
                     .replace(" ? ", "'" + login + "'")) > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }

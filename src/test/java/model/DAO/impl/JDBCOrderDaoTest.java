@@ -3,6 +3,7 @@ package model.DAO.impl;
 import model.entity.Client;
 import model.entity.Order;
 import org.apache.ibatis.jdbc.ScriptRunner;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -74,6 +76,13 @@ public class JDBCOrderDaoTest {
     @Test
     public void testCarReturn(){
         assertTrue(jdbcOrderDao.carReturn(2,3));
+    }
+
+    @AfterClass
+    public static void dropDown() throws SQLException {
+        Connection conn = DBConnector.getDataSource().getConnection();
+        Statement st = conn.createStatement();
+        st.executeUpdate("DROP DATABASE cars_rent_test;");
     }
 
 }

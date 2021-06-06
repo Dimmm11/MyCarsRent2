@@ -5,6 +5,8 @@ import model.DAO.DaoFactory;
 import model.entity.Car;
 import model.entity.Client;
 import model.entity.Order;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -13,14 +15,23 @@ import java.util.List;
  * service layer to call OrderDAO
  */
 public class OrderService {
+    private static final Logger logger = LogManager.getLogger(OrderService.class.getName());
+
     DaoFactory daoFactory = DaoFactory.getInstance();
+
+    public OrderService() {
+    }
+
+    public OrderService(DaoFactory daoFactory) {
+        this.daoFactory = daoFactory;
+    }
 
     public List<Order> getOrdersByClient(Client client, int index, int offset) {
         List<Order> list = new ArrayList<>();
         try (OrderDAO orderDao = daoFactory.createOrderDao()) {
             list = orderDao.getOrdersByClient(client, index, offset);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return list;
     }
@@ -30,7 +41,7 @@ public class OrderService {
         try (OrderDAO orderDao = daoFactory.createOrderDao()) {
             list = orderDao.getOrdersByClient(client);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return list;
     }
@@ -40,7 +51,7 @@ public class OrderService {
         try (OrderDAO orderDao = daoFactory.createOrderDao()) {
             result = orderDao.cancelOrder(orderId);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }
@@ -50,7 +61,7 @@ public class OrderService {
         try (OrderDAO orderDao = daoFactory.createOrderDao()) {
             result = orderDao.carOrder(car, client, driver, term);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }
@@ -60,7 +71,7 @@ public class OrderService {
         try (OrderDAO orderDao = daoFactory.createOrderDao()) {
             result = orderDao.carReturn(orderId, clientId);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }
@@ -70,7 +81,7 @@ public class OrderService {
         try (OrderDAO orderDao = daoFactory.createOrderDao()) {
             list = orderDao.getAllOrders();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return list;
     }
@@ -80,7 +91,7 @@ public class OrderService {
         try (OrderDAO orderDao = daoFactory.createOrderDao()) {
             list = orderDao.getAllOrders(index, offset);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return list;
     }
@@ -90,7 +101,7 @@ public class OrderService {
         try (OrderDAO orderDao = daoFactory.createOrderDao()) {
             result = orderDao.setPenalty(orderId, penalty);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }
@@ -100,7 +111,7 @@ public class OrderService {
         try (OrderDAO orderDao = daoFactory.createOrderDao()) {
             result = orderDao.setOrderStatus(orderId, orderStatus);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }
@@ -110,7 +121,7 @@ public class OrderService {
         try (OrderDAO orderDao = daoFactory.createOrderDao()) {
             result = orderDao.setReason(orderId, reason);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return result;
     }

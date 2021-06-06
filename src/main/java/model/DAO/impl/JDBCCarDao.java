@@ -1,10 +1,13 @@
 package model.DAO.impl;
 
+import controller.command.admin.AdminCarAdd;
 import model.util.Sql;
 import model.DAO.mapper.CarMapper;
 import model.DAO.CarDAO;
 import model.entity.Car;
 import model.entity.Client;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -12,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JDBCCarDao implements CarDAO {
+    private static final Logger logger = LogManager.getLogger(JDBCCarDao.class.getName());
     private Connection connection;
 
     public JDBCCarDao(Connection connection) {
@@ -31,7 +35,7 @@ public class JDBCCarDao implements CarDAO {
                 carsByClass.add(car);
             }
         } catch (SQLException | NullPointerException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         return carsByClass;
     }
@@ -49,7 +53,7 @@ public class JDBCCarDao implements CarDAO {
                 carsByMarque.add(car);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+           logger.info(e.getMessage());
         }
         return carsByMarque;
     }
@@ -71,12 +75,12 @@ public class JDBCCarDao implements CarDAO {
             }
             con.commit();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         } finally {
             try {
                 pst.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.info(e.getMessage());
             }
         }
         return carsByClient;
@@ -94,7 +98,7 @@ public class JDBCCarDao implements CarDAO {
                 allCars.add(car);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return allCars;
     }
@@ -114,13 +118,13 @@ public class JDBCCarDao implements CarDAO {
                 allCars.add(car);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         } finally {
             try {
                 pst.close();
                 rs.close();
             } catch (SQLException e) {
-                e.getMessage();
+                logger.info(e.getMessage());
             }
         }
         return allCars;
@@ -142,18 +146,18 @@ public class JDBCCarDao implements CarDAO {
             result = st.executeUpdate() > 0;
             con.commit();
         } catch (SQLException e) {
+            logger.info(e.getMessage());
             try {
                 con.rollback();
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                logger.info(throwables.getMessage());
             }
-            e.printStackTrace();
         } finally {
             try {
                 st.close();
                 con.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.info(e.getMessage());
             }
         }
         return result;
@@ -173,18 +177,18 @@ public class JDBCCarDao implements CarDAO {
             result = st.executeUpdate() > 0;
             con.commit();
         } catch (SQLException e) {
+            logger.info(e.getMessage());
             try {
                 con.rollback();
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                logger.info(throwables.getMessage());
             }
-            e.printStackTrace();
         } finally {
             try {
                 st.close();
                 con.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.info(e.getMessage());
             }
         }
         return result;
@@ -205,18 +209,18 @@ public class JDBCCarDao implements CarDAO {
             car = new CarMapper().mapFromResultSet(rs);
             con.commit();
         } catch (SQLException e) {
+            logger.info(e.getMessage());
             try {
                 con.rollback();
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                logger.info(throwables.getMessage());
             }
-            e.printStackTrace();
         } finally {
             try {
                 st.close();
                 con.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.info(e.getMessage());
             }
         }
         return car;
@@ -235,18 +239,18 @@ public class JDBCCarDao implements CarDAO {
             result = st.executeUpdate() > 0;
             con.commit();
         } catch (SQLException e) {
+            logger.info(e.getMessage());
             try {
                 con.rollback();
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                logger.info(throwables.getMessage());
             }
-            e.printStackTrace();
         } finally {
             try {
                 st.close();
                 con.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.info(e.getMessage());
             }
         }
         return result;
