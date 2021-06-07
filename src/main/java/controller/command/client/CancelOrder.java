@@ -24,6 +24,7 @@ public class CancelOrder implements Command {
             logger.info(String.format("Cancel order success: %s", request.getParameter(Const.ORDER_ID)));
         } catch (Exception e) {
             logger.info(String.format("Failed cancel order: %s", e.getMessage()));
+            return "/error.jsp";
         }
         return "/profile";
     }

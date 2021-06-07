@@ -15,12 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
+
 /**
  * Page showing cars by specific marque,
  * chosen by client
  */
 public class CarsByMarque implements Command {
     private static final Logger logger = LogManager.getLogger(CarsByMarque.class.getName());
+
     @Override
     public String execute(HttpServletRequest request) {
         logger.info("CarsByMarque.execute...");
@@ -51,11 +53,17 @@ public class CarsByMarque implements Command {
         String orderAttribute = orderOptional
                 .orElse(sortOrder);
         session.setAttribute(Const.SORT_ORDER, orderAttribute);
-        List<Car> allCars = new CarService().getCarsByMarque(
-                (String) session.getAttribute(Const.MARQUE),
-                (String) session.getAttribute(Const.COLUMN),
-                (String) session.getAttribute(Const.SORT_ORDER));
-        logger.info(String.format("allCars.size: %d", allCars.size()));
+        List<Car> allCars;
+        try {
+            allCars = new CarService().getCarsByMarque(
+                    (String) session.getAttribute(Const.MARQUE),
+                    (String) session.getAttribute(Const.COLUMN),
+                    (String) session.getAttribute(Const.SORT_ORDER));
+            logger.info(String.format("allCars.size: %d", allCars.size()));
+        } catch (Exception e) {
+            logger.info("Failed to get cars by marque");
+            return "/error.jsp";
+        }
         cars = new Paginator<Car>().getEntitiesForPage(allCars,
                 (page - 1) * 3,
                 (page - 1) * 3 + 3);

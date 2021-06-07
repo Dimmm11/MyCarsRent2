@@ -106,8 +106,6 @@
                                         <td><c:out value="${order.total_cost}"/><fmt:message key="cur"/></td>
                                     </c:when>
                                     <c:otherwise>
-                                        <td><c:out value="${car.price*27}"/><fmt:message key="cur"/></td>
-
                                         <td><c:out value="${order.rent_cost*27}"/><fmt:message key="cur"/></td>
                                         <td><c:out value="${order.penalty*27}"/><fmt:message key="cur"/></td>
                                         <td><c:out value="${order.total_cost*27}"/><fmt:message key="cur"/></td>

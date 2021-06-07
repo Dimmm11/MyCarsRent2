@@ -21,6 +21,7 @@ import java.util.Optional;
  */
 public class Profile implements Command {
     private static final Logger logger = LogManager.getLogger(Profile.class.getName());
+
     @Override
     public String execute(HttpServletRequest request) {
         logger.info("Profile.execute...");
@@ -33,14 +34,21 @@ public class Profile implements Command {
         if (pageOptional.isPresent()) {
             page = Integer.parseInt(pageOptional.get());
         }
-        List<Order> ordersOnPage = new OrderService().getOrdersByClient((Client) request
-                .getSession()
-                .getAttribute(Const.CLIENT), (page - 1) * 3, 3);
-        logger.info(String.format("ordersOnPage:%d", ordersOnPage.size()));
-        List<Car> carsOnPage = new CarService().getCarsByClient((Client) request
-                .getSession()
-                .getAttribute(Const.CLIENT), (page - 1) * 3, 3);
-        logger.info(String.format("carsOnPage:%s", carsOnPage.size()));
+        List<Order> ordersOnPage;
+        List<Car> carsOnPage;
+        try {
+            ordersOnPage = new OrderService().getOrdersByClient((Client) request
+                    .getSession()
+                    .getAttribute(Const.CLIENT), (page - 1) * 3, 3);
+            logger.info(String.format("ordersOnPage:%d", ordersOnPage.size()));
+            carsOnPage = new CarService().getCarsByClient((Client) request
+                    .getSession()
+                    .getAttribute(Const.CLIENT), (page - 1) * 3, 3);
+            logger.info(String.format("carsOnPage:%s", carsOnPage.size()));
+        } catch (Exception e) {
+            logger.info("Failed to get data for profile");
+            return "/error.jsp";
+        }
         int numPages = new PageCalculator().getNumPages(orders.size());
         request.setAttribute(Const.PAGE, page);
         request.setAttribute(Const.NUM_PAGES, numPages);

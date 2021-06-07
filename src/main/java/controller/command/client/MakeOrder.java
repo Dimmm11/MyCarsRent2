@@ -43,8 +43,8 @@ public class MakeOrder implements Command {
             logger.info(String.format("Order successful: %s", car));
         }catch (Exception e){
             logger.info(String.format("Failed to make order: %s", e.getMessage()));
+            return "/error.jsp";
         }
-
         return "/profile";
     }
 }

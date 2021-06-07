@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,11 +59,17 @@ public class CarsByClass implements Command {
         String orderSort = orderOptional
                 .orElse(sortOrder);
         session.setAttribute(Const.SORT_ORDER, orderSort);
-        List<Car> allCars = new CarService().getCarsByClass(
-                (String) session.getAttribute(Const.CAR_CLASS),
-                (String) session.getAttribute(Const.COLUMN),
-                (String) session.getAttribute(Const.SORT_ORDER));
-        logger.info(String.format("allCars.size: %d", allCars.size()));
+        List<Car> allCars;
+        try {
+            allCars = new CarService().getCarsByClass(
+                    (String) session.getAttribute(Const.CAR_CLASS),
+                    (String) session.getAttribute(Const.COLUMN),
+                    (String) session.getAttribute(Const.SORT_ORDER));
+            logger.info(String.format("allCars.size: %d", allCars.size()));
+        }catch (Exception e){
+            logger.info("Failed to get cars by class");
+            return "/error.jsp";
+        }
         List<Car> cars = new Paginator<Car>().getEntitiesForPage(allCars,
                 (page - 1) * 3,
                 (page - 1) * 3 + 3);
